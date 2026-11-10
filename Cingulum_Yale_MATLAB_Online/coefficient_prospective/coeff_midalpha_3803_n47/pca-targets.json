@@ -1,0 +1,338 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0000",
+      "values": [
+        8.445199387603632,
+        9.125499315654354
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0001",
+      "values": [
+        12.034577384818126,
+        11.350520042973866
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0002",
+      "values": [
+        13.379106353030032,
+        12.489155862096004
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0003",
+      "values": [
+        7.495588033350982,
+        8.148315635910084
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0004",
+      "values": [
+        10.422341898910883,
+        9.974375712609627
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0005",
+      "values": [
+        11.71105187305215,
+        11.103324049075383
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0006",
+      "values": [
+        12.6320864253082,
+        11.174170402368802
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0007",
+      "values": [
+        9.564863010412987,
+        9.219936200437077
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0008",
+      "values": [
+        8.922634785507407,
+        8.660061455900035
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0009",
+      "values": [
+        9.509128746384164,
+        9.381516564166605
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0010",
+      "values": [
+        11.875840772803434,
+        11.176169779943809
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0011",
+      "values": [
+        9.29902855979088,
+        9.814855751752903
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0012",
+      "values": [
+        9.921398162997018,
+        9.913408413394205
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0013",
+      "values": [
+        10.345598100680343,
+        9.809407140930622
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0014",
+      "values": [
+        8.272904212630783,
+        8.155601453308133
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0015",
+      "values": [
+        9.790045010657762,
+        9.28170118765443
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0016",
+      "values": [
+        14.010745976804408,
+        11.993446243850094
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0017",
+      "values": [
+        14.17194117502448,
+        12.150959641296202
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0018",
+      "values": [
+        9.543023759674629,
+        9.657664716154493
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0019",
+      "values": [
+        13.471325371819105,
+        12.412653784631026
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0020",
+      "values": [
+        12.460296382477473,
+        11.448514454755742
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0021",
+      "values": [
+        9.8434371114507,
+        10.056867474785758
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0022",
+      "values": [
+        15.265654242074636,
+        13.304645097606981
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0023",
+      "values": [
+        13.46721122930171,
+        11.733898567383548
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0024",
+      "values": [
+        9.97148312335576,
+        9.359711830617881
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0025",
+      "values": [
+        11.073409068296591,
+        10.352739648597648
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0026",
+      "values": [
+        13.654520368160465,
+        12.320070377225987
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0027",
+      "values": [
+        13.096734786785381,
+        11.94461502893111
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0028",
+      "values": [
+        10.853861539834506,
+        10.859961555239714
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0029",
+      "values": [
+        11.36810438067993,
+        10.869041609822826
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0030",
+      "values": [
+        13.523707429712633,
+        12.018828371914964
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0031",
+      "values": [
+        14.815902238125295,
+        12.793238545269096
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0032",
+      "values": [
+        12.59017083965504,
+        11.257227560147845
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0033",
+      "values": [
+        10.256469821695136,
+        9.56297671742161
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0034",
+      "values": [
+        12.576316745163753,
+        11.238732871118538
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0035",
+      "values": [
+        13.628838385681886,
+        12.359587288629037
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0036",
+      "values": [
+        15.060617490446555,
+        13.13284790650894
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0037",
+      "values": [
+        13.228684331181144,
+        12.436050409975389
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0038",
+      "values": [
+        13.04576336977373,
+        11.85990049781551
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0039",
+      "values": [
+        16.024089717964692,
+        13.877317160918622
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0040",
+      "values": [
+        13.216818256640614,
+        11.568040175310939
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0041",
+      "values": [
+        11.423243293629236,
+        10.19031517716377
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0042",
+      "values": [
+        12.071199180851918,
+        10.9033408303102
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0043",
+      "values": [
+        12.793892722445033,
+        11.508537504289633
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0044",
+      "values": [
+        16.18211646331667,
+        14.187660940363902
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0045",
+      "values": [
+        14.422685174261286,
+        12.60400804919435
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_midalpha_3803_n47_0046",
+      "values": [
+        11.167845171822998,
+        10.687172456021386
+      ]
+    }
+  ]
+}

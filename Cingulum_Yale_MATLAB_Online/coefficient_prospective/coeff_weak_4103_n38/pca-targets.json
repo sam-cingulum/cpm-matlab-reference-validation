@@ -1,0 +1,275 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0000",
+      "values": [
+        7.532256829366234,
+        8.080452724454128
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0001",
+      "values": [
+        8.714580144732595,
+        8.740823759616474
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0002",
+      "values": [
+        9.46578775277047,
+        9.51246358631646
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0003",
+      "values": [
+        12.112525310622754,
+        11.41753247726037
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0004",
+      "values": [
+        10.78365224560085,
+        10.493860267660073
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0005",
+      "values": [
+        10.520878136274833,
+        9.93807479223994
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0006",
+      "values": [
+        11.548823666871318,
+        10.550325295116261
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0007",
+      "values": [
+        10.594220824410055,
+        9.975542842126776
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0008",
+      "values": [
+        10.924383150188579,
+        9.776191501154539
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0009",
+      "values": [
+        12.663363075121035,
+        11.546833609505205
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0010",
+      "values": [
+        13.255698483799023,
+        12.15792244271542
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0011",
+      "values": [
+        12.014430123503757,
+        11.460545701090629
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0012",
+      "values": [
+        8.835425185232364,
+        8.93034554743408
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0013",
+      "values": [
+        12.825162462093797,
+        11.242322714627655
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0014",
+      "values": [
+        9.154573995024188,
+        9.121627101540048
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0015",
+      "values": [
+        10.896906123367648,
+        9.77479595890902
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0016",
+      "values": [
+        13.198380732749165,
+        11.489896780720391
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0017",
+      "values": [
+        13.553707754128899,
+        11.742269999246384
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0018",
+      "values": [
+        10.95518372227087,
+        10.677853162677081
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0019",
+      "values": [
+        12.122018003984975,
+        11.61518242881107
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0020",
+      "values": [
+        14.132092237361958,
+        12.329967601394886
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0021",
+      "values": [
+        14.603169308703588,
+        12.83417963372096
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0022",
+      "values": [
+        12.996830477947372,
+        11.651966687958984
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0023",
+      "values": [
+        11.624662053793985,
+        10.461381291752957
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0024",
+      "values": [
+        9.702345677156151,
+        9.279013306762657
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0025",
+      "values": [
+        12.906671762682869,
+        11.335462759782974
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0026",
+      "values": [
+        14.97028706546653,
+        13.326416160053483
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0027",
+      "values": [
+        12.411003494205596,
+        11.627687512312157
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0028",
+      "values": [
+        12.545331759959963,
+        11.594224505795928
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0029",
+      "values": [
+        14.28854588922398,
+        12.669964307839411
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0030",
+      "values": [
+        12.588332828475659,
+        11.206047949262942
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0031",
+      "values": [
+        14.899127453981922,
+        12.680327993196707
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0032",
+      "values": [
+        12.757828111238275,
+        11.147633766033124
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0033",
+      "values": [
+        11.2947501816868,
+        10.066114262191071
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0034",
+      "values": [
+        11.619448578008098,
+        10.759294242659756
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0035",
+      "values": [
+        15.481678915474637,
+        13.424253512627654
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0036",
+      "values": [
+        15.393649653180349,
+        13.505374128551644
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_weak_4103_n38_0037",
+      "values": [
+        16.57030050422407,
+        14.635889875942539
+      ]
+    }
+  ]
+}

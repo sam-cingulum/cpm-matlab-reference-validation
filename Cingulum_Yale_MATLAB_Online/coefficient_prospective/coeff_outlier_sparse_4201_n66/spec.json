@@ -1,0 +1,9 @@
+{
+  "name": "coeff_outlier_sparse_4201_n66",
+  "seed": 4201,
+  "n": 66,
+  "lam": 0.03,
+  "ridge_alpha": 0.91,
+  "pca_alpha": 0.9,
+  "kind": "outlier_scale"
+}

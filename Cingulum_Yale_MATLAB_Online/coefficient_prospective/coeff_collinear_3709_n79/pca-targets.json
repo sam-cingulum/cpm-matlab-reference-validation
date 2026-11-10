@@ -1,0 +1,562 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0000",
+      "values": [
+        12.96466754939918,
+        11.80066448954861
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0001",
+      "values": [
+        11.872729765057072,
+        10.970586086423125
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0002",
+      "values": [
+        9.402775302530229,
+        9.525950465247607
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0003",
+      "values": [
+        13.601246184172636,
+        12.265639011428767
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0004",
+      "values": [
+        13.337341920132673,
+        11.89156827333019
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0005",
+      "values": [
+        8.846200176526605,
+        8.829301501134463
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0006",
+      "values": [
+        9.140425954601316,
+        8.929693629438962
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0007",
+      "values": [
+        12.39041517424758,
+        10.991402732198766
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0008",
+      "values": [
+        12.746851534805407,
+        11.456714387097565
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0009",
+      "values": [
+        11.47264582967995,
+        10.890915603422755
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0010",
+      "values": [
+        10.76946187905647,
+        10.529857868410202
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0011",
+      "values": [
+        10.33362684984647,
+        9.962993068560543
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0012",
+      "values": [
+        10.728547225395296,
+        10.41849690493754
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0013",
+      "values": [
+        12.427985725773826,
+        11.517636676360135
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0014",
+      "values": [
+        14.533724182397295,
+        12.404219183706838
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0015",
+      "values": [
+        13.212734124834341,
+        11.396511310868611
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0016",
+      "values": [
+        10.051617640859538,
+        9.646471909359642
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0017",
+      "values": [
+        11.516689751627794,
+        10.681703078393168
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0018",
+      "values": [
+        11.74549891412421,
+        11.008878748358795
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0019",
+      "values": [
+        11.915057451676176,
+        11.219535848602254
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0020",
+      "values": [
+        10.107512435540349,
+        9.748854465447724
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0021",
+      "values": [
+        11.026393738713269,
+        10.745975638672205
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0022",
+      "values": [
+        10.914415827736402,
+        10.088409456862424
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0023",
+      "values": [
+        12.479685206521193,
+        11.08717010251603
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0024",
+      "values": [
+        17.803090204183984,
+        14.703627659620755
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0025",
+      "values": [
+        10.755340473111197,
+        10.194474598860598
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0026",
+      "values": [
+        10.060062390733153,
+        9.621016468692568
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0027",
+      "values": [
+        15.748611479241214,
+        13.639395944262223
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0028",
+      "values": [
+        13.4530620562926,
+        12.49519364423026
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0029",
+      "values": [
+        10.682801852491167,
+        10.278653702304517
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0030",
+      "values": [
+        8.184893073249684,
+        8.364300729146272
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0031",
+      "values": [
+        13.362976485332192,
+        11.677231919136267
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0032",
+      "values": [
+        11.228107841446533,
+        10.04045014127683
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0033",
+      "values": [
+        11.75590080055433,
+        10.57099092716659
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0034",
+      "values": [
+        10.685851876046847,
+        10.212542084402472
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0035",
+      "values": [
+        12.24071652602471,
+        11.460383191932166
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0036",
+      "values": [
+        10.309488365544052,
+        10.047716461339936
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0037",
+      "values": [
+        9.534642739933153,
+        10.007036780834119
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0038",
+      "values": [
+        10.480628402142159,
+        9.97184722108018
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0039",
+      "values": [
+        10.434556483770885,
+        10.378494714067427
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0040",
+      "values": [
+        8.6073371016219,
+        8.468170123137776
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0041",
+      "values": [
+        8.910806115241053,
+        8.758234002548985
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0042",
+      "values": [
+        12.686770300613741,
+        10.905217486615816
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0043",
+      "values": [
+        11.235687912837744,
+        10.46218576292597
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0044",
+      "values": [
+        13.147648614584822,
+        12.02310964099318
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0045",
+      "values": [
+        14.672600758697063,
+        13.100008374665748
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0046",
+      "values": [
+        12.134059720818625,
+        11.775290395983628
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0047",
+      "values": [
+        11.849879967967468,
+        11.177610000881591
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0048",
+      "values": [
+        11.06083678568824,
+        10.009759562509442
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0049",
+      "values": [
+        11.314792040799055,
+        10.49823128075442
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0050",
+      "values": [
+        14.422439616423897,
+        12.53758152516812
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0051",
+      "values": [
+        11.291855864451032,
+        10.309406297992709
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0052",
+      "values": [
+        12.024350322180863,
+        11.399789540251973
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0053",
+      "values": [
+        12.668048594688461,
+        11.912045226989457
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0054",
+      "values": [
+        14.022816500189444,
+        12.859506339528965
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0055",
+      "values": [
+        11.865988111635831,
+        11.186528170754405
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0056",
+      "values": [
+        12.960294840737788,
+        11.683395517854095
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0057",
+      "values": [
+        12.194335697059325,
+        10.827713957443855
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0058",
+      "values": [
+        20.204112454251256,
+        16.503238527023548
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0059",
+      "values": [
+        12.238054399088101,
+        10.998947679900946
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0060",
+      "values": [
+        12.635608585865088,
+        11.381762171333813
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0061",
+      "values": [
+        10.762285427313541,
+        10.318210470698746
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0062",
+      "values": [
+        8.063211225913653,
+        8.607559829787455
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0063",
+      "values": [
+        16.219675145091802,
+        14.039316383964678
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0064",
+      "values": [
+        17.125133130063208,
+        14.455079691558018
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0065",
+      "values": [
+        12.579987347031741,
+        11.127529951659872
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0066",
+      "values": [
+        12.564526599015355,
+        11.121631721023846
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0067",
+      "values": [
+        13.379605830721008,
+        11.816332366677745
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0068",
+      "values": [
+        16.726773519996666,
+        13.782015150284472
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0069",
+      "values": [
+        12.361449930191966,
+        11.106474000528832
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0070",
+      "values": [
+        13.050479305726935,
+        12.299879438894855
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0071",
+      "values": [
+        14.086340168570324,
+        12.347274627309362
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0072",
+      "values": [
+        14.622914628754803,
+        13.00172459923137
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0073",
+      "values": [
+        15.280593675426255,
+        13.492975965578024
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0074",
+      "values": [
+        13.79975316579184,
+        12.057239191184458
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0075",
+      "values": [
+        14.64622023495698,
+        12.45028057745545
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0076",
+      "values": [
+        14.042032681232032,
+        11.909525422266254
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0077",
+      "values": [
+        14.02814845874627,
+        12.299407345033929
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_collinear_3709_n79_0078",
+      "values": [
+        13.559499984227617,
+        12.217463531323698
+      ]
+    }
+  ]
+}

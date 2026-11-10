@@ -1,0 +1,436 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0000",
+      "values": [
+        6.621434421746045,
+        7.417362878557681
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0001",
+      "values": [
+        10.714334081911117,
+        10.627476273271244
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0002",
+      "values": [
+        10.480465632553825,
+        10.285457281676424
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0003",
+      "values": [
+        10.783782783165694,
+        10.508011958679191
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0004",
+      "values": [
+        10.816575338314921,
+        10.293921519603249
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0005",
+      "values": [
+        10.312990107566101,
+        9.77897470695635
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0006",
+      "values": [
+        11.906746465696141,
+        10.664691310045288
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0007",
+      "values": [
+        13.670394701000038,
+        11.867279423116214
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0008",
+      "values": [
+        13.25385148443518,
+        11.959347963158205
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0009",
+      "values": [
+        10.205569276987294,
+        9.867631638615991
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0010",
+      "values": [
+        15.82040194978337,
+        13.903842930842456
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0011",
+      "values": [
+        8.55040322673509,
+        8.807784620440367
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0012",
+      "values": [
+        11.210664036236265,
+        10.674318341113814
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0013",
+      "values": [
+        8.929092490657114,
+        9.027186885666476
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0014",
+      "values": [
+        8.888963694686046,
+        8.972862561423415
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0015",
+      "values": [
+        7.185413417433416,
+        7.874562967587074
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0016",
+      "values": [
+        9.577780607964137,
+        9.000336953431765
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0017",
+      "values": [
+        9.800771471340092,
+        9.617116995621494
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0018",
+      "values": [
+        14.635828757583853,
+        12.844268601320033
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0019",
+      "values": [
+        10.14176209938437,
+        10.336997374489243
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0020",
+      "values": [
+        9.484197233133669,
+        9.507246013631228
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0021",
+      "values": [
+        12.47224766538906,
+        11.677905030682904
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0022",
+      "values": [
+        11.565102380101305,
+        10.442685328384934
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0023",
+      "values": [
+        12.636993670142852,
+        11.448341854276329
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0024",
+      "values": [
+        14.935099687560363,
+        12.70131173209722
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0025",
+      "values": [
+        8.733976925193168,
+        8.678635706616745
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0026",
+      "values": [
+        12.35130271480105,
+        11.10604985518339
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0027",
+      "values": [
+        10.074550338171111,
+        9.846681416504127
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0028",
+      "values": [
+        11.026647723077856,
+        10.43753095716422
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0029",
+      "values": [
+        14.74395075349696,
+        13.132526942568266
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0030",
+      "values": [
+        9.116946607126065,
+        9.029497689311441
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0031",
+      "values": [
+        10.888005932224102,
+        10.235709366724068
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0032",
+      "values": [
+        12.283576700572576,
+        10.833151905164355
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0033",
+      "values": [
+        13.41119910247954,
+        11.829472371411233
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0034",
+      "values": [
+        9.442963184003593,
+        9.369344871979125
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0035",
+      "values": [
+        11.703280126416116,
+        10.414195621343062
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0036",
+      "values": [
+        14.67180580640383,
+        13.159727320721919
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0037",
+      "values": [
+        10.782706824954236,
+        10.458945975239812
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0038",
+      "values": [
+        12.266627689495772,
+        11.364300374302635
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0039",
+      "values": [
+        14.839281700627504,
+        12.92191354383352
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0040",
+      "values": [
+        13.927279725153861,
+        12.091304784161048
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0041",
+      "values": [
+        14.767122321713343,
+        12.669135573023178
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0042",
+      "values": [
+        16.48203336286771,
+        13.751768568768984
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0043",
+      "values": [
+        11.10359754388347,
+        10.514967896686445
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0044",
+      "values": [
+        10.116838773177578,
+        10.030496938702612
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0045",
+      "values": [
+        15.306724219724627,
+        13.456415277466965
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0046",
+      "values": [
+        10.978954127445006,
+        10.402947066165398
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0047",
+      "values": [
+        14.053800211054709,
+        12.670774326899808
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0048",
+      "values": [
+        11.74581999563438,
+        10.667652405915513
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0049",
+      "values": [
+        14.026244392785232,
+        12.111894296508902
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0050",
+      "values": [
+        15.586284912594458,
+        13.215103246312715
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0051",
+      "values": [
+        13.367928415052752,
+        11.726265200609276
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0052",
+      "values": [
+        14.84087184546066,
+        12.786861641838776
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0053",
+      "values": [
+        12.420924821213166,
+        11.474224594244092
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0054",
+      "values": [
+        11.209858673653232,
+        10.77831686661928
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0055",
+      "values": [
+        13.349128074282632,
+        12.185299604113451
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0056",
+      "values": [
+        13.245024379851404,
+        11.793319957947292
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0057",
+      "values": [
+        15.044507932470955,
+        12.990291509946097
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0058",
+      "values": [
+        14.367457328945395,
+        12.302966134132408
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0059",
+      "values": [
+        12.133589110826385,
+        10.940982613550052
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_sparse_3301_n61_0060",
+      "values": [
+        12.850144941577843,
+        11.422836360967162
+      ]
+    }
+  ]
+}

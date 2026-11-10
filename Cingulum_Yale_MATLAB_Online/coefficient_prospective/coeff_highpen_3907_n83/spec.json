@@ -1,0 +1,9 @@
+{
+  "name": "coeff_highpen_3907_n83",
+  "seed": 3907,
+  "n": 83,
+  "lam": 0.48,
+  "ridge_alpha": 0.73,
+  "pca_alpha": 0.6,
+  "kind": "normal"
+}

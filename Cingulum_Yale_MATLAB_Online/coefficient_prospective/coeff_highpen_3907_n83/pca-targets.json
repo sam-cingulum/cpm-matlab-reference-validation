@@ -1,0 +1,590 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0000",
+      "values": [
+        9.741206445565023,
+        9.413599430477772
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0001",
+      "values": [
+        13.357186624148794,
+        12.300193711268877
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0002",
+      "values": [
+        10.104149323786505,
+        10.03848744691926
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0003",
+      "values": [
+        11.43015978700091,
+        11.103178100660648
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0004",
+      "values": [
+        7.201699972986675,
+        7.849457339117137
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0005",
+      "values": [
+        9.716544243367345,
+        9.182408706719597
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0006",
+      "values": [
+        12.648091035137229,
+        11.02143692979201
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0007",
+      "values": [
+        13.16891743718822,
+        11.42351414105625
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0008",
+      "values": [
+        8.389029190937444,
+        8.62916896755949
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0009",
+      "values": [
+        11.244986664607488,
+        10.556406747867792
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0010",
+      "values": [
+        11.345387696280344,
+        10.909749100710949
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0011",
+      "values": [
+        11.02275317022289,
+        10.4892569576441
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0012",
+      "values": [
+        11.884063270260812,
+        11.15694945933934
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0013",
+      "values": [
+        12.631478043345632,
+        11.71985232748464
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0014",
+      "values": [
+        8.117999790069735,
+        8.132324233334025
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0015",
+      "values": [
+        11.258815672318606,
+        10.284729597814028
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0016",
+      "values": [
+        9.118102688772638,
+        8.992408073260943
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0017",
+      "values": [
+        9.96889102753699,
+        9.970245634586288
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0018",
+      "values": [
+        13.872436075404247,
+        12.537728275527801
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0019",
+      "values": [
+        12.201068975137048,
+        11.636753490490062
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0020",
+      "values": [
+        12.371948082282982,
+        11.287484416680392
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0021",
+      "values": [
+        9.390587114040992,
+        9.333611387379314
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0022",
+      "values": [
+        9.607033482657183,
+        9.061382169146661
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0023",
+      "values": [
+        11.256269112380647,
+        10.153939209036656
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0024",
+      "values": [
+        12.178800960221581,
+        10.957361413739642
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0025",
+      "values": [
+        7.87881244096707,
+        8.293081684878958
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0026",
+      "values": [
+        12.467630705001614,
+        11.253913245316637
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0027",
+      "values": [
+        11.517650580870995,
+        10.97662849334124
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0028",
+      "values": [
+        13.433396776881326,
+        12.145733135900418
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0029",
+      "values": [
+        11.741362574316097,
+        10.920952803091266
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0030",
+      "values": [
+        9.179881406790185,
+        9.218129292135036
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0031",
+      "values": [
+        11.529364483900585,
+        10.465354685614642
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0032",
+      "values": [
+        9.647996055426745,
+        9.102322812165186
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0033",
+      "values": [
+        14.52176199029248,
+        12.77188071968899
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0034",
+      "values": [
+        10.388964886979418,
+        10.054146967917923
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0035",
+      "values": [
+        11.2531302658129,
+        10.82671422993261
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0036",
+      "values": [
+        8.78371943193131,
+        9.074391515033478
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0037",
+      "values": [
+        15.982749981089192,
+        13.765334606332768
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0038",
+      "values": [
+        15.230665260110959,
+        13.419281319291517
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0039",
+      "values": [
+        8.463961996139176,
+        8.789785559926674
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0040",
+      "values": [
+        10.064911717125694,
+        9.383221140914106
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0041",
+      "values": [
+        14.060387469225917,
+        11.96044517667668
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0042",
+      "values": [
+        11.766748767508895,
+        10.783505864904402
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0043",
+      "values": [
+        9.396663894910766,
+        9.385315882795092
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0044",
+      "values": [
+        13.990244436327016,
+        12.694856657442797
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0045",
+      "values": [
+        11.252628729819651,
+        10.822327048737801
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0046",
+      "values": [
+        9.201064906007502,
+        9.46099067244515
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0047",
+      "values": [
+        11.366955934652022,
+        10.30177293550582
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0048",
+      "values": [
+        12.114659549937205,
+        10.909316638286155
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0049",
+      "values": [
+        9.969275683102042,
+        9.407640729919773
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0050",
+      "values": [
+        12.545115588319364,
+        10.699479718199735
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0051",
+      "values": [
+        10.329768362562858,
+        9.858121354560204
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0052",
+      "values": [
+        13.625542758513316,
+        12.071467659720799
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0053",
+      "values": [
+        11.846288615790298,
+        11.115698024719007
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0054",
+      "values": [
+        14.0772825495805,
+        12.767393765384075
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0055",
+      "values": [
+        12.525012189139865,
+        11.548861088448348
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0056",
+      "values": [
+        14.78324652486708,
+        12.81780390489643
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0057",
+      "values": [
+        9.980185083686331,
+        9.39244071218478
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0058",
+      "values": [
+        13.838391046193404,
+        12.157089631221451
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0059",
+      "values": [
+        11.44568518382542,
+        10.318111638522844
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0060",
+      "values": [
+        10.96799370566392,
+        10.339473390352547
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0061",
+      "values": [
+        12.505927369487694,
+        11.469040359287261
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0062",
+      "values": [
+        10.294078490309127,
+        10.400923101110696
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0063",
+      "values": [
+        11.79746913284199,
+        11.19132285782438
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0064",
+      "values": [
+        11.418626512235587,
+        10.779182296040569
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0065",
+      "values": [
+        12.926307313624445,
+        11.147136697207495
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0066",
+      "values": [
+        11.910902281916627,
+        10.716427848903693
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0067",
+      "values": [
+        11.755715731961352,
+        10.692449720378084
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0068",
+      "values": [
+        11.008872029715612,
+        10.184095927917072
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0069",
+      "values": [
+        14.497391340537433,
+        12.588890953235826
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0070",
+      "values": [
+        15.79011810934771,
+        13.755586592704628
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0071",
+      "values": [
+        13.198209260569422,
+        12.491789017571083
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0072",
+      "values": [
+        14.614129260375822,
+        13.007545485010988
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0073",
+      "values": [
+        12.499027835186398,
+        11.565348265336018
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0074",
+      "values": [
+        15.950939041488144,
+        13.288216081456508
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0075",
+      "values": [
+        11.322968166214265,
+        10.398242837358717
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0076",
+      "values": [
+        14.631109152420164,
+        12.475610131402393
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0077",
+      "values": [
+        15.338796991101605,
+        13.141217673102783
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0078",
+      "values": [
+        9.435639182022921,
+        9.635272333364787
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0079",
+      "values": [
+        12.022216513028537,
+        11.356846916002816
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0080",
+      "values": [
+        11.992027845190426,
+        11.465690571737063
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0081",
+      "values": [
+        13.358226982728171,
+        11.967414209312768
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_highpen_3907_n83_0082",
+      "values": [
+        16.623922835875668,
+        13.978994124366741
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "coeff_outlier_3509_n49",
+  "seed": 3509,
+  "n": 49,
+  "lam": 0.085,
+  "ridge_alpha": 0.15,
+  "pca_alpha": 0.23,
+  "kind": "outlier_scale"
+}

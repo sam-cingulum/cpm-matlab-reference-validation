@@ -1,0 +1,9 @@
+{
+  "name": "coeff_collinear_3709_n79",
+  "seed": 3709,
+  "n": 79,
+  "lam": 0.095,
+  "ridge_alpha": 1e-09,
+  "pca_alpha": 0.01,
+  "kind": "collinear"
+}

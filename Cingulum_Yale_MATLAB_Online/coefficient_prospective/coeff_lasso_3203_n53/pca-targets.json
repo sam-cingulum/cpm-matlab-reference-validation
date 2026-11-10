@@ -1,0 +1,380 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0000",
+      "values": [
+        10.115947634653324,
+        10.067320411235263
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0001",
+      "values": [
+        11.74160449604192,
+        11.119523888449631
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0002",
+      "values": [
+        9.831339627916563,
+        9.853629577720545
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0003",
+      "values": [
+        12.15594328670093,
+        11.299116665815813
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0004",
+      "values": [
+        11.86631061589551,
+        11.065112211749579
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0005",
+      "values": [
+        11.868111613253639,
+        11.125023536925749
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0006",
+      "values": [
+        8.785059136515851,
+        8.58150106231597
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0007",
+      "values": [
+        13.013676002443795,
+        11.28351035720427
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0008",
+      "values": [
+        8.099905531035015,
+        8.334691695009084
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0009",
+      "values": [
+        9.3692784797058,
+        9.224906005873054
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0010",
+      "values": [
+        12.294645730487176,
+        11.622876412090328
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0011",
+      "values": [
+        13.634480317259227,
+        12.52975512151449
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0012",
+      "values": [
+        11.291634486582963,
+        11.090666613808246
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0013",
+      "values": [
+        10.727432096856631,
+        9.763456459974726
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0014",
+      "values": [
+        10.65620442464808,
+        10.010226975773444
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0015",
+      "values": [
+        7.594620347192306,
+        7.592283976071481
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0016",
+      "values": [
+        11.103990588568335,
+        10.315395410958242
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0017",
+      "values": [
+        13.461586007240646,
+        11.991339201200477
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0018",
+      "values": [
+        14.306037204967563,
+        12.627481084505673
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0019",
+      "values": [
+        7.367202600246337,
+        8.49758410141685
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0020",
+      "values": [
+        11.415907500061289,
+        10.766247227297368
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0021",
+      "values": [
+        9.925646100744817,
+        9.780700554566694
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0022",
+      "values": [
+        9.61538716792327,
+        9.281303867248253
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0023",
+      "values": [
+        11.899634793792798,
+        10.610326881886994
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0024",
+      "values": [
+        9.876244616603618,
+        9.681108528630595
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0025",
+      "values": [
+        9.659847120926294,
+        9.389779236697317
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0026",
+      "values": [
+        13.74104433580271,
+        12.105167496784771
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0027",
+      "values": [
+        12.21593930465594,
+        11.341709548771858
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0028",
+      "values": [
+        13.415877933446806,
+        12.320342351882289
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0029",
+      "values": [
+        10.089547611180551,
+        10.046076668303764
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0030",
+      "values": [
+        8.741857403022792,
+        9.089438178904281
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0031",
+      "values": [
+        8.435188819192168,
+        8.605744997891952
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0032",
+      "values": [
+        9.71809274573548,
+        8.920241961570483
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0033",
+      "values": [
+        14.051463517277151,
+        12.261639386755382
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0034",
+      "values": [
+        8.734090811022151,
+        8.616539977704512
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0035",
+      "values": [
+        15.537632121244597,
+        13.635184987347966
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0036",
+      "values": [
+        9.642331916151061,
+        9.68347956508586
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0037",
+      "values": [
+        11.311756746097807,
+        10.64900508580092
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0038",
+      "values": [
+        12.51439205566156,
+        11.572750407797777
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0039",
+      "values": [
+        11.464697531964081,
+        10.433791812267112
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0040",
+      "values": [
+        14.659520805104137,
+        12.558460652412654
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0041",
+      "values": [
+        11.586158619833421,
+        10.438975783656163
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0042",
+      "values": [
+        14.236925085760634,
+        12.32853863170291
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0043",
+      "values": [
+        12.063843944690534,
+        10.785916382788724
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0044",
+      "values": [
+        13.064643455202251,
+        11.779770064447943
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0045",
+      "values": [
+        12.979684652653356,
+        12.190895739594785
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0046",
+      "values": [
+        12.215854453232826,
+        11.573670197336389
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0047",
+      "values": [
+        12.513873458347982,
+        11.553070177463987
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0048",
+      "values": [
+        14.395112733186965,
+        12.656016608849539
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0049",
+      "values": [
+        11.257498744504106,
+        10.332533772156562
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0050",
+      "values": [
+        12.762136347651962,
+        11.240302514666311
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0051",
+      "values": [
+        11.548986649694358,
+        10.548318041392198
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_lasso_3203_n53_0052",
+      "values": [
+        14.135964428871306,
+        12.406399779017148
+      ]
+    }
+  ]
+}

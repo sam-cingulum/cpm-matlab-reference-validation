@@ -1,0 +1,352 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0000",
+      "values": [
+        89.80510393383926,
+        63.162473314049485
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0001",
+      "values": [
+        101.0018651499226,
+        70.96072835604437
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0002",
+      "values": [
+        96.60908203506331,
+        68.226733689494
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0003",
+      "values": [
+        80.3629781891119,
+        57.182913486198544
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0004",
+      "values": [
+        72.15872611713436,
+        51.57856933260231
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0005",
+      "values": [
+        88.49454415307166,
+        62.10741998076091
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0006",
+      "values": [
+        103.9848554569085,
+        72.41112381318464
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0007",
+      "values": [
+        107.60397323307936,
+        74.57424915771551
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0008",
+      "values": [
+        78.50039909484582,
+        55.71466253581335
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0009",
+      "values": [
+        98.2574949184758,
+        68.66925778205406
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0010",
+      "values": [
+        95.08948796116923,
+        66.96956893049702
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0011",
+      "values": [
+        80.05132266685276,
+        56.92684583519965
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0012",
+      "values": [
+        81.99667864973328,
+        58.17699743069906
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0013",
+      "values": [
+        90.52132993344405,
+        63.53502252141372
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0014",
+      "values": [
+        103.62808295638096,
+        72.08919823699081
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0015",
+      "values": [
+        77.34060299981917,
+        54.47758410669365
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0016",
+      "values": [
+        140.47399849883305,
+        96.98881257574901
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0017",
+      "values": [
+        104.99313207482814,
+        73.46881266871733
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0018",
+      "values": [
+        106.12589042812355,
+        74.35851832392818
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0019",
+      "values": [
+        94.89537582963494,
+        66.82660570523556
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0020",
+      "values": [
+        99.4683834264551,
+        69.9078172569131
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0021",
+      "values": [
+        97.3459536541432,
+        68.23021028057447
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0022",
+      "values": [
+        114.89992499983897,
+        79.67354041852666
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0023",
+      "values": [
+        91.55197421853282,
+        63.90193163195734
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0024",
+      "values": [
+        75.59154531333999,
+        53.33559316109679
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0025",
+      "values": [
+        95.66960269830614,
+        67.05136519250499
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0026",
+      "values": [
+        84.45808559035002,
+        59.740507366488515
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0027",
+      "values": [
+        85.53647191660177,
+        60.443487775315006
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0028",
+      "values": [
+        88.60885506279395,
+        62.48845550780056
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0029",
+      "values": [
+        70.9961455555392,
+        50.952372623651506
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0030",
+      "values": [
+        81.49863057028128,
+        57.55548219744521
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0031",
+      "values": [
+        83.18360971418664,
+        58.28190484154266
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0032",
+      "values": [
+        82.91043304292901,
+        58.2652134713172
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0033",
+      "values": [
+        102.67373356282492,
+        71.43370277858763
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0034",
+      "values": [
+        123.2628275892643,
+        85.39138166742272
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0035",
+      "values": [
+        108.94664890992335,
+        75.97830527015611
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0036",
+      "values": [
+        97.89438538444222,
+        68.92650993862073
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0037",
+      "values": [
+        107.61473463848395,
+        75.31567113481849
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0038",
+      "values": [
+        96.80148308212523,
+        68.19526452020321
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0039",
+      "values": [
+        120.97234596709964,
+        84.14807669430587
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0040",
+      "values": [
+        117.96787801199932,
+        81.99431472190349
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0041",
+      "values": [
+        90.77234279372603,
+        63.98268072757548
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0042",
+      "values": [
+        91.06787056345362,
+        63.80492704630176
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0043",
+      "values": [
+        82.66940868490458,
+        58.35409114377268
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0044",
+      "values": [
+        108.68685837564422,
+        76.22987947037774
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0045",
+      "values": [
+        124.7304287387517,
+        87.07168672507251
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0046",
+      "values": [
+        103.04041558373441,
+        72.33558304169985
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0047",
+      "values": [
+        100.53870109239662,
+        70.19952848184235
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_3509_n49_0048",
+      "values": [
+        99.90025262564028,
+        70.16734727011736
+      ]
+    }
+  ]
+}

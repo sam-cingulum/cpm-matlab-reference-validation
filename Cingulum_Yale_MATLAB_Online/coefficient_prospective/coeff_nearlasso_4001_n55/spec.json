@@ -1,0 +1,9 @@
+{
+  "name": "coeff_nearlasso_4001_n55",
+  "seed": 4001,
+  "n": 55,
+  "lam": 0.02,
+  "ridge_alpha": 0.75,
+  "pca_alpha": 0.81,
+  "kind": "normal"
+}

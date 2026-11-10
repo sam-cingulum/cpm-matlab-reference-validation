@@ -1,0 +1,9 @@
+{
+  "name": "coeff_lasso_3203_n53",
+  "seed": 3203,
+  "n": 53,
+  "lam": 0.032,
+  "ridge_alpha": 0.87,
+  "pca_alpha": 0.75,
+  "kind": "normal"
+}

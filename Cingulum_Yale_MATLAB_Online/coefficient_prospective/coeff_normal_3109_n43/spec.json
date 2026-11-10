@@ -1,0 +1,9 @@
+{
+  "name": "coeff_normal_3109_n43",
+  "seed": 3109,
+  "n": 43,
+  "lam": 0.06,
+  "ridge_alpha": 0.1,
+  "pca_alpha": 0.25,
+  "kind": "normal"
+}

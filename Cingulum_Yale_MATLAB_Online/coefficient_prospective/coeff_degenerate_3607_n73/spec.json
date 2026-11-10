@@ -1,0 +1,9 @@
+{
+  "name": "coeff_degenerate_3607_n73",
+  "seed": 3607,
+  "n": 73,
+  "lam": 0.18,
+  "ridge_alpha": 0.43,
+  "pca_alpha": 0.35,
+  "kind": "degenerate"
+}

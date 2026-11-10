@@ -1,0 +1,9 @@
+{
+  "name": "coeff_sparse_3301_n61",
+  "seed": 3301,
+  "n": 61,
+  "lam": 0.021,
+  "ridge_alpha": 0.99,
+  "pca_alpha": 0.93,
+  "kind": "normal"
+}

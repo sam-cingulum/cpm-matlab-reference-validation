@@ -1,0 +1,471 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0000",
+      "values": [
+        76.25991775871137,
+        53.932812756333036
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0001",
+      "values": [
+        92.591029295989,
+        65.38640661982504
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0002",
+      "values": [
+        92.65825567630432,
+        65.08175204120211
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0003",
+      "values": [
+        79.36713547063427,
+        56.32664000723938
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0004",
+      "values": [
+        79.60370806273617,
+        56.65741343272258
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0005",
+      "values": [
+        92.27051601191215,
+        64.75371438460222
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0006",
+      "values": [
+        88.46129890822026,
+        61.62183198017187
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0007",
+      "values": [
+        74.1013542695899,
+        52.21657712267783
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0008",
+      "values": [
+        74.86264804694277,
+        53.22603585469567
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0009",
+      "values": [
+        66.9518530062063,
+        48.08550026033783
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0010",
+      "values": [
+        100.78248393311107,
+        70.80924767011169
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0011",
+      "values": [
+        107.33759758217643,
+        74.95326858846023
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0012",
+      "values": [
+        85.46981663778024,
+        60.200027490466944
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0013",
+      "values": [
+        86.01490608701528,
+        60.509118819965614
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0014",
+      "values": [
+        65.53338554879795,
+        46.828359217938896
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0015",
+      "values": [
+        84.34441540839889,
+        59.22420660586046
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0016",
+      "values": [
+        92.00524059642508,
+        64.44765786658891
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0017",
+      "values": [
+        78.81982839764066,
+        55.80550023071072
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0018",
+      "values": [
+        61.86823537797573,
+        44.52816452913673
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0019",
+      "values": [
+        88.326836186558,
+        62.58488264940542
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0020",
+      "values": [
+        81.25410990734592,
+        57.743912770063986
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0021",
+      "values": [
+        104.28218564362027,
+        73.10147537312459
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0022",
+      "values": [
+        141.97298139570745,
+        98.03017046685234
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0023",
+      "values": [
+        110.13362856049932,
+        76.5772603538906
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0024",
+      "values": [
+        78.41592290060747,
+        55.1884318704369
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0025",
+      "values": [
+        87.50489928980573,
+        61.48069781585614
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0026",
+      "values": [
+        96.34781717673279,
+        67.59588644708195
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0027",
+      "values": [
+        106.24133569006058,
+        74.4629660631049
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0028",
+      "values": [
+        101.68978373661977,
+        71.36726201827598
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0029",
+      "values": [
+        110.39565434675612,
+        77.10756050139075
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0030",
+      "values": [
+        86.96594679405919,
+        61.33491480681169
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0031",
+      "values": [
+        112.61594294697841,
+        78.30139467342461
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0032",
+      "values": [
+        106.06258306510448,
+        73.71328798415911
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0033",
+      "values": [
+        116.17389137355794,
+        80.83661264367137
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0034",
+      "values": [
+        96.30826254737023,
+        67.73506870133036
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0035",
+      "values": [
+        87.79250325645201,
+        61.71714721823206
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0036",
+      "values": [
+        110.82921690982246,
+        77.55513373007264
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0037",
+      "values": [
+        111.97431081012476,
+        78.49061260733774
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0038",
+      "values": [
+        120.48465070949254,
+        83.90564247155709
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0039",
+      "values": [
+        92.84738127966301,
+        65.25076204441245
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0040",
+      "values": [
+        106.15890908991827,
+        73.56148283168183
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0041",
+      "values": [
+        98.84957057018651,
+        68.98469265995097
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0042",
+      "values": [
+        105.30029755201689,
+        73.56345283844414
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0043",
+      "values": [
+        121.22031668080078,
+        84.17421919220274
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0044",
+      "values": [
+        94.31559930777644,
+        66.34868646664073
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0045",
+      "values": [
+        93.70562218121714,
+        66.27338146285132
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0046",
+      "values": [
+        99.46239777552262,
+        69.86015700788462
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0047",
+      "values": [
+        86.77945059573884,
+        61.427054364547466
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0048",
+      "values": [
+        107.57075639114097,
+        74.92975751400706
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0049",
+      "values": [
+        102.66368752030378,
+        71.42291639737755
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0050",
+      "values": [
+        96.94716208963082,
+        67.98725108823737
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0051",
+      "values": [
+        99.05766295724858,
+        69.29111455105878
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0052",
+      "values": [
+        92.30760916350155,
+        64.9138489005298
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0053",
+      "values": [
+        95.42537915007829,
+        67.3112258030942
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0054",
+      "values": [
+        107.87250711358396,
+        75.77618235807049
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0055",
+      "values": [
+        117.52937415186794,
+        81.9027186471875
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0056",
+      "values": [
+        98.69242362510201,
+        69.30932589769677
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0057",
+      "values": [
+        99.36373932849037,
+        69.42970760144068
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0058",
+      "values": [
+        110.47087093377928,
+        76.76244299844261
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0059",
+      "values": [
+        123.57713786356553,
+        85.92554470439164
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0060",
+      "values": [
+        99.21708931386999,
+        69.58862069541759
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0061",
+      "values": [
+        96.65689559988475,
+        67.78381594728738
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0062",
+      "values": [
+        102.22664626299911,
+        71.80592130819541
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0063",
+      "values": [
+        89.90586501995433,
+        63.51477343573503
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0064",
+      "values": [
+        106.77373128471461,
+        74.66933864128436
+      ]
+    },
+    {
+      "observation_id": "synthetic_coeff_outlier_sparse_4201_n66_0065",
+      "values": [
+        105.03371882880091,
+        73.53603444839344
+      ]
+    }
+  ]
+}
