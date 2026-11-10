@@ -1,0 +1,55 @@
+name: Genuine MATLAB R2026b | lasso RelTol stopping boundaries
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authentic-reltol-boundaries:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit pinned synthetic-only fixture checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online')
+          manifest=json.loads((root/'pack-manifest.json').read_text())
+          assert manifest['patient_data_included'] is False
+          for case in ('baseline','rescaled','severe_outlier'):
+            for name,digest in manifest['scenarios'][case]['files_sha256'].items():
+              f=root/'fixtures'/case/name
+              assert f.is_file() and hashlib.sha256(f.read_bytes()).hexdigest()==digest,(case,name)
+          print('Synthetic-only source hash verification PASS')
+          PY
+      - name: Fetch immutable original Yale source revision for provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install genuine MathWorks MATLAB R2026b and Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Independently measure exact stopping boundaries
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            probe_lasso_thresholds;
+      - name: Retain MATLAB threshold results for scientific analysis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-r2026b-synthetic-lasso-reltol-boundaries
+          path: Cingulum_Yale_MATLAB_Online/results/diagnostics/stopping_thresholds.json
+          if-no-files-found: warn
+          retention-days: 30
