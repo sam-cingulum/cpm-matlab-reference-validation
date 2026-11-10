@@ -1,0 +1,33 @@
+# Yale CPM: independent genuine MATLAB reference battery
+
+A **public, synthetic-only** original-source validation harness for the private Cingulum CPM research engine. This repository contains **no Cingulum application source, patient data, Bundle API keys, MathWorks account credentials or authentication sessions**.
+
+The mathematical reference is Yale's publicly available MATLAB source, cloned inside the GitHub Actions runner at fixed revisions:
+
+- [YaleMRRC/CPM](https://github.com/YaleMRRC/CPM) at `b903f83b476b745417b1f062f6777f5ffe118f1a`
+- [YaleMRRC/CPM_OHBM](https://github.com/YaleMRRC/CPM_OHBM) at `708999b8bb27ae69722775c323da9f14ef6732c7`
+
+The GitHub workflow uses [MathWorks' official setup-matlab and run-command actions](https://github.com/matlab-actions/setup-matlab). MathWorks documents that their MATLAB GitHub Actions automatically license regular products for **public repositories** on GitHub-hosted runners. This avoids buying a desktop licence or replaying browser credentials.
+
+## Acceptance battery
+
+Six original Yale MATLAB-language method configurations, each tested with leave-one-subject-out cross-validation on six independently generated synthetic scenarios:
+
+1. Shen et al. classical robust positive-minus-negative mean CPM
+2. OHBM positive/negative network-strength OLS CPM
+3. OHBM covariate-adjusted Pearson CPM
+4. OHBM covariate-adjusted Spearman CPM
+5. Near-ridge `ridgeCPM`, `alpha=1e-9`, `lambda=0.1`
+6. Train-fold first principal-component `ridgeCPM_PCA`, `alpha=1e-6`, `lambda=0.1`
+
+The scenarios are baseline, clean, severe outlier, rescaled, reversed participant order and 47 observations. `run_one.m` invokes the **original Yale functions**, compares subject-level predictions against independently calculated Rust expectations and, for PCA, also compares latent scores and fold loading vectors.
+
+The workflow must fail on a missing toolbox function, non-finite output, incorrect prediction count, numeric mismatch or invalid source revision. It saves genuine MATLAB release and toolbox versions in each report.
+
+## Run and review
+
+Start the **Genuine MathWorks MATLAB | Yale CPM synthetic reference** workflow from GitHub Actions. Its `genuine-mathworks-yale-parity-results` artifact contains six `MATLAB_RESULTS_<scenario>.zip` files, when executed successfully. A failed MATLAB run must be investigated and **must not be called parity**.
+
+The private engine independently compares any returned reference ZIPs with the pinned input hashes through `tests/matlab_free/verify_returned.py`. Its previous GNU Octave original-source (36/36) and independent SciPy/NumPy/scikit-learn (30/30) results are different evidence tiers, not substitutes for genuine MATLAB.
+
+**Scope limit:** numerical consistency for six fixed configurations on synthetic cohorts is not complete Yale functionality, cross-release MATLAB equivalence, clinical predictive validity or a validated TMS-targeting system.

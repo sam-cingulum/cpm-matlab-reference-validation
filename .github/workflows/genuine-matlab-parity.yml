@@ -1,0 +1,75 @@
+name: Genuine MathWorks MATLAB | Yale CPM synthetic reference
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-yale-matlab:
+    name: Pinned Yale original-source numerical parity
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check synthetic fixture inventory and pinned source hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,pathlib,hashlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online')
+          m=json.loads((root/'pack-manifest.json').read_text())
+          assert m['patient_data_included'] is False
+          assert len(m['scenarios'])==6
+          for scenario,info in m['scenarios'].items():
+              for name,digest in info['files_sha256'].items():
+                  p=root/'fixtures'/scenario/name
+                  assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==digest,(scenario,name)
+          print('SYNTHETIC FIXTURE SOURCE INTEGRITY PASS')
+          PY
+
+      - name: Fetch exact upstream Yale original source revisions
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          git clone --quiet https://github.com/YaleMRRC/CPM_OHBM.git Cingulum_Yale_MATLAB_Online/upstream/yale-ohbm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-ohbm checkout --quiet --detach 708999b8bb27ae69722775c323da9f14ef6732c7
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-ohbm rev-parse HEAD)" = 708999b8bb27ae69722775c323da9f14ef6732c7
+
+      - name: Install genuine MathWorks MATLAB and Statistics and Machine Learning Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: latest
+          products: Statistics_and_Machine_Learning_Toolbox
+
+      - name: Execute original Yale source against 36 synthetic native Rust references
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_one('baseline');
+            run_one('clean');
+            run_one('severe_outlier');
+            run_one('rescaled');
+            run_one('reversed');
+            run_one('47_subjects');
+
+      - name: Publish original MATLAB numeric evidence regardless of pass/fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-mathworks-yale-parity-results
+          path: |
+            Cingulum_Yale_MATLAB_Online/MATLAB_RESULTS_*.zip
+            Cingulum_Yale_MATLAB_Online/results/**/*.json
+          if-no-files-found: warn
+          retention-days: 30

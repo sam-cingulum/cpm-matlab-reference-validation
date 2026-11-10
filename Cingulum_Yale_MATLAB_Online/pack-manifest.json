@@ -1,0 +1,171 @@
+{
+  "package_kind": "synthetic_only_original_yale_source_under_actual_MathWorks_MATLAB",
+  "source_commit": {
+    "yale-cpm": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+    "yale-ohbm": "708999b8bb27ae69722775c323da9f14ef6732c7"
+  },
+  "parity_model_profiles": [
+    "main",
+    "ohbm",
+    "partial-pearson",
+    "partial-spearman",
+    "ridge-compat",
+    "pca"
+  ],
+  "scenarios": {
+    "baseline": {
+      "subjects": 48,
+      "source_evidence": {
+        "main": 2.6645352591003757e-14,
+        "ohbm": 2.842170943040401e-14,
+        "partial-pearson": 2.842170943040401e-14,
+        "partial-spearman": 2.842170943040401e-14,
+        "ridge-compat": 3.552713678800501e-15,
+        "pca": 7.105427357601002e-15
+      },
+      "files_sha256": {
+        "cohort.mat": "50fca668f43b2a71ff7f8afdd7393cf5b1c0e4fa7a2969fb8583ef761b2c29d5",
+        "covariates.mat": "faa5ec37afbb994dbf07cc0bcdab20ac95fadf622862eec229e373093d2eb123",
+        "pca-targets.mat": "099e766f75d0ee7726468f72aa4f0471c78c12e627cd791cf3f2dd9ba10227ed",
+        "cohort.json": "835f1309d74a90aa707a2d19be5b51d2486cc53c88bf79c225a21066c91b105f",
+        "covariates.json": "e00b994ec414582fc431e2ff0464b1bf48a15161746d325c0efa1d3ed3e86b56",
+        "pca-targets.json": "f4de31def50e4f1eaaf62af8582a615dba47ec1de2168e2e9700898d506da0bd",
+        "rust-main.json": "8d92f48bc02736dca1c9f3778c4089c2c54d882c704cd9287791968f3d073ad6",
+        "rust-ohbm.json": "447ec7ab8937054346a1d092e7f44129169e1a038cad18f5f06977d68a8677b0",
+        "rust-partial-pearson.json": "869a9993d43aa606e19d24d62dac871d59389438167a8392090e28902af453e1",
+        "rust-partial-spearman.json": "c6b14cea61756eb8d4b89dd39f1980162e7fc192b183977a938d7713316b9474",
+        "rust-ridge-compat.json": "f1ce627797587786a74633f999eddfe8372c59165b650e29ab63caa721bbdf25",
+        "rust-pca.json": "e157ae7806d92caa8a1aa633696bbbeafc525037ef81b8752ad7a48d5eb78b91"
+      }
+    },
+    "clean": {
+      "subjects": 48,
+      "source_evidence": {
+        "main": 1.4210854715202004e-14,
+        "ohbm": 3.552713678800501e-14,
+        "partial-pearson": 3.552713678800501e-14,
+        "partial-spearman": 3.552713678800501e-14,
+        "ridge-compat": 5.329070518200751e-15,
+        "pca": 8.881784197001252e-15
+      },
+      "files_sha256": {
+        "cohort.mat": "0b64b5ecf3b84d540d6272240b6fa84ba9ad7372c9fb9831e93f7469fb8acb55",
+        "covariates.mat": "faa5ec37afbb994dbf07cc0bcdab20ac95fadf622862eec229e373093d2eb123",
+        "pca-targets.mat": "1698db0f5e6aaceb4eb5f94bf50f9b5c44eda197ac445cbd156e0154f67884eb",
+        "cohort.json": "d6d607444754ba7e490740ef224640960db2b7826fa695e33e7365b89a94069e",
+        "covariates.json": "e00b994ec414582fc431e2ff0464b1bf48a15161746d325c0efa1d3ed3e86b56",
+        "pca-targets.json": "e1e4ee3c4c7d0d2bd0a9fe0e548d6bfceedf7a555664bc6e12050346a3acb7a9",
+        "rust-main.json": "f1321468705f2d20d4d938b6d7abc1b713f8c57951628bcff8fd74b16fb37413",
+        "rust-ohbm.json": "e34289bfabb69216e724e8c4bd21c9c0a1da59f0ce598e8a8b1b0364f59c3761",
+        "rust-partial-pearson.json": "b9c24ff3219eb28f7158feca3817d44d771aa4cf06a3f48d79181afb6e4a62fd",
+        "rust-partial-spearman.json": "891515278d60e8271ae1e96a4122b1a5381d650eebb84baeec4f3e32f1a6d7ec",
+        "rust-ridge-compat.json": "fa004c32abad30910137f8d68327e0d91241022d3d9680a15d0e9ad15885cf3c",
+        "rust-pca.json": "0a6b7501db3efa792b0876243fc0d7c3f3d9e98791fab5bce80347b8d0d60625"
+      }
+    },
+    "severe_outlier": {
+      "subjects": 48,
+      "source_evidence": {
+        "main": 1.5987211554602254e-14,
+        "ohbm": 2.4868995751603507e-14,
+        "partial-pearson": 2.4868995751603507e-14,
+        "partial-spearman": 2.4868995751603507e-14,
+        "ridge-compat": 5.329070518200751e-15,
+        "pca": 1.0658141036401503e-14
+      },
+      "files_sha256": {
+        "cohort.mat": "00e7987a34f34c227e66203a852b436bda55f63d5992b5fc41046e5f0a8e8c0d",
+        "covariates.mat": "faa5ec37afbb994dbf07cc0bcdab20ac95fadf622862eec229e373093d2eb123",
+        "pca-targets.mat": "7451add0d545ddf20aa09b98c00e66c3cd76907f2cf9caa2d694ed91f8fd67e3",
+        "cohort.json": "32f0eb5a4b9a104673434462704645511df48741cf446567fd8418864406edfc",
+        "covariates.json": "e00b994ec414582fc431e2ff0464b1bf48a15161746d325c0efa1d3ed3e86b56",
+        "pca-targets.json": "b92be8c4b698d9e9bee4e143b39ac3ff713e6d634b2b39f7ce5b4faa1699f786",
+        "rust-main.json": "da9346b7fb225701aa73739fe18fa2733ed43fdf319b269954c67f23b04d15a7",
+        "rust-ohbm.json": "37aa8778a6df0414f5463a2fb27f73261ca2edcde9ba1e9e3352a8360e72260f",
+        "rust-partial-pearson.json": "6a2745f2ab5955c6d6fa762d87eae016bd30819d5e1ee404c3af46f63f73a52a",
+        "rust-partial-spearman.json": "770da11ba1fa8bb341d74bf6c7fa936eb309d7390dabcf28f8da2522a1128114",
+        "rust-ridge-compat.json": "8a6c85cf107f069bb148ae4fc11f349007e3ec8ab48fa4be11c0ff225ed77d46",
+        "rust-pca.json": "63500df3fa4a77e7544269c41a1429631a5314d3f66c9a7c513bd48124398124"
+      }
+    },
+    "rescaled": {
+      "subjects": 48,
+      "source_evidence": {
+        "main": 1.1368683772161603e-13,
+        "ohbm": 2.2737367544323206e-13,
+        "partial-pearson": 2.2737367544323206e-13,
+        "partial-spearman": 2.2737367544323206e-13,
+        "ridge-compat": 2.842170943040401e-14,
+        "pca": 8.526512829121202e-14
+      },
+      "files_sha256": {
+        "cohort.mat": "6e21965fe565977f9a32836839a566b2aa399a86a9dd7d8f869991307df963b7",
+        "covariates.mat": "faa5ec37afbb994dbf07cc0bcdab20ac95fadf622862eec229e373093d2eb123",
+        "pca-targets.mat": "3746bf3eb565f8b4f1ec0e85df587c240cd3b800a00e816a33cd9dd5bca6f4bc",
+        "cohort.json": "1f2969df11151f5faf7675f387333f8fd8e03cafe075e2533bf2de0722bbcec2",
+        "covariates.json": "e00b994ec414582fc431e2ff0464b1bf48a15161746d325c0efa1d3ed3e86b56",
+        "pca-targets.json": "412c16d08d4b360483692fe27ce930a76c4a267c7e8107f2b4ce7d3e215a1091",
+        "rust-main.json": "0cfe5ff163d24f35b8a4189030786dcde51dc90ca9ed93a52d8f70dddb3f5821",
+        "rust-ohbm.json": "e395d0f4633949547f197dce4abe56e7296330ea535b3a69da87ecef77efdc80",
+        "rust-partial-pearson.json": "40161dbec8843cd7864277fb1c9ae6ba9dc53d43d92f150a4e756743ec436664",
+        "rust-partial-spearman.json": "c8c67f778a6487e916e94f6a2e0f73c9e4d176ea476564c393de3e40e8eda54c",
+        "rust-ridge-compat.json": "078f92884321000f035a2161b6169d874b95d6ebc19913de25cfc401c55b5a10",
+        "rust-pca.json": "c7259d6cbecfe37945a5c27f0499f8d1c2fb0e74ae17ccb415a7dcd6afaa452f"
+      }
+    },
+    "reversed": {
+      "subjects": 48,
+      "source_evidence": {
+        "main": 1.5987211554602254e-14,
+        "ohbm": 2.4868995751603507e-14,
+        "partial-pearson": 2.4868995751603507e-14,
+        "partial-spearman": 2.4868995751603507e-14,
+        "ridge-compat": 5.329070518200751e-15,
+        "pca": 7.105427357601002e-15
+      },
+      "files_sha256": {
+        "cohort.mat": "6e2b1de13e440e4a9d2178238147010cf7cca4bffbf120fd9dd83bfeb680d1d7",
+        "covariates.mat": "faa5ec37afbb994dbf07cc0bcdab20ac95fadf622862eec229e373093d2eb123",
+        "pca-targets.mat": "d5c50b908b5e18dfcf14ac8735d0c092606146f81374d30a95e0b36e13e14ccf",
+        "cohort.json": "b8b63b60c4e6ea72fa9729ae06a311bc5e1cdff36751f0a98030bd91d4307359",
+        "covariates.json": "e00b994ec414582fc431e2ff0464b1bf48a15161746d325c0efa1d3ed3e86b56",
+        "pca-targets.json": "cb3b3df3f0af64dca0740cd6f2d7ddce2ca38d7b56d6a160271a9b9303acb81a",
+        "rust-main.json": "3be0b0063a445b2de602de779ce760f2b99693b38a80c06429c044b23f1bb779",
+        "rust-ohbm.json": "1eeded9780bf52d47d445f95cba57954bfb3ce32a19e2163c96c4ef830cf79e3",
+        "rust-partial-pearson.json": "16fefac6871c27a9e519c5e7f1ac76b9805a00303552a469720259ba12c0adaa",
+        "rust-partial-spearman.json": "758af2da385697af71b1466998ec5c7b0b14e0804258b09b219a4c0a8488075a",
+        "rust-ridge-compat.json": "1143f9affb68cc57af7576b996d147da8a83e1b59b86e44e9ba05b96940070dd",
+        "rust-pca.json": "3a81169f342938ca795dd37d59e9db23b3225d1a07f3aca680a06cda40617c47"
+      }
+    },
+    "47_subjects": {
+      "subjects": 47,
+      "source_evidence": {
+        "main": 1.2434497875801753e-14,
+        "ohbm": 1.9539925233402755e-14,
+        "partial-pearson": 1.9539925233402755e-14,
+        "partial-spearman": 1.9539925233402755e-14,
+        "ridge-compat": 3.552713678800501e-15,
+        "pca": 1.4210854715202004e-14
+      },
+      "files_sha256": {
+        "cohort.mat": "ecae3ae1093d05d707f6a87ecb35d7859ee7ac2f2226d5c96d33d5bcf7caddad",
+        "covariates.mat": "b2a22e631647b8890ab306d62f7f66ef602c4a3ca9778944d729de5104bc2453",
+        "pca-targets.mat": "68116c5e9d8e3e26d6af7d9e36834169f86cab2182f76ff91cdf75ad8f1c1f93",
+        "cohort.json": "da463d2e0c793806c67527ab3374a1fb0be1cfd2d1d599241f35f7e20a972281",
+        "covariates.json": "4c6d398ef2d5cbf901af38f60ca6fb8fb42c06d7f9738409163a5fec2e830040",
+        "pca-targets.json": "8c480744f83268243cb8bf66990f1cda3adebee4a99045d87d5cbc91599c652a",
+        "rust-main.json": "05d3a2d165f6b581bad376372e9ef941a18ad5f5ebbca4b8f5cc3d6752e29fcc",
+        "rust-ohbm.json": "923630dd884888657297afad47d70d67265b71352f1b4bc14739ac89c5a61f7f",
+        "rust-partial-pearson.json": "80a519a35709564f6e671872e45d209f0b88c4ac7d29e9a318a92b2d1e6f74d1",
+        "rust-partial-spearman.json": "c12ed5b29ba7672700f37c4cd4d7d24f3c20aa4f1e5528d43cf6d5d5f0402773",
+        "rust-ridge-compat.json": "b1657e81f8da485929860d625622e69f133237bca25e2c741c60cd334f915881",
+        "rust-pca.json": "92c9a0e27f3ccb3cc7a64882ac345c75547fa92a27cca3660ab25cf198a4a3bd"
+      }
+    }
+  },
+  "original_octave_source_battery_sha256": "011f88cb69fcc2b80eaa3cee7461a49a71d2493cfe3f3d9a7c116bff7dbb1105",
+  "matlab_usage": "Free MATLAB Online Basic (20h/month; max 15min compute session), Statistics and Machine Learning Toolbox available",
+  "licence_note": "Includes individual pinned original Yale files for private research evaluation; inspect each original source's licensing and attribution.",
+  "patient_data_included": false
+}

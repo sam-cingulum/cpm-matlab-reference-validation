@@ -1,0 +1,8 @@
+# Only public synthetic fixtures and the MathWorks validation harness.
+Cingulum_Yale_MATLAB_Online/upstream/
+Cingulum_Yale_MATLAB_Online/results/
+Cingulum_Yale_MATLAB_Online/MATLAB_RESULTS_*.zip
+*.log
+*.env
+*.key
+*.har
