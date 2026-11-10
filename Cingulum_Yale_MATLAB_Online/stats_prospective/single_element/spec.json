@@ -1,0 +1,11 @@
+{
+  "name": "single_element",
+  "shape": [
+    1,
+    1
+  ],
+  "alpha": 0.05,
+  "values": [
+    0.025
+  ]
+}

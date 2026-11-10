@@ -1,0 +1,14 @@
+{
+  "name": "source_holm_nonmonotonic",
+  "shape": [
+    1,
+    4
+  ],
+  "alpha": 0.042,
+  "values": [
+    0.01,
+    0.015,
+    0.02,
+    0.03
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "procedure": "yale_holm_source",
+  "alpha": 0.05,
+  "adjusted_p_values": [
+    0.20553171825920002,
+    0.47634595071476,
+    0.54058112115854,
+    0.422716665267638,
+    0.473391111108222,
+    0.54058112115854,
+    0.435927069271128,
+    0.410607060770718,
+    0.435927069271128,
+    0.403255058914992,
+    0.025539948425233
+  ],
+  "rejected": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    true
+  ],
+  "critical_p": null,
+  "adjusted_ci_coverage": null,
+  "method_disclaimer": "SOURCE-COMPATIBILITY ONLY: Yale bonf_holm.m has a one-neighbour (noncumulative) max, so it may not satisfy standard Holm monotonicity or strong FWER control."
+}

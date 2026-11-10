@@ -1,0 +1,35 @@
+{
+  "procedure": "yale_fdr_pdep",
+  "alpha": 0.05,
+  "adjusted_p_values": [
+    0.64,
+    0.64,
+    0.64,
+    0.64,
+    0.64,
+    0.64,
+    0.64,
+    0.64,
+    0.64,
+    0.64,
+    0.64,
+    0.64
+  ],
+  "rejected": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "critical_p": 0.0,
+  "adjusted_ci_coverage": null,
+  "method_disclaimer": "Pinned Yale fdr_bh.m BH/BY source semantics on finite [0,1] p-values."
+}

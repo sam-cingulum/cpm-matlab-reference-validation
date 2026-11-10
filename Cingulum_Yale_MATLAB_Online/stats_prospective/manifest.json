@@ -1,0 +1,220 @@
+{
+  "purpose": "PROSPECTIVELY_FROZEN_FDR_BH_BY_AND_SOURCE_HOLM_MATLAB_VERIFICATION",
+  "patient_data_included": false,
+  "original_upstream_yale_commit": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "expected_mathworks_release": "R2026b",
+  "source_methods": [
+    "fdr_bh",
+    "bonf_holm"
+  ],
+  "profiles": [
+    "yale-fdr-pdep",
+    "yale-fdr-dep",
+    "yale-holm-source",
+    "standard-holm"
+  ],
+  "source_comparison_absolute_tolerance": 1e-12,
+  "require_exact_rejection_decision": true,
+  "require_exact_shape": true,
+  "generator_sha256": "42693d9395c22d4091b84f7044d9c6e5bbb7426f62d942e842c8bce68a95fcea",
+  "rust_implementation_sha256": "520c92e128c09a0f4be2a10427ea1d4ff8de260388901d115742393284d7e978",
+  "rust_cli_sha256": "79e780048c2059a65ebcfb95a9ea5c853f2778601c7749a75bac97e126cfbe69",
+  "cases": {
+    "source_holm_nonmonotonic": {
+      "shape": [
+        1,
+        4
+      ],
+      "alpha": 0.042,
+      "sha256": {
+        "spec.json": "c89c8ce19ba1c2444cb7d821026cbc262e22835dc43f62fcd31cee9c3fa9824e",
+        "pvalues.json": "8d6ad795038eca9a64a10df8129df1a0c34105ace3e936f108be13984d2b37ee",
+        "rust-yale-fdr-pdep.json": "ca168651e603e00b91297d44cefe1a075852bcfd76639705053d2d4c98604265",
+        "rust-yale-fdr-dep.json": "bdf2f4ed856dcf5b83267de899f6753d1977f6456438ea4f59997421afb8f006",
+        "rust-yale-holm-source.json": "6306e3cdc2886bf39f7c6489e896b111d0a0adb1a8182832ad120162d92f6164",
+        "rust-standard-holm.json": "e005b777944598e79bcbd585a55fdc0f854f356b2ed086ada80b2c78d2a31785"
+      }
+    },
+    "baseline_m11": {
+      "shape": [
+        1,
+        11
+      ],
+      "alpha": 0.05,
+      "sha256": {
+        "spec.json": "710769e304cd8c2ba42c10cdd23e240a3b19b08fad7adc32ea590e52f7737974",
+        "pvalues.json": "01bfaeb215b130b8368642b7d945c4a46c0c9b3f39f9b56fe83a31b466010ca6",
+        "rust-yale-fdr-pdep.json": "81f2b640efbbe0136fa688ad64705bbeb0439dcd50a5559373fdad02fdc2c152",
+        "rust-yale-fdr-dep.json": "fd7d8433893b125069644744e243fdd016abad4cc3e4b9696ef60220ef682b2e",
+        "rust-yale-holm-source.json": "9b9d20ce527b5b4b6b05f26ab170f019803703d5c4ed9a6e5cc1ba75b6c05b3a",
+        "rust-standard-holm.json": "d12ebefafd12b9c63b5850134618879ed5d9b6e91f551ae6a5345de80137103c"
+      }
+    },
+    "column_m29": {
+      "shape": [
+        29,
+        1
+      ],
+      "alpha": 0.05,
+      "sha256": {
+        "spec.json": "ce7aead7232123f4ffdda071daa028ca08bb1e03965666374d4b34179c7782ae",
+        "pvalues.json": "43f1a5d1316fcde214703ccac45fd8f98b66c09add16982e0894c3c68e10a162",
+        "rust-yale-fdr-pdep.json": "152574a3528fd6c8dae35a54e1d2c5e688b1f9e3ed89e1ccadc9e6a957c73d86",
+        "rust-yale-fdr-dep.json": "e7ec534b20fc253a05d902e4b41f251e6165e0fd5b2a75b320e9563061f0abfa",
+        "rust-yale-holm-source.json": "706a9b45edb636bc1576bbccea62315ce3b20c907a1cb2975724c86eb0795ef9",
+        "rust-standard-holm.json": "dd76826695f6f974ccd032d97e37062920d61efcda58ea22fc04304abd3a5c5d"
+      }
+    },
+    "matrix_4x6": {
+      "shape": [
+        4,
+        6
+      ],
+      "alpha": 0.05,
+      "sha256": {
+        "spec.json": "9d4ea3945c34a545925d7404d7aaeaa32dbbc32293e9bc1795688c38e404ff36",
+        "pvalues.json": "4a139fc7b4d1d7a69fbbe1e08fc3c2bd0b3db41795c69d19b14ab947cce8657c",
+        "rust-yale-fdr-pdep.json": "8f9267c8b7a2795ba69fdd627e7d4dbdbdcee02e15547d4eb9e3d1402b83409a",
+        "rust-yale-fdr-dep.json": "465150d61cd39773fed531c61690eca394061813dbbb35bf2d194bcc832219be",
+        "rust-yale-holm-source.json": "b3361f45f81a799441bef2390d509475df15cb652a6da6aec64293f0dabe2e65",
+        "rust-standard-holm.json": "88d60cca855ebfbdf7c99a2cec6dcadb8794c3760a91ed1941f1ad0a53cd1b08"
+      }
+    },
+    "tensor_2x3x5": {
+      "shape": [
+        2,
+        3,
+        5
+      ],
+      "alpha": 0.05,
+      "sha256": {
+        "spec.json": "4c8cf7bfd2596b14b10092590c62584704c061405024337d86bb69dc923be467",
+        "pvalues.json": "18a21e81f94b9caa9c7ba97a60f5a9946cf3696c745ac95331ab461094828960",
+        "rust-yale-fdr-pdep.json": "e7c120bd2573bfb8a1231b2b1c159c113fccf9831792bddf3554b856df5f3e4f",
+        "rust-yale-fdr-dep.json": "39fa5dca26f3bf77924483b3f0579f0b22f25d2808032bfa036ffb39e3abc923",
+        "rust-yale-holm-source.json": "35b8e4f4aeba62fb87848a9d3ead7f0ab7fbd46ebde4072aab4abf71c7d7f29c",
+        "rust-standard-holm.json": "c266387272a7921970378487a8290231b22f5a9d0c40cc4cae3d62e9cc33fc3a"
+      }
+    },
+    "dense_true_significance": {
+      "shape": [
+        1,
+        20
+      ],
+      "alpha": 0.05,
+      "sha256": {
+        "spec.json": "106b4bd8207de77c3079a61a53021fba1a580e5acec93f59f1fd39b5c6532867",
+        "pvalues.json": "c8ea3bf2bdccd2ef55d1f26cd01dc82b2b1ca997088730bdaa495047ecacf642",
+        "rust-yale-fdr-pdep.json": "0d92f7aadfe1cdd12a7402799f04dd2aaad365bd1dfa348950cae400b30de36d",
+        "rust-yale-fdr-dep.json": "93994bb840b52fad94fa5d836398154fb3627667588f0bd0bacec3fd20d464c2",
+        "rust-yale-holm-source.json": "e88a80d3739c2e624d9896cf50bd9fe54ab6c32aebe65b412b1599a5ef217151",
+        "rust-standard-holm.json": "df146a9798e82324056c0436a38b8ced9fdc9c29f06c689a4b0b0e29a0bb169d"
+      }
+    },
+    "no_significance": {
+      "shape": [
+        1,
+        12
+      ],
+      "alpha": 0.05,
+      "sha256": {
+        "spec.json": "5988355e5c1fae3a3ecb361ddfb3939ebd865d307e8c05e34466db52f802742f",
+        "pvalues.json": "0cbea798ccbf5656ac9dfb9e8ea33d3074c435345e14bc420c46b5a15d84ea6c",
+        "rust-yale-fdr-pdep.json": "5a554c892d59c07c9a64446bc6068a8f5b3aecfa5d45d3be51458901efb3f6e6",
+        "rust-yale-fdr-dep.json": "aaa9552e0b65a73466466ce34a67701437c634f56fe3e62fb1d84284df740eb0",
+        "rust-yale-holm-source.json": "f2c37ce38ef0909f20d1834816574c97fe8c1edb0a616369cd6975f19f9c8d23",
+        "rust-standard-holm.json": "c3c2b6fc55415de36b9ebee3d1edf5b88697a1faf012be49fbb08a31d2954992"
+      }
+    },
+    "ties_and_zeros": {
+      "shape": [
+        1,
+        15
+      ],
+      "alpha": 0.05,
+      "sha256": {
+        "spec.json": "a79ad5e714fcdaaf5e2e3c64de6dd1601da6f7ae5545d409cdab569f8616a36d",
+        "pvalues.json": "d1a06ca0d3009a84e33cbfe83bb838860ab595022cdf65e6bd12fa3c45844115",
+        "rust-yale-fdr-pdep.json": "c2afd8f45ea8c80ac81067d96435b027e648cb59e63c0ac78da0aa705cb9311a",
+        "rust-yale-fdr-dep.json": "2233ca9ececa93744e777ff6260d3f19a6b768e92336dbdd9b5336e6fbdc72ee",
+        "rust-yale-holm-source.json": "f51a3db21a678933cd417a084871506390a5676d8263c0335cfd05d0649ba23b",
+        "rust-standard-holm.json": "5801cfe3e4e2a43623c7b9222b799e7cb6e6f27387de2e54cadfe6978483cea9"
+      }
+    },
+    "ties_boundary": {
+      "shape": [
+        5,
+        4
+      ],
+      "alpha": 0.05,
+      "sha256": {
+        "spec.json": "e31113be019b6463f366f253881bc2b3b8bc1326ac1dceb265e1d2a5fad15436",
+        "pvalues.json": "b2641c791dbe9060d60fdeeeae175b5443786d6733a5d7276f0dda757a33bd24",
+        "rust-yale-fdr-pdep.json": "b6ccc6ab75c75d24ce5dd8094926b1fbcfaf57e6791177d336a2d5a6af221c2e",
+        "rust-yale-fdr-dep.json": "8515783c10b4f92308c275858bfa347b589b69c368868815b0daa45bb06b2073",
+        "rust-yale-holm-source.json": "667ae807944eff5e8c2acc15d7503c0fa9fe53a8f2b0d0551ef251d1e0946ba1",
+        "rust-standard-holm.json": "a86a3eb32e74948c8837d5b4b7ce0938f20c5cf6ba93b35a9bef5ece35d08189"
+      }
+    },
+    "small_alpha": {
+      "shape": [
+        1,
+        33
+      ],
+      "alpha": 0.01,
+      "sha256": {
+        "spec.json": "3849d0b0d25a97983d6e3337614feaeee8e1a08eb3fd4af531e99fedb1334d67",
+        "pvalues.json": "7cb6f327e66361666bee0ebf71ead0bed212064735c21f5d7e79412bdaf15def",
+        "rust-yale-fdr-pdep.json": "1bb5138bfa7ec0563669f07eae3e7584c3f417abca40541648fa68595bf8500a",
+        "rust-yale-fdr-dep.json": "dd035c512ba9a815bb827a30def57793309ddfce28eccd92681e981008f8d185",
+        "rust-yale-holm-source.json": "41d2eeb29108bedf52a08353b02410fd7c85f761a0b917a2605c8c2c03c20bf6",
+        "rust-standard-holm.json": "0f8a0fdd0e6212d698fed1959fae873672ba8ad3508c4bec20e568ee73bb43a7"
+      }
+    },
+    "high_alpha": {
+      "shape": [
+        1,
+        37
+      ],
+      "alpha": 0.1,
+      "sha256": {
+        "spec.json": "78a829b8d4dc025d235780cdd45893fca300417dd886c3b1998c4d7c84b6223f",
+        "pvalues.json": "eea426f2b1fe5694e26b4fb6a9de08067b7936aca69f80235a1bb3c8e996ed53",
+        "rust-yale-fdr-pdep.json": "f4e8d554023f765b575418ed71859991422e8da49e49179d6efd0448a005b54c",
+        "rust-yale-fdr-dep.json": "5b019867f2f9a1b2753821b7a0c62b6beee7eed3bab6f7ce819483be370cdc16",
+        "rust-yale-holm-source.json": "df501262c26e4119f22f88ff9c57c652866f7ac0a5670174ae22ce65fd9bba96",
+        "rust-standard-holm.json": "603664beb1daad222dcd52dc1a527eb0e3a41bef63aecf7400327b2957560072"
+      }
+    },
+    "single_element": {
+      "shape": [
+        1,
+        1
+      ],
+      "alpha": 0.05,
+      "sha256": {
+        "spec.json": "796a84dc448e32b456dd3087c02c9320cbadda85f91c0af26f4db05a91df94a0",
+        "pvalues.json": "9335f9c47ba7d00b35b4adba4dcd132ae7b40840dd3d83b9c9dd282d93cee1b2",
+        "rust-yale-fdr-pdep.json": "96dc4cbaffceaa11c8ca4e0a679de2634ad6c63e1cb77d902ac1a27ee87f560b",
+        "rust-yale-fdr-dep.json": "ca5db5c34ba69c9e3ca49816be915d528b4bbb8823a1da31404d990d96b8e3b6",
+        "rust-yale-holm-source.json": "2291d5b5957d08557b9794b925fae8777cc961072e4f4f5ebd4a69d32512c62d",
+        "rust-standard-holm.json": "a2cf3208e68f040b4c4ce392ef1b0b343cd20b80ea2e917669f6da761ceb8bf2"
+      }
+    },
+    "extreme_zero_one": {
+      "shape": [
+        1,
+        18
+      ],
+      "alpha": 0.05,
+      "sha256": {
+        "spec.json": "e0a84b9186f341788a7a2b71c9f54726c027e79ccbf36545cf4cab7d8a98a872",
+        "pvalues.json": "cd8b89f3de383ac800939ec368e6c99b26e7b014dd8cc96c3d8f05fb3f7219b3",
+        "rust-yale-fdr-pdep.json": "389f07bd7e8ec607f79c879895c0c18778ed6304f4938cd2e430f8d53f504918",
+        "rust-yale-fdr-dep.json": "fa59bc396932120314cca4b79c51babaac7ffb9580ffa52750e92af4e5986015",
+        "rust-yale-holm-source.json": "f381cd18f85b62e48dbba8c47899f2ce57a93e68c5b66679160c2658850111c9",
+        "rust-standard-holm.json": "5b77de56835f223092edf9bf9168c3420bd16ab912abbb967244c67f60e4c433"
+      }
+    }
+  }
+}

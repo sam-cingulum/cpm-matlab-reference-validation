@@ -1,0 +1,19 @@
+{
+  "procedure": "standard_holm",
+  "alpha": 0.042,
+  "adjusted_p_values": [
+    0.04,
+    0.045,
+    0.045,
+    0.045
+  ],
+  "rejected": [
+    true,
+    false,
+    false,
+    false
+  ],
+  "critical_p": null,
+  "adjusted_ci_coverage": null,
+  "method_disclaimer": "Mathematically correct cumulative Holm step-down adjustment; NOT identical to pinned Yale source on some inputs."
+}
