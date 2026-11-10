@@ -1,0 +1,67 @@
+name: Genuine MATLAB R2026b | Yale computeLambdaMax prospective identity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  yale-lambda-max:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify immutable preregistered synthetic Rust forecasts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/lambda_max_prospective')
+          manifest=json.loads((root/'manifest.json').read_text())
+          assert not manifest['patient_data_included']
+          assert manifest['original_yale_sha']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert manifest['expected_mathworks_release']=='R2026b'
+          assert manifest['numeric_absolute_tolerance']==1e-10
+          assert manifest['require_original_source_unchanged'] and manifest['require_complete_original_results']
+          assert len(manifest['cases'])==16
+          for case,meta in manifest['cases'].items():
+              for file,digest in meta['sha256'].items():
+                  path=root/case/file
+                  assert path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest()==digest,(case,file)
+              obj=json.loads((root/case/'rust.json').read_text())
+              assert obj['source_function']=='computeLambdaMax.m'
+          print('FROZEN_16_CASE_YALE_LAMBDA_MAX_FORECAST_INTEGRITY_PASS')
+          PY
+
+      - name: Retrieve exact original Yale MATLAB source revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+
+      - name: Install actual MATLAB R2026b Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+
+      - name: Execute unchanged original Yale computeLambdaMax
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_lambda_max_prospective;
+
+      - name: Archive original MATLAB outputs on pass and failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-yale-lambda-max-prospective
+          path: Cingulum_Yale_MATLAB_Online/lambda_max_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
