@@ -10,7 +10,7 @@ selected_scenarios={'seed_41_n33','seed_73_n61','near_lasso_101_n45',...
  'high_penalty_211_n52','outlier_567_n39','degenerate_929_n53'};
 % Dense early-iteration diagnostics distinguish repeated active-set sweeps from
 % full-feature sweeps; preserve the original widely spaced checkpoints.
-maxits=[1:20,25,30,35,40,45,50,60,70,80,100,120,150,180,210,240,300,350];
+maxits=[1:20,25,30,35,40,45,50,60,70,80,100,120,150,180,210,240,274:280,300,350,435:438,450:455];
 report=struct('runtime','MathWorks MATLAB','release',version('-release'),...
  'toolbox',ver('stats'),'source_revision',...
  'b903f83b476b745417b1f062f6777f5ffe118f1a',...
@@ -27,7 +27,17 @@ for is=1:numel(selected_scenarios)
  for k=1:N
   edgemats(:,k)=squareform(tril(all_mats(:,:,k),-1));
  end
- if strcmp(scenario,'seed_73_n61'); helds=[1,45];else;helds=[1,round(N/2)];end
+ % Extend the immutable synthetic-only battery to previously unmatched folds.
+% MATLAB row indices here are one-based; the archived failures are zero-based.
+if strcmp(scenario,'seed_73_n61')
+ helds=[1,45];
+elseif strcmp(scenario,'near_lasso_101_n45')
+ helds=[1,7,15,23,36,45];
+elseif strcmp(scenario,'outlier_567_n39')
+ helds=[1,16,20,24,26];
+else
+ helds=[1,round(N/2)];
+end
  for modeid=1:2
   if modeid==1
    mode='ridge';alpha=spec.ridge_alpha;
@@ -88,7 +98,7 @@ for is=1:numel(selected_scenarios)
   end
  end
 end
-assert(numel(report.cases)==numel(selected_scenarios)*2*2);
+assert(numel(report.cases)==38); % Existing 24 plus 14 targeted method/fold probes.
 dest=fullfile(root,'results','stress_probes');
 if ~exist(dest,'dir');mkdir(dest);end
 out=fopen(fullfile(dest,'solver_probes.json'),'w');
