@@ -1,0 +1,324 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0000",
+      "values": [
+        8.562808766427707,
+        8.790639158324652
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0001",
+      "values": [
+        6.44567448095331,
+        7.812980001270154
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0002",
+      "values": [
+        11.75783916759084,
+        11.195617035090466
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0003",
+      "values": [
+        12.54433705422806,
+        11.775745349005566
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0004",
+      "values": [
+        10.638706615261086,
+        10.026247777515847
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0005",
+      "values": [
+        12.098997646007778,
+        11.176749830708582
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0006",
+      "values": [
+        14.811537943913306,
+        12.792994691127987
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0007",
+      "values": [
+        13.237300197994644,
+        11.800344656771696
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0008",
+      "values": [
+        12.481662340505476,
+        11.515042554930002
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0009",
+      "values": [
+        12.250115311968985,
+        11.249427892485123
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0010",
+      "values": [
+        9.239965774273033,
+        9.533735716574315
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0011",
+      "values": [
+        12.555969720918,
+        11.40525547777855
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0012",
+      "values": [
+        7.891361972500383,
+        8.33430585540949
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0013",
+      "values": [
+        10.432674784833791,
+        9.774708313027222
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0014",
+      "values": [
+        10.201533894526573,
+        9.771649763938997
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0015",
+      "values": [
+        7.80482641295667,
+        8.042079893004813
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0016",
+      "values": [
+        11.321913449455469,
+        10.43600200928954
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0017",
+      "values": [
+        15.035708824946964,
+        13.073020937410575
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0018",
+      "values": [
+        11.207413651857294,
+        11.034231106578142
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0019",
+      "values": [
+        9.767358631090401,
+        9.999510976545352
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0020",
+      "values": [
+        11.893074155335992,
+        11.166695445023555
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0021",
+      "values": [
+        13.863085899889693,
+        12.712731954690284
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0022",
+      "values": [
+        12.645175414558015,
+        11.681624072265246
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0023",
+      "values": [
+        12.289677293510264,
+        11.138388843517793
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0024",
+      "values": [
+        9.51594761305053,
+        8.723968244931397
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0025",
+      "values": [
+        13.309139496451264,
+        11.61256354637553
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0026",
+      "values": [
+        13.394378379369709,
+        12.112937742400652
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0027",
+      "values": [
+        14.555701648472038,
+        12.94406758467913
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0028",
+      "values": [
+        15.261553301518267,
+        13.269072778381153
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0029",
+      "values": [
+        13.403751173276882,
+        12.24237270397107
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0030",
+      "values": [
+        9.013764712779011,
+        8.961429662942681
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0031",
+      "values": [
+        9.178055262974869,
+        9.037463799046462
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0032",
+      "values": [
+        9.923488658876233,
+        9.423393933693973
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0033",
+      "values": [
+        13.369183243189221,
+        11.971998786676691
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0034",
+      "values": [
+        11.150947028071801,
+        10.248354031663215
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0035",
+      "values": [
+        15.71918215106874,
+        13.85904758736477
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0036",
+      "values": [
+        13.717766275726042,
+        12.32395980900528
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0037",
+      "values": [
+        14.134657697603796,
+        12.957133307595718
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0038",
+      "values": [
+        15.183087639142787,
+        13.432995510047432
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0039",
+      "values": [
+        14.189122570238696,
+        12.542247274907702
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0040",
+      "values": [
+        10.246254354313443,
+        9.670682340611366
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0041",
+      "values": [
+        17.898538808100106,
+        14.59698465668339
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0042",
+      "values": [
+        16.473095670987217,
+        13.91868933357922
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0043",
+      "values": [
+        16.725529159575007,
+        14.310978457713013
+      ]
+    },
+    {
+      "observation_id": "synthetic_near_lasso_101_n45_0044",
+      "values": [
+        11.937737781597717,
+        11.41937038312236
+      ]
+    }
+  ]
+}

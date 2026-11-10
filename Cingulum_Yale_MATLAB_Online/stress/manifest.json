@@ -1,0 +1,158 @@
+{
+  "purpose": "NEW held-out parameters, seeds, sizes and degeneration original-source test; separate from 36/36 accepted source suite",
+  "source_commit": {
+    "yale-cpm": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+    "yale-ohbm": "708999b8bb27ae69722775c323da9f14ef6732c7"
+  },
+  "patient_data_included": false,
+  "method_profiles": [
+    "ridge",
+    "pca"
+  ],
+  "original_yale_files_unmodified": true,
+  "expected_mathworks_release": "R2026b",
+  "stopping_policy": "matlab_r2026b_candidate",
+  "reltol": 0.0001,
+  "scenarios": {
+    "seed_41_n33": {
+      "spec": {
+        "name": "seed_41_n33",
+        "seed": 41,
+        "n": 33,
+        "lam": 0.08,
+        "ridge_alpha": 1e-09,
+        "pca_alpha": 1e-06,
+        "kind": "normal"
+      },
+      "sha256": {
+        "cohort.json": "5bcfb101ff62daab3f3b5f29363d3c31eff06a23108bdbc03e436b645341e20a",
+        "cohort.mat": "24d2996310b6ba6598360dd84f83203f47e0c447d3fd4b2d49a77d86c842b73c",
+        "pca-targets.json": "f2acb75944c8862641e4760caa16d83265de6c55b200808c5ecc8b0124c34be2",
+        "pca-targets.mat": "10e55bb432a9c29f4691402229535fccdb6bb8d7fa190708a9a38fdb8ba37a41",
+        "rust-ridge.json": "31f325c564d9875b15b95ce0cd563a2a17e98480a31512970351f986246356f3",
+        "rust-pca.json": "53df7ea6eb9fea881e7e3d144b4a5154f69d35e1ccb7b62753539e7d50bbf407",
+        "spec.json": "58fa55f560f99a97bbe64b382bf3391a07e99a772e2e31ff404a708d088ca63f"
+      }
+    },
+    "seed_73_n61": {
+      "spec": {
+        "name": "seed_73_n61",
+        "seed": 73,
+        "n": 61,
+        "lam": 0.2,
+        "ridge_alpha": 1e-09,
+        "pca_alpha": 1e-06,
+        "kind": "normal"
+      },
+      "sha256": {
+        "cohort.json": "157b608ada30cd5289a9b4face2733942ace0e76ba55371601c9cc045cc2881d",
+        "cohort.mat": "1abc536a01798b0b65e27278b53d5b0da0c72a71cfb071cf89b0ae0ca91a8bf7",
+        "pca-targets.json": "6df386b7e527733fde35b589c21ed3f06672ab63cbf6ca124b3d219085f3f71a",
+        "pca-targets.mat": "980d5669703a1f759a27638de8fb9f0cd87489bb09f668782ec7c697baba27ae",
+        "rust-ridge.json": "2637f565906b3a1ae209d3bb025d1fe3299d1a13e2c5bb36b36d864fd1f86980",
+        "rust-pca.json": "4ee0457d010f76f15cd09ff8e66214468904b36beead41142a6e123e50b1a51c",
+        "spec.json": "3aa73fb913eb17cac0d5f19d13ae91154b93897d8bcb0fcd57dbabecb1542d00"
+      }
+    },
+    "near_lasso_101_n45": {
+      "spec": {
+        "name": "near_lasso_101_n45",
+        "seed": 101,
+        "n": 45,
+        "lam": 0.035,
+        "ridge_alpha": 0.85,
+        "pca_alpha": 0.7,
+        "kind": "normal"
+      },
+      "sha256": {
+        "cohort.json": "af3841814337247b728f98569d6437c3debdab707abb7fffa2faf9497f706576",
+        "cohort.mat": "57c3d79b8172fae9a2217728c114a64366cddcc6266e8c52d0b0f1873d4eeb53",
+        "pca-targets.json": "af0f1bf114f0a82d3f4187897a29a6aa2334a8a4820da4c595ab3c36395be8ad",
+        "pca-targets.mat": "6f10f8eefc5774d744a84c3a50665feba5c93626d961640d12eec6a6cab7ea43",
+        "rust-ridge.json": "1dd58e8a8b8a40f8dafcd72e442b1dbd19ab6f11b7806ef27fb127c21fa8a977",
+        "rust-pca.json": "5a01438e0b12a174c94c93e1a7b0a2c1ddb3a53fed1dc11e3eb840e1e0146c8f",
+        "spec.json": "de616ab9f0086995af536ce31e00554e3fa6ce7356a3c2e5d150eb4e3e686d75"
+      }
+    },
+    "high_penalty_211_n52": {
+      "spec": {
+        "name": "high_penalty_211_n52",
+        "seed": 211,
+        "n": 52,
+        "lam": 0.4,
+        "ridge_alpha": 0.4,
+        "pca_alpha": 0.2,
+        "kind": "normal"
+      },
+      "sha256": {
+        "cohort.json": "28a079479ba86d9491801863f46f05d05934192f2a6954a92bee9dde7acc386e",
+        "cohort.mat": "99e46b4409c6000ba9390249fb8a4a2fe6026741c8a0f09220673234efb2f3b2",
+        "pca-targets.json": "718c90c9e4d7d192da30da31b4e1174d14ff8a34c774f35c205c860219825d10",
+        "pca-targets.mat": "dfa25a7b8f9bdfdc8fda90a23b745fb8e65fa5e049408140c98dddf65b782d63",
+        "rust-ridge.json": "20bab729dbe90180fe04bb1d00e30cff65f0c80bf05e5e425282ab8e1e1b21cc",
+        "rust-pca.json": "d3f2b17821b1ef718bb4e0bef47f5b1ecbf9bdea6521b1e1f2c31eda79a331ab",
+        "spec.json": "b129ccf8f819e001ae7644430898df0898a7a93b00473c0b1dda38d8e32d04e9"
+      }
+    },
+    "high_corr_331_n73": {
+      "spec": {
+        "name": "high_corr_331_n73",
+        "seed": 331,
+        "n": 73,
+        "lam": 0.12,
+        "ridge_alpha": 1e-09,
+        "pca_alpha": 1e-06,
+        "kind": "collinear"
+      },
+      "sha256": {
+        "cohort.json": "61b5f30e44a52f9c43500761d3a3b31818328ddedb1f913c81fe8387a24d7b40",
+        "cohort.mat": "4d8210b7c946b4ea9d0f4d7ca840a21c9c0b1e3baf6be349e4127a3e1bb62408",
+        "pca-targets.json": "213fa2cb3aa5a28446e9dc8603587d195f349bac571875f9cf5221504094fcad",
+        "pca-targets.mat": "1fb59308afbb078097cfaa084a2dee253f02f9be1aec52f1bf0a7ca764463c71",
+        "rust-ridge.json": "d451e5bd97accfd4c746e680e928677476ead447941fa8fac0cd73ced2846b90",
+        "rust-pca.json": "8f7f3f061a6b509a903f353911c5c8a74fed0cb60132a42e4ffbcd106f5aa438",
+        "spec.json": "1e8baf4bb0a2fe1bf449713f9f8eba12da8a4ecf3d65e7673b14cf47af08305c"
+      }
+    },
+    "outlier_567_n39": {
+      "spec": {
+        "name": "outlier_567_n39",
+        "seed": 567,
+        "n": 39,
+        "lam": 0.1,
+        "ridge_alpha": 0.05,
+        "pca_alpha": 0.05,
+        "kind": "outlier_scale"
+      },
+      "sha256": {
+        "cohort.json": "1958e16943c468c93cebdbca99e927afadd2654e7a24fdcccee98a5e0995cc5e",
+        "cohort.mat": "02e78057f7bcb9775f172af3d02447fce21e495f6cd6daf3aa8bc0ddd16a5344",
+        "pca-targets.json": "a192af828a7536bc75a717b58d329339346c1edf8d07d93908f4597c9a21171a",
+        "pca-targets.mat": "dd1a3fbab6e1754cc4b74e58daf89388464269374c3ead89fa62167524c41178",
+        "rust-ridge.json": "dcb585069982ac75dca49bcc38d7f2437fa34adb57f74f775af6a453e96c67eb",
+        "rust-pca.json": "10c683b952d138fc1af266b4ca8278187e14fc5fe2ec6693220291f8e965d409",
+        "spec.json": "26aea163076d932d4d902f2b1a0bd56385256391917866c69bdaa18351e38e54"
+      }
+    },
+    "degenerate_929_n53": {
+      "spec": {
+        "name": "degenerate_929_n53",
+        "seed": 929,
+        "n": 53,
+        "lam": 0.15,
+        "ridge_alpha": 0.35,
+        "pca_alpha": 0.5,
+        "kind": "degenerate"
+      },
+      "sha256": {
+        "cohort.json": "e6bb5fff629bccc33acbd01522008dc21fdc7e4aa8511b8b5628deb9b8e17093",
+        "cohort.mat": "eb229bee3417182ac0b4b0f19509f13685a5de52bd9a81776a36b294d54f7268",
+        "pca-targets.json": "e26f990e5e1de89ec4006631b6044ad67a5f5e1c779eac4caa8546b99b78b019",
+        "pca-targets.mat": "ac68cabe71c08f7c76f059cfd1671b27681504b4e98a7ca7e839b007157a1d31",
+        "rust-ridge.json": "1fa64aea8ab67e9856be86ac391c59f9db68b8abdedf66c2e4f9c56f6e1ffad3",
+        "rust-pca.json": "2fc15acaf3bea6d8e7f7e0f748eabbde7a5ba9d7898b6cf622cd6f80d021151b",
+        "spec.json": "d137deff7a4f603c87a8f1c6aae4e1a1760d1a101e69ca1b0cdef3c0ce429fd8"
+      }
+    }
+  }
+}

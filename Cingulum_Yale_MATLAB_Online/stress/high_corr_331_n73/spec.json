@@ -1,0 +1,9 @@
+{
+  "name": "high_corr_331_n73",
+  "seed": 331,
+  "n": 73,
+  "lam": 0.12,
+  "ridge_alpha": 1e-09,
+  "pca_alpha": 1e-06,
+  "kind": "collinear"
+}

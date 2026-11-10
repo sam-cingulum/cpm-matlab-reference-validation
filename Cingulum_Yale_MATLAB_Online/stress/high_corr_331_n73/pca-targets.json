@@ -1,0 +1,520 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0000",
+      "values": [
+        11.506641923728546,
+        10.815119104019603
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0001",
+      "values": [
+        12.533157311783423,
+        11.776349043529695
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0002",
+      "values": [
+        10.784482025521203,
+        10.541585845307837
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0003",
+      "values": [
+        12.560342267243698,
+        11.457776332738185
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0004",
+      "values": [
+        8.65077832933928,
+        9.080785477733235
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0005",
+      "values": [
+        9.32101045864642,
+        8.648893079609708
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0006",
+      "values": [
+        10.515815633807504,
+        10.202464500422604
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0007",
+      "values": [
+        8.709522639805497,
+        8.57006443889799
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0008",
+      "values": [
+        9.330413711924653,
+        9.31347325672621
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0009",
+      "values": [
+        10.114781864760953,
+        9.795443813119569
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0010",
+      "values": [
+        10.901600046176492,
+        10.69817859102416
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0011",
+      "values": [
+        12.939024693248514,
+        11.971630135224684
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0012",
+      "values": [
+        14.870105638076014,
+        13.275355400376014
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0013",
+      "values": [
+        13.523669754548985,
+        12.005945108612783
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0014",
+      "values": [
+        11.026922986296057,
+        10.181847417351346
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0015",
+      "values": [
+        10.324401086348415,
+        9.532710281361128
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0016",
+      "values": [
+        11.859589382536107,
+        10.837391172644043
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0017",
+      "values": [
+        7.336219226263233,
+        7.920143516888016
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0018",
+      "values": [
+        10.648881066631782,
+        10.689004692593361
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0019",
+      "values": [
+        11.423603795813536,
+        11.09247004486304
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0020",
+      "values": [
+        11.086287449864768,
+        10.689131894380774
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0021",
+      "values": [
+        13.245272085468098,
+        11.747775138301739
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0022",
+      "values": [
+        10.559532404436274,
+        10.110248091177231
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0023",
+      "values": [
+        12.692274040533887,
+        11.376269347826117
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0024",
+      "values": [
+        12.021914865947814,
+        10.90648892732385
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0025",
+      "values": [
+        15.516489815951074,
+        13.35975335321671
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0026",
+      "values": [
+        12.641300482991754,
+        11.778349604032682
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0027",
+      "values": [
+        15.50531257242308,
+        13.690869883111546
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0028",
+      "values": [
+        5.992778925673604,
+        7.3223931672667195
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0029",
+      "values": [
+        11.167244514772953,
+        10.988954508386172
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0030",
+      "values": [
+        14.924189163326751,
+        12.924805911186974
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0031",
+      "values": [
+        9.626165896343167,
+        9.303068698701113
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0032",
+      "values": [
+        11.961050094907675,
+        10.57853435033958
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0033",
+      "values": [
+        9.63939672355006,
+        8.944635581500657
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0034",
+      "values": [
+        11.896954427226497,
+        10.758554969315096
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0035",
+      "values": [
+        6.588993410615862,
+        7.450129584444211
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0036",
+      "values": [
+        10.628606619542563,
+        10.241917564103087
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0037",
+      "values": [
+        14.26968245529432,
+        12.91443661747834
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0038",
+      "values": [
+        11.929702638505928,
+        11.412668229722675
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0039",
+      "values": [
+        10.403275564588029,
+        10.054294473800814
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0040",
+      "values": [
+        11.29250867249401,
+        10.450999118650156
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0041",
+      "values": [
+        9.561898229572021,
+        9.185441363536826
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0042",
+      "values": [
+        8.80205724122764,
+        8.793933665257155
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0043",
+      "values": [
+        12.18811879553207,
+        11.034364810811281
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0044",
+      "values": [
+        11.607779087553025,
+        10.749443335164313
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0045",
+      "values": [
+        12.724153495541847,
+        12.049790155780784
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0046",
+      "values": [
+        11.330706559071775,
+        10.779609170689346
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0047",
+      "values": [
+        10.650522856829308,
+        10.15025160251146
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0048",
+      "values": [
+        14.450850306971198,
+        12.726490723776038
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0049",
+      "values": [
+        10.812086650871676,
+        9.873538848644568
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0050",
+      "values": [
+        12.596228558234143,
+        11.198896184050177
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0051",
+      "values": [
+        13.671124988389098,
+        12.049559669191863
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0052",
+      "values": [
+        12.33587427637382,
+        11.306111791941388
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0053",
+      "values": [
+        14.194734539767886,
+        13.293774843756417
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0054",
+      "values": [
+        11.11372972732734,
+        10.662263305157078
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0055",
+      "values": [
+        10.756620278271484,
+        10.317245940339431
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0056",
+      "values": [
+        12.303094075696894,
+        11.182063571681544
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0057",
+      "values": [
+        13.677511976353989,
+        11.971214080293896
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0058",
+      "values": [
+        13.586098677421289,
+        11.798092476674933
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0059",
+      "values": [
+        13.951465901305129,
+        11.887239752252803
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0060",
+      "values": [
+        12.119445894638924,
+        11.292018729663098
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0061",
+      "values": [
+        15.09550154601813,
+        12.947616104021176
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0062",
+      "values": [
+        15.672872377790771,
+        13.548660287809005
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0063",
+      "values": [
+        13.042663527541547,
+        12.0103838902902
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0064",
+      "values": [
+        12.557606129708828,
+        11.699531916511214
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0065",
+      "values": [
+        10.802835139370083,
+        10.540306467955658
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0066",
+      "values": [
+        14.902952938122016,
+        12.688990709719972
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0067",
+      "values": [
+        11.409304791384221,
+        10.197527628701351
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0068",
+      "values": [
+        17.95951122665118,
+        15.044073214767288
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0069",
+      "values": [
+        10.49804603003671,
+        9.753005175416662
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0070",
+      "values": [
+        15.331664117450076,
+        13.400297319405208
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0071",
+      "values": [
+        13.36075666003404,
+        12.160114826681808
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_corr_331_n73_0072",
+      "values": [
+        12.751944060329372,
+        11.66763190968767
+      ]
+    }
+  ]
+}

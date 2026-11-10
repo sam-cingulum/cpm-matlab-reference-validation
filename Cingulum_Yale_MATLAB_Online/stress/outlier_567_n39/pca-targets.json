@@ -1,0 +1,282 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_outlier_567_n39_0000",
+      "values": [
+        81.76352625444798,
+        57.574142795350454
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0001",
+      "values": [
+        82.29847030234892,
+        58.08890892903898
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0002",
+      "values": [
+        81.05255676440187,
+        57.61305576969714
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0003",
+      "values": [
+        118.35804701949691,
+        82.24995019022353
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0004",
+      "values": [
+        83.01566265976228,
+        58.751258215417735
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0005",
+      "values": [
+        87.42381644245292,
+        61.384196615172364
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0006",
+      "values": [
+        72.61977882252805,
+        51.54211990347657
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0007",
+      "values": [
+        104.00866801232057,
+        72.44019253201627
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0008",
+      "values": [
+        81.04375076649444,
+        57.2428997797032
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0009",
+      "values": [
+        82.4469700459602,
+        58.50209493726273
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0010",
+      "values": [
+        82.55391335706524,
+        58.144667366067516
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0011",
+      "values": [
+        89.57500839137336,
+        63.25604766840384
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0012",
+      "values": [
+        76.91339924239313,
+        54.56563306699537
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0013",
+      "values": [
+        122.02350965227933,
+        85.07222838497248
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0014",
+      "values": [
+        114.02738087321687,
+        79.04027736200305
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0015",
+      "values": [
+        92.78155729413298,
+        64.94713142451533
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0016",
+      "values": [
+        74.99035581369583,
+        52.94253465082546
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0017",
+      "values": [
+        74.8221885377502,
+        52.897207824951074
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0018",
+      "values": [
+        59.80880459939715,
+        43.375989195737965
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0019",
+      "values": [
+        102.77501842650764,
+        72.16806136748275
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0020",
+      "values": [
+        67.36034390472373,
+        48.391565531420795
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0021",
+      "values": [
+        125.66132927952086,
+        87.3614953260299
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0022",
+      "values": [
+        88.2041214251938,
+        62.051199614421016
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0023",
+      "values": [
+        100.04544525288671,
+        69.78583875410776
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0024",
+      "values": [
+        107.86291146970808,
+        75.16245413077922
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0025",
+      "values": [
+        104.97031396474122,
+        73.50681472466806
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0026",
+      "values": [
+        95.98299481096974,
+        67.35816523844113
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0027",
+      "values": [
+        107.61436706678701,
+        75.49767500281183
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0028",
+      "values": [
+        92.76529964651165,
+        65.68775021021463
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0029",
+      "values": [
+        78.85378282605757,
+        56.04909890212877
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0030",
+      "values": [
+        96.99044912507821,
+        67.78140924404596
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0031",
+      "values": [
+        114.66328494754713,
+        79.81246485607166
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0032",
+      "values": [
+        90.82433628968232,
+        63.43864064641232
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0033",
+      "values": [
+        121.67647477349418,
+        84.54617960674449
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0034",
+      "values": [
+        120.67471600937367,
+        83.93232706680281
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0035",
+      "values": [
+        120.4814123548904,
+        83.62312590741529
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0036",
+      "values": [
+        82.14161146296874,
+        58.260808927832194
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0037",
+      "values": [
+        119.91918442526735,
+        83.69202944601683
+      ]
+    },
+    {
+      "observation_id": "synthetic_outlier_567_n39_0038",
+      "values": [
+        108.02433282833893,
+        75.68749861147555
+      ]
+    }
+  ]
+}

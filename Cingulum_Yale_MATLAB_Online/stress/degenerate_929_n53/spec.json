@@ -1,0 +1,9 @@
+{
+  "name": "degenerate_929_n53",
+  "seed": 929,
+  "n": 53,
+  "lam": 0.15,
+  "ridge_alpha": 0.35,
+  "pca_alpha": 0.5,
+  "kind": "degenerate"
+}

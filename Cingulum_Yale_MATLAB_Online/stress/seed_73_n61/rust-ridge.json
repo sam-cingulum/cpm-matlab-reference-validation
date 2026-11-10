@@ -1,0 +1,936 @@
+{
+  "method": "edgewise_training_selected_elastic_net",
+  "config": {
+    "p_threshold": 0.05,
+    "lambda": 0.2,
+    "alpha": 1e-9,
+    "kfolds": 5,
+    "split": "leave_one_group_out",
+    "seed": 20261109,
+    "reltol": 0.0001,
+    "max_iterations": 100000,
+    "max_selected_edges": 10000,
+    "stopping_policy": "matlab_r2026b_candidate"
+  },
+  "atlas": "synthetic_stress_eight_parcel",
+  "input_sha256": "11b3755a42ceedba4303efb7e515dc82b8d93b427c7035eb55534d8436aac690",
+  "predictions": [
+    8.68378907770474,
+    11.746427293276541,
+    9.853471937335677,
+    11.111965209280454,
+    11.33840359287278,
+    7.142931651105622,
+    11.628744972725798,
+    8.995878047450615,
+    8.811694428181179,
+    13.11345385486435,
+    8.142861643132687,
+    8.022484820149401,
+    9.583989588140486,
+    14.03091332591695,
+    12.879689876669108,
+    11.069423474686431,
+    14.75501185293199,
+    9.98512429532642,
+    8.002682534362716,
+    12.468885249273386,
+    12.014636895522933,
+    11.958632688948594,
+    9.31902942459431,
+    12.775859717875772,
+    12.377827869002836,
+    9.512098818585699,
+    12.854176162309187,
+    12.47513589562942,
+    14.815198375814434,
+    11.167774722802527,
+    12.334040262480311,
+    14.09019356001106,
+    9.952836441088177,
+    10.996004032569768,
+    10.55269378719942,
+    11.139687327492611,
+    14.813080391676573,
+    13.400177823746734,
+    13.347824995612307,
+    13.459201341798511,
+    13.560350242574398,
+    15.75033977953748,
+    13.936288909731813,
+    15.432814767843002,
+    13.582684107079602,
+    12.92126992418373,
+    13.846056051245297,
+    12.439379459133168,
+    13.663776998405122,
+    8.163339519604694,
+    12.155483281589442,
+    11.895492743032332,
+    11.421555078724912,
+    14.610541480953566,
+    15.062664874439136,
+    14.943979768388596,
+    11.857063016431407,
+    14.510710298045213,
+    10.82391883705526,
+    12.754474295045501,
+    13.428857733105314
+  ],
+  "metrics": {
+    "n": 61,
+    "pearson_r": 0.9883521103241851,
+    "spearman_r": 0.9853516657852988,
+    "r2": 0.9762451102674607,
+    "mae": 0.2678422698998142,
+    "rmse": 0.3384030795348139
+  },
+  "folds": [
+    {
+      "label": "group:participant_0000",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0000"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 144,
+      "training_digest": "fda021a57bcac01ae06d9e772fc2ce4fb90709e8093b0e0b11fa63b26bdda761",
+      "objective": 0.08671488662671183,
+      "max_kkt_violation": 0.00033598130628058944
+    },
+    {
+      "label": "group:participant_0001",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0001"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "612e6bcc09ea9f4bd1cf8919549f43af00da3629df41771cc1b61e0a6736d61e",
+      "objective": 0.08876036271475365,
+      "max_kkt_violation": 0.0003386444678014
+    },
+    {
+      "label": "group:participant_0002",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0002"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "e15924a62cdbc38fa13b8486a7b9e3f1f3460b185bca7b9e052bd4944d9fdf54",
+      "objective": 0.08787001260635045,
+      "max_kkt_violation": 0.000349378366187615
+    },
+    {
+      "label": "group:participant_0003",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0003"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "5abe792ca94834d3a017ecc2433e5a1433533b8b820e7cf35b3fda4869d568cf",
+      "objective": 0.08938000297661701,
+      "max_kkt_violation": 0.00035251750877459813
+    },
+    {
+      "label": "group:participant_0004",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0004"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 148,
+      "training_digest": "dcb334d37c9ce120a0aac7be3911c7ba4665ee03557368ebd0c49e4feacfeb87",
+      "objective": 0.08862017533398885,
+      "max_kkt_violation": 0.0003237764649677523
+    },
+    {
+      "label": "group:participant_0005",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0005"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 142,
+      "training_digest": "18db0d4ba8e24fe128e939114c501805bfaccdb19c7fdac1b1ee2c6dc519c5db",
+      "objective": 0.08605086101910275,
+      "max_kkt_violation": 0.0003381784837101594
+    },
+    {
+      "label": "group:participant_0006",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0006"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 148,
+      "training_digest": "45d4c4e1b2965a67c4a0a3670215eea8e09856e1e38dcdaa0bfe003174d52fb1",
+      "objective": 0.08870832122173472,
+      "max_kkt_violation": 0.0003546727814226865
+    },
+    {
+      "label": "group:participant_0007",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0007"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 144,
+      "training_digest": "263722d278dc3038560f41bd5a81994f39a85ad3dda78a7cff78d09221f36e3f",
+      "objective": 0.08703109820064103,
+      "max_kkt_violation": 0.0003506245701531642
+    },
+    {
+      "label": "group:participant_0008",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0008"
+      ],
+      "positive_selected": 8,
+      "negative_selected": 6,
+      "selected_edges": 14,
+      "iterations": 145,
+      "training_digest": "f447dc836693f5a8d9378e388867c571b84138ea37b132d586cc21a8ba4ec6e4",
+      "objective": 0.08240839659258747,
+      "max_kkt_violation": 0.0003390065783711481
+    },
+    {
+      "label": "group:participant_0009",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0009"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "fffaa66b1c1a88e83a53df762a13d47681a25796864a9037164f7aff467746ca",
+      "objective": 0.08920315549071939,
+      "max_kkt_violation": 0.00033025452426832096
+    },
+    {
+      "label": "group:participant_0010",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0010"
+      ],
+      "positive_selected": 9,
+      "negative_selected": 6,
+      "selected_edges": 15,
+      "iterations": 144,
+      "training_digest": "eb00eb2a209836408a982aa5d587004ed0548d3f508eac19199d609ec061ff60",
+      "objective": 0.07927936183410031,
+      "max_kkt_violation": 0.0003565405391888861
+    },
+    {
+      "label": "group:participant_0011",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0011"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 7,
+      "selected_edges": 14,
+      "iterations": 144,
+      "training_digest": "907e5699dc74bb88357632cb42e8268a04eb2e68ff655834585bb91cd129c55e",
+      "objective": 0.0862885336074224,
+      "max_kkt_violation": 0.0003344693074282075
+    },
+    {
+      "label": "group:participant_0012",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0012"
+      ],
+      "positive_selected": 8,
+      "negative_selected": 6,
+      "selected_edges": 14,
+      "iterations": 145,
+      "training_digest": "bc07be9f2043408a7d9860e127cf7865f44b40ac558a8c479c3507e826fc154a",
+      "objective": 0.08179398072046011,
+      "max_kkt_violation": 0.000344419438514927
+    },
+    {
+      "label": "group:participant_0013",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0013"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "bd50beb1ee5aab6db3b8943f78546419594925f1422287a648f4bd1c633e9e87",
+      "objective": 0.08777071820048905,
+      "max_kkt_violation": 0.0003530459799468795
+    },
+    {
+      "label": "group:participant_0014",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0014"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "9d485b1cebb84fb08211394f35f7c4bbeaf42048c94ad06ac934810790ddbe84",
+      "objective": 0.08835984384414686,
+      "max_kkt_violation": 0.00033252428811065675
+    },
+    {
+      "label": "group:participant_0015",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0015"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "905eddc976e52bfae5ad9e0d456997d1097944f88372aed6f15203bdf6f4d4cd",
+      "objective": 0.08755944650720507,
+      "max_kkt_violation": 0.00034561146855037044
+    },
+    {
+      "label": "group:participant_0016",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0016"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 144,
+      "training_digest": "c26651a530651fcfc7be12e0ed046b1408d8f7e67466e83fac24df879fb30f92",
+      "objective": 0.08835866264127112,
+      "max_kkt_violation": 0.00034965715420142834
+    },
+    {
+      "label": "group:participant_0017",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0017"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "e8a97d82e0b526da7be4ace017ab3715ace4cb5dd163f35ca48398894a5f9877",
+      "objective": 0.08753387909250361,
+      "max_kkt_violation": 0.00033667912650823655
+    },
+    {
+      "label": "group:participant_0018",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0018"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 144,
+      "training_digest": "141335f43e2305ebf5d061d4c3b5fd75c02f212c41a2c46d10a5dc5209ac2488",
+      "objective": 0.08694125243704441,
+      "max_kkt_violation": 0.0003458338385564598
+    },
+    {
+      "label": "group:participant_0019",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0019"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "160528b1c1412c8527f18604d7afe490daa05cfa25a4ac83217d0f90025cb4c4",
+      "objective": 0.0893589103421453,
+      "max_kkt_violation": 0.0003343909589704061
+    },
+    {
+      "label": "group:participant_0020",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0020"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 147,
+      "training_digest": "45ed8bd5dd2c41bd82d128ca03b250d6cbea2c79cb5843a9cc5ed0a68d9ab5fc",
+      "objective": 0.08656885513758783,
+      "max_kkt_violation": 0.00033900824827967207
+    },
+    {
+      "label": "group:participant_0021",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0021"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "bfcadb759c4976413128c6cc8977a415dab029c900a7cc1d2ed86e4f4264b28c",
+      "objective": 0.08756874556430522,
+      "max_kkt_violation": 0.00033923472471142623
+    },
+    {
+      "label": "group:participant_0022",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0022"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "722e58bcc42878d477b141a8d97a5c6ffbae944f90233b6c28a7442e38232a69",
+      "objective": 0.08585128744530461,
+      "max_kkt_violation": 0.0003432949656221969
+    },
+    {
+      "label": "group:participant_0023",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0023"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "05a9571126547ebf5b89c8cc1d1fb375be72e67546c1b752d7cdaec2d6bd85af",
+      "objective": 0.08936717743948923,
+      "max_kkt_violation": 0.0003440810206998399
+    },
+    {
+      "label": "group:participant_0024",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0024"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "1158d3e0e46171b735f66df23ab38e33ed0d48151613c8a3de1acd197ef4fbd5",
+      "objective": 0.08786951670213448,
+      "max_kkt_violation": 0.00034448826515873487
+    },
+    {
+      "label": "group:participant_0025",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0025"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "8f278bdf7c3fdbc3ced2d1aecb38626c00f75e2f315aa4c437638ef11788a5ca",
+      "objective": 0.08759725179244532,
+      "max_kkt_violation": 0.00033840358738647646
+    },
+    {
+      "label": "group:participant_0026",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0026"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "b4619268b6ee1c48df6145a8706477f880f86eeddfc5b67521db228d5e073b66",
+      "objective": 0.08912192031632915,
+      "max_kkt_violation": 0.000332739544295929
+    },
+    {
+      "label": "group:participant_0027",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0027"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "cf37fcbe012b8003a486edec78c2c32fe6796f726fa962bb07cf7ae53afbb30e",
+      "objective": 0.08924762558973023,
+      "max_kkt_violation": 0.00033773049783221697
+    },
+    {
+      "label": "group:participant_0028",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0028"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "79c6d01c51bd963f087f109635b664831bdf7073efc10c70ed555cf375b2ce93",
+      "objective": 0.08740736764732589,
+      "max_kkt_violation": 0.0003315058190329684
+    },
+    {
+      "label": "group:participant_0029",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0029"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "9de00c64bb8dd388783e167cc332516b12c4e3c8ceebc213d4cd5d19ee21f695",
+      "objective": 0.08827522531158158,
+      "max_kkt_violation": 0.0003571791415892699
+    },
+    {
+      "label": "group:participant_0030",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0030"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "eddeafe73b8d95d244242426288e123f5e68a0a9a3a97a0f2a87ad39f8f9e5fe",
+      "objective": 0.08944011351941829,
+      "max_kkt_violation": 0.00033645916602869074
+    },
+    {
+      "label": "group:participant_0031",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0031"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "2b6744d28a71cc86fbea3f6acdc1b83431d42e5812d01c9f1dcdca74a12c0382",
+      "objective": 0.08660083620844074,
+      "max_kkt_violation": 0.0003230952661340192
+    },
+    {
+      "label": "group:participant_0032",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0032"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "34e30db0303159bf804cd391499b59ad490f5805778e6a59095cd6f48c7d6d84",
+      "objective": 0.08744216609606781,
+      "max_kkt_violation": 0.0003327781356209153
+    },
+    {
+      "label": "group:participant_0033",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0033"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "72a6a2b824d3ac1d1924919a4fad540e395aa1bd87c4a26c8d46f776858d7bd4",
+      "objective": 0.08922803400656198,
+      "max_kkt_violation": 0.0003428021791228994
+    },
+    {
+      "label": "group:participant_0034",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0034"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "0bdb6449d3c920a19af8518a3af32b3d14d832aeb90d776631a8675e27b6d1a2",
+      "objective": 0.0878906641043547,
+      "max_kkt_violation": 0.00034886361224639994
+    },
+    {
+      "label": "group:participant_0035",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0035"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "1b5a2e95057d6c3db5aa935fe784741dd83ec8ccb3d368a24254f90b5f822120",
+      "objective": 0.08936534940747172,
+      "max_kkt_violation": 0.0003362502389257531
+    },
+    {
+      "label": "group:participant_0036",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0036"
+      ],
+      "positive_selected": 8,
+      "negative_selected": 6,
+      "selected_edges": 14,
+      "iterations": 145,
+      "training_digest": "7143ca5f0637ea6d5132017d6cf66e0431a3860277f77abc7c24d3da635e6f82",
+      "objective": 0.082347008275967,
+      "max_kkt_violation": 0.00034416220248508893
+    },
+    {
+      "label": "group:participant_0037",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0037"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "387aa6de689e2df993712576e1a6aed72db8dcdb56b4135b6b2fea24b72b6d15",
+      "objective": 0.08724868613449821,
+      "max_kkt_violation": 0.00034102991625141384
+    },
+    {
+      "label": "group:participant_0038",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0038"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 147,
+      "training_digest": "2adcc1154e60143d03dafa5c4af4e9a1a3a02367a2b78af8e7da9ef301916c3c",
+      "objective": 0.08869940420416658,
+      "max_kkt_violation": 0.0003354736222355463
+    },
+    {
+      "label": "group:participant_0039",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0039"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "0812919defd5b98a4fd5bbedf6a0a13ba10bf45d9ef8f7134e27dd86d64023cd",
+      "objective": 0.08915172366358395,
+      "max_kkt_violation": 0.0003356632528293295
+    },
+    {
+      "label": "group:participant_0040",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0040"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "84857734aff639bc2f2bfb111c7c8203b93ce81c23b3b71cb5a638c27bac532f",
+      "objective": 0.08849730983260523,
+      "max_kkt_violation": 0.00033233181945450165
+    },
+    {
+      "label": "group:participant_0041",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0041"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 144,
+      "training_digest": "d6e54108a206f4ef9b2d6f3fb1ed7be9d7816884ebd0dc8cd8dd60e33e19e109",
+      "objective": 0.086793279182978,
+      "max_kkt_violation": 0.0003441033798154718
+    },
+    {
+      "label": "group:participant_0042",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0042"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "f7ad3ce7ba88258764fe4634d28f875b996b5ff7f95aa7356c7e738be0b42440",
+      "objective": 0.08888989487508323,
+      "max_kkt_violation": 0.00034315135173371066
+    },
+    {
+      "label": "group:participant_0043",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0043"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 144,
+      "training_digest": "628abe4d68569d5e64ca2ded4d500e07decd7662ca003fe1398442ea28e2adff",
+      "objective": 0.0875222984210533,
+      "max_kkt_violation": 0.00033807818151323626
+    },
+    {
+      "label": "group:participant_0044",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0044"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "40c0df8d1def93175e794b78380d8a955d77c33c6c7d1ba0a5c3acbeed3c1622",
+      "objective": 0.0875756673994874,
+      "max_kkt_violation": 0.0003589409868360412
+    },
+    {
+      "label": "group:participant_0045",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0045"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "6b073d64b4d1d9f97d6a5ad7afb53ce1adf29cbda7b5b368ba0a841a95693aa0",
+      "objective": 0.08934509046798834,
+      "max_kkt_violation": 0.00033778835830917524
+    },
+    {
+      "label": "group:participant_0046",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0046"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 147,
+      "training_digest": "54a94fbd7c4470b4651d335a63c784edd7ec514024d0bb4fbc305a23f431d17c",
+      "objective": 0.08526242860169349,
+      "max_kkt_violation": 0.0003370577639512573
+    },
+    {
+      "label": "group:participant_0047",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0047"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "57eb9daa86d923379ffa22cbda855677cf6c35b061ce163fdf8509127ab623ae",
+      "objective": 0.08941516903382765,
+      "max_kkt_violation": 0.00033866890480480696
+    },
+    {
+      "label": "group:participant_0048",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0048"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "c79ec13f4c53496f4e2d7e8dd03f2dfc114bfa491c53d726a6a23d51169fa8b4",
+      "objective": 0.08906383576638546,
+      "max_kkt_violation": 0.0003470394756874161
+    },
+    {
+      "label": "group:participant_0049",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0049"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 143,
+      "training_digest": "517b66c4974a44deffc09609753740d0c834a592908118ab918a77fecb8a3c00",
+      "objective": 0.08694698671220161,
+      "max_kkt_violation": 0.00035386888761963347
+    },
+    {
+      "label": "group:participant_0050",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0050"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "6ce05544c369b898878bd86d3b1e00a15ac1402bdefd4e2c9690c1bf55902e7d",
+      "objective": 0.08931425191159748,
+      "max_kkt_violation": 0.0003444893940872966
+    },
+    {
+      "label": "group:participant_0051",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0051"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "53be7f05702ab3f15a17a55fca185f58bc2a12f6a5f233195a862c3cf221d116",
+      "objective": 0.0894618878335568,
+      "max_kkt_violation": 0.0003399819545748173
+    },
+    {
+      "label": "group:participant_0052",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0052"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "950ce1e16f0b352d0b6bddf98c2f1de9939f4d6f257a2846baab2e45277dadda",
+      "objective": 0.08932932399188712,
+      "max_kkt_violation": 0.00034617470403271443
+    },
+    {
+      "label": "group:participant_0053",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0053"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "a7502d6ce1f84789b3529ab52bff88805127a76f701c9a70968232562b1d9166",
+      "objective": 0.08796956490979291,
+      "max_kkt_violation": 0.0003503434325446238
+    },
+    {
+      "label": "group:participant_0054",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0054"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 144,
+      "training_digest": "d00ed9c301f6a741c0d14e01d88266322a6a5d3e9dc1e61f9b2474a3c88a2852",
+      "objective": 0.08582062629536259,
+      "max_kkt_violation": 0.0003510941642803313
+    },
+    {
+      "label": "group:participant_0055",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0055"
+      ],
+      "positive_selected": 8,
+      "negative_selected": 6,
+      "selected_edges": 14,
+      "iterations": 144,
+      "training_digest": "539a1112bbbbe0819dbae697dac53b82adc90728c4068fc3e6bfca574bbcb3f8",
+      "objective": 0.0761326216725045,
+      "max_kkt_violation": 0.00035142791645077347
+    },
+    {
+      "label": "group:participant_0056",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0056"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "edb442b9c1aba58dd2c47404af05b6e35c48098826be5a9fc861f7f66fc962cf",
+      "objective": 0.08945432633631745,
+      "max_kkt_violation": 0.00033624194289539044
+    },
+    {
+      "label": "group:participant_0057",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0057"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 145,
+      "training_digest": "3d137bdb4d3c81658fa3540a306223236c85e145d699b1b292d2d27394f741dd",
+      "objective": 0.08698739886715101,
+      "max_kkt_violation": 0.00033341852690445874
+    },
+    {
+      "label": "group:participant_0058",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0058"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "ef9ca2be416f5aab33399fc0f88eb891e112ee92d6460417df8c77b7f3206a5d",
+      "objective": 0.08854107832119074,
+      "max_kkt_violation": 0.00033131989946253495
+    },
+    {
+      "label": "group:participant_0059",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0059"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "59671150c702162f7669cdc404a75d053cb2314b13cdf61e4736871b34f76069",
+      "objective": 0.08778377559875031,
+      "max_kkt_violation": 0.0003417440130235655
+    },
+    {
+      "label": "group:participant_0060",
+      "held_out_ids": [
+        "synthetic_seed_73_n61_0060"
+      ],
+      "positive_selected": 7,
+      "negative_selected": 6,
+      "selected_edges": 13,
+      "iterations": 146,
+      "training_digest": "6f7739096a15d369d0d9532b627ba0ef7943cdefa9955217d03d247c1bc56118",
+      "objective": 0.0891288372069616,
+      "max_kkt_violation": 0.0003310157209788041
+    }
+  ],
+  "full_fit": {
+    "atlas": "synthetic_stress_eight_parcel",
+    "parcels": [
+      "synthetic_00",
+      "synthetic_01",
+      "synthetic_02",
+      "synthetic_03",
+      "synthetic_04",
+      "synthetic_05",
+      "synthetic_06",
+      "synthetic_07"
+    ],
+    "selected_edges": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      26
+    ],
+    "coefficients": [
+      0.8610392669342856,
+      -0.4874196088931193,
+      0.2821079142634098,
+      -0.4252305571918711,
+      0.5622501923525244,
+      -0.496771924474842,
+      0.4146160805612463,
+      -0.36350168826197,
+      0.44885943433546827,
+      -0.4295915846005856,
+      0.3847514614456994,
+      -0.516042583651337,
+      0.13929775820854703
+    ],
+    "intercept": 12.079992822184822,
+    "lambda": 0.2,
+    "alpha": 1e-9,
+    "training_digest": "5f663316a66def02986f5d75e06aecd6c6963577e2eda98303417c4d23326539",
+    "iterations": 145,
+    "max_convergence_delta": 0.00011043753703252057,
+    "relative_stopping_metric": 0.0000939938061445734,
+    "objective": 0.0880399075645992,
+    "max_kkt_violation": 0.00034788132563392653
+  },
+  "scientific_scope": "Independent cyclic-coordinate elastic-net CPM. Exact Yale MATLAB/Octave numerical parity depends on alpha, penalty, standardization, convergence, feature ordering and fixed-fold tests; this family is distinct from exact pure ridge."
+}

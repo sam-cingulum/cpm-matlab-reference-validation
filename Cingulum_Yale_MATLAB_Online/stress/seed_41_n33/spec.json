@@ -1,0 +1,9 @@
+{
+  "name": "seed_41_n33",
+  "seed": 41,
+  "n": 33,
+  "lam": 0.08,
+  "ridge_alpha": 1e-09,
+  "pca_alpha": 1e-06,
+  "kind": "normal"
+}

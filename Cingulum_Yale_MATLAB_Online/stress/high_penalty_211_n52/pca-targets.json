@@ -1,0 +1,373 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0000",
+      "values": [
+        8.284601351871117,
+        8.636371745756653
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0001",
+      "values": [
+        10.121106845071967,
+        10.33786747229793
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0002",
+      "values": [
+        8.566011711115332,
+        9.326102901338148
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0003",
+      "values": [
+        11.741842273307471,
+        11.254446249800697
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0004",
+      "values": [
+        12.044857893362432,
+        11.240165534058427
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0005",
+      "values": [
+        7.753301591763779,
+        8.239534480305386
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0006",
+      "values": [
+        12.656646419165323,
+        11.07821359811801
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0007",
+      "values": [
+        12.922923374830926,
+        11.167577726010498
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0008",
+      "values": [
+        6.528805582131031,
+        7.106721062066572
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0009",
+      "values": [
+        10.522524829355032,
+        9.96749532056976
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0010",
+      "values": [
+        11.390038772841926,
+        10.989163797329994
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0011",
+      "values": [
+        11.230999263261806,
+        10.661052299555365
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0012",
+      "values": [
+        10.409678226927458,
+        10.010697244781737
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0013",
+      "values": [
+        9.053734074304709,
+        8.827384295414504
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0014",
+      "values": [
+        10.068136484816137,
+        9.408172328887773
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0015",
+      "values": [
+        10.770413758392172,
+        10.074109069940976
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0016",
+      "values": [
+        11.382676646362473,
+        10.284565607570302
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0017",
+      "values": [
+        12.557167789238042,
+        11.440629075088824
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0018",
+      "values": [
+        15.114111996359552,
+        13.13081857200381
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0019",
+      "values": [
+        12.607477664684778,
+        11.690946135568744
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0020",
+      "values": [
+        14.51382963064344,
+        12.961457331312738
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0021",
+      "values": [
+        14.587409771742625,
+        12.682578576347133
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0022",
+      "values": [
+        12.171307420693179,
+        11.189582552002255
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0023",
+      "values": [
+        12.746576419048349,
+        11.266556554409968
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0024",
+      "values": [
+        11.006001002290185,
+        10.232128985627655
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0025",
+      "values": [
+        13.495032890697617,
+        11.60868391893234
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0026",
+      "values": [
+        12.355177257648753,
+        11.097483634451413
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0027",
+      "values": [
+        11.43966385805984,
+        11.007505581481611
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0028",
+      "values": [
+        13.674239106723041,
+        12.620861469597353
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0029",
+      "values": [
+        12.864903108655426,
+        11.604278548162213
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0030",
+      "values": [
+        12.192331824589813,
+        10.846819469359042
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0031",
+      "values": [
+        11.558675619441562,
+        10.36287352271124
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0032",
+      "values": [
+        11.686674235363865,
+        10.656295051143465
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0033",
+      "values": [
+        10.285098149370711,
+        9.79124274359423
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0034",
+      "values": [
+        12.013524836304338,
+        10.85644276289531
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0035",
+      "values": [
+        10.516855161828468,
+        10.078891200212853
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0036",
+      "values": [
+        13.739752928663025,
+        12.510966537965704
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0037",
+      "values": [
+        13.107571738412844,
+        11.93157238561281
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0038",
+      "values": [
+        11.256911294209257,
+        10.86291818645174
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0039",
+      "values": [
+        12.681506612221076,
+        11.335854512558063
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0040",
+      "values": [
+        8.246132835058944,
+        8.15860783134002
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0041",
+      "values": [
+        14.48545803147503,
+        12.354768436364475
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0042",
+      "values": [
+        11.891924718719249,
+        10.963780012746863
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0043",
+      "values": [
+        12.82655058319106,
+        11.530201102646608
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0044",
+      "values": [
+        12.228447682334222,
+        11.180803511631801
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0045",
+      "values": [
+        7.573904073359154,
+        8.450361523451106
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0046",
+      "values": [
+        13.990255826077956,
+        12.878476173232391
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0047",
+      "values": [
+        14.95742616428922,
+        13.220999826463137
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0048",
+      "values": [
+        12.297335939515113,
+        11.148315840257993
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0049",
+      "values": [
+        12.868878029342914,
+        11.219009381619896
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0050",
+      "values": [
+        13.972900744314376,
+        12.050440070314627
+      ]
+    },
+    {
+      "observation_id": "synthetic_high_penalty_211_n52_0051",
+      "values": [
+        12.403811996077424,
+        11.023277074442875
+      ]
+    }
+  ]
+}

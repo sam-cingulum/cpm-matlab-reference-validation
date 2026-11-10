@@ -1,0 +1,380 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0000",
+      "values": [
+        10.746095680271825,
+        10.035161964013469
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0001",
+      "values": [
+        12.304065537943458,
+        11.350996304871947
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0002",
+      "values": [
+        10.2347582839607,
+        9.992342404388902
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0003",
+      "values": [
+        11.562172272539982,
+        10.975943642496352
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0004",
+      "values": [
+        12.703133795392926,
+        11.673323539120995
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0005",
+      "values": [
+        8.753664931002072,
+        8.780950056748278
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0006",
+      "values": [
+        12.989616492871999,
+        11.588883242992544
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0007",
+      "values": [
+        9.022672504219134,
+        8.695446075685606
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0008",
+      "values": [
+        7.271601847988322,
+        7.673321543501608
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0009",
+      "values": [
+        8.204396805508209,
+        8.639719156836867
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0010",
+      "values": [
+        10.201800484214592,
+        9.840023368876276
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0011",
+      "values": [
+        10.964755208705306,
+        10.416798354583188
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0012",
+      "values": [
+        9.291087518696386,
+        9.64988802581994
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0013",
+      "values": [
+        11.762307294123744,
+        11.25206192524486
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0014",
+      "values": [
+        10.266007210073473,
+        9.629728136253512
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0015",
+      "values": [
+        10.39821462455677,
+        9.572164513906921
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0016",
+      "values": [
+        11.512683966387034,
+        10.458841926773594
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0017",
+      "values": [
+        14.170211347963148,
+        12.519249543115006
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0018",
+      "values": [
+        11.53189709757888,
+        10.975404715418168
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0019",
+      "values": [
+        13.334987127176987,
+        12.225660632899999
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0020",
+      "values": [
+        11.074336081776531,
+        10.793049976243648
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0021",
+      "values": [
+        8.810626857801942,
+        8.847961364409842
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0022",
+      "values": [
+        9.958803862391774,
+        9.722570048472765
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0023",
+      "values": [
+        15.382344669074852,
+        13.304539967783061
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0024",
+      "values": [
+        12.230389811650335,
+        10.969740162690307
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0025",
+      "values": [
+        14.380163565710443,
+        12.327765961797915
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0026",
+      "values": [
+        14.333071250596905,
+        12.827792012135793
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0027",
+      "values": [
+        11.109705387826994,
+        10.754678293544629
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0028",
+      "values": [
+        7.654844261680817,
+        8.457820298842142
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0029",
+      "values": [
+        11.873783722714446,
+        11.21942765256968
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0030",
+      "values": [
+        10.909839942903654,
+        10.284949112828604
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0031",
+      "values": [
+        12.474496634407028,
+        11.377905844155421
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0032",
+      "values": [
+        9.526382671079768,
+        9.045275157622065
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0033",
+      "values": [
+        13.322958088568123,
+        11.97030753836893
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0034",
+      "values": [
+        12.606943983230105,
+        11.257058072617586
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0035",
+      "values": [
+        15.133402589569304,
+        13.284410655574742
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0036",
+      "values": [
+        8.373890900181319,
+        9.018608076409258
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0037",
+      "values": [
+        15.134865231866359,
+        13.399096064688415
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0038",
+      "values": [
+        11.918282284175623,
+        11.226076779494802
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0039",
+      "values": [
+        11.163763623772995,
+        10.201186416620796
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0040",
+      "values": [
+        13.388140196645654,
+        11.722465975534153
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0041",
+      "values": [
+        12.839642907862146,
+        11.279285544731204
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0042",
+      "values": [
+        9.761117430739978,
+        9.404629701418976
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0043",
+      "values": [
+        16.63067131685986,
+        14.45453527272789
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0044",
+      "values": [
+        13.480747333979048,
+        12.245450347235234
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0045",
+      "values": [
+        10.454559944541192,
+        10.496643823993416
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0046",
+      "values": [
+        12.594340759677477,
+        11.954543369476982
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0047",
+      "values": [
+        13.265516885832396,
+        11.80017840620945
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0048",
+      "values": [
+        13.01767600851314,
+        11.451676092751468
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0049",
+      "values": [
+        13.984405404544855,
+        11.912818857232846
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0050",
+      "values": [
+        12.35105890590641,
+        11.065873169951505
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0051",
+      "values": [
+        14.772354290671375,
+        12.993044099250232
+      ]
+    },
+    {
+      "observation_id": "synthetic_degenerate_929_n53_0052",
+      "values": [
+        17.150789895678013,
+        14.795552758553882
+      ]
+    }
+  ]
+}

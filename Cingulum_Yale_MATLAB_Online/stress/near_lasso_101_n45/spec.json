@@ -1,0 +1,9 @@
+{
+  "name": "near_lasso_101_n45",
+  "seed": 101,
+  "n": 45,
+  "lam": 0.035,
+  "ridge_alpha": 0.85,
+  "pca_alpha": 0.7,
+  "kind": "normal"
+}

@@ -1,0 +1,240 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_seed_41_n33_0000",
+      "values": [
+        7.995388702829003,
+        8.654583300661892
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0001",
+      "values": [
+        11.479731205664716,
+        11.01519732546735
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0002",
+      "values": [
+        11.090956196041258,
+        10.103734596213712
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0003",
+      "values": [
+        11.783340184272532,
+        10.989388739263315
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0004",
+      "values": [
+        8.64232193667577,
+        8.453787406761089
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0005",
+      "values": [
+        13.127248796053586,
+        11.612980008131595
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0006",
+      "values": [
+        11.18269709591015,
+        10.16452587666122
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0007",
+      "values": [
+        9.058808378334534,
+        8.922360095868314
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0008",
+      "values": [
+        8.967739237081545,
+        8.976729374189983
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0009",
+      "values": [
+        8.731033704973648,
+        9.094053598076583
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0010",
+      "values": [
+        10.130831312395856,
+        9.945232074423606
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0011",
+      "values": [
+        13.29427839578207,
+        12.0639506535386
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0012",
+      "values": [
+        13.005840938764738,
+        11.93522550625674
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0013",
+      "values": [
+        10.331241839758732,
+        9.822574569660016
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0014",
+      "values": [
+        10.46172614208064,
+        9.683164690484233
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0015",
+      "values": [
+        15.546411124146042,
+        13.318373671594708
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0016",
+      "values": [
+        13.711186406615937,
+        11.89122197819547
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0017",
+      "values": [
+        10.460024232624686,
+        9.890147044216008
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0018",
+      "values": [
+        11.782594403748279,
+        11.117607450246455
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0019",
+      "values": [
+        11.604912528551127,
+        11.015985409223177
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0020",
+      "values": [
+        12.99420963395501,
+        12.1305618076091
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0021",
+      "values": [
+        14.417700636467785,
+        12.9654394966162
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0022",
+      "values": [
+        12.110910946738226,
+        10.87893975215989
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0023",
+      "values": [
+        13.337571915209722,
+        11.779088935773162
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0024",
+      "values": [
+        14.209831111893696,
+        12.357265372474318
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0025",
+      "values": [
+        14.493979130444412,
+        12.614701990010436
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0026",
+      "values": [
+        11.599519218646995,
+        10.697583417864044
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0027",
+      "values": [
+        12.554920594368761,
+        12.066185861283307
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0028",
+      "values": [
+        16.765659549050167,
+        14.586179040160955
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0029",
+      "values": [
+        12.545727211129789,
+        11.72690250907047
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0030",
+      "values": [
+        13.006082805366805,
+        11.620967746809422
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0031",
+      "values": [
+        14.22680675324972,
+        12.687836203117419
+      ]
+    },
+    {
+      "observation_id": "synthetic_seed_41_n33_0032",
+      "values": [
+        12.400648513609823,
+        10.925185499881033
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "high_penalty_211_n52",
+  "seed": 211,
+  "n": 52,
+  "lam": 0.4,
+  "ridge_alpha": 0.4,
+  "pca_alpha": 0.2,
+  "kind": "normal"
+}
