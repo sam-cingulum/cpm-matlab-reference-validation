@@ -1,0 +1,54 @@
+name: Genuine MATLAB R2026b | synthetic lasso stopping diagnostic
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lasso-stopping-mechanism:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify only pinned synthetic fixture inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib, hashlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online')
+          pack=json.loads((root/'pack-manifest.json').read_text())
+          assert pack['patient_data_included'] is False
+          for name, digest in pack['scenarios']['baseline']['files_sha256'].items():
+              p=root/'fixtures'/'baseline'/name
+              assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==digest, name
+          print('Synthetic baseline fixture hash verification PASS')
+          PY
+      - name: Fetch original Yale revision for provenance (do not edit)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install authentic MATLAB R2026b and Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Run direct controlled lasso MaxIter/RelTol/UseCovariance probes
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            diagnose_lasso;
+      - name: Preserve diagnostic coefficients even on MATLAB failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-r2026b-synthetic-lasso-stopping-probe
+          path: Cingulum_Yale_MATLAB_Online/results/diagnostics/stopping_probe.json
+          if-no-files-found: warn
+          retention-days: 30
