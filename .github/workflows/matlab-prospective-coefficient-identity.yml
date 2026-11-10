@@ -1,0 +1,103 @@
+name: Genuine MATLAB R2026b | prospectively locked FULL coefficient identity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-yale-prospective-full-coefficients:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit all 84 frozen synthetic-only fixture SHA256 hashes and strict coefficient gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,pathlib,math
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/coefficient_prospective')
+          m=json.loads((root/'manifest.json').read_text())
+          assert m['purpose']=='PROSPECTIVE_FROZEN_COEFFICIENT_AND_PREDICTION_PARITY'
+          assert m['patient_data_included'] is False
+          assert m['original_yale_files_unmodified'] is True
+          assert m['hypothesis_selection_excluded_this_battery'] is True
+          assert m['source_commit']['yale-cpm']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert m['expected_mathworks_release']=='R2026b'
+          assert m['stopping_policy']=='matlab_r2026b_active_set_experimental'
+          assert m['reltol']==0.0001
+          assert m['strict_full_coefficient_abs_tolerance']==1e-9
+          assert m['strict_intercept_abs_tolerance']==1e-9
+          assert m['original_prediction_abs_tolerance']==1e-6
+          assert m['original_pca_quantity_abs_tolerance']==1e-6
+          assert len(m['scenarios'])==12
+          total=0
+          for name,meta in m['scenarios'].items():
+              assert name.isidentifier()
+              spec=meta['spec']
+              assert spec['name']==name and 30<=spec['n']<=1500
+              assert 0<spec['lam']<=10000
+              assert 0<spec['ridge_alpha']<=1 and 0<spec['pca_alpha']<=1
+              assert len(meta['sha256'])==7
+              p=root/name
+              for filename,digest in meta['sha256'].items():
+                  assert filename in ('cohort.json','cohort.mat','pca-targets.json','pca-targets.mat','spec.json','rust-ridge.json','rust-pca.json')
+                  f=p/filename
+                  assert f.is_file() and hashlib.sha256(f.read_bytes()).hexdigest()==digest,(name,filename)
+              cohort=json.loads((p/'cohort.json').read_text())
+              assert len(cohort['observations'])==spec['n']
+              assert len(cohort['parcels'])==8
+              assert all(len(o['edges'])==28 and not o['missing_edges'] for o in cohort['observations'])
+              assert all(all(math.isfinite(float(x)) for x in o['edges']) for o in cohort['observations'])
+              for mode in ('ridge','pca'):
+                  expected=json.loads((p/('rust-'+mode+'.json')).read_text())
+                  assert expected['config']['stopping_policy']=='matlab_r2026b_active_set_experimental'
+                  assert expected['config']['reltol']==1e-4
+                  assert abs(expected['config']['lambda']-spec['lam'])<1e-12
+                  assert abs(expected['config']['alpha']-spec['ridge_alpha' if mode=='ridge' else 'pca_alpha'])<1e-12
+                  assert len(expected['folds'])==len(expected['predictions'])==spec['n']
+                  for i,fold in enumerate(expected['folds']):
+                      indices=fold['reference_selected_edge_indices']
+                      coefficients=fold['reference_coefficients']
+                      assert len(indices)==len(coefficients)==fold['selected_edges']
+                      assert len(indices)==len(set(indices)) and all(0<=j<28 for j in indices)
+                      assert math.isfinite(float(fold['reference_intercept']))
+                      assert all(math.isfinite(float(v)) for v in coefficients)
+                      if mode=='pca':
+                          assert fold['held_out_indices']==[i]
+                      else:
+                          assert len(fold['held_out_ids'])==1
+              total+=spec['n']*2
+          assert total==sum(x['spec']['n']*2 for x in m['scenarios'].values())
+          print('PASS: 12 frozen independent synthetic cohorts, 24 strict source comparisons,',total,'regression folds; 84 fixture hashes validated')
+          print('PROSPECTIVE_INPUT_MANIFEST_SHA256',hashlib.sha256((root/'manifest.json').read_bytes()).hexdigest())
+          PY
+      - name: Fetch unmodified original Yale MATLAB source at pinned revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install actual MathWorks MATLAB R2026b with Statistics Toolbox 26.2
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute 24 ORIGINAL Yale comparisons and fail on any coefficient mismatch
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_coefficient_prospective;
+      - name: Preserve ALL original MATLAB per-fold coefficient vectors and failure statuses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-r2026b-prospective-full-coefficient-identity
+          path: Cingulum_Yale_MATLAB_Online/results/coefficient_prospective/**/*.json
+          if-no-files-found: warn
+          retention-days: 90
