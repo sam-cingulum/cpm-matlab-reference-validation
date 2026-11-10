@@ -1,0 +1,51 @@
+name: Genuine MATLAB R2026b | first active-set divergence diagnosis
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  early-activation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check unchanged synthetic input provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/stress')
+          m=json.loads((root/'manifest.json').read_text())
+          assert not m['patient_data_included'] and len(m['scenarios'])==7
+          assert m['source_commit']['yale-cpm']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          for scenario,meta in m['scenarios'].items():
+              for filename,digest in meta['sha256'].items():
+                  assert hashlib.sha256((root/scenario/filename).read_bytes()).hexdigest()==digest
+          PY
+      - name: Fetch unchanged original Yale source
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install genuine MATLAB R2026b and toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Probe first active-set divergence
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            probe_early_activation;
+      - name: Retain original MATLAB coefficient traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-r2026b-first-activation-boundary
+          path: Cingulum_Yale_MATLAB_Online/results/early_activation/early_activation.json
+          if-no-files-found: warn
+          retention-days: 90
