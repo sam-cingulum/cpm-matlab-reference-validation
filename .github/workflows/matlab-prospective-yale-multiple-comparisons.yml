@@ -1,0 +1,68 @@
+name: Genuine MATLAB R2026b | Yale FDR/BY/Holm source parity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  yale-multiple-comparisons:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail closed on modified synthetic MATLAB reference forecasts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,pathlib,hashlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/stats_prospective')
+          m=json.loads((p/'manifest.json').read_text())
+          assert m['original_upstream_yale_commit']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert m['patient_data_included'] is False
+          assert m['expected_mathworks_release']=='R2026b'
+          assert m['source_comparison_absolute_tolerance']==1e-12
+          assert m['require_exact_rejection_decision'] and m['require_exact_shape']
+          assert len(m['cases'])==13
+          assert m['profiles']==['yale-fdr-pdep','yale-fdr-dep','yale-holm-source','standard-holm']
+          for name,item in m['cases'].items():
+              for filename,sha in item['sha256'].items():
+                  f=p/name/filename
+                  assert f.is_file() and hashlib.sha256(f.read_bytes()).hexdigest()==sha,(name,filename)
+              spec=json.loads((p/name/'spec.json').read_text())
+              assert spec['alpha']==item['alpha']
+          print('FROZEN_YALE_13_SOURCE_STATISTIC_CASES_39_METHOD_PROFILES_SHA256_PASS')
+          PY
+
+      - name: Obtain pinned original Yale source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+
+      - name: Install authentic MATLAB R2026b
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+
+      - name: Invoke unchanged original Yale fdr_bh and bonf_holm functions
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_stats_prospective;
+
+      - name: Preserve original MathWorks numerical evidence on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-prospective-yale-multiple-comparisons
+          path: Cingulum_Yale_MATLAB_Online/stats_results/*.json
+          retention-days: 90
+          if-no-files-found: warn
