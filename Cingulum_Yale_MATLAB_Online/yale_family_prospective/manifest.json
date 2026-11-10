@@ -1,0 +1,197 @@
+{
+  "purpose": "GENUINELY_PROSPECTIVE_ORIGINAL_YALE_FAMILY_ASSIGNMENT_WITH_AUTHENTIC_MATLAB_RANDPERM",
+  "expected_mathworks_release": "R2026b",
+  "source_yale_commit": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "patient_data_included": false,
+  "test_exact_fold_labels": true,
+  "test_exact_unassigned_indices": true,
+  "reference_only_not_production_cv": true,
+  "original_matlab_rng_not_claimed_reproduced": true,
+  "original_matlab_permutation_injected_after_execution": true,
+  "independent_rust_algorithm_pre_registered": true,
+  "synthetic_generator_sha256": "300c60826e57adc2e0b1157624762072b8b461aed4dacea05d00c2cb93115676",
+  "rust_algorithm_sha256": "9fb39d7a9a160abdbb21b759b963bcf6a6d5f210a1b1f348e5b8ecebe153a6d5",
+  "rust_cli_sha256": "d27fbb00f05cf79d0fa5dcede07cf5685f449b0b46233e7228be1668bbf9d45a",
+  "cases": {
+    "singletons_divisible": {
+      "seed": 7081,
+      "subjects": 24,
+      "families": 24,
+      "k": 4,
+      "sha256": {
+        "input.json": "1b3eef216ea29f420631770d141b3df62ef5794fdb6e0f038996b3174499c495"
+      }
+    },
+    "singletons_remainder": {
+      "seed": 7139,
+      "subjects": 31,
+      "families": 31,
+      "k": 4,
+      "sha256": {
+        "input.json": "bf3d20f7f879345e1fd17f426555bff75849c00902112c05ca22d5a701410d29"
+      }
+    },
+    "singletons_high_k": {
+      "seed": 7193,
+      "subjects": 34,
+      "families": 34,
+      "k": 11,
+      "sha256": {
+        "input.json": "5abb63f33b9ef2811de41317f67fc10babba1b29dd6b5884865f92f13c9aa837"
+      }
+    },
+    "pairs_even": {
+      "seed": 7229,
+      "subjects": 40,
+      "families": 20,
+      "k": 4,
+      "sha256": {
+        "input.json": "ee49fd5e0789f0334b16c306e9793151d45a4bbf9fb8fb3d4d5e766bb92a7969"
+      }
+    },
+    "pairs_remainder": {
+      "seed": 7307,
+      "subjects": 42,
+      "families": 21,
+      "k": 5,
+      "sha256": {
+        "input.json": "1f724c7109bdf6e26c30e4e0c245584519cd424c4722134917df3350e005113e"
+      }
+    },
+    "triples_even": {
+      "seed": 7351,
+      "subjects": 36,
+      "families": 12,
+      "k": 6,
+      "sha256": {
+        "input.json": "f4c641d241bb2657741bbcc524eec135730dbdc64967b55e7939520111548458"
+      }
+    },
+    "triples_remainder": {
+      "seed": 7417,
+      "subjects": 45,
+      "families": 15,
+      "k": 7,
+      "sha256": {
+        "input.json": "895c7096754db3a02b6a44798aa015eae91f80a6fe17f3ebd2749359db2b0fef"
+      }
+    },
+    "mixed_small": {
+      "seed": 7477,
+      "subjects": 47,
+      "families": 21,
+      "k": 5,
+      "sha256": {
+        "input.json": "1bba64517b999a73e084a2b6105289fd478864356cd472ae649d12cdc14e9644"
+      }
+    },
+    "mixed_medium": {
+      "seed": 7517,
+      "subjects": 59,
+      "families": 28,
+      "k": 7,
+      "sha256": {
+        "input.json": "57b72216e79a6fd5259415f72d76e35c44a7407df612a9334bc28ec09bc8fa17"
+      }
+    },
+    "mixed_large": {
+      "seed": 7573,
+      "subjects": 76,
+      "families": 34,
+      "k": 9,
+      "sha256": {
+        "input.json": "686739f2a27f2ac46f455274b2948530497ac34dea7db85912fc267c7e3ef2f9"
+      }
+    },
+    "oversized_groups": {
+      "seed": 7607,
+      "subjects": 51,
+      "families": 44,
+      "k": 6,
+      "sha256": {
+        "input.json": "e917e5da1e488db5d40fd72202ba3fe18a54e12f25314532550dfc1f646baa03"
+      }
+    },
+    "skewed_groups": {
+      "seed": 7699,
+      "subjects": 83,
+      "families": 55,
+      "k": 8,
+      "sha256": {
+        "input.json": "dcb7a224ae207045038777369fa1dd232ccf1f88b2468323dcbc0bf98c1c66f5"
+      }
+    },
+    "two_folds_odd": {
+      "seed": 7727,
+      "subjects": 37,
+      "families": 17,
+      "k": 2,
+      "sha256": {
+        "input.json": "ba5fd8e6be6c10c1a5d039c83a86065e77514524089d5d51d540a7339ed7006c"
+      }
+    },
+    "nearly_each_family": {
+      "seed": 7817,
+      "subjects": 29,
+      "families": 12,
+      "k": 11,
+      "sha256": {
+        "input.json": "c8bd3e3af40bca4210fb5efb82224a789b92ce0da3dbfd36cc277935dae5f529"
+      }
+    },
+    "group_equal_k": {
+      "seed": 7901,
+      "subjects": 24,
+      "families": 8,
+      "k": 8,
+      "sha256": {
+        "input.json": "d0f1089475e430e2215903b6f093dd0d0c460fa7284b7ab35e861d604c9d5cce"
+      }
+    },
+    "four_folds_unequal": {
+      "seed": 7951,
+      "subjects": 65,
+      "families": 37,
+      "k": 4,
+      "sha256": {
+        "input.json": "57637c6c1f059c8cbf3eb487021afe64f31037c44c7c2ae587d04a5b3d4779ae"
+      }
+    },
+    "outlier_family_size": {
+      "seed": 8009,
+      "subjects": 55,
+      "families": 47,
+      "k": 7,
+      "sha256": {
+        "input.json": "2fa5219ecd5222ac19a6271770892aa5858ad9624ccb3e52dcace5d417c947af"
+      }
+    },
+    "many_groups": {
+      "seed": 8101,
+      "subjects": 101,
+      "families": 47,
+      "k": 13,
+      "sha256": {
+        "input.json": "1be5cfb2f6c911e409828b3182a84ef7cd04ba2871bebafcc15a69dcb9abafb3"
+      }
+    },
+    "low_n": {
+      "seed": 8209,
+      "subjects": 12,
+      "families": 6,
+      "k": 3,
+      "sha256": {
+        "input.json": "2d765095b7f05569ff1f348205b39e69f16fba602e9e0ad7a85e9c75832a4b4b"
+      }
+    },
+    "balanced_five": {
+      "seed": 8311,
+      "subjects": 70,
+      "families": 32,
+      "k": 5,
+      "sha256": {
+        "input.json": "c0044645fabff10ff4291072fbfb27d7d87ea26378f0d2e41e859de0235af9a9"
+      }
+    }
+  }
+}
