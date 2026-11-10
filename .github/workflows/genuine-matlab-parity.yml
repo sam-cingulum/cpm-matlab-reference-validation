@@ -26,11 +26,17 @@ jobs:
           m=json.loads((root/'pack-manifest.json').read_text())
           assert m['patient_data_included'] is False
           assert len(m['scenarios'])==6
+          assert m['ridge_family_reference_solver_policy']=='matlab_r2026b_candidate'
           for scenario,info in m['scenarios'].items():
               for name,digest in info['files_sha256'].items():
                   p=root/'fixtures'/scenario/name
                   assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==digest,(scenario,name)
-          print('SYNTHETIC FIXTURE SOURCE INTEGRITY PASS')
+              for profile in ('ridge-compat','pca'):
+                  candidate=json.loads((root/'fixtures'/scenario/('rust-'+profile+'.json')).read_text())
+                  assert candidate['config']['stopping_policy']=='matlab_r2026b_candidate'
+                  assert candidate['config']['reltol']==1e-4
+                  assert len(candidate['predictions'])==info['subjects']
+          print('SYNTHETIC FIXTURE SOURCE INTEGRITY PASS: 12 separately versioned MATLAB solver candidates')
           PY
 
       - name: Fetch exact upstream Yale original source revisions
@@ -48,7 +54,7 @@ jobs:
       - name: Install genuine MathWorks MATLAB and Statistics and Machine Learning Toolbox
         uses: matlab-actions/setup-matlab@v3
         with:
-          release: latest
+          release: R2026b
           products: Statistics_and_Machine_Learning_Toolbox
 
       - name: Execute original Yale source against 36 synthetic native Rust references

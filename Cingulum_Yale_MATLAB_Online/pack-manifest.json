@@ -34,8 +34,8 @@
         "rust-ohbm.json": "447ec7ab8937054346a1d092e7f44129169e1a038cad18f5f06977d68a8677b0",
         "rust-partial-pearson.json": "869a9993d43aa606e19d24d62dac871d59389438167a8392090e28902af453e1",
         "rust-partial-spearman.json": "c6b14cea61756eb8d4b89dd39f1980162e7fc192b183977a938d7713316b9474",
-        "rust-ridge-compat.json": "f1ce627797587786a74633f999eddfe8372c59165b650e29ab63caa721bbdf25",
-        "rust-pca.json": "e157ae7806d92caa8a1aa633696bbbeafc525037ef81b8752ad7a48d5eb78b91"
+        "rust-ridge-compat.json": "bb5a8a4d1e57b5f3cf7d7e44cb2166cd9f53324e8213a4de5db25759a051fe03",
+        "rust-pca.json": "197baf978f006a332052ecaebdf33fcfde5f4435c11e26b721bb19650b1ed8ae"
       }
     },
     "clean": {
@@ -59,8 +59,8 @@
         "rust-ohbm.json": "e34289bfabb69216e724e8c4bd21c9c0a1da59f0ce598e8a8b1b0364f59c3761",
         "rust-partial-pearson.json": "b9c24ff3219eb28f7158feca3817d44d771aa4cf06a3f48d79181afb6e4a62fd",
         "rust-partial-spearman.json": "891515278d60e8271ae1e96a4122b1a5381d650eebb84baeec4f3e32f1a6d7ec",
-        "rust-ridge-compat.json": "fa004c32abad30910137f8d68327e0d91241022d3d9680a15d0e9ad15885cf3c",
-        "rust-pca.json": "0a6b7501db3efa792b0876243fc0d7c3f3d9e98791fab5bce80347b8d0d60625"
+        "rust-ridge-compat.json": "fa0c4120b2b2956b45d79b23236e7c1a9eccb3361bd2682b223de9effc018a4e",
+        "rust-pca.json": "06b373543d5f745f35dd8d12a0288fe7fd2824b52d4da9dfdaefcca4ed03543b"
       }
     },
     "severe_outlier": {
@@ -84,8 +84,8 @@
         "rust-ohbm.json": "37aa8778a6df0414f5463a2fb27f73261ca2edcde9ba1e9e3352a8360e72260f",
         "rust-partial-pearson.json": "6a2745f2ab5955c6d6fa762d87eae016bd30819d5e1ee404c3af46f63f73a52a",
         "rust-partial-spearman.json": "770da11ba1fa8bb341d74bf6c7fa936eb309d7390dabcf28f8da2522a1128114",
-        "rust-ridge-compat.json": "8a6c85cf107f069bb148ae4fc11f349007e3ec8ab48fa4be11c0ff225ed77d46",
-        "rust-pca.json": "63500df3fa4a77e7544269c41a1429631a5314d3f66c9a7c513bd48124398124"
+        "rust-ridge-compat.json": "5fff48e0e16ae02fa258e145de54d48e213fe60b25f8cc2a1027479e86b64f32",
+        "rust-pca.json": "3756198b8f7d99bbbeff7321da763c01e2cc3fe9de5f3058dc93b6ad6d3757db"
       }
     },
     "rescaled": {
@@ -109,8 +109,8 @@
         "rust-ohbm.json": "e395d0f4633949547f197dce4abe56e7296330ea535b3a69da87ecef77efdc80",
         "rust-partial-pearson.json": "40161dbec8843cd7864277fb1c9ae6ba9dc53d43d92f150a4e756743ec436664",
         "rust-partial-spearman.json": "c8c67f778a6487e916e94f6a2e0f73c9e4d176ea476564c393de3e40e8eda54c",
-        "rust-ridge-compat.json": "078f92884321000f035a2161b6169d874b95d6ebc19913de25cfc401c55b5a10",
-        "rust-pca.json": "c7259d6cbecfe37945a5c27f0499f8d1c2fb0e74ae17ccb415a7dcd6afaa452f"
+        "rust-ridge-compat.json": "4b20e96568fde1df6890323467f5fe036565642aef80934cedb8d990159416aa",
+        "rust-pca.json": "5e977dda7bdc661e31dfb786a2eaf44efdac056b5a1dee38a93ddb52862e0dee"
       }
     },
     "reversed": {
@@ -134,8 +134,8 @@
         "rust-ohbm.json": "1eeded9780bf52d47d445f95cba57954bfb3ce32a19e2163c96c4ef830cf79e3",
         "rust-partial-pearson.json": "16fefac6871c27a9e519c5e7f1ac76b9805a00303552a469720259ba12c0adaa",
         "rust-partial-spearman.json": "758af2da385697af71b1466998ec5c7b0b14e0804258b09b219a4c0a8488075a",
-        "rust-ridge-compat.json": "1143f9affb68cc57af7576b996d147da8a83e1b59b86e44e9ba05b96940070dd",
-        "rust-pca.json": "3a81169f342938ca795dd37d59e9db23b3225d1a07f3aca680a06cda40617c47"
+        "rust-ridge-compat.json": "7b68dc5deeb733ead2a7774313c3e7bda15bc3f1673bb97b23cd70f6a1b92b50",
+        "rust-pca.json": "e0faea393a2b825e609f959ae6e80f01e3d314a91694e3a772b7411b0958c983"
       }
     },
     "47_subjects": {
@@ -159,13 +159,15 @@
         "rust-ohbm.json": "923630dd884888657297afad47d70d67265b71352f1b4bc14739ac89c5a61f7f",
         "rust-partial-pearson.json": "80a519a35709564f6e671872e45d209f0b88c4ac7d29e9a318a92b2d1e6f74d1",
         "rust-partial-spearman.json": "c12ed5b29ba7672700f37c4cd4d7d24f3c20aa4f1e5528d43cf6d5d5f0402773",
-        "rust-ridge-compat.json": "b1657e81f8da485929860d625622e69f133237bca25e2c741c60cd334f915881",
-        "rust-pca.json": "92c9a0e27f3ccb3cc7a64882ac345c75547fa92a27cca3660ab25cf198a4a3bd"
+        "rust-ridge-compat.json": "baee3f0ea7ea198f5c4d2d8f8e844a8ec79af6b167056c92d704132a443592e2",
+        "rust-pca.json": "81e9da1073324c1dccfe63bce382da3dab9b319e496a3e412302c98f3d08e127"
       }
     }
   },
   "original_octave_source_battery_sha256": "011f88cb69fcc2b80eaa3cee7461a49a71d2493cfe3f3d9a7c116bff7dbb1105",
   "matlab_usage": "Free MATLAB Online Basic (20h/month; max 15min compute session), Statistics and Machine Learning Toolbox available",
   "licence_note": "Includes individual pinned original Yale files for private research evaluation; inspect each original source's licensing and attribution.",
-  "patient_data_included": false
+  "patient_data_included": false,
+  "ridge_family_reference_solver_policy": "matlab_r2026b_candidate",
+  "solver_acceptance_stage": "independent 574/574 returned-iteration reproduction; source predictions require genuine MATLAB CI gate"
 }
