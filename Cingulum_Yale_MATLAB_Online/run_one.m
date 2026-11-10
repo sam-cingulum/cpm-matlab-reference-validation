@@ -81,17 +81,23 @@ for i = 1:numel(ref_profiles)
         [r,~,~,~,pred] = kfold_cpm_partial_withmatrix(all_mats,all_behav,all_covar,N,1,0.05,association);
         evidence.pearson_r = r(1);
     elseif strcmp(profile,'ridge-compat')
-        [~,~,r,~,pred] = ridgeCPM(all_mats,all_behav,0.05,1e-9,0.1,fold_indices,665);
+        [~,~,r,~,pred,coefs,intercepts,lambda_used] = ridgeCPM(all_mats,all_behav,0.05,1e-9,0.1,fold_indices,665);
         evidence.pearson_r = r;
         evidence.alpha = 1e-9;
         evidence.lambda = 0.1;
+        evidence.beta_total = coefs;
+        evidence.intercept_total = intercepts;
+        evidence.lambda_per_fold = lambda_used;
     elseif strcmp(profile,'pca')
-        [~,~,r,~,pred,new_behav,pca_coeff] = ridgeCPM_PCA(all_mats,multi_behav,0.05,1e-6,0.1,fold_indices,665);
+        [~,~,r,~,pred,new_behav,pca_coeff,coefs,intercepts,lambda_used] = ridgeCPM_PCA(all_mats,multi_behav,0.05,1e-6,0.1,fold_indices,665);
         evidence.pearson_r = r;
         evidence.alpha = 1e-6;
         evidence.lambda = 0.1;
         evidence.observed_fold_components = new_behav(:)';
         evidence.pca_loadings = pca_coeff;
+        evidence.beta_total = coefs;
+        evidence.intercept_total = intercepts;
+        evidence.lambda_per_fold = lambda_used;
     end
     evidence.predictions = pred(:)';
     expected = jsondecode(fileread(fullfile(inputDir,['rust-',profile,'.json'])));

@@ -56,12 +56,7 @@ jobs:
         with:
           command: |
             cd('Cingulum_Yale_MATLAB_Online');
-            run_one('baseline');
-            run_one('clean');
-            run_one('severe_outlier');
-            run_one('rescaled');
-            run_one('reversed');
-            run_one('47_subjects');
+            run_all;
 
       - name: Publish original MATLAB numeric evidence regardless of pass/fail
         if: always()
