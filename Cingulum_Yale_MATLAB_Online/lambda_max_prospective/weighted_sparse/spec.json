@@ -1,0 +1,9 @@
+{
+  "name": "weighted_sparse",
+  "rows": 25,
+  "features": 12,
+  "kind": "normal",
+  "weight_mode": "sparse",
+  "standardize": true,
+  "alpha": 0.95
+}

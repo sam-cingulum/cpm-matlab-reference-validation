@@ -1,0 +1,9 @@
+{
+  "name": "weighted_extreme",
+  "rows": 46,
+  "features": 18,
+  "kind": "normal",
+  "weight_mode": "extreme",
+  "standardize": true,
+  "alpha": 0.35
+}

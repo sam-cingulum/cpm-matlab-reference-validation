@@ -1,0 +1,9 @@
+{
+  "name": "weighted_constant",
+  "rows": 30,
+  "features": 10,
+  "kind": "constant",
+  "weight_mode": "normalized",
+  "standardize": true,
+  "alpha": 0.075
+}

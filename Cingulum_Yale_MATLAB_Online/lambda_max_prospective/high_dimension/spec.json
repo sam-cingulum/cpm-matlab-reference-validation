@@ -1,0 +1,9 @@
+{
+  "name": "high_dimension",
+  "rows": 38,
+  "features": 83,
+  "kind": "normal",
+  "weight_mode": null,
+  "standardize": true,
+  "alpha": 0.2
+}

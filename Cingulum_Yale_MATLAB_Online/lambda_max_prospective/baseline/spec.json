@@ -1,0 +1,9 @@
+{
+  "name": "baseline",
+  "rows": 24,
+  "features": 9,
+  "kind": "normal",
+  "weight_mode": null,
+  "standardize": true,
+  "alpha": 0.01
+}

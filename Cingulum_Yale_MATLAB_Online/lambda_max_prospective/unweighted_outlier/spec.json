@@ -1,0 +1,9 @@
+{
+  "name": "unweighted_outlier",
+  "rows": 71,
+  "features": 64,
+  "kind": "outlier",
+  "weight_mode": null,
+  "standardize": true,
+  "alpha": 0.001
+}

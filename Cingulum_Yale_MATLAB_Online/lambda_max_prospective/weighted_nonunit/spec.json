@@ -1,0 +1,9 @@
+{
+  "name": "weighted_nonunit",
+  "rows": 37,
+  "features": 22,
+  "kind": "normal",
+  "weight_mode": "nonunit",
+  "standardize": false,
+  "alpha": 0.15
+}

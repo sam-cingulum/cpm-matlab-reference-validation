@@ -1,0 +1,9 @@
+{
+  "name": "all_constant",
+  "rows": 17,
+  "features": 7,
+  "kind": "constant_all",
+  "weight_mode": null,
+  "standardize": true,
+  "alpha": 0.5
+}

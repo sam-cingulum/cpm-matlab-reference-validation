@@ -1,0 +1,9 @@
+{
+  "name": "single_feature",
+  "rows": 19,
+  "features": 1,
+  "kind": "normal",
+  "weight_mode": null,
+  "standardize": true,
+  "alpha": 0.05
+}

@@ -1,0 +1,9 @@
+{
+  "name": "collinear",
+  "rows": 53,
+  "features": 32,
+  "kind": "collinear",
+  "weight_mode": null,
+  "standardize": true,
+  "alpha": 0.75
+}

@@ -1,0 +1,9 @@
+{
+  "name": "unstandardized",
+  "rows": 28,
+  "features": 11,
+  "kind": "normal",
+  "weight_mode": null,
+  "standardize": false,
+  "alpha": 0.3
+}

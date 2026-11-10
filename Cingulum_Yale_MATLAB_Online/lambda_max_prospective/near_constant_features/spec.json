@@ -1,0 +1,9 @@
+{
+  "name": "near_constant_features",
+  "rows": 40,
+  "features": 21,
+  "kind": "nearconstant",
+  "weight_mode": null,
+  "standardize": true,
+  "alpha": 0.1
+}

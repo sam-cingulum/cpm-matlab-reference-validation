@@ -1,0 +1,9 @@
+{
+  "name": "weighted_normalized",
+  "rows": 33,
+  "features": 14,
+  "kind": "normal",
+  "weight_mode": "normalized",
+  "standardize": true,
+  "alpha": 0.6
+}

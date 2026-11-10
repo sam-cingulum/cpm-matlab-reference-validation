@@ -1,0 +1,6 @@
+{
+  "lambda_max": 5451.480592021586,
+  "null_mse": 8334155374.233436,
+  "source_function": "computeLambdaMax.m",
+  "reference_semantics": "Pinned original Yale MATLAB source compatibility; unnormalized weights follow original historic implementation."
+}

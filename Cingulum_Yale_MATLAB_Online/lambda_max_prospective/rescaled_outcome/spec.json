@@ -1,0 +1,9 @@
+{
+  "name": "rescaled_outcome",
+  "rows": 57,
+  "features": 27,
+  "kind": "outlier",
+  "weight_mode": null,
+  "standardize": false,
+  "alpha": 1.0
+}

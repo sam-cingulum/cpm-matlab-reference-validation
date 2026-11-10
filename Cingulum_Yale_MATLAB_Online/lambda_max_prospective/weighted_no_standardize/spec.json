@@ -1,0 +1,9 @@
+{
+  "name": "weighted_no_standardize",
+  "rows": 50,
+  "features": 31,
+  "kind": "collinear",
+  "weight_mode": "normalized",
+  "standardize": false,
+  "alpha": 0.8
+}
