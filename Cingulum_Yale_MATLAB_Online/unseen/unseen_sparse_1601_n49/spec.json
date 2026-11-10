@@ -1,0 +1,9 @@
+{
+  "name": "unseen_sparse_1601_n49",
+  "seed": 1601,
+  "n": 49,
+  "lam": 0.045,
+  "ridge_alpha": 0.93,
+  "pca_alpha": 0.88,
+  "kind": "normal"
+}

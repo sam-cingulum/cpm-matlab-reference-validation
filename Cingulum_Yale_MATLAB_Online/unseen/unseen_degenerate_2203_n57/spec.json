@@ -1,0 +1,9 @@
+{
+  "name": "unseen_degenerate_2203_n57",
+  "seed": 2203,
+  "n": 57,
+  "lam": 0.2,
+  "ridge_alpha": 0.47,
+  "pca_alpha": 0.31,
+  "kind": "degenerate"
+}

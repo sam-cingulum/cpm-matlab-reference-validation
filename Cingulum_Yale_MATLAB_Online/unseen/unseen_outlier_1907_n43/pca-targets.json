@@ -1,0 +1,310 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0000",
+      "values": [
+        99.56417065748991,
+        69.5683232016402
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0001",
+      "values": [
+        100.78841686943312,
+        70.90436927657166
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0002",
+      "values": [
+        71.38124803509012,
+        51.01871075357723
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0003",
+      "values": [
+        85.9505986822499,
+        60.73556439745819
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0004",
+      "values": [
+        60.14443539515474,
+        43.61939509536555
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0005",
+      "values": [
+        74.70814090461435,
+        52.770776472354065
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0006",
+      "values": [
+        99.34993723321814,
+        69.31108250560835
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0007",
+      "values": [
+        100.54960108499161,
+        69.98971885840346
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0008",
+      "values": [
+        74.84140638326411,
+        52.91387561609333
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0009",
+      "values": [
+        107.53072519118321,
+        75.08004950355141
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0010",
+      "values": [
+        93.06682533364774,
+        65.43816236759992
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0011",
+      "values": [
+        94.73768106681379,
+        66.6453534527894
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0012",
+      "values": [
+        66.499101180869,
+        48.01186794375134
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0013",
+      "values": [
+        86.53611477658816,
+        60.919123276207685
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0014",
+      "values": [
+        145.65565905929742,
+        100.30305533166933
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0015",
+      "values": [
+        117.65245012265531,
+        81.70873200961172
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0016",
+      "values": [
+        97.25681233574876,
+        67.92712737616851
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0017",
+      "values": [
+        114.52118469204922,
+        79.99867880272409
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0018",
+      "values": [
+        99.73722314900868,
+        69.72199513655538
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0019",
+      "values": [
+        96.19600636377167,
+        67.80674846946111
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0020",
+      "values": [
+        92.08808785590634,
+        64.75863818176174
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0021",
+      "values": [
+        118.86859368200632,
+        82.65782100193935
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0022",
+      "values": [
+        95.0050538033158,
+        66.62607603302482
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0023",
+      "values": [
+        111.08040283013187,
+        77.22853813843096
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0024",
+      "values": [
+        90.45997394038656,
+        63.14389754189909
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0025",
+      "values": [
+        92.36652307986326,
+        64.68597385204147
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0026",
+      "values": [
+        105.17221227381187,
+        73.6142108731697
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0027",
+      "values": [
+        83.76003228410757,
+        59.54569392405303
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0028",
+      "values": [
+        96.26190241147077,
+        67.50715239351591
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0029",
+      "values": [
+        96.93253819238181,
+        68.31565386182962
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0030",
+      "values": [
+        101.02685634315854,
+        70.85041089771312
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0031",
+      "values": [
+        103.9914552895704,
+        72.30347655934429
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0032",
+      "values": [
+        89.8236496164869,
+        62.61279921020659
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0033",
+      "values": [
+        102.67611751582724,
+        71.45177030972232
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0034",
+      "values": [
+        101.01433243845447,
+        70.35216810511048
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0035",
+      "values": [
+        112.58929559577372,
+        78.74687388427985
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0036",
+      "values": [
+        91.3223038088569,
+        64.81370291826774
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0037",
+      "values": [
+        89.050554942865,
+        63.14769963978499
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0038",
+      "values": [
+        110.12226681312497,
+        76.89952592459943
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0039",
+      "values": [
+        114.06278442325504,
+        79.28293806302429
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0040",
+      "values": [
+        88.75540539894817,
+        62.45378720289448
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0041",
+      "values": [
+        97.33646738332492,
+        68.01665692143453
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_outlier_1907_n43_0042",
+      "values": [
+        121.00529395801001,
+        84.00591630407997
+      ]
+    }
+  ]
+}

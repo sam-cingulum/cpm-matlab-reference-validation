@@ -1,0 +1,9 @@
+{
+  "name": "unseen_outlier_1907_n43",
+  "seed": 1907,
+  "n": 43,
+  "lam": 0.11,
+  "ridge_alpha": 0.12,
+  "pca_alpha": 0.1,
+  "kind": "outlier_scale"
+}

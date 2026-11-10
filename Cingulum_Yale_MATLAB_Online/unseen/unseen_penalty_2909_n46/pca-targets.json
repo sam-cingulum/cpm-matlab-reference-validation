@@ -1,0 +1,331 @@
+{
+  "atlas": "synthetic_stress_eight_parcel",
+  "names": [
+    "synthetic_measure_a",
+    "synthetic_measure_b"
+  ],
+  "records": [
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0000",
+      "values": [
+        10.379185052084933,
+        9.871262857917948
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0001",
+      "values": [
+        11.297573943436356,
+        10.573538284315102
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0002",
+      "values": [
+        7.760514126997985,
+        8.536435604627725
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0003",
+      "values": [
+        13.67298765772275,
+        12.451926397265863
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0004",
+      "values": [
+        10.492743624431196,
+        9.955624337715067
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0005",
+      "values": [
+        11.900142924236302,
+        10.749389351671159
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0006",
+      "values": [
+        12.059889903253548,
+        10.935569595933249
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0007",
+      "values": [
+        13.336130707726783,
+        11.619116789987984
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0008",
+      "values": [
+        11.049534606839673,
+        10.272436502990956
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0009",
+      "values": [
+        8.493476655021873,
+        8.950799903342002
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0010",
+      "values": [
+        9.90736341429945,
+        10.015341778317707
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0011",
+      "values": [
+        11.302737401475325,
+        10.627187340038363
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0012",
+      "values": [
+        11.500828460283968,
+        11.097532125990595
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0013",
+      "values": [
+        9.964776126788058,
+        9.46648788622688
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0014",
+      "values": [
+        9.825452281044528,
+        9.154738610479068
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0015",
+      "values": [
+        14.057974161349703,
+        12.248995827721108
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0016",
+      "values": [
+        13.696830092817736,
+        11.97609586579751
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0017",
+      "values": [
+        10.884687863839304,
+        10.149204881035084
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0018",
+      "values": [
+        9.880534660670762,
+        9.92474897717637
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0019",
+      "values": [
+        13.172465403932476,
+        11.947852167526898
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0020",
+      "values": [
+        13.472087895296259,
+        12.477332453406946
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0021",
+      "values": [
+        10.73794231521563,
+        10.49672586727966
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0022",
+      "values": [
+        11.112148268131339,
+        10.131458850663103
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0023",
+      "values": [
+        11.410143580424375,
+        10.28569518130439
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0024",
+      "values": [
+        15.003687000305012,
+        12.638456417816947
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0025",
+      "values": [
+        9.338712162514838,
+        9.064730410050704
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0026",
+      "values": [
+        13.268188896849525,
+        12.0813173605477
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0027",
+      "values": [
+        12.244674056574478,
+        11.35582933267667
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0028",
+      "values": [
+        12.716149658450988,
+        11.53720961102716
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0029",
+      "values": [
+        14.17797345628527,
+        12.71175636046228
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0030",
+      "values": [
+        8.475400360743361,
+        8.576744860473152
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0031",
+      "values": [
+        13.087987781962774,
+        11.550771452138118
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0032",
+      "values": [
+        12.885970867581754,
+        11.251732544509863
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0033",
+      "values": [
+        8.402856261410033,
+        8.389639000008387
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0034",
+      "values": [
+        13.383851782309284,
+        11.750244851894664
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0035",
+      "values": [
+        12.833599761325155,
+        11.95438009302037
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0036",
+      "values": [
+        13.629831318796262,
+        12.192855406490128
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0037",
+      "values": [
+        16.500575369302044,
+        14.555130071403086
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0038",
+      "values": [
+        11.201753629758366,
+        10.636313407150773
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0039",
+      "values": [
+        10.324137902382724,
+        9.908681991040229
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0040",
+      "values": [
+        13.357979038339337,
+        11.646157471662672
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0041",
+      "values": [
+        16.610485066394798,
+        14.018476182340548
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0042",
+      "values": [
+        12.516295527540876,
+        11.292429334017429
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0043",
+      "values": [
+        11.645129320770423,
+        10.807006652659487
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0044",
+      "values": [
+        9.626338058332259,
+        9.461760285919995
+      ]
+    },
+    {
+      "observation_id": "synthetic_unseen_penalty_2909_n46_0045",
+      "values": [
+        16.22375826995089,
+        14.133465329222915
+      ]
+    }
+  ]
+}

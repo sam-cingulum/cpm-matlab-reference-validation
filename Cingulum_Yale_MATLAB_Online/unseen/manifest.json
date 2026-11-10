@@ -1,0 +1,140 @@
+{
+  "purpose": "Fresh prospectively locked never-before-tested synthetic MATLAB R2026b generalisation battery",
+  "source_commit": {
+    "yale-cpm": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+    "yale-ohbm": "708999b8bb27ae69722775c323da9f14ef6732c7"
+  },
+  "patient_data_included": false,
+  "original_yale_files_unmodified": true,
+  "expected_mathworks_release": "R2026b",
+  "method_profiles": [
+    "ridge",
+    "pca"
+  ],
+  "stopping_policy": "matlab_r2026b_active_set_experimental",
+  "reltol": 0.0001,
+  "holdout_vs_earlier_stress": true,
+  "hypothesis_selection_excluded_this_battery": true,
+  "scenarios": {
+    "unseen_normal_1301_n37": {
+      "spec": {
+        "name": "unseen_normal_1301_n37",
+        "seed": 1301,
+        "n": 37,
+        "lam": 0.07,
+        "ridge_alpha": 1e-09,
+        "pca_alpha": 1e-06,
+        "kind": "normal"
+      },
+      "sha256": {
+        "cohort.json": "eb5c3217ea2893c576df82b4ea8a32327527d15216718cd988a25b2513c311eb",
+        "cohort.mat": "75625c618afe5a9b46e86b11d952f8293b1446a355c8dcc2a2e2525313b95cb6",
+        "pca-targets.json": "ccce176b832bb3547ce42727aa3e5f9e6e8b7e385965e46f9e4893995691e3e6",
+        "pca-targets.mat": "0def077c18cb90f90a4882807cd469852a0b22306c6b463f2932fd7d03e00da9",
+        "spec.json": "a2c8b30f97a7e3d0cbda8c5adea752aa8672b20ad45e7170ee03a6390faba264",
+        "rust-ridge.json": "39e48472de039b328765156b89dce1959a58cafc3766d87693edc71000946cc0",
+        "rust-pca.json": "874721caac644fb40b8c742ba7aa9e6b56cd71dfed0160057330cb5e6299e15d"
+      }
+    },
+    "unseen_sparse_1601_n49": {
+      "spec": {
+        "name": "unseen_sparse_1601_n49",
+        "seed": 1601,
+        "n": 49,
+        "lam": 0.045,
+        "ridge_alpha": 0.93,
+        "pca_alpha": 0.88,
+        "kind": "normal"
+      },
+      "sha256": {
+        "cohort.json": "571b2a271f72a6e2630e4dd973473058b22369cba6dd995957bdb3ea2844da9e",
+        "cohort.mat": "2b2ca7d99c8c13b4add70a2b59943f6da2d9ff7b3fa9fa3525cea39824a66e6d",
+        "pca-targets.json": "0fb7201ccfb76aab86699859d0440c01011e035493a5d2b7b932122b3c537ed4",
+        "pca-targets.mat": "b7c6cbf8c2989c573fb14a3833c038d135ee5ba4f43b7074015e83db56eb9bcf",
+        "spec.json": "0c2c5dc2709416a301dfdb60954b4ff2110300510b0d3fec114902d976ff87a6",
+        "rust-ridge.json": "0b3144e56bdddeca5fc29d2d85cbb9abd6672b94d8da1d0cd33bcfc3b147ac26",
+        "rust-pca.json": "f2fa06b1aac942dc204abc698a8ce11ab582fdb68861822efda90abedd902b95"
+      }
+    },
+    "unseen_outlier_1907_n43": {
+      "spec": {
+        "name": "unseen_outlier_1907_n43",
+        "seed": 1907,
+        "n": 43,
+        "lam": 0.11,
+        "ridge_alpha": 0.12,
+        "pca_alpha": 0.1,
+        "kind": "outlier_scale"
+      },
+      "sha256": {
+        "cohort.json": "0e6d8cfc01dd5470c7045fb35490f74955182a684b81341ef0f814dbf3302161",
+        "cohort.mat": "c9db9be02eded79ae789f55c1f79782ece33c81cb305497f19ffc9955c45f2ba",
+        "pca-targets.json": "0a8b22cd4d2a0b0bbf6afbdcf1cde21805fa8b88c5e568c6570179ede09159c8",
+        "pca-targets.mat": "15fe908c8ab1d3d075b0afce4a192a5aee0251a82f190a53c273ed944e933bcf",
+        "spec.json": "09aa5a52a2826babb303d1751c1d2104711afe3463ed8b8603a3e547c638b8a0",
+        "rust-ridge.json": "73cc60b376f1f259aaf26203ac573d0a4ad614dd19ff7387306ca1779593bff9",
+        "rust-pca.json": "40b64c209688d9efec9923fe2f15d5d6face07ce25c61c29a5efdc73117cbfd5"
+      }
+    },
+    "unseen_degenerate_2203_n57": {
+      "spec": {
+        "name": "unseen_degenerate_2203_n57",
+        "seed": 2203,
+        "n": 57,
+        "lam": 0.2,
+        "ridge_alpha": 0.47,
+        "pca_alpha": 0.31,
+        "kind": "degenerate"
+      },
+      "sha256": {
+        "cohort.json": "9f022613c14264d37ee02696e0669bc19e88571d36e0a8a8bb1cdff62f5f98b8",
+        "cohort.mat": "661cc7a88690fdb8c0b2d8d7ff04363a1375c2af676fd4c39a92f6ebe7fa19ed",
+        "pca-targets.json": "1d2e724ce5d7de2c059a2258e59df1a7aebe5cfb91738b37c83b2711f23cd46d",
+        "pca-targets.mat": "636e5e7c7c77e38f02454efef160855c7c1075315600294f720b12f780dc84ec",
+        "spec.json": "3e490d8bfe77679acfe7835e89295e41742370c54e789c714b6f98b7e80fca68",
+        "rust-ridge.json": "fabd18a1c619a9539aa0d9f4b23d5eec6e5f6a5609937cf3ea8c250a0e42b69b",
+        "rust-pca.json": "d51b7c898894b833f3de8d0b3d585b5840d318ecb64856b8637c2e11df5137c5"
+      }
+    },
+    "unseen_collinear_2503_n65": {
+      "spec": {
+        "name": "unseen_collinear_2503_n65",
+        "seed": 2503,
+        "n": 65,
+        "lam": 0.14,
+        "ridge_alpha": 1e-09,
+        "pca_alpha": 1e-06,
+        "kind": "collinear"
+      },
+      "sha256": {
+        "cohort.json": "ebaf350a4892c36a9d9a4980a9a4620d4e600be32d0249349f630d84f36d934e",
+        "cohort.mat": "acac44b7ec0c4f0daa32a3f23402bdd24fac925d596c5c5f4001682d135d1733",
+        "pca-targets.json": "7269c93d92acbb66319af15b58c55be1d67757fa8deb96c3c357e3b801bf60d8",
+        "pca-targets.mat": "afec4d0571d3318a99b5775f15082c1350a65ca427fcae2af89e64b66f103c3f",
+        "spec.json": "3945426fb0a022c3421aacbd013f5c56095c2c8b4e987a29accf76fda2956093",
+        "rust-ridge.json": "ac5f83d618e17a93f6b2492b47dac613621e711bfa37e9d96911207ec7d7a403",
+        "rust-pca.json": "502da70f58d2f6922b610ebcfeecbcaa183fa27248e081823694e289289fd1c9"
+      }
+    },
+    "unseen_penalty_2909_n46": {
+      "spec": {
+        "name": "unseen_penalty_2909_n46",
+        "seed": 2909,
+        "n": 46,
+        "lam": 0.43,
+        "ridge_alpha": 0.65,
+        "pca_alpha": 0.45,
+        "kind": "normal"
+      },
+      "sha256": {
+        "cohort.json": "e99230c7f76f95477a33712d57239c8b2ec54d1d5cf0a5f571199a600daa9d54",
+        "cohort.mat": "7d73e339232105a8207a6b32da76109ab031ecc6548d9570cf046858d6b2696b",
+        "pca-targets.json": "40f3f99cac0571df6d399986a41413f2897f064f47259fb3c0cd5486df30137e",
+        "pca-targets.mat": "b91208d09d5db3b45f8d093adc4af54e661b64767935045180bb0e25d37e24eb",
+        "spec.json": "2e476cae5d657e517884a0ca7cc3071ec718dff497afd080a682645dbc9b97b8",
+        "rust-ridge.json": "1437ba27cf923b2e7c1600e7a2eab7dd3e17ab0c933aebbb880effdddae0cc9b",
+        "rust-pca.json": "29ca7d9f13432a6e6e2d0de33346b07de610faccb20908b3796baedaad8f833f"
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "unseen_normal_1301_n37",
+  "seed": 1301,
+  "n": 37,
+  "lam": 0.07,
+  "ridge_alpha": 1e-09,
+  "pca_alpha": 1e-06,
+  "kind": "normal"
+}

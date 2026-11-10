@@ -1,0 +1,9 @@
+{
+  "name": "unseen_penalty_2909_n46",
+  "seed": 2909,
+  "n": 46,
+  "lam": 0.43,
+  "ridge_alpha": 0.65,
+  "pca_alpha": 0.45,
+  "kind": "normal"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "unseen_collinear_2503_n65",
+  "seed": 2503,
+  "n": 65,
+  "lam": 0.14,
+  "ridge_alpha": 1e-09,
+  "pca_alpha": 1e-06,
+  "kind": "collinear"
+}

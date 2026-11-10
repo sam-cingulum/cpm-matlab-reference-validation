@@ -1,0 +1,82 @@
+name: Genuine MATLAB R2026b | unseen locked ridge and PCA solver battery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-yale-prospective-unseen-parameter-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify independent synthetic-only stress fixtures, input SHA256 and stopping configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,pathlib,math
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/unseen')
+          m=json.loads((root/'manifest.json').read_text())
+          assert m['patient_data_included'] is False
+          assert m['original_yale_files_unmodified'] is True
+          assert m['source_commit']['yale-cpm']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert m['stopping_policy']=='matlab_r2026b_active_set_experimental'
+          assert m['expected_mathworks_release']=='R2026b'
+          assert m['reltol']==0.0001
+          assert len(m['scenarios'])==6
+          for name,spec in m['scenarios'].items():
+              assert name.isidentifier()
+              p=root/name
+              assert spec['spec']['n']>=30
+              assert 0<spec['spec']['lam']<=10000
+              for attr in ('ridge_alpha','pca_alpha'):
+                  assert 0<spec['spec'][attr]<=1
+              assert len(spec['sha256'])==7
+              for fn,digest in spec['sha256'].items():
+                  f=p/fn
+                  assert fn in ('cohort.json','cohort.mat','pca-targets.json','pca-targets.mat','spec.json','rust-ridge.json','rust-pca.json')
+                  assert f.is_file() and hashlib.sha256(f.read_bytes()).hexdigest()==digest, (name,fn)
+              cohort=json.loads((p/'cohort.json').read_text())
+              assert len(cohort['observations'])==spec['spec']['n']
+              assert len(cohort['parcels'])==8
+              assert all(len(o['edges'])==28 and len(o['missing_edges'])==0 for o in cohort['observations'])
+              for mode in ('ridge','pca'):
+                  expected=json.loads((p/('rust-'+mode+'.json')).read_text())
+                  assert expected['config']['stopping_policy']=='matlab_r2026b_active_set_experimental'
+                  assert expected['config']['reltol']==1e-4
+                  assert len(expected['folds'])==spec['spec']['n']
+                  assert len(expected['predictions'])==spec['spec']['n']
+                  assert abs(expected['config']['lambda']-spec['spec']['lam'])<1e-12
+                  assert abs(expected['config']['alpha']-spec['spec']['ridge_alpha' if mode=='ridge' else 'pca_alpha'])<1e-12
+          print('PASS: six previously unseen independently generated synthetic conditions, 12 original-source parameter comparisons, all manifest hashes validated')
+          PY
+      - name: Fetch pinned, unchanged original Yale CPM source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install genuine MathWorks MATLAB R2026b with Statistics and Machine Learning Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Run 12 never-tested original Yale source profiles on six locked synthetic cohorts
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_unseen;
+      - name: Retain every actual MATLAB original-source output and failure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-r2026b-yale-prospective-unseen-parameter-stress
+          path: Cingulum_Yale_MATLAB_Online/results/unseen/**/*.json
+          if-no-files-found: warn
+          retention-days: 30
