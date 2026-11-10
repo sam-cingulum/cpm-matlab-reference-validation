@@ -1,0 +1,141 @@
+{
+  "purpose": "PROSPECTIVE_FOUR_CLASSICAL_YALE_METHOD_FOLD_MASK_COEFFICIENT_IDENTITY",
+  "method_profiles": [
+    "main",
+    "ohbm",
+    "partial-pearson",
+    "partial-spearman"
+  ],
+  "original_matlab_files_unmodified": true,
+  "source_commit": {
+    "yale-cpm": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+    "yale-ohbm": "708999b8bb27ae69722775c323da9f14ef6732c7"
+  },
+  "patient_data_included": false,
+  "expected_mathworks_release": "R2026b",
+  "full_coefficients_abs_tolerance": 1e-09,
+  "intercept_abs_tolerance": 1e-09,
+  "held_out_prediction_abs_tolerance": 1e-06,
+  "require_exact_edge_masks": true,
+  "require_all_folds": true,
+  "generator_sha256": "79532729ea535118eb28a5808f33325e23d0db60a64ce5a075895d5a05d736f9",
+  "rust_yale_sha256": "43728ce8d1247d727c4a4855a1b997d94a5054d94ac9d49071f425b5de5e2a4d",
+  "rust_partial_sha256": "f5e152691ddead9f861c988038018c5c28512f662f7350135cca4254d566191c",
+  "rust_cli_sha256": "6a3ffc267c86dfdd8b74eec651c5eb0be34d9db186be91c63681475546521eca",
+  "scenarios": {
+    "classical_5107_n37": {
+      "spec": {
+        "name": "classical_5107_n37",
+        "seed": 5107,
+        "n": 37,
+        "kind": "normal",
+        "covariates": 1
+      },
+      "sha256": {
+        "cohort.json": "32b932089feec2fa4c7074c682094a291e90d12f37916ccbb6647e8246e1f72a",
+        "cohort.mat": "57e6b485f3d16921126985bf83b374f076a97d0b5e8e2c2695a93c1e2d82583d",
+        "covariates.json": "17a8284d36d34df6e69d229053fdcb1e17f7563087b447b30969492573c7b4dd",
+        "spec.json": "77f46e57991ae6bd32f270609a7ab2401a0b8e290c5b507615b244a716d23995",
+        "rust-main.json": "22852c071fadbd5151d7c6791159e767fe949e998ae6e7abd2522079105bc14e",
+        "rust-ohbm.json": "f8b5be0e8d682894369e7f9cc7c6a8e176379918ca3b5c473d26ac4094be140f",
+        "rust-partial-pearson.json": "4e7c6b83bf000491539fe5b6cf616a22b6dafab4e8c1bdcb30d5d323a76cdb6f",
+        "rust-partial-spearman.json": "d8de3ac8746493bdf6e279f07a9de92bd13a60f033fde1decbc95b2fcd81086a"
+      }
+    },
+    "classical_5209_n43": {
+      "spec": {
+        "name": "classical_5209_n43",
+        "seed": 5209,
+        "n": 43,
+        "kind": "outlier",
+        "covariates": 2
+      },
+      "sha256": {
+        "cohort.json": "bc1f2ea8664b5a5714333d0cda65383c116fdccd89f526968793810a9659acb9",
+        "cohort.mat": "5c6db0e8fdc4846a4b251cc8bd3e109a5164b21e969be69b50ab89962c309c5b",
+        "covariates.json": "17b9bde6ccad78652d8e5cec9da09e07a34b8baeee88f826bf2a972a2811d783",
+        "spec.json": "4fd9fafc926f0d8d4b195b23c6be88d416b848f00757697277a37b649d95a7f3",
+        "rust-main.json": "a52ba3eb38f4404c15d9bdc8d8b3e0a660bab8cc7a21b764f4c330201f09e95a",
+        "rust-ohbm.json": "6f73b03d23e87ae84987e9a060e23ea6e61e320a71010c5d2d039def6f23d7e8",
+        "rust-partial-pearson.json": "fba7333c5a7a2cbfc6e85c85e4520d7b3787192b19b88f718372b890660993f6",
+        "rust-partial-spearman.json": "5b8ef951e9e3e8662c1356950fee8a876fb6c255b0d402ede2cbce5d4ac3f5a1"
+      }
+    },
+    "classical_5303_n51": {
+      "spec": {
+        "name": "classical_5303_n51",
+        "seed": 5303,
+        "n": 51,
+        "kind": "correlated",
+        "covariates": 3
+      },
+      "sha256": {
+        "cohort.json": "aaab7f572ea33d519579c35fb435e1381e11a1085a046d0937ae2f6986fbf360",
+        "cohort.mat": "4a855d5d5ff0245afd7f1d7119efb64d492278235d5fb3dbe807704ae1a28154",
+        "covariates.json": "b5e0ae7b93160f97a2c35d3131cd9eea068db09b2d97a372fef1dac134e5ae70",
+        "spec.json": "f388c2abd83143a3e96bfaf4d0b40c25ca329ee1e7203902b21e9ff39eab58ca",
+        "rust-main.json": "774d3f232dd66d18e724e7fb30fdf067ec575f554e34dcbeb58db9a6b9ee1189",
+        "rust-ohbm.json": "5c973fa621f53dc5ce8835dace1df81c81ac53487375f8f2e189215f844a6378",
+        "rust-partial-pearson.json": "2b0a55317e269c204d80ca5bf3c9557d56b4a3b851c7a176b137e301b27b258c",
+        "rust-partial-spearman.json": "4c5b2562c51612040c821738a1e6b817eaf71fc95b5711752023d913c119bc54"
+      }
+    },
+    "classical_5407_n57": {
+      "spec": {
+        "name": "classical_5407_n57",
+        "seed": 5407,
+        "n": 57,
+        "kind": "rescaled",
+        "covariates": 2
+      },
+      "sha256": {
+        "cohort.json": "94e3a7d5d0c40f1eafdec8e484da78c91f6e066df3b742ea8c98af0075402206",
+        "cohort.mat": "8c5c10cc569176be8b89b1079d964768dadd0d6387439265655f996e1b3c5829",
+        "covariates.json": "23b6f14456f8ac8c0c679fc9e3478d1fb9a2571f0ca28895c65b0ed62b3cfe19",
+        "spec.json": "a71c7d4fe85fc0079171fe0af0e4bac04e45ea8d9f1355cf20660ae737b678b6",
+        "rust-main.json": "1c7e6e92b33920b4420de84d726090556cac73d01e01d44a2a6ad0df24739a94",
+        "rust-ohbm.json": "a43a558c8756b264aa5082951f904fcd6898771d19616d9012bf8f5c4cc24bd0",
+        "rust-partial-pearson.json": "ea1e6ad119c6ac0fbf50917e6de69d513c7b978ab22ed7cf00542c2c6e0ddc6f",
+        "rust-partial-spearman.json": "39c8bddda7f63fadf82780d7e89de423f3203f3e269023a7415c51241eda95a7"
+      }
+    },
+    "classical_5501_n49": {
+      "spec": {
+        "name": "classical_5501_n49",
+        "seed": 5501,
+        "n": 49,
+        "kind": "ties",
+        "covariates": 1
+      },
+      "sha256": {
+        "cohort.json": "5d6da95f944ffd55fedb8e821f616a60c6d6a94c10ef4ca9b1017324a6f85212",
+        "cohort.mat": "8a87ca304512fbe967646f930027e4efb680e4accf125bdbad77208c117b84d7",
+        "covariates.json": "b5f5f9cd0fb8dd4c13c4b4513dbddb203bbb7e75e8fe764d892ab01a958269e8",
+        "spec.json": "d4698dcaa5f45795f8db1f298b7aea7ca089d7527ad7d5453af3b7263778d75e",
+        "rust-main.json": "4f0745131144f6ba764efe9e0917190cf170b5e47516234b971cdba0a5805be1",
+        "rust-ohbm.json": "2ddd64d3ff8ac5ea51be3dad5e11df892f101977d2e6ef3ae57dcf596901a2c6",
+        "rust-partial-pearson.json": "55fd7698fca3424e145d8b99640b9bbd967477a62dc4324ba0d2ca148d14b238",
+        "rust-partial-spearman.json": "d502321970e4d960a039f019a8b1adbf2cf327aa26aa513cd5f46179fe2b2965"
+      }
+    },
+    "classical_5609_n65": {
+      "spec": {
+        "name": "classical_5609_n65",
+        "seed": 5609,
+        "n": 65,
+        "kind": "normal",
+        "covariates": 3
+      },
+      "sha256": {
+        "cohort.json": "29b8bfc989cac5c080ce94b7fad56adc2513c590e7122132fc4562b2f97f750f",
+        "cohort.mat": "27c1b650c4614fe126d36cf3d98d75c56c9b5c91048f7af1f9e7e67a6ed0979b",
+        "covariates.json": "8eaf72cbf785ebc789170660be5b922f5950dcfe0a37d2ebff725cce8a6a834a",
+        "spec.json": "0bf6c75567b1d40b13d4c9a039436f9734f4993f2abe38aa612d81dbb4b46c81",
+        "rust-main.json": "f73fd0db55ab000d737260804ed0b8b172cccaf2310370c8108a6c4488eea6e6",
+        "rust-ohbm.json": "9151372d0b35bedd32ec1979210637d85210a0a153b1190491d126d5794f1fad",
+        "rust-partial-pearson.json": "e591b35ec47ab3194df4c35e212112f12e426fbde3ad93ce0b87165634298983",
+        "rust-partial-spearman.json": "c3d85287e52ce5c45ca1f328e3359385eda24d00f5e4e241fe45ec6eddcee02c"
+      }
+    }
+  }
+}

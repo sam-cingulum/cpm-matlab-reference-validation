@@ -1,0 +1,1120 @@
+{
+  "profile": "ohbm_ols_sums",
+  "p_threshold": 0.05,
+  "predictions": [
+    5.402357638427549,
+    7.973526895387132,
+    7.942710889703288,
+    8.397763843936653,
+    7.663239836261667,
+    2.83406710197271,
+    3.860278986888216,
+    5.5392235026518115,
+    6.535172388272423,
+    7.924339892751085,
+    9.350244754625521,
+    4.104595792108999,
+    10.217530989762466,
+    6.598038612788818,
+    7.4954707618234835,
+    7.50230400012335,
+    10.18120792693295,
+    9.188831583832942,
+    8.410355343373386,
+    6.7739447843023335,
+    9.122808970224824,
+    8.265533699730732,
+    4.90804649896332,
+    8.33763646761827,
+    3.7312680026342413,
+    7.284902223799638,
+    7.057090595628669,
+    10.02053628046846,
+    5.4154703582724455,
+    7.655870148721188,
+    11.049108239395762,
+    9.29069447658577,
+    8.933840417010883,
+    9.242058076944035,
+    11.016962602501799,
+    7.114174608151978,
+    6.6583714488366965
+  ],
+  "pearson_r": 0.9971102460502438,
+  "pearson_p": 8.914437037022976e-41,
+  "rmse": 0.17381075318125894,
+  "fold_details": [
+    {
+      "held_out_indices": [
+        0
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.518275450874332,
+        "positive_slope": 0.32580441579945574,
+        "negative_slope": -0.2756658429828693,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        1
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.514726212235106,
+        "positive_slope": 0.38621103627252984,
+        "negative_slope": -0.20716399645804026,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        2
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.506281264166323,
+        "positive_slope": 0.3817335171420928,
+        "negative_slope": -0.21132391999373523,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        3
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.514532461088802,
+        "positive_slope": 0.3863754940785358,
+        "negative_slope": -0.20682965115840804,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        4
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.520620526336602,
+        "positive_slope": 0.3999076895169415,
+        "negative_slope": -0.1932425050187115,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        5
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.51595586229847,
+        "positive_slope": 0.39698496630639857,
+        "negative_slope": -0.19726899216598864,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        6
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.511152740477069,
+        "positive_slope": 0.30948471970214897,
+        "negative_slope": -0.29386122166483225,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        7
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.518906551953253,
+        "positive_slope": 0.3970553714928181,
+        "negative_slope": -0.19580388859278205,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        8
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.518533215217391,
+        "positive_slope": 0.39919708163664186,
+        "negative_slope": -0.19383149383616954,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        9
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.517752295954129,
+        "positive_slope": 0.39655197891113986,
+        "negative_slope": -0.19666324672761554,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        10
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.5154126973215005,
+        "positive_slope": 0.3965184775407728,
+        "negative_slope": -0.19611811121481892,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        11
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.511847257061929,
+        "positive_slope": 0.3027719623625521,
+        "negative_slope": -0.3000290987744052,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        12
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13,
+        15
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.519272381040135,
+        "positive_slope": 0.2942208170118981,
+        "negative_slope": -0.29439543737541696,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        13
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.5148009942765235,
+        "positive_slope": 0.3961003212486062,
+        "negative_slope": -0.19749430040760466,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        14
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.51534122827107,
+        "positive_slope": 0.4047479723186186,
+        "negative_slope": -0.188241041480086,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        15
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.524106579917096,
+        "positive_slope": 0.4084608427136658,
+        "negative_slope": -0.1843432570217946,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        16
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.500798507850605,
+        "positive_slope": 0.300319153738042,
+        "negative_slope": -0.2985398221565806,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        17
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.508383503418186,
+        "positive_slope": 0.30604308655959495,
+        "negative_slope": -0.2961521479880879,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        18
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.517758930558491,
+        "positive_slope": 0.3968516025738521,
+        "negative_slope": -0.1963605542497831,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        19
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.516856223737701,
+        "positive_slope": 0.39815003761278955,
+        "negative_slope": -0.1951081417073172,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        20
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.521009660101456,
+        "positive_slope": 0.3912708619256893,
+        "negative_slope": -0.20290662167263065,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        21
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.520950450841822,
+        "positive_slope": 0.3881110670748741,
+        "negative_slope": -0.20571951259755175,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        22
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.50977604116434,
+        "positive_slope": 0.3081912511419256,
+        "negative_slope": -0.29551387521873723,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        23
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.522641868608551,
+        "positive_slope": 0.3945690312441495,
+        "negative_slope": -0.19925554141137305,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        24
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        15
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.533724899851952,
+        "positive_slope": 0.4325228415517745,
+        "negative_slope": -0.16004242235794064,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        25
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.523719968420952,
+        "positive_slope": 0.38851713416410927,
+        "negative_slope": -0.20467478120703286,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        26
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.518427446095071,
+        "positive_slope": 0.39501462449718233,
+        "negative_slope": -0.19818072560747807,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        27
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.513509591879997,
+        "positive_slope": 0.30494818337608487,
+        "negative_slope": -0.29867738307629754,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        28
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13,
+        15
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.523239653048754,
+        "positive_slope": 0.2999924551163106,
+        "negative_slope": -0.2873467156000167,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        29
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.522135691457732,
+        "positive_slope": 0.3931929330817033,
+        "negative_slope": -0.2001764962478137,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        30
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        18
+      ],
+      "fit": {
+        "intercept": 7.5073437622457,
+        "positive_slope": 0.4411852890291284,
+        "negative_slope": -0.15353960051030047,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        31
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.50457662615442,
+        "positive_slope": 0.2278853690668182,
+        "negative_slope": -0.3580723264651569,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        32
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13,
+        15
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.517481999606927,
+        "positive_slope": 0.2968062934860742,
+        "negative_slope": -0.29128920341801445,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        33
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13,
+        15
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.518714450279215,
+        "positive_slope": 0.29580034804703137,
+        "negative_slope": -0.29257506679631756,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        34
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.505039245275511,
+        "positive_slope": 0.3193923749648754,
+        "negative_slope": -0.27989351621493713,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        35
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.512727227023713,
+        "positive_slope": 0.382354532155297,
+        "negative_slope": -0.21151919880303013,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    },
+    {
+      "held_out_indices": [
+        36
+      ],
+      "positive_edges": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        13
+      ],
+      "negative_edges": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ],
+      "fit": {
+        "intercept": 7.525488818206017,
+        "positive_slope": 0.4111655641235265,
+        "negative_slope": -0.1807299347282233,
+        "mean_difference_slope": null,
+        "robust_iterations": null
+      }
+    }
+  ],
+  "scientific_disclaimer": "Independent published-method reproduction, not yet verified against licensed MATLAB numerical fixtures; empty masks, singular models and MATLAB RNG behaviour require special handling."
+}

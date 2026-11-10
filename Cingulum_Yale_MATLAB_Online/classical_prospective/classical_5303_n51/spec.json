@@ -1,0 +1,7 @@
+{
+  "name": "classical_5303_n51",
+  "seed": 5303,
+  "n": 51,
+  "kind": "correlated",
+  "covariates": 3
+}
