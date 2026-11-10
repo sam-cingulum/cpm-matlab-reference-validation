@@ -1,0 +1,79 @@
+name: Genuine MathWorks R2026b | Prospective classical Yale full-fold parity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  classical-yale-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify independent synthetic fixture checksums and source pins
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,pathlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/classical_prospective')
+          m=json.loads((root/'manifest.json').read_text())
+          assert m['patient_data_included'] is False
+          assert m['expected_mathworks_release']=='R2026b'
+          assert m['method_profiles']==['main','ohbm','partial-pearson','partial-spearman']
+          assert m['full_coefficients_abs_tolerance']==1e-9
+          assert m['intercept_abs_tolerance']==1e-9
+          assert m['held_out_prediction_abs_tolerance']==1e-6
+          assert m['require_exact_edge_masks'] and m['require_all_folds']
+          assert len(m['scenarios'])==6
+          for scenario,item in m['scenarios'].items():
+              for filename,sha in item['sha256'].items():
+                  path=root/scenario/filename
+                  assert path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest()==sha,(scenario,filename)
+              for method in m['method_profiles']:
+                  r=json.loads((root/scenario/('rust-'+method+'.json')).read_text())
+                  n=item['spec']['n']
+                  assert len(r['predictions'])==n
+                  folds=r.get('fold_details',r.get('folds'))
+                  assert len(folds)==n and all(f['held_out_indices']==[i] for i,f in enumerate(folds))
+          assert m['source_commit']['yale-cpm']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert m['source_commit']['yale-ohbm']=='708999b8bb27ae69722775c323da9f14ef6732c7'
+          print('FROZEN_PROSPECTIVE_6_SYNTHETIC_COHORTS_24_PROFILES_1208_FOLDS_SHA256_PASS')
+          PY
+
+      - name: Checkout immutable unmodified original Yale MATLAB source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          git clone --quiet https://github.com/YaleMRRC/CPM_OHBM.git Cingulum_Yale_MATLAB_Online/upstream/yale-ohbm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-ohbm checkout --quiet --detach 708999b8bb27ae69722775c323da9f14ef6732c7
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-ohbm rev-parse HEAD)" = 708999b8bb27ae69722775c323da9f14ef6732c7
+
+      - name: Install authentic MathWorks MATLAB and Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+
+      - name: Original Yale source predictions and every fold coefficient and mask
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_classical_prospective;
+
+      - name: Retain all original MATLAB evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-prospective-four-classical-methods
+          path: |
+            Cingulum_Yale_MATLAB_Online/classical_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
