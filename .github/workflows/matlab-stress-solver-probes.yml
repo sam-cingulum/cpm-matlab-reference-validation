@@ -1,0 +1,57 @@
+name: Genuine MATLAB R2026b | direct lasso stress solver path probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  direct-lasso-stress-solver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify independent synthetic stress fixture hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/stress')
+          m=json.loads((root/'manifest.json').read_text())
+          assert m['patient_data_included'] is False and len(m['scenarios'])==7
+          assert m['source_commit']['yale-cpm']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          for case,meta in m['scenarios'].items():
+              for fname,digest in meta['sha256'].items():
+                  p=root/case/fname
+                  assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==digest,(case,fname)
+          print('PASS synthetic only source-data integrity')
+          PY
+      - name: Fetch unchanged original Yale source revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install genuine MathWorks MATLAB R2026b and Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Probe MaxIter, RelTol and UseCovariance on six independent synthetic scenarios
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            probe_stress_lasso;
+      - name: Retain exact MATLAB solver coefficients and warnings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-r2026b-direct-stress-lasso-maxiter-covariance-probes
+          path: Cingulum_Yale_MATLAB_Online/results/stress_probes/solver_probes.json
+          if-no-files-found: warn
+          retention-days: 30
