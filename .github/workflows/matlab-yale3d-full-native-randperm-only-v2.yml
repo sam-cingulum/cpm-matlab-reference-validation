@@ -1,0 +1,50 @@
+name: Genuine MATLAB R2026b | 3D cpm_main native randperm only
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-native-permutations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify public source-invisible synthetic input freeze
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,pathlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/yale3d_full_pipeline_v2_prospective')
+          m=json.loads((root/'manifest.json').read_text())
+          assert m['experiment_id']=='yale-3d-cpm-main-full-pipeline-20261111-v2'
+          assert m['source_revision']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert m['mathworks_release']=='R2026b'
+          assert m['synthetic_only'] and not m['patient_data']
+          assert m['original_source_not_executed'] and len(m['cases'])==8
+          assert m['acceptance']['source_feature_exact_binary64']
+          assert m['acceptance']['prediction_absolute']==1e-8
+          for name,case in m['cases'].items():
+              for filename,sha in case['sha256'].items():
+                  actual=hashlib.sha256((root/name/filename).read_bytes()).hexdigest()
+                  assert actual==sha,(name,filename)
+          print('FROZEN_3D_INPUTS_SHA256_PASS',hashlib.sha256((root/'manifest.json').read_bytes()).hexdigest())
+          PY
+      - name: Install genuine MathWorks MATLAB R2026b
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+      - name: Run only native MATLAB RNG without Yale source or any fitting
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_yale3d_full_native_randperm_only_v2;
+      - name: Preserve original native permutations even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yale3d-full-matlab-r2026b-native-only-v2-20261111
+          path: Cingulum_Yale_MATLAB_Online/yale3d_full_native_v2_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
