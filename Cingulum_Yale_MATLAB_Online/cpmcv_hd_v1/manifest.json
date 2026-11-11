@@ -1,0 +1,58 @@
+{
+  "cases": {
+    "hd_ill_conditioned_512_p528_n59_seed168617": {
+      "expected_omitted": 5,
+      "k": 6,
+      "n": 59,
+      "p": 528,
+      "seed": 168617,
+      "sha256": {
+        "input.json": "5354354870e602755dd76dbac4b56fdbaef481ca6a942fb1849913ea27ab6284"
+      }
+    },
+    "hd_wide_1035_p1035_n63_seed168607": {
+      "expected_omitted": 3,
+      "k": 6,
+      "n": 63,
+      "p": 1035,
+      "seed": 168607,
+      "sha256": {
+        "input.json": "52771645d06f793a9a485da2cff1be7991a65925a301b37d382694b92b068305"
+      }
+    },
+    "hd_wide_300_p300_n45_seed168601": {
+      "expected_omitted": 0,
+      "k": 5,
+      "n": 45,
+      "p": 300,
+      "seed": 168601,
+      "sha256": {
+        "input.json": "6304742e5bde5d39ed689f94e4352514d5935b5fc66ed26ca0deadaca6debcc2"
+      }
+    },
+    "hd_wide_4095_p4095_n85_seed168611": {
+      "expected_omitted": 1,
+      "k": 7,
+      "n": 85,
+      "p": 4095,
+      "seed": 168611,
+      "sha256": {
+        "input.json": "dc86755af8d4e5ec743185275acba92c11af1ae6ae95688ca5a9b25d868aa99b"
+      }
+    }
+  },
+  "coefficient_abs_tolerance": "1e-9",
+  "exact_edge_masks": true,
+  "exact_historical_zero_placeholders": true,
+  "experiment_id": "yale-cpmcv-highdim-20261111-v1",
+  "mathworks_release": "R2026b",
+  "original_source_not_executed": true,
+  "parser": "serde_json/float_roundtrip",
+  "prediction_abs_tolerance": "1e-8",
+  "private_verifiers_precommit": "b4883ee",
+  "public_runners_precommit": "b4aeef7",
+  "separate_bitwise_full_output_gate": true,
+  "source_revision": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "source_self_reconstruction_abs_tolerance": "1e-9",
+  "synthetic_only": true
+}
