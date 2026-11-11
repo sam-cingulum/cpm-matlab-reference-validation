@@ -1,0 +1,6 @@
+{
+  "lambda_max": 2.3067329164973787,
+  "null_mse": 0.4488699859141737,
+  "source_function": "Cingulum general-weight elastic-net null-model threshold",
+  "reference_semantics": "Corrected normalized-weight half-MSE elastic-net objective with an unpenalized intercept. NOT original Yale source behavior for nonunit weights or bitwise MATLAB parity."
+}

@@ -1,0 +1,7 @@
+{
+  "decimal_precision_digits": 160,
+  "exact_float_input": true,
+  "lambda_max": "0E-268",
+  "mathematical_reference": "unpenalized intercept, weighted half-MSE KKT",
+  "null_mse": "0E-478"
+}

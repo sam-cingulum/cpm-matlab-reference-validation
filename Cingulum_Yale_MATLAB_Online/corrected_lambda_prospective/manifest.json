@@ -1,0 +1,366 @@
+{
+  "cases": {
+    "boundary_00": {
+      "group": "boundary",
+      "n": 7,
+      "p": 1,
+      "sha256": {
+        "decimal.json": "074b33b49973bf37f52ea9044d177a2ef3c9406c6d14c7ec42881ad1cbf851a6",
+        "input.json": "a67ef3d3332b1a70cbdff8b101d08b2c373257e32b8230019c77b8fb142e99c1",
+        "rust.json": "7656e664cb022d6b937865519d6309b042ee3fb65eb8b0e2a7a82516f41d69ca"
+      },
+      "standardize": true
+    },
+    "boundary_01": {
+      "group": "boundary",
+      "n": 13,
+      "p": 2,
+      "sha256": {
+        "decimal.json": "c47e129700423e5c8d6b95cecb2aa105476cfcae69e734cb50da94fd9a0ea9d4",
+        "input.json": "fc8018464f26ba0e4726a0acc25381f7211bd9e3743f6cb85d329ee216e7861a",
+        "rust.json": "11dad397fa00015fbd6785f4aed4d98414221f0e228b4adcafdcc28f0cdc6a33"
+      },
+      "standardize": false
+    },
+    "boundary_02": {
+      "group": "boundary",
+      "n": 19,
+      "p": 5,
+      "sha256": {
+        "decimal.json": "8838ee8af1b0785a64a50087bdfba11e0130de3a473e3b788768419ee706d604",
+        "input.json": "987cd36f52222dcbea1e11e7fde17f614efbded170af2ca71e9703e25feaaa7e",
+        "rust.json": "8e3bead9562a987174be5c56f7766560baf440d79e27b45928d309ff6083c928"
+      },
+      "standardize": true
+    },
+    "boundary_03": {
+      "group": "boundary",
+      "n": 29,
+      "p": 7,
+      "sha256": {
+        "decimal.json": "44aefe8baae54c2defd2f9b70a8acde470b5c4c4af2cf59ba3b74070ce7574dd",
+        "input.json": "c2d9fa5f2b9567e527f368716ff8960e0114738a4fa57e40b0b71e30ad465d59",
+        "rust.json": "707fec50542ae7e24351fb35de638978a4f00edf33e0e2d2e11a568f4369ffe5"
+      },
+      "standardize": false
+    },
+    "boundary_04": {
+      "group": "boundary",
+      "n": 37,
+      "p": 11,
+      "sha256": {
+        "decimal.json": "d2fab972afb9eee93c2bf8056aa760b5762fdab4941fccc82eeb7b97f478dd91",
+        "input.json": "b266ba915c3e85ff749bfb0ed6e54dae91bebb6264b292d2e646f87edd9c1321",
+        "rust.json": "374a981e16f7614ad20436edf4e12b13573422d72b348aeac02c149eaf4fa645"
+      },
+      "standardize": true
+    },
+    "boundary_05": {
+      "group": "boundary",
+      "n": 48,
+      "p": 13,
+      "sha256": {
+        "decimal.json": "38f41689c783fd53bb1f29559225771c187035100379d64452304ad8b39e42e0",
+        "input.json": "927800a153fbf51e14f8aee38a6127d03596c5b1f4475207333a8350fbd12134",
+        "rust.json": "a1f918d505469a00bd6869eba36a247e4b7525e26f2eeb8e9745495b66681985"
+      },
+      "standardize": false
+    },
+    "boundary_06": {
+      "group": "boundary",
+      "n": 61,
+      "p": 17,
+      "sha256": {
+        "decimal.json": "fd0abb334acea5dae797c618a57b868b45ac6a25d82281465a7615d7ee28dc64",
+        "input.json": "b4173e6903a24fa6fe3fd13daf2b91f12003c9f9cb2ead07ed27404782311a27",
+        "rust.json": "a0bec29b835e4fb1898d73db29f303413ba937f6eba32747b95a39bf9552f299"
+      },
+      "standardize": true
+    },
+    "boundary_07": {
+      "group": "boundary",
+      "n": 76,
+      "p": 3,
+      "sha256": {
+        "decimal.json": "e883b3f5a4cdee1bbe34afc5d8d2a74f196eaa158893ee03607c5bf86bbcd28d",
+        "input.json": "1bbff222437874769d0b95065df0c267f8fb2f04ad644a20c73086dcbd9dca25",
+        "rust.json": "140b794977f4e42e4423f6e2cb080786b420b28beec1fec333dc4aec427d5a6b"
+      },
+      "standardize": false
+    },
+    "ordinary_00": {
+      "group": "ordinary",
+      "n": 7,
+      "p": 1,
+      "sha256": {
+        "decimal.json": "a33313a58d2b4a935f5c473d67d4a49b6f0e85d2f0a618ad2a84996ee59799e5",
+        "input.json": "6d86f10b44432e4020db4c9b788b98ccc3f0908c3b9084e040726f3b8c117d70",
+        "rust.json": "e8d44667ea13f86d50b24efd2e48be35b3322648a75d7dcbaef9b61e8daf2d3c"
+      },
+      "standardize": true
+    },
+    "ordinary_01": {
+      "group": "ordinary",
+      "n": 13,
+      "p": 2,
+      "sha256": {
+        "decimal.json": "004cb82c5c2ed6e854fb539ccf772433d9f2e712538ffb6d9f11dcedcb6173ff",
+        "input.json": "ca33e87803461817c812684553a0514069e509c68cc5db533d6efd549676fa88",
+        "rust.json": "cb1773303ed657aa1afb3c0f3fa0dc8df5768ed39065c7c49cb67afbbf19b696"
+      },
+      "standardize": false
+    },
+    "ordinary_02": {
+      "group": "ordinary",
+      "n": 19,
+      "p": 5,
+      "sha256": {
+        "decimal.json": "975f228351ba0e212400e775614fcdc80a6dd967981169e04d928e3ea98456f5",
+        "input.json": "2e4db59f4c57e054536ed0d94e9e4c30b5df82591a93d98ef4f354a47e95f210",
+        "rust.json": "4e5c9d992ab56450fb9e0ff602222dd23670735a5ea72176222d2c047ec857a5"
+      },
+      "standardize": true
+    },
+    "ordinary_03": {
+      "group": "ordinary",
+      "n": 29,
+      "p": 7,
+      "sha256": {
+        "decimal.json": "d7a8effbeccf288f3b3b8761f094361038d0e4ce2bc47159445368e860db89b6",
+        "input.json": "6d1c9146bf63a7765e50fe490459814439732ba6e37ffa63bf9efc7fd25cc11d",
+        "rust.json": "782f5be820c347e1e91182ea63c1313aad95211fd7c6e443cbdd809fc592a7d3"
+      },
+      "standardize": false
+    },
+    "ordinary_04": {
+      "group": "ordinary",
+      "n": 37,
+      "p": 11,
+      "sha256": {
+        "decimal.json": "ddb4189f1697826aeffb34c220df1527ae7f2d764ea7d0abc919bcb3c2da42f2",
+        "input.json": "b8b4d65a5a1676137574e1bfb8bc339cd0f8e92d248259bcae4b38028b0d0794",
+        "rust.json": "ebb01aee776abbfe067a4bd814b1933d07e50a1d427190287cdb1df531d4694e"
+      },
+      "standardize": true
+    },
+    "ordinary_05": {
+      "group": "ordinary",
+      "n": 48,
+      "p": 13,
+      "sha256": {
+        "decimal.json": "194bd43a211998f7c410e0190c413307eae88cbf9619586d12070dc599973373",
+        "input.json": "f303cf60810ec4aba848a011f9844385ed4886186ac0042066ed2133a44a2d85",
+        "rust.json": "74417f125529ebe2081d9e16702c80a8c60578f30d5b1fff8b0bb4e0ccd9b6cf"
+      },
+      "standardize": false
+    },
+    "ordinary_06": {
+      "group": "ordinary",
+      "n": 61,
+      "p": 17,
+      "sha256": {
+        "decimal.json": "cfa15adfeb147ccdcc79789538b7069d29d66ae32b4fcf15db932a7fc97756b8",
+        "input.json": "7b4de17dd959681bdb8ec39ede91e60db1f80339fa11db218d14565de48e7ba1",
+        "rust.json": "168f00f05fdb188b2bccd534eebb87f8adb49f7efcbc5e78a7ea13c1ed6471b9"
+      },
+      "standardize": true
+    },
+    "ordinary_07": {
+      "group": "ordinary",
+      "n": 76,
+      "p": 3,
+      "sha256": {
+        "decimal.json": "92f386ce610f0cd9c0ae5a0661cec798e4d73de096b24d84df293bea0684bc16",
+        "input.json": "4de667424bf1f030dbe48b488412a774ca56c7af553e84c01e3077aac9f346ed",
+        "rust.json": "9ec4fd28b8ee90d3063a0662ff049854a7b7e5923b03550a72202e621447b85f"
+      },
+      "standardize": false
+    },
+    "skew_00": {
+      "group": "skew",
+      "n": 7,
+      "p": 1,
+      "sha256": {
+        "decimal.json": "2e19788d1e34cef3bcf9db1089b717eb41c9124a9cff343ef78fb8e509da4079",
+        "input.json": "4f1ee4c266bedd6a3b31a912b555a3caf227d0139a66c4922935deec76620062",
+        "rust.json": "1fdb6381a296e6b64a66b6286f8c2df3127e8eb6b081a07ad6205a74392642c3"
+      },
+      "standardize": true
+    },
+    "skew_01": {
+      "group": "skew",
+      "n": 13,
+      "p": 2,
+      "sha256": {
+        "decimal.json": "dc428e41cc323f6a7395cf574d223adcaa61e3eafa5431b126e819939bccf8b4",
+        "input.json": "cbbbf75416dff8c7088b251231e2fd5d6ed792ea4df7ecc4ca8ab24f8af5d400",
+        "rust.json": "bef43219ad59b9d76ec8a95d7ad6492fbda51f7358ad4e73a4ffc41cc6a11157"
+      },
+      "standardize": false
+    },
+    "skew_02": {
+      "group": "skew",
+      "n": 19,
+      "p": 5,
+      "sha256": {
+        "decimal.json": "391e7d0bad9e4a6cdec9fca43a1272fae9c9a5a973192c8fcf0c7e2712133d08",
+        "input.json": "0c87c6ecd487842473ae998810e437b2e6835aaccc6cbe35662a19582e54ab90",
+        "rust.json": "014579ac385c1cbef413a8a5b86db11338b768ffbb48172b2a22fbe0cbc1f71f"
+      },
+      "standardize": true
+    },
+    "skew_03": {
+      "group": "skew",
+      "n": 29,
+      "p": 7,
+      "sha256": {
+        "decimal.json": "eee3f27c874a54b63a07e4b4b74d9ebb40e6475b82a861b363fc4e38726813d5",
+        "input.json": "8a8485841c39100100f70164d1ea77df005cd7fabf3da7def0ed5d51ad265534",
+        "rust.json": "b07026a29a5eae93a3a7262bf48949b4041c330e7348f842fd4b731e295000f7"
+      },
+      "standardize": false
+    },
+    "skew_04": {
+      "group": "skew",
+      "n": 37,
+      "p": 11,
+      "sha256": {
+        "decimal.json": "520a263a8328756e2e82cb61bb69001c0cc8e219c17141b992a3a648c20cb80a",
+        "input.json": "975c8af749ff7429742a1a232cbf17ba2f739871f6f31283505ccc07293ddea0",
+        "rust.json": "b3ead42fa65dc974513f273af5394cf9cf2b8e49c538d6a55c280de1f0a51eed"
+      },
+      "standardize": true
+    },
+    "skew_05": {
+      "group": "skew",
+      "n": 48,
+      "p": 13,
+      "sha256": {
+        "decimal.json": "2963281a8ca3856c3e5fa40a60fb3dc2d87315988ea53876b1d96579ccf462b5",
+        "input.json": "b18236ee679f8d09e6d642c2cf57d802902373a69b4fa8a525c0a11bf9c55757",
+        "rust.json": "680f38d0c49f2d23310c53e6cac52f5957de4eb593899b133c5ef5fd1e5cfae1"
+      },
+      "standardize": false
+    },
+    "skew_06": {
+      "group": "skew",
+      "n": 61,
+      "p": 17,
+      "sha256": {
+        "decimal.json": "76016542042b8b4af4e0982d4a37c02c13ade5145ecaea1d2952f7ffd9b4652a",
+        "input.json": "4e4dc4254b7249cd01726e1bcb0ab4a08d924baaa9ea7ec38306ee1b0605951e",
+        "rust.json": "0077b8c9f9182a427b173220a14da22ad935751ef6233fb59a371e7e3eca5737"
+      },
+      "standardize": true
+    },
+    "skew_07": {
+      "group": "skew",
+      "n": 76,
+      "p": 3,
+      "sha256": {
+        "decimal.json": "0ce4e13acc1c011e2acd5a05694f833f89425cd2c803ecda755e52b0576e7517",
+        "input.json": "0d243c12c07d64529e819c9c19f579a700c27d2d1ed57f14f71fd313b03451a2",
+        "rust.json": "afa03827950bfa43fcf0cce3bfb300a2ba720feab650fed82751724ae967d8f7"
+      },
+      "standardize": false
+    },
+    "sparse_00": {
+      "group": "sparse",
+      "n": 7,
+      "p": 1,
+      "sha256": {
+        "decimal.json": "d4846587eec369cc67aa861a778d2138206c5b0ac9374838514a219ad1acccc8",
+        "input.json": "ae21a6e49ccd795109f735a0abcaee6feac3b2cb2324a9a60186265c2834691d",
+        "rust.json": "7472de2c33ea348da53e2c9c9fb799c3f11c1af13f25934558d1b066c1195110"
+      },
+      "standardize": true
+    },
+    "sparse_01": {
+      "group": "sparse",
+      "n": 13,
+      "p": 2,
+      "sha256": {
+        "decimal.json": "774180b571c546f513794bc8ab0cd137ec0786ae593b173fc6348f30094902ad",
+        "input.json": "bf0bbbca505dbfaf05ee1bb17696dd811d0fb58269632e02344fd0609b68c687",
+        "rust.json": "e45d53860aca647998de96ae6304066e5f1f637adc12f6c0bce40edd0c624944"
+      },
+      "standardize": false
+    },
+    "sparse_02": {
+      "group": "sparse",
+      "n": 19,
+      "p": 5,
+      "sha256": {
+        "decimal.json": "d88d71391d4a827dca16a589d4510301601725f816fef88e1208e298565757a2",
+        "input.json": "1a2b7724d9b6b903282d2997eae9dde250256a06e3e1634d1588d1d479c7b761",
+        "rust.json": "0c96bb69ef85511e8537b6fee46ea41ce9746fb31af0e038d3ce138365139591"
+      },
+      "standardize": true
+    },
+    "sparse_03": {
+      "group": "sparse",
+      "n": 29,
+      "p": 7,
+      "sha256": {
+        "decimal.json": "3aeca9983d66abde3404f7a3ab0a2a9a69ba917bd53eaac30ebb1dc151f49663",
+        "input.json": "a07918bfea69b2efc50bee2febb2e9b7ce52191b61c9d14d172968a9c85230fe",
+        "rust.json": "afc37fce71d6c98bd58ba1a08ccd151808617e40da10db43bcb52a705db23543"
+      },
+      "standardize": false
+    },
+    "sparse_04": {
+      "group": "sparse",
+      "n": 37,
+      "p": 11,
+      "sha256": {
+        "decimal.json": "ea7d97e00fd514e606dccfe5198d7d22178d5a8439bed95996c53005622f1d3f",
+        "input.json": "85d705892d62a3509405cb6c5ac0a4eec1e52312bb15d2b7154b6ba024b59d32",
+        "rust.json": "91275cc2d87488ff3dd1abb75ad4f39eeb1c3be2419f53b7ee30a2903e361477"
+      },
+      "standardize": true
+    },
+    "sparse_05": {
+      "group": "sparse",
+      "n": 48,
+      "p": 13,
+      "sha256": {
+        "decimal.json": "a0dc997029d20969c2b766f2f31c540a3ebd77c479df3489ee3a8166cd66f35b",
+        "input.json": "7c0454614dd8ebc98b6a8d676fd723eaf901e516beabcf913af37097734f6cd8",
+        "rust.json": "22a011cfca1246512ce53cfb02714eac967c05d75fd1612dc1607b38d8498117"
+      },
+      "standardize": false
+    },
+    "sparse_06": {
+      "group": "sparse",
+      "n": 61,
+      "p": 17,
+      "sha256": {
+        "decimal.json": "56482131dbaba93958fc0a8801e0faaea89723a3b1d75004b207c907b46f3148",
+        "input.json": "761821d7c8e049b1eb5cbf54f180ab782b288305a9e36c883f56caf2bab4b4bf",
+        "rust.json": "3b8fa6e257143f8af0cab8833cb39462d5fe2bffb771fa48d0f87ed16810bcb9"
+      },
+      "standardize": true
+    },
+    "sparse_07": {
+      "group": "sparse",
+      "n": 76,
+      "p": 3,
+      "sha256": {
+        "decimal.json": "9d4735a7edf77b4e578db8cdb97d9e0db6bda9e4d5cd6bc7f6f32b6549fc27c9",
+        "input.json": "d3c3cc591b29fa41467437d2cc905c46f21765d8f089e5086aca686100fbc032",
+        "rust.json": "a17b23f3b02cb8a1a3f208fc30b9a3f56338844eaef6cbd5a7705b2d0f100452"
+      },
+      "standardize": false
+    }
+  },
+  "experiment_id": "corrected-weighted-lambda-20261111-v1",
+  "mathematical_contract": "docs/CORRECTED_WEIGHTED_LAMBDA_MATHEMATICAL_CONTRACT_2026_11_11.md",
+  "mathworks_release": "R2026b",
+  "patient_data": false,
+  "precommitted_protocol": true,
+  "private_generator_verifier_commit": "42b0eac",
+  "public_mathworks_runner_commit": "d1b76ee",
+  "random_seed": 20261111047,
+  "tolerance_abs": "5E-12",
+  "tolerance_rel": "5E-11"
+}
