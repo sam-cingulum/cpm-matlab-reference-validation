@@ -1,0 +1,59 @@
+name: Genuine MATLAB R2026b | Yale003 fourth source operand and binary64 parity
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fourth-yale003:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail closed on missing or altered prospective fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,pathlib
+          root=pathlib.Path("Cingulum_Yale_MATLAB_Online/yale003_fourth_prospective")
+          m=json.loads((root/"manifest.json").read_text())
+          assert m["experiment_id"]=="yale003-source-order-fourth-20261111-v1"
+          assert m["source_revision"]=="b903f83b476b745417b1f062f6777f5ffe118f1a"
+          assert m["matlab_release"]=="R2026b"
+          assert m["source_operand_order_commit"]=="bda96ff"
+          assert m["original_source_strict_absolute_tolerance"]=="1e-10"
+          assert m["separate_full_output_bitwise_gate"] and m["fixtures_unseen_before_matlab"]
+          assert not m["patient_data"] and len(m["cases"])==48
+          for name, metadata in m["cases"].items():
+              for fn,digest in metadata["sha256"].items():
+                  assert hashlib.sha256((root/name/fn).read_bytes()).hexdigest()==digest,(name,fn)
+          print("YALE003_FOURTH_PREREGISTERED_SHA256_AND_THRESHOLDS_PASS")
+          print("FROZEN_MANIFEST_SHA256",hashlib.sha256((root/"manifest.json").read_bytes()).hexdigest())
+          PY
+      - name: Checkout original Yale source without alteration
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install real MathWorks MATLAB R2026b on Linux
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute original Yale source and complete binary64 intermediate probes
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_yale003_fourth_source_order_prospective;
+      - name: Archive every genuine MATLAB output, including failed gates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-yale003-fourth-source-order-20261111
+          path: Cingulum_Yale_MATLAB_Online/yale003_fourth_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
