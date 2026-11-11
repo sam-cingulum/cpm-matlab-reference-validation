@@ -1,0 +1,90 @@
+{
+  "policy": "scientifically_corrected_canonical",
+  "feature_count": 10,
+  "row_count": 5,
+  "column_count": 5,
+  "subject_count": 3,
+  "first_subject_symmetric": true,
+  "feature_coordinates_row_col": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      3,
+      4
+    ]
+  ],
+  "features_by_subject": [
+    [
+      0.5,
+      0.5625,
+      0.625,
+      0.6875,
+      0.6875,
+      0.75,
+      0.8125,
+      0.875,
+      0.9375,
+      1.0625
+    ],
+    [
+      0.53125,
+      0.59375,
+      0.65625,
+      0.71875,
+      0.71875,
+      0.78125,
+      0.84375,
+      0.90625,
+      0.96875,
+      1.09375
+    ],
+    [
+      0.5625,
+      0.625,
+      0.6875,
+      0.75,
+      0.75,
+      0.8125,
+      0.875,
+      0.9375,
+      1.0,
+      1.125
+    ]
+  ],
+  "original_function": "cpm_check_errors.m",
+  "scientific_warning": "Corrected canonical row-major upper-triangle order. Every subject              must be square, finite and exactly symmetric. This is NOT byte/order              compatible with original Yale MATLAB triu flattening."
+}

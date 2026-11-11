@@ -1,0 +1,89 @@
+{
+  "cases": {
+    "five_symmetric_all": {
+      "cols": 5,
+      "corrected_expected_accept": true,
+      "first_subject_symmetric": true,
+      "rows": 5,
+      "sha256": {
+        "matlab_input.json": "ebc6b0773c6eb7b721aeaa687e5694c0ed9dd69a7a05ace74f3d7c7a56e918f8",
+        "rust_corrected.json": "90ace697b898a651a96bcbf707c256ae0b60ac1337c440c100b467793aa95474",
+        "rust_input.json": "323038ec78b1c25ccc0453fb288806880aa85f5670a0a58b4ebbf688d4f6e8ad",
+        "rust_source.json": "70d111c9a099d7b94b4077242c93f44937a61941ae08123493680056e87fce06"
+      },
+      "subject_count": 3
+    },
+    "four_asymmetric_first_later_symmetric": {
+      "cols": 4,
+      "corrected_expected_accept": false,
+      "first_subject_symmetric": false,
+      "rows": 4,
+      "sha256": {
+        "matlab_input.json": "353a517f1f265f1ddc26f6a9ac08c61e229ad69ffc2367e7c9f54cb6617067a0",
+        "rust_input.json": "f953d2eafafd23d1239228694d09e9b812836aba34e7f69035752a7d2f433a63",
+        "rust_source.json": "6844e9b7a6d5fc4d477875c85f3eee551a9e9052bd752c27802cb677af96535a"
+      },
+      "subject_count": 3
+    },
+    "four_symmetric_all": {
+      "cols": 4,
+      "corrected_expected_accept": true,
+      "first_subject_symmetric": true,
+      "rows": 4,
+      "sha256": {
+        "matlab_input.json": "a591799ab8c9998918744601beeddc950dca7cd8c9cc67c1e0270e4fa501ce75",
+        "rust_corrected.json": "a14a3bcb2d649b2135d4cd33ca65869016c1a7f3f8f7c184fdd1cff4ce5e5ca8",
+        "rust_input.json": "06591d515c8c086feceaee1dc9efc4f936386838bb1ca13fbf795079ec29f632",
+        "rust_source.json": "62ca2e18c35ac2ff776d8d7b142ea19ff229d78c246abba90bb2c76560419bc0"
+      },
+      "subject_count": 4
+    },
+    "four_symmetric_first_later_asymmetric": {
+      "cols": 4,
+      "corrected_expected_accept": false,
+      "first_subject_symmetric": true,
+      "rows": 4,
+      "sha256": {
+        "matlab_input.json": "2350d2d68fed03ceb8c41256d473a6f91eb3a5b965d8345d0068f86dbb5bf1d5",
+        "rust_input.json": "f780551bfb1a075f35165cf8f0c9e99afa63f7c6bba52b3af42593868a118d55",
+        "rust_source.json": "17d178b500e11716c939bd9908e44e4689145852943874c2c8a6a7e9ae81c69f"
+      },
+      "subject_count": 3
+    },
+    "six_symmetric_dyadic_scales": {
+      "cols": 6,
+      "corrected_expected_accept": true,
+      "first_subject_symmetric": true,
+      "rows": 6,
+      "sha256": {
+        "matlab_input.json": "952803bfb4ce8ceebbcbc9c65bc49a597dc68d1eb3bf060114fc188a51d5c50c",
+        "rust_corrected.json": "d9e8a392eebd208e7ad3c93b6fd7090bf8ad7612683fed53dc00b0462646b4ad",
+        "rust_input.json": "d64786d790a945eff251e2dd07624c5108ebb57d06ff1292ea78a70ef196958d",
+        "rust_source.json": "039a9136d7da02437408917a9432c52312c6e84d089c4932b0838a7de68d6644"
+      },
+      "subject_count": 4
+    },
+    "three_by_four_rectangular": {
+      "cols": 4,
+      "corrected_expected_accept": false,
+      "first_subject_symmetric": false,
+      "rows": 3,
+      "sha256": {
+        "matlab_input.json": "195afddca58fe22aaf3958cd6f65c729adcb59596c41e99fc46a45a86fdb7559",
+        "rust_input.json": "fc845098fee57b47393c57482e1f97941f925b2453ab848d8f45cfe4d7a649ec",
+        "rust_source.json": "1a296a0310d33cc555e6b61cd94f2a0e688e4a48fe90b918e0439af90892c2e6"
+      },
+      "subject_count": 3
+    }
+  },
+  "experiment_id": "yale-cpm-3d-original-preprocessing-20261111-v1",
+  "matlab_release": "R2026b",
+  "original_source": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "private_implementation_precommit": "209ee44",
+  "public_original_matlab_runner_precommit": "9cd61cf",
+  "rust_binary_sha256": "bceb3fd05af1f33a3919966708a3014d10730037b433fe8e9fe2ac652ef954aa",
+  "scientific_correction_independent": true,
+  "source_fitting_not_executed_before_freeze": true,
+  "strict_full_output_hex_equal": true,
+  "synthetic_only": true
+}
