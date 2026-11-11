@@ -1,0 +1,8 @@
+{
+  "mode": "sparse",
+  "rows": 41,
+  "features": 13,
+  "alpha": 0.75,
+  "standardize": true,
+  "weights_pre_normalized": true
+}

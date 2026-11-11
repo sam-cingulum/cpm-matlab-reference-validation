@@ -1,0 +1,8 @@
+{
+  "mode": "outlier",
+  "rows": 67,
+  "features": 21,
+  "alpha": 0.4,
+  "standardize": false,
+  "weights_pre_normalized": true
+}

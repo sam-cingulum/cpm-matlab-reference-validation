@@ -1,0 +1,8 @@
+{
+  "mode": "clusters",
+  "rows": 61,
+  "features": 29,
+  "alpha": 0.5,
+  "standardize": true,
+  "weights_pre_normalized": true
+}

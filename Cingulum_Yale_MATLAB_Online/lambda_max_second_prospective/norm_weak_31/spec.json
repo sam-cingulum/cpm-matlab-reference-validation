@@ -1,0 +1,8 @@
+{
+  "mode": "ordinary",
+  "rows": 31,
+  "features": 8,
+  "alpha": 0.3,
+  "standardize": true,
+  "weights_pre_normalized": true
+}

@@ -1,0 +1,8 @@
+{
+  "mode": "skew",
+  "rows": 53,
+  "features": 22,
+  "alpha": 0.1,
+  "standardize": true,
+  "weights_pre_normalized": true
+}

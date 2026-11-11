@@ -1,0 +1,8 @@
+{
+  "mode": "nonunit",
+  "rows": 37,
+  "features": 17,
+  "alpha": 0.35,
+  "standardize": true,
+  "weights_pre_normalized": false
+}

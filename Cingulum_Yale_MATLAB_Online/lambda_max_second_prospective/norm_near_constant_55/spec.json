@@ -1,0 +1,8 @@
+{
+  "mode": "near_constant",
+  "rows": 55,
+  "features": 17,
+  "alpha": 0.12,
+  "standardize": true,
+  "weights_pre_normalized": true
+}

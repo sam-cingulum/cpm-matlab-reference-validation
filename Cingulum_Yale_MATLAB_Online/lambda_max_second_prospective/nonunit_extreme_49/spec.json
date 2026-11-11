@@ -1,0 +1,8 @@
+{
+  "mode": "extreme",
+  "rows": 49,
+  "features": 20,
+  "alpha": 0.2,
+  "standardize": true,
+  "weights_pre_normalized": false
+}

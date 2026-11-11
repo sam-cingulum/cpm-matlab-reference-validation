@@ -1,0 +1,254 @@
+{
+  "purpose": "YALE003_R2026B_UNSEEN_WEIGHTED_CONTRACT_AND_STRICT_SOURCE_PARITY",
+  "pinned_source": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "matlab_release": "R2026b",
+  "freeze_seed": 20261111037,
+  "tolerance_absolute": 1e-10,
+  "patient_data": false,
+  "source_runner_precommitted": true,
+  "correction_changes_original_source": false,
+  "generator_sha256": "d549a1faeb1eacb6a481de37a59c35211956fd65116869684fd23c204a153deb",
+  "rust_semantics_sha256": "3c81204ebe36a9e359c9fc9b1faebe591b184453fd5b7faa9c2331a15e44e4db",
+  "cases": {
+    "norm_weak_31": {
+      "spec": {
+        "mode": "ordinary",
+        "rows": 31,
+        "features": 8,
+        "alpha": 0.3,
+        "standardize": true,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "b39dcf2d52be6e76464d2232203b71a0ae7505e3ccbddaae7401914abc22a3aa",
+        "spec.json": "b88858fa2c97afe8fbd452ed7f51fb88b48ecd4dc2724d7a5b857df10566cb8c",
+        "rust.json": "31b998ae768c523dd6ac0cf68b6241f8382f8c06beccd91799afb9d2344358a3"
+      }
+    },
+    "norm_strong_47": {
+      "spec": {
+        "mode": "ordinary",
+        "rows": 47,
+        "features": 19,
+        "alpha": 0.45,
+        "standardize": true,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "d4d3e1a4d791a857914f481b93f6ec2f2e270ef860c4f91362d2dd8f77187eb6",
+        "spec.json": "3a7df8c1861af61ac607867cfd1fab31213dd692a21b9ce8b06a8a4ac03078b6",
+        "rust.json": "3bd1be6fbe3e13485cfc6eaa0fb929af64acc2f1702a9ae88534e2c91715f396"
+      }
+    },
+    "norm_sparse_41": {
+      "spec": {
+        "mode": "sparse",
+        "rows": 41,
+        "features": 13,
+        "alpha": 0.75,
+        "standardize": true,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "cc0e411b1a3059f2d6f36dbbc3db20efb402fff78384dff3a692be305e6fc119",
+        "spec.json": "328886b7af1ec3a814b129944470405c9a5179355af40608a2859ba16aba4f7a",
+        "rust.json": "1e3387092e305fe65e091dbd3daf0b4efc8c7783fdc8b2453e8902ff5a56e51b"
+      }
+    },
+    "norm_skew_53": {
+      "spec": {
+        "mode": "skew",
+        "rows": 53,
+        "features": 22,
+        "alpha": 0.1,
+        "standardize": true,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "b7a72d897fa51815475bfbd0d655b74f1de0762b71e030b8b164d9430ae4e501",
+        "spec.json": "49fff858c19872d486621f094b7d325a3ee27ae58d02523cac4e4b5ad905cc53",
+        "rust.json": "0622a2cebaeb18a627fb8b3dbd0ff7a19338215fe36ba061d7df87a3b8bc20ea"
+      }
+    },
+    "norm_constant_37": {
+      "spec": {
+        "mode": "constant",
+        "rows": 37,
+        "features": 11,
+        "alpha": 0.9,
+        "standardize": true,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "4b1c81fa630668ec6f0e12d1e70553c0d2bc3d6fd543e0bcb9cb80368c2323c9",
+        "spec.json": "5c0f5b83af98b151ec88da1125901d7b11ca144d209e5b7536a075a33e28a2f9",
+        "rust.json": "366ee97fbf562251bbec2c421054046d93b3e2b35859bc79e15ac9b1c26048ed"
+      }
+    },
+    "norm_unstandardized_43": {
+      "spec": {
+        "mode": "ordinary",
+        "rows": 43,
+        "features": 12,
+        "alpha": 0.6,
+        "standardize": false,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "9d15e8566da1eaa5e75ba6de100364e8e3a3830f7c942b51468a0def90b4d9c2",
+        "spec.json": "6b5cd0d8c0eaee48b85ff8f30913d2d0dad63dc489f715d038d202d9f6ecc72c",
+        "rust.json": "6bb0a39bb6270969ca19a32ac03eeb2fabcfe285a0947959512078a67c9174d2"
+      }
+    },
+    "norm_large_73": {
+      "spec": {
+        "mode": "ordinary",
+        "rows": 73,
+        "features": 34,
+        "alpha": 0.03,
+        "standardize": true,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "ae7168e78c422faafaf68fd826729b15cb0f84416f30528e1c45d1a949cfcc97",
+        "spec.json": "d3dcbad6cb7504df8b2ada5ebfc8767b85bfe3e8e3275cb28d4dd17dda692e4f",
+        "rust.json": "1985e5cdcc28204c9ea58f5c7546f04d2ba367fd1ed8d1fbb2f8ac81b0d03364"
+      }
+    },
+    "norm_tiny_alpha_59": {
+      "spec": {
+        "mode": "ordinary",
+        "rows": 59,
+        "features": 26,
+        "alpha": 0.001,
+        "standardize": true,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "702f4332cc14b5ecc5a04ba232191db03ecf39139b2c04b5a0d08bfb3d870b9e",
+        "spec.json": "01aea87ee481db239fc0d880d86418501f355442d06114d548345573d575a86a",
+        "rust.json": "ac881620cbe9f722ece214c436faad85406c15ece243a34c95e3dbd69490c58d"
+      }
+    },
+    "norm_outliers_67": {
+      "spec": {
+        "mode": "outlier",
+        "rows": 67,
+        "features": 21,
+        "alpha": 0.4,
+        "standardize": false,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "8c6f9ad5aa54e97910a01d7fb28bc716b5a96ea6a04729962be281a44c0d9119",
+        "spec.json": "3329c83fb101c0217684ae2a7b597cc006f1c786720614d477387b5af538b42d",
+        "rust.json": "896812c5779d54b36473bc1f3fd671be0e4c3669eb2663e0ae7c9146ef263c61"
+      }
+    },
+    "norm_single_feature_29": {
+      "spec": {
+        "mode": "ordinary",
+        "rows": 29,
+        "features": 1,
+        "alpha": 0.85,
+        "standardize": true,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "e29d423b2be70d5af0659838077cb6af98af0ece67e01fa78d5ff359c0e8869a",
+        "spec.json": "fb7c2284b663c6b980a2c9abf2c969d83c9a29b72b212a8c607e2f6cbd0162a3",
+        "rust.json": "c2008cee9267c9391292c45dcd5bd2b944e793d00c469c2afdfa6d648f24c7c0"
+      }
+    },
+    "nonunit_ordinary_37": {
+      "spec": {
+        "mode": "nonunit",
+        "rows": 37,
+        "features": 17,
+        "alpha": 0.35,
+        "standardize": true,
+        "weights_pre_normalized": false
+      },
+      "sha256": {
+        "input.json": "e330d2f86b778f054edafea1545c1eff6c125b29b737a530e4615774059edea3",
+        "spec.json": "78e1f88c57af7a1ff7c665ca40da0a04dd1ce4e4de658328467a4b8c2833f77c",
+        "rust.json": "db12e7c1abacc32871855b51f2d45e13fcdc91f8ee0fe719e7ce96f5017cf774"
+      }
+    },
+    "nonunit_extreme_49": {
+      "spec": {
+        "mode": "extreme",
+        "rows": 49,
+        "features": 20,
+        "alpha": 0.2,
+        "standardize": true,
+        "weights_pre_normalized": false
+      },
+      "sha256": {
+        "input.json": "bef174c4fe3aa6ea274267fed56c56f305eda707dc0d5915de2fc944620059eb",
+        "spec.json": "936afa11736dfe96e4bc3caa0bce63c9170915c195be145af1fea245d5db0221",
+        "rust.json": "cd66d0b838fffec91897f3a8763ea4fe130c2a66de970e084c378b30f210af56"
+      }
+    },
+    "nonunit_unstandardized_45": {
+      "spec": {
+        "mode": "nonunit",
+        "rows": 45,
+        "features": 13,
+        "alpha": 0.65,
+        "standardize": false,
+        "weights_pre_normalized": false
+      },
+      "sha256": {
+        "input.json": "f8ef68cd743f0bab73457de378e1d2cabcd1b91b258b8de1b86d9d9a58fc632d",
+        "spec.json": "d69e3a471726cdded696aeeb9eda3f4cb6354445c37813cc7f4b580c84b7a5c1",
+        "rust.json": "2cf9c75e62f8a443d2a65e454763a08ca6c4b7a663deb3e3baa1a557b9aec0a4"
+      }
+    },
+    "norm_two_clusters_61": {
+      "spec": {
+        "mode": "clusters",
+        "rows": 61,
+        "features": 29,
+        "alpha": 0.5,
+        "standardize": true,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "c9551f53bdcf9cad9e0e35cbc270f19a21ae2d424b02e0871793f4a4570bbaf8",
+        "spec.json": "1cea492bbb56e7f6bb890c89bf40d47c5335291818cd37e2f40780e82731d0a0",
+        "rust.json": "72101d26bfd9700c07b3a2418a70c1e9fbf4b3d0a1b03d733fad963c0905d3d3"
+      }
+    },
+    "norm_near_constant_55": {
+      "spec": {
+        "mode": "near_constant",
+        "rows": 55,
+        "features": 17,
+        "alpha": 0.12,
+        "standardize": true,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "c7d0141ac99fc209fe5aa3d8698111bb6751b3298be5fede981e79caee3c98bb",
+        "spec.json": "2df4c9a5f3ec9a0f5b6f82ad3e113742a2ac61e6e6376091fd96654d3c312c2c",
+        "rust.json": "16fc2818567eb6c497dc25b6c76628d964a6930a5bc8a77c6d263455fb517bd2"
+      }
+    },
+    "norm_unbalanced_79": {
+      "spec": {
+        "mode": "skew",
+        "rows": 79,
+        "features": 37,
+        "alpha": 0.99,
+        "standardize": false,
+        "weights_pre_normalized": true
+      },
+      "sha256": {
+        "input.json": "727d52a1bea446df0698df8872a974536a8abc4d29076efdf67972a787774ad9",
+        "spec.json": "eec9bde42e271dae22479659ab1703a83ea30ec464ed3cc5a5a0864bdc90990a",
+        "rust.json": "772bc2744fb4fe87271cf3d33688ac7ba1f3ef3107717f708687f5237492a791"
+      }
+    }
+  }
+}
