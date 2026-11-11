@@ -1,0 +1,65 @@
+name: Genuine MATLAB R2026b | source binary64 self-repeatability and pinned CPU
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  repeat-mathworks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: ordinary-runner
+            cbwr: ''
+            mklthreads: ''
+            ompthreads: ''
+          - profile: reproducible-mkl
+            cbwr: 'COMPATIBLE'
+            mklthreads: '1'
+            ompthreads: '1'
+    env:
+      MKL_CBWR: ${{ matrix.cbwr }}
+      MKL_NUM_THREADS: ${{ matrix.mklthreads }}
+      OMP_NUM_THREADS: ${{ matrix.ompthreads }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify original frozen input and preview immutable source scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          base=Path('Cingulum_Yale_MATLAB_Online/robustfit_source_fd_prospective_v1')
+          m=json.loads((base/'manifest.json').read_text())
+          d=json.loads((base/'input.json').read_text())
+          s=lambda path:hashlib.sha256(path.read_bytes()).hexdigest()
+          assert m['experiment_id']=='mathworks-robustfit-source-fd-prospective-20261111-v1'
+          assert m['source_not_run'] and m['samples']==24
+          assert s(base/'input.json')==m['input_sha256']
+          assert len(d['samples'])==24
+          print('FROZEN_UNMODIFIED_FITS_VERIFIED_INPUT_SHA256',m['input_sha256'])
+          PY
+          echo 'CPU:'
+          grep -m 1 'model name' /proc/cpuinfo || true
+          echo 'PROFILE: ${{ matrix.profile }}'
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Run original robustfit 3x in same MATLAB process, default and single thread
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_robustfit_repeatability_v1;
+      - name: Seal unmodified original MathWorks result from this runner
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: matlab-r2026b-binary64-repeats-${{ matrix.profile }}
+          path: Cingulum_Yale_MATLAB_Online/robustfit_repeatability_v1/*.json
+          if-no-files-found: error
+          retention-days: 90
