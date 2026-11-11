@@ -39,6 +39,18 @@ for i=1:numel(lines)
       i,strjoin(ids,','),ops);
  end
 end
+% Line-local numeric and variable fingerprints only. Do not export source.
+% This isolates the finite-difference perturbation and correction pathway.
+for i=25:min(62,numel(lines))
+ line=lines{i};
+ if isempty(strtrim(line)) || startsWith(strtrim(line),'%'),continue;end
+ words=unique(regexp(line,'[A-Za-z]\w*','match'));
+ literals=regexp(line,'(?<![A-Za-z0-9_])(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?','match');
+ op=[sum(line=='*'),sum(line=='/'),sum(line=='+'),sum(line=='-'),...
+    sum(line=='^'),sum(line=='.'),sum(line=='='),sum(line=='('),sum(line==')')];
+ fprintf('FINITE_DIFFERENCE_SOURCE_META_LINE=%d IDENTIFIERS=%s NUMERIC_LITERALS=%s OPS=%d,%d,%d,%d,%d,%d,%d,%d,%d\n',...
+    i,strjoin(words,','),strjoin(literals,','),op);
+end
 % Return only existence/line counts for helpers it mentions, not source.
 folder=fileparts(helper);
 d=dir(fullfile(folder,'statrobust*.m'));
