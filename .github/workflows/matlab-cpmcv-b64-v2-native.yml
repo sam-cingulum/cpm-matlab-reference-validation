@@ -1,0 +1,51 @@
+name: Genuine MATLAB R2026b B64-v2 | cpm_cv full models native randperm only
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  randperm-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify prospectively frozen eight synthetic source inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          root=pathlib.Path("Cingulum_Yale_MATLAB_Online/cpmcv_b64_v2")
+          m=json.loads((root/"manifest.json").read_text())
+          assert m["experiment_id"]=="yale-cpmcv-b64-parser-20261111-v2"
+          assert m["source_revision"]=="b903f83b476b745417b1f062f6777f5ffe118f1a"
+          assert m["mathworks_release"]=="R2026b"
+          assert m["coefficient_abs_tolerance"]=="1e-9"
+          assert m["prediction_abs_tolerance"]=="1e-8"
+          assert m["source_self_reconstruction_abs_tolerance"]=="1e-9"
+          assert m["synthetic_only"] and m["original_source_not_executed"]
+          assert len(m["cases"])==8
+          for name,meta in m["cases"].items():
+              for filename,digest in meta["sha256"].items():
+                  assert hashlib.sha256((root/name/filename).read_bytes()).hexdigest()==digest,(name,filename)
+          print("CPMCV_FULL_INPUTS_FROZEN_SHA256_PASS")
+          print("FROZEN_INPUT_MANIFEST_SHA256",hashlib.sha256((root/"manifest.json").read_bytes()).hexdigest())
+          PY
+      - name: Install authentic MathWorks MATLAB R2026b
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+      - name: Run randperm only, no original Yale fitting or model training
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_cpmcv_full_native_randperm_only_b64_v2;
+      - name: Preserve original native permutation artifacts even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-b64-v2-cpmcv-native-randperm-only-20261111
+          path: Cingulum_Yale_MATLAB_Online/cpmcv_b64_v2_native_results/*.json
+          if-no-files-found: warn
+          retention-days: 90

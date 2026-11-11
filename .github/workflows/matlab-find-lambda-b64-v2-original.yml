@@ -1,0 +1,94 @@
+name: Genuine MATLAB R2026b B64-v2 | Original Yale find_lambda full inner-fold parity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  yale-nested-lambda-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen prospectively unseen source inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,hashlib,json
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/find_lambda_b64_v2')
+          m=json.loads((root/'manifest.json').read_text())
+          assert m['original_yale_revision']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert m['release']=='R2026b' and m['patient_data_included'] is False
+          assert m['original_source_unmodified']
+          assert m['native_matlab_crossvalind_labels_retained']
+          assert m['test_all_inner_fold_coefficients']
+          assert m['test_all_edge_masks'] and m['test_full_mse_fold_matrix']
+          assert m['selected_lambda_must_match_exact']
+          assert m['coefficients_absolute_tolerance']==1e-9
+          assert m['intercept_absolute_tolerance']==1e-9
+          assert m['predictions_absolute_tolerance']==1e-6
+          assert m['mse_absolute_tolerance']==1e-6
+          assert len(m['cases'])==8
+          for case,item in m['cases'].items():
+              for name,digest in item['sha256'].items():
+                  p=root/case/name
+                  assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==digest
+              inp=json.loads((root/case/'input.json').read_text())
+              assert inp['case_name']==case
+              assert inp['k']==item['spec']['k']
+              assert len(inp['dataset']['observations'])==item['spec']['n']
+          forecast=json.loads((root/'conditional_forecast_manifest.json').read_text())
+          assert forecast['experiment_id']=='yale-find-lambda-b64-parser-20261111-v2'
+          assert forecast['original_yale_sha']==m['original_yale_revision']
+          assert forecast['release']=='R2026b' and forecast['patient_data'] is False
+          assert forecast['original_source_has_not_been_executed_at_forecast_freeze']
+          assert forecast['original_source_thresholds_unchanged']
+          assert forecast['base_input_manifest_sha256']==hashlib.sha256((root/'manifest.json').read_bytes()).hexdigest()
+          assert set(forecast['cases'])==set(m['cases'])
+          for case,metadata in forecast['cases'].items():
+              for filename,digest in metadata['sha256'].items():
+                  p=root/case/filename
+                  assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==digest, (case,filename)
+              original=json.loads((root/case/'native_fold_labels.json').read_text())
+              assert original['runtime']=='MathWorks MATLAB' and original['release']=='2026b'
+              assert original['source_not_run'] and original['model_fit_not_run']
+              assert original['complete_partition'] and original['input_sha256']==m['cases'][case]['sha256']['input.json']
+              rust=json.loads((root/case/'rust.json').read_text())
+              assert rust['source_method']=='find_lambda.m'
+              assert rust['matlab_crossvalind_labels']==original['labels']
+          print('FROZEN_TWO_STAGE_YALE_FIND_LAMBDA_8_ACTUAL_RUST_FORECASTS_SHA256_PASS')
+          PY
+
+      - name: Fetch exactly pinned unmodified original Yale source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+
+      - name: Install genuine MathWorks MATLAB R2026b and Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Bioinformatics_Toolbox Statistics_and_Machine_Learning_Toolbox
+
+      - name: Execute original find_lambda and audit every original fold model
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_find_lambda_b64_v2;
+
+      - name: Preserve original MATLAB source evidence even on numerical failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-b64-v2-yale-find-lambda-prospective
+          path: Cingulum_Yale_MATLAB_Online/find_lambda_b64_v2_original_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
