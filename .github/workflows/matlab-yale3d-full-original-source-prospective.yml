@@ -1,0 +1,81 @@
+name: Genuine MATLAB R2026b | original 3D Yale cpm_main full pipeline
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-original-cpm-main:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify immutable original synthetic cohort, native MATLAB and frozen actual Rust model artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,pathlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/yale3d_full_pipeline_prospective')
+          m=json.loads((root/'manifest.json').read_text())
+          f=json.loads((root/'conditional_forecast_manifest.json').read_text())
+          assert m['experiment_id']==f['experiment_id']=='yale-3d-cpm-main-full-pipeline-20261111-v1'
+          assert m['source_revision']==f['source_revision']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert m['mathworks_release']=='R2026b' and m['synthetic_only'] and not m['patient_data']
+          assert m['original_source_not_executed'] and f['original_source_not_executed']
+          assert f['source_predictions_frozen_before_original_matlab']
+          assert f['base_manifest_sha256']==hashlib.sha256((root/'manifest.json').read_bytes()).hexdigest()
+          assert len(m['cases'])==len(f['cases'])==8 and set(m['cases'])==set(f['cases'])
+          expected={'source_feature_exact_binary64':True,'edge_mask_exact':True,'fold_indices_exact':True,'zero_placeholder_exact':True,
+                    'edge_r_absolute':1e-10,'edge_p_absolute':1e-8,'summary_absolute':1e-9,'coefficient_absolute':1e-9,
+                    'prediction_absolute':1e-8,'performance_r_absolute':1e-9,'performance_p_absolute':1e-8,
+                    'source_self_reconstruction_absolute':1e-9}
+          assert m['acceptance']==expected
+          for name,case in m['cases'].items():
+              for filename,sha in case['sha256'].items():
+                  assert hashlib.sha256((root/name/filename).read_bytes()).hexdigest()==sha,(name,filename)
+              for filename,sha in f['cases'][name]['sha256'].items():
+                  assert hashlib.sha256((root/name/filename).read_bytes()).hexdigest()==sha,(name,filename)
+              native=json.loads((root/name/'native_randperm.json').read_text())
+              rust=json.loads((root/name/'rust_source.json').read_text())
+              corrected=json.loads((root/name/'rust_corrected.json').read_text())
+              assert native['runtime']=='MathWorks MATLAB' and native['source_not_run'] and native['model_fit_not_run']
+              assert rust['policy']=='yale_source_compatibility'
+              assert corrected['policy']=='scientifically_corrected_canonical' and corrected['complete_partition']
+          print('YALE3D_FULL_FROZEN_RUST_FORECASTS_SHA256_PASS')
+          PY
+      - name: Fetch exact pinned Yale upstream source and verify file fingerprints
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+          python3 - <<'PY'
+          import json,hashlib,pathlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online')
+          m=json.loads((root/'yale3d_full_pipeline_prospective/manifest.json').read_text())
+          for name,digest in m['original_source_function_sha256'].items():
+              path=root/'upstream/yale-cpm/matlab/func'/name
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==digest,name
+          print('YALE3D_PINNED_SOURCE_FILE_SHA256_PASS')
+          PY
+      - name: Install genuine MathWorks MATLAB R2026b Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute unchanged original 3D cpm_main source and independent original fold reconstruction
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_yale3d_full_original_cpm_main;
+      - name: Preserve every genuine original source output even if MATLAB run fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yale3d-full-original-cpm-main-r2026b-20261111
+          path: Cingulum_Yale_MATLAB_Online/yale3d_full_original_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
