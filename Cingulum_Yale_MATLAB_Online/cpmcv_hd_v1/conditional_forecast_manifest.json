@@ -1,0 +1,64 @@
+{
+  "base_manifest_sha256": "002eecc331e4fda4f290b4839aa308985d61e020ac38c616ffc3494d0d0980be",
+  "cases": {
+    "hd_ill_conditioned_512_p528_n59_seed168617": {
+      "expected_omitted": 5,
+      "k": 6,
+      "n": 59,
+      "sha256": {
+        "input.json": "5354354870e602755dd76dbac4b56fdbaef481ca6a942fb1849913ea27ab6284",
+        "native_randperm.json": "c3cb439bc5bd57d8e704f2c243ea97d02d006bcfa04217e11ea0e3a60274675b",
+        "rust_corrected.json": "3d52c24fd581008c424a0a964fc7ce7278b313815f66e6de8949fe08991401cc",
+        "rust_source.json": "951ea59671a43da3390330fd7a542f595258ae01b4517be3ad34537da19c0017",
+        "source_request.json": "ad2cbdc0e3631e769e35e1f996156d89ed5a248d7b282ed474eed93f0d5d30d7"
+      }
+    },
+    "hd_wide_1035_p1035_n63_seed168607": {
+      "expected_omitted": 3,
+      "k": 6,
+      "n": 63,
+      "sha256": {
+        "input.json": "52771645d06f793a9a485da2cff1be7991a65925a301b37d382694b92b068305",
+        "native_randperm.json": "8b61e9512e76a039fbfed242f749c79d6adf69872e945a9a22e4be297281a4f6",
+        "rust_corrected.json": "ac28de02f10f8b5d08f16bb7dfd212154ec80b10794e1fed3332eab84bb211f4",
+        "rust_source.json": "3090152700bbf5f3b51c233a145af7d290cf6492b69a7e82c33aa6b1ae2d09ba",
+        "source_request.json": "fa711d1ec0cf4203cb96165d19a9210ad32dcb6d3138c732eb04184c813a6db3"
+      }
+    },
+    "hd_wide_300_p300_n45_seed168601": {
+      "expected_omitted": 0,
+      "k": 5,
+      "n": 45,
+      "sha256": {
+        "input.json": "6304742e5bde5d39ed689f94e4352514d5935b5fc66ed26ca0deadaca6debcc2",
+        "native_randperm.json": "54a189ff33ea86fba5611662b005810c0428a0a7c7068875de6d3c2b9a6572c5",
+        "rust_corrected.json": "160f7344d72c776b85efe4f185cbb5970649640b5a318bfb633aa845d18a1ef9",
+        "rust_source.json": "be74aedce66c41790dff184e96c6e00537aa5ebe4f009ebd5987a20fdc35fca7",
+        "source_request.json": "1f30c6f22d82f7c53c4394392db3f6349af559c3b425ae52720df3f1d64b7b19"
+      }
+    },
+    "hd_wide_4095_p4095_n85_seed168611": {
+      "expected_omitted": 1,
+      "k": 7,
+      "n": 85,
+      "sha256": {
+        "input.json": "dc86755af8d4e5ec743185275acba92c11af1ae6ae95688ca5a9b25d868aa99b",
+        "native_randperm.json": "7477d3f325299119c47bdb128753cc5456d3b80ff8838afdc15a02afa4338fdf",
+        "rust_corrected.json": "6761c03c50baee07444791d0fbe28f2ea0d6f5343f50947bb319284805115919",
+        "rust_source.json": "a02b2d7a8a55df803f3c034504bc601ecf6d414ef2d035b4b63254ddc5ab0fbd",
+        "source_request.json": "b649afccc581d43efd25c83134406b04c6f4d03239511ca80e63d809bed09c24"
+      }
+    }
+  },
+  "experiment_id": "yale-cpmcv-highdim-20261111-v1",
+  "mathworks_release": "R2026b",
+  "native_original_summary_sha256": "c29b651dd01fc8ddca059c27a416ef1cce38f05facc4ea0e4c5c907c8d893f8e",
+  "native_run_id": "42984154938",
+  "original_source_not_executed": true,
+  "original_source_revision": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "patient_data": false,
+  "private_source_precommit": "b4883ee",
+  "public_native_runner_precommit": "b4aeef7",
+  "rust_binary_sha256": "22c7bac277bc8f6d938ec21d726a9803742e965af3cf8ec84434b217ee7ee5cb",
+  "source_predictions_frozen_before_original_matlab": true
+}
