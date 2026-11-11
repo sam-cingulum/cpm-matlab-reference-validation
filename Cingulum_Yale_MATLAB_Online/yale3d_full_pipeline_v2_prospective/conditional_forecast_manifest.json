@@ -1,0 +1,79 @@
+{
+  "base_manifest_sha256": "c64bd8e0b2d5ded5a24fbedbbee0f73b7e3097f04e0f4c62d4d4156d58d9b1e1",
+  "cases": {
+    "first_asymmetric_later_symmetric": {
+      "sha256": {
+        "native_randperm.json": "cfed4dba0511c53fd3246453187ab2b93f6ab13dbeaa6cbfb730048084135ca9",
+        "rust_corrected.json": "ce1a71e33b57dd2e0b02ae0cea59dbbe3cf9370386f9bcc1a39fb072d37633c4",
+        "rust_model_input.json": "a1f714e20071f6b832d38a27461a410b27eb856498e62d531b750ee4afed2c64",
+        "rust_source.json": "c8af3a155c1a264df76e154e686b452414d6c22db205db98f8cf8ba715f508ae"
+      }
+    },
+    "first_symmetric_later_asymmetric": {
+      "sha256": {
+        "native_randperm.json": "91e455fd7abb6295d4f4738bdf19600f747059112eb9665738fc1add2a008d60",
+        "rust_corrected.json": "999692e46bec7b525521b7ba2bae3aa319c75ae947dbe78b14b8d1e9cba592b4",
+        "rust_model_input.json": "16862e9fae9d430b33d18b2d4fe0628ee83d6378fa2fb287e7e2182b6ff38754",
+        "rust_source.json": "37aa94e2f906cc6d57d3e8048ab3ab97024ab636dd6532f8b10b272b940b3a3a"
+      }
+    },
+    "rectangular_4x6_full": {
+      "sha256": {
+        "native_randperm.json": "a680ca14ad425f45b205974f7570066e0b83056b86ad6af1ebbd165de47c3b2c",
+        "rust_corrected.json": "064674c40d5891e77899d635b98ce6a3f52c0fa0b2737c0cc845bb269badf4e5",
+        "rust_model_input.json": "425a9fa61cb30df7800e47cfd06a062e336a0af228a230b37a2a78652e177c78",
+        "rust_source.json": "a6fdc052322464aebce1a7925af605a959986f5d8b1b1a38a9ebcb2a92940c8d"
+      }
+    },
+    "rectangular_6x3_full": {
+      "sha256": {
+        "native_randperm.json": "1277861659c1ae001cae89e60d6193f329632faaf83a1ab8b7ebc686cfa4dfcd",
+        "rust_corrected.json": "064674c40d5891e77899d635b98ce6a3f52c0fa0b2737c0cc845bb269badf4e5",
+        "rust_model_input.json": "d3d0e2c246b325f2ab8c93bf684c1e3201ab7f4379cedec80afacaab30096334",
+        "rust_source.json": "f5b0cfde8d3e09fccd0046c06bb230cccfbb3d7bb8f330f36639ccaed85b8809"
+      }
+    },
+    "sym5_divisible": {
+      "sha256": {
+        "native_randperm.json": "b8af01a5809533d2bd7d38bb5e0fc2945c523fa5b866e4771359231f73106eae",
+        "rust_corrected.json": "02b2a36c7768ea23740420f625e16e7cbab3fb9c99c362087f96eabdbf8bf3b9",
+        "rust_model_input.json": "3802082635e7853dc7cc50f8f30d8394928a3d2700f622dc4531d687dcd46765",
+        "rust_source.json": "a154413e074ac32b46797297d8439b86a2790615842da184ef1c56c16fdf4c31"
+      }
+    },
+    "sym5_leave_one_out": {
+      "sha256": {
+        "native_randperm.json": "afaefd610440a0db7184412c1f5b52cb2cac1b595e46a449c8e4fec16eb7e701",
+        "rust_corrected.json": "eb150d47e6f1715a2976c3f26237698d78dcd8b023e2612edcf1f478a1e30ccf",
+        "rust_model_input.json": "31e1ec109158a58f36e896ae4fbc2209e9c5a378fa2c95dd872ab2735c86b20b",
+        "rust_source.json": "86af9e18258e2d905c7e32e4dd5d49deab52dd9194d8847abad7d1f290a5efe4"
+      }
+    },
+    "sym6_sixfold": {
+      "sha256": {
+        "native_randperm.json": "2663d9ce6447ea0a94b19bcdf4cab635e3fa9e80cbb3bae4abfb56749d6be20e",
+        "rust_corrected.json": "236ff3fa8c9c9e839923177691b3a0b24cd6b8d4fe939ca43a6ccc6ff3bd1ef2",
+        "rust_model_input.json": "3e6e603530b1780b9b2aec848503589231ebf91ccfec6b8011f84524d22c6e4a",
+        "rust_source.json": "a354f3eac06e8d04ea03e235e54f6cfd434f577691819556b48c3c039ea13f3b"
+      }
+    },
+    "sym7_remainder": {
+      "sha256": {
+        "native_randperm.json": "bfabbca8b1425643d282411dcaeaeb5a22b658c68c8eaf4d7a3ef4c5c1a7a18b",
+        "rust_corrected.json": "2820f8b88a26d998a5b95947676045760661e8ec6a15edd22376bb368dca7bce",
+        "rust_model_input.json": "618874789b4c48a904fb462eeab96a3e1c88c9a4a1347f6bee4a4a5337b39fad",
+        "rust_source.json": "044991cd2f6399c667ba0320a1faf244e281fd624c2ee71cc1c044d87309ddca"
+      }
+    }
+  },
+  "experiment_id": "yale-3d-cpm-main-full-pipeline-20261111-v2",
+  "original_source_not_executed": true,
+  "patient_data": false,
+  "rust_cargo_lock_sha256": "3ca43447f1b8d286b9823d6bb726fd2f0dffd445d8497514b0e405f11092d57c",
+  "rust_release_executable_sha256": "22c7bac277bc8f6d938ec21d726a9803742e965af3cf8ec84434b217ee7ee5cb",
+  "rust_source_commit": "5077d8b7197aeab4521288a38bc3501b4a4895c5",
+  "serde_json_float_roundtrip": true,
+  "source_predictions_frozen_before_original_matlab": true,
+  "source_revision": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "synthetic_only": true
+}

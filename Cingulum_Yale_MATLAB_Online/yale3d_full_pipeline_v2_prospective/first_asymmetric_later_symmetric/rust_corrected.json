@@ -1,0 +1,7 @@
+{
+  "diagnostic": "Error: corrected canonical connectomes must all be symmetric",
+  "policy": "scientifically_corrected_canonical",
+  "return_code": 1,
+  "scientific_rejection": true,
+  "source_policy": "first_asymmetric"
+}
