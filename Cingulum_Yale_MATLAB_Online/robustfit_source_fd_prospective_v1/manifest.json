@@ -1,0 +1,20 @@
+{
+  "exact_binary64_gate_separate": true,
+  "experiment_id": "mathworks-robustfit-source-fd-prospective-20261111-v1",
+  "historical_analytic_production_path_unchanged": true,
+  "input_sha256": "82b86d2e0a014e024bf754a27da3ec462e81138bd4e4317419f70dc3aee5b96b",
+  "original_matlab_unseen_at_freeze": true,
+  "private_preregistered_commit": "3c1dd2e",
+  "public_preregistered_commit": "6fa4e70",
+  "release": "R2026b",
+  "robust_s_tolerance": "1e-10",
+  "rust_binary_sha256": "a517e881bebc86fbb31a2a047a3f079428673825eb12e1e87105838479d5c9f1",
+  "rust_conditional_t_not_independently_exact": true,
+  "rust_forecast_sha256": "cfab6a99462e2d050aae48ea4c200058aa83893f8b40b9692ee7cf8965589c36",
+  "samples": 24,
+  "source_commit": "708999b8bb27ae69722775c323da9f14ef6732c7",
+  "source_not_run": true,
+  "strict_original_all_samples_robust_s_t": true,
+  "synthetic": true,
+  "t_tolerance": "1e-9"
+}
