@@ -32,7 +32,7 @@ jobs:
         uses: matlab-actions/setup-matlab@v3
         with:
           release: R2026b
-          products: Statistics_and_Machine_Learning_Toolbox
+          products: Bioinformatics_Toolbox
       - name: Run only native crossvalind, never original regression source
         uses: matlab-actions/run-command@v3
         with:

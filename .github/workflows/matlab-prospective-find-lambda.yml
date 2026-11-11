@@ -75,7 +75,7 @@ jobs:
         uses: matlab-actions/setup-matlab@v3
         with:
           release: R2026b
-          products: Statistics_and_Machine_Learning_Toolbox
+          products: Bioinformatics_Toolbox Statistics_and_Machine_Learning_Toolbox
 
       - name: Execute original find_lambda and audit every original fold model
         uses: matlab-actions/run-command@v3
