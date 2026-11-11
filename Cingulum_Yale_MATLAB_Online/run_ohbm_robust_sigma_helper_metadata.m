@@ -23,6 +23,12 @@ for i=1:numel(lines)
  if startsWith(strtrim(line),'function ')
   fnames=regexp(line,'[A-Za-z]\w*\s*\(','match');
   fprintf('HELPER_FUNCTION_LINE=%d SIGNATURE_TOKEN_COUNT=%d\n',i,numel(fnames));
+  inputs=regexp(line,'statrobustsigma\s*\(([^)]*)\)','tokens','once');
+  if ~isempty(inputs)
+   params=strtrim(strsplit(inputs{1},','));
+   assert(all(cellfun(@(p)~isempty(regexp(p,'^[a-zA-Z]\w*$','once')),params)));
+   fprintf('HELPER_PARAMETER_NAMES_IN_DECLARED_ORDER=%s\n',strjoin(params,','));
+  end
  end
  if startsWith(strtrim(line),'%'),continue;end
  if isempty(strtrim(line)),continue;end
