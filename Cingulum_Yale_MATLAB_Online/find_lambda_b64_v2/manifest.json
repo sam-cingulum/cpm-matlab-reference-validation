@@ -1,0 +1,187 @@
+{
+  "cases": {
+    "b64v2_grid_collinear_9301_n69_130052": {
+      "sha256": {
+        "input.json": "ed0d2db7460a211929f5a3fd16002b5720e538666097d9001a09409ef62b8894",
+        "spec.json": "3142e177f588e4b9c57df904b78f40b63e38f6ef1104c50a4e390d456bc0ecac"
+      },
+      "spec": {
+        "grid": [
+          0.028,
+          0.075,
+          0.16,
+          0.35
+        ],
+        "k": 4,
+        "kind": "collinear",
+        "n": 69,
+        "name": "b64v2_grid_collinear_9301_n69_130052",
+        "p": 0.05,
+        "seed": 130052
+      }
+    },
+    "b64v2_grid_lownoise_9103_n57_130018": {
+      "sha256": {
+        "input.json": "2b856990b011fdb8705a86a5dfc07fe20ee3bd15ae317dadfa5a9bc29291a5d0",
+        "spec.json": "a5a9b0159eb60f0d58405f15cd7b6870af4823333442270594b1beed881ca496"
+      },
+      "spec": {
+        "grid": [
+          0.08,
+          0.17,
+          0.04,
+          0.33
+        ],
+        "k": 4,
+        "kind": "lownoise",
+        "n": 57,
+        "name": "b64v2_grid_lownoise_9103_n57_130018",
+        "p": 0.05,
+        "seed": 130018
+      }
+    },
+    "b64v2_grid_n43_130001": {
+      "sha256": {
+        "input.json": "61c2d09744ed3e9f043f53c778d255cedad0b1e48cb94d9dc1078a48f78e3aad",
+        "spec.json": "86a02771613d65209fdda2c489a0de2491c328fda6ec6e12401178976bb05f54"
+      },
+      "spec": {
+        "grid": [
+          0.12,
+          0.025,
+          0.065,
+          0.25
+        ],
+        "k": 3,
+        "kind": "normal",
+        "n": 43,
+        "name": "b64v2_grid_n43_130001",
+        "p": 0.05,
+        "seed": 130001
+      }
+    },
+    "b64v2_grid_outlier_9209_n61_130035": {
+      "sha256": {
+        "input.json": "b5ac4d25bbe795355bdf5309ffbd1a16ad53a3fa5de62801cbdebc69591998c3",
+        "spec.json": "dc546f3f19ce0b56aa561e15aa46ee4ce74dfe0bb2c55415cf97053d3c784868"
+      },
+      "spec": {
+        "grid": [
+          0.14,
+          0.05,
+          0.28,
+          0.085
+        ],
+        "k": 5,
+        "kind": "outlier",
+        "n": 61,
+        "name": "b64v2_grid_outlier_9209_n61_130035",
+        "p": 0.04,
+        "seed": 130035
+      }
+    },
+    "b64v2_grid_rescale_9601_n47_130103": {
+      "sha256": {
+        "input.json": "7f2fc1cc061dbed5b857b1c299832e09bffa0308435f5c15f14c2fa5dda8448a",
+        "spec.json": "00b8f2f19196e57e7502fb14d74addfbcc995b524d829147dd72ace1b1fd917e"
+      },
+      "spec": {
+        "grid": [
+          0.16,
+          0.035,
+          0.08,
+          0.3
+        ],
+        "k": 4,
+        "kind": "rescale",
+        "n": 47,
+        "name": "b64v2_grid_rescale_9601_n47_130103",
+        "p": 0.05,
+        "seed": 130103
+      }
+    },
+    "b64v2_grid_stress_9709_n79_130120": {
+      "sha256": {
+        "input.json": "ff0bce26f2ac3b60ae3e023474f1e6e8590a0df8c58162e2dbaca8a5d552e93f",
+        "spec.json": "79f52a7c6d571250e5b8c0994c251c2243ad63d2e9ee9ad54414abb26dcffe78"
+      },
+      "spec": {
+        "grid": [
+          0.09,
+          0.025,
+          0.18,
+          0.042,
+          0.3
+        ],
+        "k": 5,
+        "kind": "correlated",
+        "n": 79,
+        "name": "b64v2_grid_stress_9709_n79_130120",
+        "p": 0.06,
+        "seed": 130120
+      }
+    },
+    "b64v2_grid_ties_9509_n51_130086": {
+      "sha256": {
+        "input.json": "e7f2351ac666d1d01d457d9e8f792a95b8221d4fc5d05ab33bb5bfd3c605e781",
+        "spec.json": "7fe63e0c82966de8469f815d746f5ef0f7473630aa6d7843b18b3f2255e75eb8"
+      },
+      "spec": {
+        "grid": [
+          0.21,
+          0.033,
+          0.1,
+          0.06
+        ],
+        "k": 3,
+        "kind": "ties",
+        "n": 51,
+        "name": "b64v2_grid_ties_9509_n51_130086",
+        "p": 0.05,
+        "seed": 130086
+      }
+    },
+    "b64v2_grid_weak_9403_n73_130069": {
+      "sha256": {
+        "input.json": "bf465ad9da6b88195319996a0e7f9685a32a5a9ec15d7c9bfa3a632b42c2a8bc",
+        "spec.json": "fad9c29f485452bb014e3cbdaa933cf0b0b8a14c2db74cc16355c149463ffef2"
+      },
+      "spec": {
+        "grid": [
+          0.07,
+          0.21,
+          0.04,
+          0.12
+        ],
+        "k": 5,
+        "kind": "weak",
+        "n": 73,
+        "name": "b64v2_grid_weak_9403_n73_130069",
+        "p": 0.07,
+        "seed": 130069
+      }
+    }
+  },
+  "coefficients_absolute_tolerance": 1e-09,
+  "input_generator_sha256": "3cb013d38a7a25081a29ccdc7e867bbb998bf3cdb1721d05dc8e2ea391adda06",
+  "intercept_absolute_tolerance": 1e-09,
+  "mse_absolute_tolerance": 1e-06,
+  "native_matlab_crossvalind_labels_retained": true,
+  "official_matlab_runner_preregistered": true,
+  "original_source_unmodified": true,
+  "original_yale_revision": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "parser": "serde_json/float_roundtrip",
+  "patient_data_included": false,
+  "predictions_absolute_tolerance": 1e-06,
+  "preregistered_private_commit": "ba202d5",
+  "public_runner_commit": "40b211c",
+  "purpose": "PROSPECTIVE_YALE_FIND_LAMBDA_CORRECTED_BINARY64_PARSER",
+  "release": "R2026b",
+  "rust_cli_source_sha256": "2f0c94044b2855d035261e878fd5664055cc89de0cd7cecbdd91d632da27e383",
+  "rust_find_lambda_source_sha256": "de0c2a2196e1975cae5ff8e2dffee42ce14b8ce3b6201904c31752d2f35dbb14",
+  "rust_solver_source_sha256": "ef6a87f1f773e5f31193718c5eed3aced00dbaf3baf79b291daf52bc25fce40e",
+  "selected_lambda_must_match_exact": true,
+  "test_all_edge_masks": true,
+  "test_all_inner_fold_coefficients": true,
+  "test_full_mse_fold_matrix": true
+}
