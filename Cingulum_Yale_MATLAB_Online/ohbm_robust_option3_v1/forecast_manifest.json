@@ -1,0 +1,32 @@
+{
+  "cases": {
+    "robust_baseline_n31_d6_s181401": {
+      "rust_sha256": "b151d7f6b5edd58b3800acca6623fa815b1c9df5756b13b3b21667841542d5e8",
+      "selection": "robust_edgewise",
+      "subjects": 31
+    },
+    "robust_correlated_n39_d7_s181407": {
+      "rust_sha256": "ff71b1dc3fcde115618137e48c5e68251041a70cf889587648aa43282283ec8a",
+      "selection": "robust_edgewise",
+      "subjects": 39
+    },
+    "robust_outliers_n35_d6_s181403": {
+      "rust_sha256": "135f19513ea1e59d14a759e26c66aa7d6d671cc450e78db518a35d5321b36fdf",
+      "selection": "robust_edgewise",
+      "subjects": 35
+    },
+    "robust_rescaled_n43_d7_s181409": {
+      "rust_sha256": "f07608c1c83d47169cc9c120b99d687996e6d19f9585dfa96282af783eb21c71",
+      "selection": "robust_edgewise",
+      "subjects": 43
+    }
+  },
+  "experiment_id": "ohbm-original-robust-option3-20261111-v1",
+  "original_source_commit": "708999b8bb27ae69722775c323da9f14ef6732c7",
+  "original_source_not_run": true,
+  "private_precommit": "a1de7d6",
+  "public_precommit": "6527063",
+  "rust_binary_sha256": "c230d0b9d3958c4e407b23d572ffb1cf1a1eb391d8c2f6f5962ec2f2825f8fc1",
+  "rust_forecasts_frozen_before_matlab": true,
+  "source_manifest_sha256": "dd99d6afcc385d9455903af6f013ff1afdfc1927dfc3731f269c580434d55f02"
+}

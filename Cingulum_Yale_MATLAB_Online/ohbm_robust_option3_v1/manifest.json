@@ -1,0 +1,56 @@
+{
+  "all_three_prediction_vectors": true,
+  "bitwise_gate_separate": true,
+  "cases": {
+    "robust_baseline_n31_d6_s181401": {
+      "kind": "baseline",
+      "n": 31,
+      "parcels": 6,
+      "seed": 181401,
+      "selection": "robust_edgewise",
+      "sha256": "54b2440b2f68d74b423bfb352fbec4ace89c6aa46baf46069e6aa133120c50aa"
+    },
+    "robust_correlated_n39_d7_s181407": {
+      "kind": "correlated",
+      "n": 39,
+      "parcels": 7,
+      "seed": 181407,
+      "selection": "robust_edgewise",
+      "sha256": "2f72336d9a5a5230d969c7ec84c3330ef099d35e29fe1b3dd193f8a7338a76f1"
+    },
+    "robust_outliers_n35_d6_s181403": {
+      "kind": "outliers",
+      "n": 35,
+      "parcels": 6,
+      "seed": 181403,
+      "selection": "robust_edgewise",
+      "sha256": "ee79418362734298bce26ae48a28eb7a6609fbdca73420abad2e312573c8015a"
+    },
+    "robust_rescaled_n43_d7_s181409": {
+      "kind": "rescaled",
+      "n": 43,
+      "parcels": 7,
+      "seed": 181409,
+      "selection": "robust_edgewise",
+      "sha256": "3f09c75267c8dc45b4aa814c3d20c36256063a04e57ffa55521531878ee3eee2"
+    }
+  },
+  "coefficient_abs_tolerance": "1e-8",
+  "exact_edge_masks": true,
+  "exactly_equal_edge_masks": true,
+  "experiment_id": "ohbm-original-robust-option3-20261111-v1",
+  "mathworks_release": "R2026b",
+  "matlab_original_fs_option": 3,
+  "metric_abs_tolerance": "1e-9",
+  "original_source_not_run": true,
+  "p_absolute_tolerance": "1e-6",
+  "parser": "serde_json/float_roundtrip",
+  "prediction_abs_tolerance": "1e-8",
+  "private_preregistered_commit": "a1de7d6",
+  "public_preregistered_commit": "6527063",
+  "robust_s_absolute_tolerance": "1e-6",
+  "selection": "robust_edgewise",
+  "source_commit": "708999b8bb27ae69722775c323da9f14ef6732c7",
+  "synthetic_only": true,
+  "t_absolute_tolerance": "1e-5"
+}
