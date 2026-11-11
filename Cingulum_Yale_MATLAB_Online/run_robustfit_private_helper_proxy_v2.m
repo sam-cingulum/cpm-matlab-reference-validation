@@ -20,7 +20,7 @@ proxy=fullfile(tmp,'source_robust_sigma_proxy.m');
 fid=fopen(proxy,'w');assert(fid>0);
 fprintf(fid,'function v=source_robust_sigma_proxy(r,s,t,h,p)\n');
 fprintf(fid,'wfun=@(u) double(abs(u)<1).*(1-u.^2).^2;\n');
-fprintf(fid,'v=statrobustsigma(r,s,t,wfun,h,p);\n');
+fprintf(fid,'v=statrobustsigma(wfun,r,p,s,t,h);\n');
 fprintf(fid,'end\n');
 fclose(fid);
 addpath(tmp,'-begin');
