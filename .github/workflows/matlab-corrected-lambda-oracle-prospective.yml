@@ -1,0 +1,48 @@
+name: Genuine MATLAB R2026b | Independent corrected general-weight lambda oracle
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  corrected-lambda:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify immutable synthetic fixtures and preregistered gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,pathlib
+          root=pathlib.Path("Cingulum_Yale_MATLAB_Online/corrected_lambda_prospective")
+          m=json.loads((root/"manifest.json").read_text())
+          assert m["experiment_id"]=="corrected-weighted-lambda-20261111-v1"
+          assert m["mathworks_release"]=="R2026b"
+          assert m["tolerance_abs"]=="5E-12" and m["tolerance_rel"]=="5E-11"
+          assert m["precommitted_protocol"] and not m["patient_data"]
+          assert len(m["cases"])==32
+          for name,meta in m["cases"].items():
+              for filename,digest in meta["sha256"].items():
+                  data=(root/name/filename).read_bytes()
+                  assert hashlib.sha256(data).hexdigest()==digest,(name,filename)
+          print("CORRECTED_LAMBDA_PROSPECTIVE_FROZEN_SHA256_PASS")
+          PY
+      - name: Install genuine MathWorks MATLAB R2026b
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+      - name: Run independent pairwise weighted KKT mathematical oracle
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_corrected_lambda_oracle_prospective;
+      - name: Preserve all genuine mathematical oracle outputs on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-corrected-lambda-oracle-20261111-v1
+          path: Cingulum_Yale_MATLAB_Online/corrected_lambda_oracle_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
