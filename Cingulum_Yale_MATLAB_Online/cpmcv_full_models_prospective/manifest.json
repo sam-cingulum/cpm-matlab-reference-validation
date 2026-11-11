@@ -1,0 +1,97 @@
+{
+  "cases": {
+    "full_cpmcv_correlated_n44_k7_seed88501": {
+      "expected_omitted": 2,
+      "group": "correlated",
+      "k": 7,
+      "n": 44,
+      "seed": 88501,
+      "sha256": {
+        "input.json": "94eeac676186b994421dea88f1dd1c4a32b616c20a6b7ff6eb35121521510c7d"
+      }
+    },
+    "full_cpmcv_divisible_n32_k4_seed88201": {
+      "expected_omitted": 0,
+      "group": "divisible",
+      "k": 4,
+      "n": 32,
+      "seed": 88201,
+      "sha256": {
+        "input.json": "41a80550230346e3ea60c4d63713f80b88a909da6acbeaf5b3752e8b33afcb4c"
+      }
+    },
+    "full_cpmcv_loo_n15_k15_seed88309": {
+      "expected_omitted": 0,
+      "group": "loo",
+      "k": 15,
+      "n": 15,
+      "seed": 88309,
+      "sha256": {
+        "input.json": "dcd793a625f0df3d8b8e2c40a71393adab2dfbced184147fd4e396cccd44f993"
+      }
+    },
+    "full_cpmcv_moderate_n21_k4_seed88001": {
+      "expected_omitted": 1,
+      "group": "moderate",
+      "k": 4,
+      "n": 21,
+      "seed": 88001,
+      "sha256": {
+        "input.json": "833f360a3b15f476e69e984dbf600aa0d9405736592be045b4041df526d35b92"
+      }
+    },
+    "full_cpmcv_noisier_n57_k8_seed88709": {
+      "expected_omitted": 1,
+      "group": "noisier",
+      "k": 8,
+      "n": 57,
+      "seed": 88709,
+      "sha256": {
+        "input.json": "050c221dc99bffb653582a524906c9415f25995a49bbf04f36b0f5f4b8879428"
+      }
+    },
+    "full_cpmcv_outlier_n26_k5_seed88103": {
+      "expected_omitted": 1,
+      "group": "outlier",
+      "k": 5,
+      "n": 26,
+      "seed": 88103,
+      "sha256": {
+        "input.json": "e1ed47a5be5ee5b4a4f36dbe4cc2ea318b506898b22828f90df73f5c25bacfaa"
+      }
+    },
+    "full_cpmcv_rescaled_n50_k5_seed88603": {
+      "expected_omitted": 0,
+      "group": "rescaled",
+      "k": 5,
+      "n": 50,
+      "seed": 88603,
+      "sha256": {
+        "input.json": "738c707715386163e3406197ca30f7ca9edf2b176a587c4690ba7c0958953639"
+      }
+    },
+    "full_cpmcv_scaled_feature_n37_k6_seed88407": {
+      "expected_omitted": 1,
+      "group": "scaled_feature",
+      "k": 6,
+      "n": 37,
+      "seed": 88407,
+      "sha256": {
+        "input.json": "f236626de965432a5bd601b68d121bd9f7fc1da532dbb4366616d664fff2cf6d"
+      }
+    }
+  },
+  "coefficient_abs_tolerance": "1e-9",
+  "exact_edge_masks": true,
+  "exact_historical_zero_placeholders": true,
+  "experiment_id": "yale-cpmcv-full-model-two-stage-20261111-v1",
+  "mathworks_release": "R2026b",
+  "original_source_not_executed": true,
+  "prediction_abs_tolerance": "1e-8",
+  "private_rust_and_verifier_precommit": "f38a720",
+  "public_two_stage_runner_precommit": "149f202",
+  "separate_bitwise_full_output_gate": true,
+  "source_revision": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "source_self_reconstruction_abs_tolerance": "1e-9",
+  "synthetic_only": true
+}
