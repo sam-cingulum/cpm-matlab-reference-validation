@@ -1,0 +1,112 @@
+{
+  "base_input_manifest_sha256": "1bcc64117db787ab9024b276f34529e8221ce10be70158a5cffa096ecc0b02fc",
+  "cases": {
+    "grid_collinear_9301_n69": {
+      "grid_count": 4,
+      "k": 4,
+      "n": 69,
+      "sha256": {
+        "conditional_request.json": "27abb7b2f291f43570bfd1a66e676e7db141cd3605a9ba2816021d017ee51a5e",
+        "input.json": "d3e29d5f7d40895b0d9363b08ce010c983fd8fbcfdacd55c1908040c9f8f9de4",
+        "native_fold_labels.json": "08d10c5a441a932fd095282f3e1086ae523f2bc7d0f777978baae24f55f7f595",
+        "rust.json": "ce1077f1302b60c6b305a2cd0de871ec0b312017379961ee1d4618accbad10ea",
+        "spec.json": "6d702ddec6eb21ace702b85ead4eb93f27050f4e80ad4d9566e4ece66fa399b0"
+      }
+    },
+    "grid_lownoise_9103_n57": {
+      "grid_count": 4,
+      "k": 4,
+      "n": 57,
+      "sha256": {
+        "conditional_request.json": "0258a93d6fcc091f13c89415e4d9111efd25e4373a8a714f8d7f9818205700e5",
+        "input.json": "0036e20860e4963d9a6d40df5cec284b2b0429b0c339a1a2a47234b2842aed20",
+        "native_fold_labels.json": "05eb1e9a59433ccaa255f804da38c97628bd6bf6ed6220670a30315e60729c54",
+        "rust.json": "02079801b9aa932830567809dc3feb0b7a5272e56a8b25d140e215f69b5737b2",
+        "spec.json": "259024b4ee3409f3d96719961c224a2f2492f310e87e88db385017119b057262"
+      }
+    },
+    "grid_normal_9011_n43": {
+      "grid_count": 4,
+      "k": 3,
+      "n": 43,
+      "sha256": {
+        "conditional_request.json": "103f34b1eef4060673593f8e98155ed796768faa46cf2032caa21eb6266d7c4b",
+        "input.json": "bef32d5772041b7a5c5393359cb9ccd0ae9f5df0d7e1c0b6313ef6eebe69fb63",
+        "native_fold_labels.json": "ca8cffbea38caa81eb3248a73b2661e233a15a9a21ea4938a058deb7553a973d",
+        "rust.json": "83e1aa692016dc3434ab5987c5d676fe7330c33bd07984deb61d1d69a8b0c719",
+        "spec.json": "0786fb611d88541453128818b98d1d343fe1014a6388df38a9751df4c7b1a2ff"
+      }
+    },
+    "grid_outlier_9209_n61": {
+      "grid_count": 4,
+      "k": 5,
+      "n": 61,
+      "sha256": {
+        "conditional_request.json": "87e27b18af1beb3927dce93056f0b04bfbebcdc5fe28821f5eebe01c67292f77",
+        "input.json": "d7e547494ec8cb97f45d4df8ca9f2f628579b97aff05542046f956aa8989a564",
+        "native_fold_labels.json": "a859d1de3345457a88c70d33a9b8cbcc5d5369b3a8f61b255363c6bf02ab090d",
+        "rust.json": "4aa382f537441e4a23bb084c2cd0fbd27f29856b376082d78325f1e8dc199abe",
+        "spec.json": "68dee5841c473076a2db6aaaea30a5b2cfc4bc837f01791691289cea9cae6633"
+      }
+    },
+    "grid_rescale_9601_n47": {
+      "grid_count": 4,
+      "k": 4,
+      "n": 47,
+      "sha256": {
+        "conditional_request.json": "a4d5146afa3be40af4e861e2647fe46c2c8d28353677ebc4db259f70c343d989",
+        "input.json": "55d39ed7d619f7954cfc500e830ee46324a6caf389714a8aac75b05089a55272",
+        "native_fold_labels.json": "5b7dcc8b7d8146cd3c6f682c9a6b51bfe453ab7959d6ca7453b2725bf61db79e",
+        "rust.json": "8ff89d1dfe2320072dc3c85fedbd5ec54842a5e03f737f7d629c5a9589de4eec",
+        "spec.json": "e376e84f0257005e62134667e1ef00e898e469963fcb20df4ccf1564cba2bd5f"
+      }
+    },
+    "grid_stress_9709_n79": {
+      "grid_count": 5,
+      "k": 5,
+      "n": 79,
+      "sha256": {
+        "conditional_request.json": "e3a89d1aafda77191f093d8fb1e8cc6d4664478b00ed7b795f82f22269ea56bc",
+        "input.json": "d3190059447f2db2461bb212fcfd6c89af839867bc0683f8a589eb185b1800e6",
+        "native_fold_labels.json": "73c50ab864d0bdcc9b4210a26624c01a4544b3e47dfc128bd09f6c5cf21a9124",
+        "rust.json": "ece4694702479e43b55acc1516f632cc28445a943f20a5f480f5eb226c3f5039",
+        "spec.json": "eb6c34ebd868e95754ba844b7116b4ae7188775587699dd3f7ae11d6cd29b4a2"
+      }
+    },
+    "grid_ties_9509_n51": {
+      "grid_count": 4,
+      "k": 3,
+      "n": 51,
+      "sha256": {
+        "conditional_request.json": "60e5b340b1f65afb37952c41b058c5718d0c768b593392529572415b9671bb9b",
+        "input.json": "8f1b7977f4d8a789054bd409a634cb8a19b021c8cf28451853192fdacadb0e9f",
+        "native_fold_labels.json": "e9f453f8730f50882f69f02c75cf2172ca92b4984603620ff249244479f4a541",
+        "rust.json": "fdf3535a3e30e8fc8d5f3072fb94fc99d87763c7b999cf8d6b56dda9669d7137",
+        "spec.json": "1c1a8e2b084bf851cacd7af454c5d04b7acd443d935365a69c7d931759565971"
+      }
+    },
+    "grid_weak_9403_n73": {
+      "grid_count": 4,
+      "k": 5,
+      "n": 73,
+      "sha256": {
+        "conditional_request.json": "830f89f6cbffc084951eb4781456611a897dcb31d2a7e12e6610c061bc5f26f0",
+        "input.json": "b800c678b07f5562fbfe4bf495862e0c72d7658c675e0b59efad88f6555f1d89",
+        "native_fold_labels.json": "4e025069357d0725599ef564791bd8d25089422cbb1d3a3b35bf30d0d74ad2a3",
+        "rust.json": "e5523063be9e00f35bc698740d160c3e56be57d35d8f624cbe7a076e38f330dd",
+        "spec.json": "6048236e9d1b5e0fd65ee70f21805addaa0be1f8a86317758879b99cd290e167"
+      }
+    }
+  },
+  "experiment_id": "yale-find-lambda-two-stage-20261111-v1",
+  "native_mathworks_stage_a_run_id": "42948671750",
+  "native_mathworks_stage_a_summary_sha256": "199af1c451dccc02f78228e99d673044ba54d1f0b445b7c3b276cede6b504872",
+  "native_runner_precommit": "0bffe15",
+  "original_source_has_not_been_executed_at_forecast_freeze": true,
+  "original_source_thresholds_unchanged": true,
+  "original_yale_sha": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "patient_data": false,
+  "release": "R2026b",
+  "rust_cli_binary_sha256": "ad9026f989ebccd15f0326127af4d6112f58ede64cc5fd08ff6d9db23045e391",
+  "rust_implementation_precommit": "e78913a"
+}
