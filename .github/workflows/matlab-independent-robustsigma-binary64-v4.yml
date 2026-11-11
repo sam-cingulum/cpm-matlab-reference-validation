@@ -1,0 +1,43 @@
+name: Genuine MATLAB R2026b | independently written robust_s arithmetic exactness
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  retrospective-independent-formula:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify previously disclosed immutable source inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('Cingulum_Yale_MATLAB_Online/robustfit_source_fd_prospective_v1')
+          m=json.loads((p/'manifest.json').read_text())
+          d=json.loads((p/'input.json').read_text())
+          assert m['samples']==24 and len(d['samples'])==24
+          assert hashlib.sha256((p/'input.json').read_bytes()).hexdigest()==m['input_sha256']
+          print('RETROSPECTIVE_ONLY_PREVIOUSLY_DISCLOSED_INPUTS',m['input_sha256'])
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute independently authored scale formula in real MathWorks MATLAB
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_robustfit_independent_sigma_exact_v4;
+      - name: Preserve original and independent stage hexadecimal evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-mathworks-r2026b-independent-scale-hex-v4
+          path: Cingulum_Yale_MATLAB_Online/robustfit_independent_sigma_exact_v4/*.json
+          if-no-files-found: error
+          retention-days: 90
