@@ -1,0 +1,58 @@
+name: Genuine MATLAB R2026b | Yale003 third original source and binary64 reductions
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  yale003-third:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Integrity of untouched prospectively frozen source inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,pathlib
+          p=pathlib.Path("Cingulum_Yale_MATLAB_Online/yale003_third_prospective")
+          m=json.loads((p/"manifest.json").read_text())
+          assert m["experiment_id"]=="yale003-reductions-third-20261111-v1"
+          assert m["pinned_source"]=="b903f83b476b745417b1f062f6777f5ffe118f1a"
+          assert m["matlab_release"]=="R2026b"
+          assert m["strict_tolerance_absolute"]==1e-10
+          assert m["separate_bitwise_equality_gate"]
+          assert m["source_runner_precommitted"] and not m["patient_data"]
+          assert len(m["cases"])==28
+          for name,meta in m["cases"].items():
+              for fn,digest in meta["sha256"].items():
+                  assert hashlib.sha256((p/name/fn).read_bytes()).hexdigest()==digest,(name,fn)
+          print("YALE003_THIRD_FROZEN_INPUT_AND_FORECAST_SHA256_PASS")
+          PY
+      - name: Fetch unchanged pinned Yale source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install genuine MathWorks MATLAB R2026b
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute original Yale source and discriminating reduction probes
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_yale003_third_reduction_probes;
+      - name: Preserve original MATLAB artifacts even if source-parity fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-yale003-third-original-reductions-20261111
+          path: Cingulum_Yale_MATLAB_Online/yale003_third_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
