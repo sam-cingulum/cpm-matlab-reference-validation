@@ -1,0 +1,63 @@
+name: Genuine MATLAB R2026b | Yale 003 intermediate diagnostics and second frozen gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  yale003:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check prospective fixture hash integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/lambda_max_second_prospective')
+          m=json.loads((p/'manifest.json').read_text())
+          assert m['pinned_source']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert m['tolerance_absolute']==1e-10 and m['matlab_release']=='R2026b'
+          assert len(m['cases'])==16 and not m['patient_data']
+          for name,meta in m['cases'].items():
+              for filename,digest in meta['sha256'].items():
+                  assert hashlib.sha256((p/name/filename).read_bytes()).hexdigest()==digest,(name,filename)
+          print('YALE003_FROZEN_FIXTURE_INTEGRITY_PASS')
+          PY
+      - name: Fetch exact pinned original source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install genuine MathWorks MATLAB R2026b
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Inspect original-source numerical intermediates
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            diagnose_lambda_max_intermediates;
+      - name: Execute new strict original Yale prospective battery
+        if: always()
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_lambda_max_second_prospective;
+      - name: Preserve all original output, even when source parity fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-yale003-second-prospective-diagnostics
+          path: |
+            Cingulum_Yale_MATLAB_Online/lambda_max_intermediate_results/*.json
+            Cingulum_Yale_MATLAB_Online/lambda_max_second_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
