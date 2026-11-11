@@ -1,0 +1,1837 @@
+{
+  "experiment_id": "r2026b-matlab-sum-binary64-predeclared-source-unseen-v1",
+  "forecasts": [
+    {
+      "id": "length2_pattern0",
+      "n": 2,
+      "predicted_mean_hex": "bfe2915073ea2f49",
+      "predicted_sum_hex": "bff2915073ea2f49"
+    },
+    {
+      "id": "length2_pattern1",
+      "n": 2,
+      "predicted_mean_hex": "3f7ab40f933e5bb2",
+      "predicted_sum_hex": "3f8ab40f933e5bb2"
+    },
+    {
+      "id": "length2_pattern2",
+      "n": 2,
+      "predicted_mean_hex": "3f2e9eea4396dd62",
+      "predicted_sum_hex": "3f3e9eea4396dd62"
+    },
+    {
+      "id": "length2_pattern3",
+      "n": 2,
+      "predicted_mean_hex": "40001e0116d7815f",
+      "predicted_sum_hex": "40101e0116d7815f"
+    },
+    {
+      "id": "length2_pattern4",
+      "n": 2,
+      "predicted_mean_hex": "401832cbd43e07f8",
+      "predicted_sum_hex": "402832cbd43e07f8"
+    },
+    {
+      "id": "length3_pattern0",
+      "n": 3,
+      "predicted_mean_hex": "bfa1cafbddf0af40",
+      "predicted_sum_hex": "bfbab079cce906e0"
+    },
+    {
+      "id": "length3_pattern1",
+      "n": 3,
+      "predicted_mean_hex": "3f8a768edec05bf9",
+      "predicted_sum_hex": "3fa3d8eb271044fb"
+    },
+    {
+      "id": "length3_pattern2",
+      "n": 3,
+      "predicted_mean_hex": "402533b8c442bee0",
+      "predicted_sum_hex": "403fcd9526641e50"
+    },
+    {
+      "id": "length3_pattern3",
+      "n": 3,
+      "predicted_mean_hex": "3fffc8bf3c98d137",
+      "predicted_sum_hex": "4017d68f6d729ce9"
+    },
+    {
+      "id": "length3_pattern4",
+      "n": 3,
+      "predicted_mean_hex": "40106290218f1aee",
+      "predicted_sum_hex": "402893d83256a865"
+    },
+    {
+      "id": "length4_pattern0",
+      "n": 4,
+      "predicted_mean_hex": "3fcc1fa5f3fc6f46",
+      "predicted_sum_hex": "3fec1fa5f3fc6f46"
+    },
+    {
+      "id": "length4_pattern1",
+      "n": 4,
+      "predicted_mean_hex": "3f93a4583a5c3750",
+      "predicted_sum_hex": "3fb3a4583a5c3750"
+    },
+    {
+      "id": "length4_pattern2",
+      "n": 4,
+      "predicted_mean_hex": "4066f6021f83591e",
+      "predicted_sum_hex": "4086f6021f83591e"
+    },
+    {
+      "id": "length4_pattern3",
+      "n": 4,
+      "predicted_mean_hex": "3fedf58e1a416f2c",
+      "predicted_sum_hex": "400df58e1a416f2c"
+    },
+    {
+      "id": "length4_pattern4",
+      "n": 4,
+      "predicted_mean_hex": "4008c2c776a62eb2",
+      "predicted_sum_hex": "4028c2c776a62eb2"
+    },
+    {
+      "id": "length7_pattern0",
+      "n": 7,
+      "predicted_mean_hex": "bfcc7b7ad4f88595",
+      "predicted_sum_hex": "bff8ec0b7a5974e2"
+    },
+    {
+      "id": "length7_pattern1",
+      "n": 7,
+      "predicted_mean_hex": "3fa2d1556505319a",
+      "predicted_sum_hex": "3fd0772ab8648b67"
+    },
+    {
+      "id": "length7_pattern2",
+      "n": 7,
+      "predicted_mean_hex": "c0ae1836323fbf1b",
+      "predicted_sum_hex": "c0da552f6bf7c738"
+    },
+    {
+      "id": "length7_pattern3",
+      "n": 7,
+      "predicted_mean_hex": "3ffd1496a9d306d5",
+      "predicted_sum_hex": "40297203d498a5fa"
+    },
+    {
+      "id": "length7_pattern4",
+      "n": 7,
+      "predicted_mean_hex": "3fffa1fb290542da",
+      "predicted_sum_hex": "402badbbc3e49a7f"
+    },
+    {
+      "id": "length8_pattern0",
+      "n": 8,
+      "predicted_mean_hex": "bf7209ede54fd220",
+      "predicted_sum_hex": "bfa209ede54fd220"
+    },
+    {
+      "id": "length8_pattern1",
+      "n": 8,
+      "predicted_mean_hex": "3fa5882abb7c8607",
+      "predicted_sum_hex": "3fd5882abb7c8607"
+    },
+    {
+      "id": "length8_pattern2",
+      "n": 8,
+      "predicted_mean_hex": "40e1fd431f928ef7",
+      "predicted_sum_hex": "4111fd431f928ef7"
+    },
+    {
+      "id": "length8_pattern3",
+      "n": 8,
+      "predicted_mean_hex": "4004397cae9ff307",
+      "predicted_sum_hex": "4034397cae9ff307"
+    },
+    {
+      "id": "length8_pattern4",
+      "n": 8,
+      "predicted_mean_hex": "3ffc012676b3c257",
+      "predicted_sum_hex": "402c012676b3c257"
+    },
+    {
+      "id": "length9_pattern0",
+      "n": 9,
+      "predicted_mean_hex": "3fcea3c545c845ce",
+      "predicted_sum_hex": "40013c1ef740a744"
+    },
+    {
+      "id": "length9_pattern1",
+      "n": 9,
+      "predicted_mean_hex": "3fa808f3c3fbf993",
+      "predicted_sum_hex": "3fdb0a123c7b78c5"
+    },
+    {
+      "id": "length9_pattern2",
+      "n": 9,
+      "predicted_mean_hex": "4098660f4ab5c30b",
+      "predicted_sum_hex": "40cb72d1340c7b6c"
+    },
+    {
+      "id": "length9_pattern3",
+      "n": 9,
+      "predicted_mean_hex": "40009d2da92c6c6e",
+      "predicted_sum_hex": "4032b0d35e51f9fc"
+    },
+    {
+      "id": "length9_pattern4",
+      "n": 9,
+      "predicted_mean_hex": "3ff9dbb42e960cc4",
+      "predicted_sum_hex": "402d172ab468ce5c"
+    },
+    {
+      "id": "length12_pattern0",
+      "n": 12,
+      "predicted_mean_hex": "bfe03e3f29dde161",
+      "predicted_sum_hex": "c0185d5ebeccd211"
+    },
+    {
+      "id": "length12_pattern1",
+      "n": 12,
+      "predicted_mean_hex": "3fae45de3d1c4f0b",
+      "predicted_sum_hex": "3fe6b466add53b48"
+    },
+    {
+      "id": "length12_pattern2",
+      "n": 12,
+      "predicted_mean_hex": "41060d0b6c77c5ef",
+      "predicted_sum_hex": "414089c89159d473"
+    },
+    {
+      "id": "length12_pattern3",
+      "n": 12,
+      "predicted_mean_hex": "3fff2c6e81a63c25",
+      "predicted_sum_hex": "40376152e13cad1c"
+    },
+    {
+      "id": "length12_pattern4",
+      "n": 12,
+      "predicted_mean_hex": "3ff5bb1bee51fe57",
+      "predicted_sum_hex": "40304c54f2bd7ec1"
+    },
+    {
+      "id": "length15_pattern0",
+      "n": 15,
+      "predicted_mean_hex": "bfc3d5722c36fe84",
+      "predicted_sum_hex": "c002981b09738e9c"
+    },
+    {
+      "id": "length15_pattern1",
+      "n": 15,
+      "predicted_mean_hex": "3fb12a2bed558420",
+      "predicted_sum_hex": "3ff017892e802bde"
+    },
+    {
+      "id": "length15_pattern2",
+      "n": 15,
+      "predicted_mean_hex": "406253423f5a9eb9",
+      "predicted_sum_hex": "40a12e0e1b64f4cd"
+    },
+    {
+      "id": "length15_pattern3",
+      "n": 15,
+      "predicted_mean_hex": "400713206bafa8b2",
+      "predicted_sum_hex": "4045a1ee64f4ae27"
+    },
+    {
+      "id": "length15_pattern4",
+      "n": 15,
+      "predicted_mean_hex": "3ff27ac096fe5469",
+      "predicted_sum_hex": "403153148d8e6f22"
+    },
+    {
+      "id": "length16_pattern0",
+      "n": 16,
+      "predicted_mean_hex": "bfd1592993306d31",
+      "predicted_sum_hex": "c011592993306d31"
+    },
+    {
+      "id": "length16_pattern1",
+      "n": 16,
+      "predicted_mean_hex": "3fb193be72f14317",
+      "predicted_sum_hex": "3ff193be72f14317"
+    },
+    {
+      "id": "length16_pattern2",
+      "n": 16,
+      "predicted_mean_hex": "c041292d17008452",
+      "predicted_sum_hex": "c081292d17008452"
+    },
+    {
+      "id": "length16_pattern3",
+      "n": 16,
+      "predicted_mean_hex": "400057d706a097c4",
+      "predicted_sum_hex": "404057d706a097c4"
+    },
+    {
+      "id": "length16_pattern4",
+      "n": 16,
+      "predicted_mean_hex": "3ff1a2f7c184079b",
+      "predicted_sum_hex": "4031a2f7c184079b"
+    },
+    {
+      "id": "length17_pattern0",
+      "n": 17,
+      "predicted_mean_hex": "bfccbf289e975018",
+      "predicted_sum_hex": "c00e8b1b2880c51a"
+    },
+    {
+      "id": "length17_pattern1",
+      "n": 17,
+      "predicted_mean_hex": "3fb1dbdeb714c720",
+      "predicted_sum_hex": "3ff2f99ca2861392"
+    },
+    {
+      "id": "length17_pattern2",
+      "n": 17,
+      "predicted_mean_hex": "40724b5bdc226d6b",
+      "predicted_sum_hex": "40b3701199e49442"
+    },
+    {
+      "id": "length17_pattern3",
+      "n": 17,
+      "predicted_mean_hex": "4002176e8536de10",
+      "predicted_sum_hex": "404338e56d8a4bf1"
+    },
+    {
+      "id": "length17_pattern4",
+      "n": 17,
+      "predicted_mean_hex": "3ff071cc727d263c",
+      "predicted_sum_hex": "403178e939a4f8a0"
+    },
+    {
+      "id": "length23_pattern0",
+      "n": 23,
+      "predicted_mean_hex": "bfc142159f6633b8",
+      "predicted_sum_hex": "c008ceff1522ea58"
+    },
+    {
+      "id": "length23_pattern1",
+      "n": 23,
+      "predicted_mean_hex": "3fb0eb52dc88bb82",
+      "predicted_sum_hex": "3ff852471d048d8b"
+    },
+    {
+      "id": "length23_pattern2",
+      "n": 23,
+      "predicted_mean_hex": "c0dbc25ed751d104",
+      "predicted_sum_hex": "c123f3b42ac2ce3b"
+    },
+    {
+      "id": "length23_pattern3",
+      "n": 23,
+      "predicted_mean_hex": "3ffdfef3a66acef3",
+      "predicted_sum_hex": "40458f3f1f9cc4bf"
+    },
+    {
+      "id": "length23_pattern4",
+      "n": 23,
+      "predicted_mean_hex": "3fe7c0f3a9ff04e4",
+      "predicted_sum_hex": "403112af222f4b84"
+    },
+    {
+      "id": "length24_pattern0",
+      "n": 24,
+      "predicted_mean_hex": "bfa6d29931539dec",
+      "predicted_sum_hex": "bff11df2e4feb671"
+    },
+    {
+      "id": "length24_pattern1",
+      "n": 24,
+      "predicted_mean_hex": "3fb05fa0c147918a",
+      "predicted_sum_hex": "3ff88f7121eb5a4f"
+    },
+    {
+      "id": "length24_pattern2",
+      "n": 24,
+      "predicted_mean_hex": "40f123b2d24ecf11",
+      "predicted_sum_hex": "4139b58c3b76369a"
+    },
+    {
+      "id": "length24_pattern3",
+      "n": 24,
+      "predicted_mean_hex": "40049244abc212fb",
+      "predicted_sum_hex": "404edb6701a31c79"
+    },
+    {
+      "id": "length24_pattern4",
+      "n": 24,
+      "predicted_mean_hex": "3fe6daabf0ae505c",
+      "predicted_sum_hex": "40312400f482bc45"
+    },
+    {
+      "id": "length25_pattern0",
+      "n": 25,
+      "predicted_mean_hex": "3fb68cd2608f6ecf",
+      "predicted_sum_hex": "40019e045b700e92"
+    },
+    {
+      "id": "length25_pattern1",
+      "n": 25,
+      "predicted_mean_hex": "3faf7ade4a87ff4f",
+      "predicted_sum_hex": "3ff897fdaa3a3f76"
+    },
+    {
+      "id": "length25_pattern2",
+      "n": 25,
+      "predicted_mean_hex": "40e7847fa9ada545",
+      "predicted_sum_hex": "41325f83bc8fa91e"
+    },
+    {
+      "id": "length25_pattern3",
+      "n": 25,
+      "predicted_mean_hex": "3ffb72d7e30b59fb",
+      "predicted_sum_hex": "404571b8a960de4c"
+    },
+    {
+      "id": "length25_pattern4",
+      "n": 25,
+      "predicted_mean_hex": "3fe4f058b0d98ab4",
+      "predicted_sum_hex": "40305bc54a29f45d"
+    },
+    {
+      "id": "length30_pattern0",
+      "n": 30,
+      "predicted_mean_hex": "3fc4e29a36fff124",
+      "predicted_sum_hex": "40139470938ff212"
+    },
+    {
+      "id": "length30_pattern1",
+      "n": 30,
+      "predicted_mean_hex": "3fa73859543e53d0",
+      "predicted_sum_hex": "3ff5c4d3befa6e93"
+    },
+    {
+      "id": "length30_pattern2",
+      "n": 30,
+      "predicted_mean_hex": "c0ae19932242da07",
+      "predicted_sum_hex": "c0fc37f9f01eac67"
+    },
+    {
+      "id": "length30_pattern3",
+      "n": 30,
+      "predicted_mean_hex": "400343101ba89879",
+      "predicted_sum_hex": "40520edf19ee0ef1"
+    },
+    {
+      "id": "length30_pattern4",
+      "n": 30,
+      "predicted_mean_hex": "3fdeebbf1424582c",
+      "predicted_sum_hex": "402cfd0322e212a9"
+    },
+    {
+      "id": "length31_pattern0",
+      "n": 31,
+      "predicted_mean_hex": "3f96c047754e36d7",
+      "predicted_sum_hex": "3fe60a4539a3c520"
+    },
+    {
+      "id": "length31_pattern1",
+      "n": 31,
+      "predicted_mean_hex": "3fa553d8e86a1453",
+      "predicted_sum_hex": "3ff4a93a2126c3b0"
+    },
+    {
+      "id": "length31_pattern2",
+      "n": 31,
+      "predicted_mean_hex": "c0dbfbd9dda01569",
+      "predicted_sum_hex": "c12b1bfb0eb314be"
+    },
+    {
+      "id": "length31_pattern3",
+      "n": 31,
+      "predicted_mean_hex": "40014dab5a0e0580",
+      "predicted_sum_hex": "4050c33dff3d9554"
+    },
+    {
+      "id": "length31_pattern4",
+      "n": 31,
+      "predicted_mean_hex": "3fdc127856c4a87a",
+      "predicted_sum_hex": "402b31e4940e8336"
+    },
+    {
+      "id": "length32_pattern0",
+      "n": 32,
+      "predicted_mean_hex": "3fb3384dbf458fd6",
+      "predicted_sum_hex": "4003384dbf458fd6"
+    },
+    {
+      "id": "length32_pattern1",
+      "n": 32,
+      "predicted_mean_hex": "3fa36a307af3afa8",
+      "predicted_sum_hex": "3ff36a307af3afa8"
+    },
+    {
+      "id": "length32_pattern2",
+      "n": 32,
+      "predicted_mean_hex": "c0d6de4b586b438e",
+      "predicted_sum_hex": "c126de4b586b438e"
+    },
+    {
+      "id": "length32_pattern3",
+      "n": 32,
+      "predicted_mean_hex": "40014e18e8126a56",
+      "predicted_sum_hex": "40514e18e8126a56"
+    },
+    {
+      "id": "length32_pattern4",
+      "n": 32,
+      "predicted_mean_hex": "3fd9d4e64ac1b1f5",
+      "predicted_sum_hex": "4029d4e64ac1b1f5"
+    },
+    {
+      "id": "length33_pattern0",
+      "n": 33,
+      "predicted_mean_hex": "bfb9edaaf52931ef",
+      "predicted_sum_hex": "c00abd184cd27b7e"
+    },
+    {
+      "id": "length33_pattern1",
+      "n": 33,
+      "predicted_mean_hex": "3fa182cb559e7061",
+      "predicted_sum_hex": "3ff20ee1b04b63e4"
+    },
+    {
+      "id": "length33_pattern2",
+      "n": 33,
+      "predicted_mean_hex": "40e8f6b955c72a68",
+      "predicted_sum_hex": "4139be6f207563bb"
+    },
+    {
+      "id": "length33_pattern3",
+      "n": 33,
+      "predicted_mean_hex": "4002c39175625631",
+      "predicted_sum_hex": "405359ae010d68e3"
+    },
+    {
+      "id": "length33_pattern4",
+      "n": 33,
+      "predicted_mean_hex": "3fd87d5a7e50b613",
+      "predicted_sum_hex": "4029414552433bc4"
+    },
+    {
+      "id": "length36_pattern0",
+      "n": 36,
+      "predicted_mean_hex": "bfac7ae9bf7d50bb",
+      "predicted_sum_hex": "c00005237bb67d69"
+    },
+    {
+      "id": "length36_pattern1",
+      "n": 36,
+      "predicted_mean_hex": "3f97fb028fcab1d5",
+      "predicted_sum_hex": "3feafa62e1c40810"
+    },
+    {
+      "id": "length36_pattern2",
+      "n": 36,
+      "predicted_mean_hex": "c0b818dd89db37f2",
+      "predicted_sum_hex": "c10b1bf93b169ef0"
+    },
+    {
+      "id": "length36_pattern3",
+      "n": 36,
+      "predicted_mean_hex": "4000f087f069258c",
+      "predicted_sum_hex": "40530e98ee764a3e"
+    },
+    {
+      "id": "length36_pattern4",
+      "n": 36,
+      "predicted_mean_hex": "3fd679b6ee05299b",
+      "predicted_sum_hex": "402948edcbc5cece"
+    },
+    {
+      "id": "length37_pattern0",
+      "n": 37,
+      "predicted_mean_hex": "3fa89bc21a96d23b",
+      "predicted_sum_hex": "3ffc74186ebe6314"
+    },
+    {
+      "id": "length37_pattern1",
+      "n": 37,
+      "predicted_mean_hex": "3f948ffb188fae5b",
+      "predicted_sum_hex": "3fe7c67a54662199"
+    },
+    {
+      "id": "length37_pattern2",
+      "n": 37,
+      "predicted_mean_hex": "40c9151524cd8132",
+      "predicted_sum_hex": "411d0060728d9d62"
+    },
+    {
+      "id": "length37_pattern3",
+      "n": 37,
+      "predicted_mean_hex": "4002555e97ac6481",
+      "predicted_sum_hex": "405532b55f5f5435"
+    },
+    {
+      "id": "length37_pattern4",
+      "n": 37,
+      "predicted_mean_hex": "3fd3b490facff97c",
+      "predicted_sum_hex": "4026c8c7a2007877"
+    },
+    {
+      "id": "length38_pattern0",
+      "n": 38,
+      "predicted_mean_hex": "3fb323308d456794",
+      "predicted_sum_hex": "4006b9c9a7c26b00"
+    },
+    {
+      "id": "length38_pattern1",
+      "n": 38,
+      "predicted_mean_hex": "3f915a11a349146d",
+      "predicted_sum_hex": "3fe49af4f1e6c841"
+    },
+    {
+      "id": "length38_pattern2",
+      "n": 38,
+      "predicted_mean_hex": "c0c766c33b0257c2",
+      "predicted_sum_hex": "c11bca07d612c836"
+    },
+    {
+      "id": "length38_pattern3",
+      "n": 38,
+      "predicted_mean_hex": "40020e2abeee9f6c",
+      "predicted_sum_hex": "405570d2c2bb5d50"
+    },
+    {
+      "id": "length38_pattern4",
+      "n": 38,
+      "predicted_mean_hex": "3fd45a1f3ba26508",
+      "predicted_sum_hex": "40282b0516d0d7f9"
+    },
+    {
+      "id": "length39_pattern0",
+      "n": 39,
+      "predicted_mean_hex": "3fbefcfafb21f9e1",
+      "predicted_sum_hex": "4012e228f108b445"
+    },
+    {
+      "id": "length39_pattern1",
+      "n": 39,
+      "predicted_mean_hex": "3f8ca9baabad2bf6",
+      "predicted_sum_hex": "3fe1776dc09d86ca"
+    },
+    {
+      "id": "length39_pattern2",
+      "n": 39,
+      "predicted_mean_hex": "c0d0cfc095743ec2",
+      "predicted_sum_hex": "c1247d32b625ac7d"
+    },
+    {
+      "id": "length39_pattern3",
+      "n": 39,
+      "predicted_mean_hex": "40028cb818198ebd",
+      "predicted_sum_hex": "40569b805d5f25f6"
+    },
+    {
+      "id": "length39_pattern4",
+      "n": 39,
+      "predicted_mean_hex": "3fd4820d81ccf400",
+      "predicted_sum_hex": "4028fe807631c960"
+    },
+    {
+      "id": "length40_pattern0",
+      "n": 40,
+      "predicted_mean_hex": "bf84b7d1c926b463",
+      "predicted_sum_hex": "bfd9e5c63b70617c"
+    },
+    {
+      "id": "length40_pattern1",
+      "n": 40,
+      "predicted_mean_hex": "3f87270a5b743f0a",
+      "predicted_sum_hex": "3fdcf0ccf2514ecd"
+    },
+    {
+      "id": "length40_pattern2",
+      "n": 40,
+      "predicted_mean_hex": "40a4d501331b6a06",
+      "predicted_sum_hex": "40fa0a417fe24488"
+    },
+    {
+      "id": "length40_pattern3",
+      "n": 40,
+      "predicted_mean_hex": "40014c3b42931b4b",
+      "predicted_sum_hex": "40559f4a1337e21e"
+    },
+    {
+      "id": "length40_pattern4",
+      "n": 40,
+      "predicted_mean_hex": "3fd3a91830b115ad",
+      "predicted_sum_hex": "4028935e3cdd5b18"
+    },
+    {
+      "id": "length41_pattern0",
+      "n": 41,
+      "predicted_mean_hex": "3f9a5fa679fcb245",
+      "predicted_sum_hex": "3ff0e546a625e234"
+    },
+    {
+      "id": "length41_pattern1",
+      "n": 41,
+      "predicted_mean_hex": "3f823194a6f38194",
+      "predicted_sum_hex": "3fd74f8675e7fe05"
+    },
+    {
+      "id": "length41_pattern2",
+      "n": 41,
+      "predicted_mean_hex": "40e466068a0fd9df",
+      "predicted_sum_hex": "413a22b860e44f26"
+    },
+    {
+      "id": "length41_pattern3",
+      "n": 41,
+      "predicted_mean_hex": "400281f9f5a4074b",
+      "predicted_sum_hex": "4057b68842ba2958"
+    },
+    {
+      "id": "length41_pattern4",
+      "n": 41,
+      "predicted_mean_hex": "3fd41128bf31e5ff",
+      "predicted_sum_hex": "4029b5fc34f7eeaf"
+    },
+    {
+      "id": "length42_pattern0",
+      "n": 42,
+      "predicted_mean_hex": "bf9513ef9c28f93a",
+      "predicted_sum_hex": "bfebaa2a7cf5c71c"
+    },
+    {
+      "id": "length42_pattern1",
+      "n": 42,
+      "predicted_mean_hex": "3f7b908f4f385480",
+      "predicted_sum_hex": "3fd216de0bfcf774"
+    },
+    {
+      "id": "length42_pattern2",
+      "n": 42,
+      "predicted_mean_hex": "40ca6621ac76750c",
+      "predicted_sum_hex": "41215306192dbcd0"
+    },
+    {
+      "id": "length42_pattern3",
+      "n": 42,
+      "predicted_mean_hex": "4002a39720e3107a",
+      "predicted_sum_hex": "405876b65b2a05a0"
+    },
+    {
+      "id": "length42_pattern4",
+      "n": 42,
+      "predicted_mean_hex": "3fd33281d2ed8389",
+      "predicted_sum_hex": "4029324a64d7bca4"
+    },
+    {
+      "id": "length43_pattern0",
+      "n": 43,
+      "predicted_mean_hex": "bfbce50a43589767",
+      "predicted_sum_hex": "c01369e2e53f85b9"
+    },
+    {
+      "id": "length43_pattern1",
+      "n": 43,
+      "predicted_mean_hex": "3f73e87ea62e1392",
+      "predicted_sum_hex": "3fcac06a2f4dea4c"
+    },
+    {
+      "id": "length43_pattern2",
+      "n": 43,
+      "predicted_mean_hex": "40c0ce5be6d4d61c",
+      "predicted_sum_hex": "4116954b7e2dffb5"
+    },
+    {
+      "id": "length43_pattern3",
+      "n": 43,
+      "predicted_mean_hex": "3fff196d10feeb6a",
+      "predicted_sum_hex": "4054e515476b462b"
+    },
+    {
+      "id": "length43_pattern4",
+      "n": 43,
+      "predicted_mean_hex": "3fd3ac1ff39392b8",
+      "predicted_sum_hex": "402a6f4aef4e4d27"
+    },
+    {
+      "id": "length44_pattern0",
+      "n": 44,
+      "predicted_mean_hex": "3fa4eaeba6445914",
+      "predicted_sum_hex": "3ffcc304049dfa7c"
+    },
+    {
+      "id": "length44_pattern1",
+      "n": 44,
+      "predicted_mean_hex": "3f6b05244b99ecc3",
+      "predicted_sum_hex": "3fc29388f3f9d2c6"
+    },
+    {
+      "id": "length44_pattern2",
+      "n": 44,
+      "predicted_mean_hex": "40d3db73bc405e0f",
+      "predicted_sum_hex": "412b4dbf22d88154"
+    },
+    {
+      "id": "length44_pattern3",
+      "n": 44,
+      "predicted_mean_hex": "4004a719d07a9eb7",
+      "predicted_sum_hex": "405c65c37ea89a3b"
+    },
+    {
+      "id": "length44_pattern4",
+      "n": 44,
+      "predicted_mean_hex": "3fd42ae0a64b526f",
+      "predicted_sum_hex": "402bbaf4e4a79159"
+    },
+    {
+      "id": "length45_pattern0",
+      "n": 45,
+      "predicted_mean_hex": "3f79abc935f000bc",
+      "predicted_sum_hex": "3fd20cc979ecc084"
+    },
+    {
+      "id": "length45_pattern1",
+      "n": 45,
+      "predicted_mean_hex": "3f60bdbbd9606cd3",
+      "predicted_sum_hex": "3fb78ad029af9909"
+    },
+    {
+      "id": "length45_pattern2",
+      "n": 45,
+      "predicted_mean_hex": "c0c5daf349316ebc",
+      "predicted_sum_hex": "c11ebbe61eed83b8"
+    },
+    {
+      "id": "length45_pattern3",
+      "n": 45,
+      "predicted_mean_hex": "4001c688ecaebf77",
+      "predicted_sum_hex": "4058ff308cd5bd40"
+    },
+    {
+      "id": "length45_pattern4",
+      "n": 45,
+      "predicted_mean_hex": "3fd35655dc35e028",
+      "predicted_sum_hex": "402b3168bdabc338"
+    },
+    {
+      "id": "length46_pattern0",
+      "n": 46,
+      "predicted_mean_hex": "3fb3ac4463be21b8",
+      "predicted_sum_hex": "400c47a24f615078"
+    },
+    {
+      "id": "length46_pattern1",
+      "n": 46,
+      "predicted_mean_hex": "3f5221266a97183a",
+      "predicted_sum_hex": "3faa0fa7393932d4"
+    },
+    {
+      "id": "length46_pattern2",
+      "n": 46,
+      "predicted_mean_hex": "40d1e90bb91dea63",
+      "predicted_sum_hex": "4129bf00da1b00ef"
+    },
+    {
+      "id": "length46_pattern3",
+      "n": 46,
+      "predicted_mean_hex": "40010c8766ccdeec",
+      "predicted_sum_hex": "40588202a3c68073"
+    },
+    {
+      "id": "length46_pattern4",
+      "n": 46,
+      "predicted_mean_hex": "3fd3f98912dd1b4a",
+      "predicted_sum_hex": "402cb6b50b1dd73b"
+    },
+    {
+      "id": "length47_pattern0",
+      "n": 47,
+      "predicted_mean_hex": "3fb54e0efdac7bd7",
+      "predicted_sum_hex": "400f4aa6049555e4"
+    },
+    {
+      "id": "length47_pattern1",
+      "n": 47,
+      "predicted_mean_hex": "3f3c69944ff54ca6",
+      "predicted_sum_hex": "3f94dd88eab8244a"
+    },
+    {
+      "id": "length47_pattern2",
+      "n": 47,
+      "predicted_mean_hex": "c0af43204385c9e1",
+      "predicted_sum_hex": "c106f54bb1964041"
+    },
+    {
+      "id": "length47_pattern3",
+      "n": 47,
+      "predicted_mean_hex": "40041499f186fa22",
+      "predicted_sum_hex": "405d7e421abe3f62"
+    },
+    {
+      "id": "length47_pattern4",
+      "n": 47,
+      "predicted_mean_hex": "3fd4240b9147d2e7",
+      "predicted_sum_hex": "402d94f0fd617dc3"
+    },
+    {
+      "id": "length48_pattern0",
+      "n": 48,
+      "predicted_mean_hex": "bfa51c74f50ab856",
+      "predicted_sum_hex": "bfffaaaf6f901481"
+    },
+    {
+      "id": "length48_pattern1",
+      "n": 48,
+      "predicted_mean_hex": "3f11921f809fe585",
+      "predicted_sum_hex": "3f6a5b2f40efd848"
+    },
+    {
+      "id": "length48_pattern2",
+      "n": 48,
+      "predicted_mean_hex": "c0b20aa984d637e0",
+      "predicted_sum_hex": "c10b0ffe474153d0"
+    },
+    {
+      "id": "length48_pattern3",
+      "n": 48,
+      "predicted_mean_hex": "400061da617746aa",
+      "predicted_sum_hex": "405892c79232e9ff"
+    },
+    {
+      "id": "length48_pattern4",
+      "n": 48,
+      "predicted_mean_hex": "3fd43675e6c63b25",
+      "predicted_sum_hex": "402e51b0da2958b8"
+    },
+    {
+      "id": "length49_pattern0",
+      "n": 49,
+      "predicted_mean_hex": "3fb771240323eaca",
+      "predicted_sum_hex": "4011f29f92677fc3"
+    },
+    {
+      "id": "length49_pattern1",
+      "n": 49,
+      "predicted_mean_hex": "befd569a1bb5888d",
+      "predicted_sum_hex": "bf56764dfd36fc8c"
+    },
+    {
+      "id": "length49_pattern2",
+      "n": 49,
+      "predicted_mean_hex": "c064533d78b534ac",
+      "predicted_sum_hex": "c0bf1f7620d578a8"
+    },
+    {
+      "id": "length49_pattern3",
+      "n": 49,
+      "predicted_mean_hex": "4001085573d435f8",
+      "predicted_sum_hex": "405a14c2d95cf2a4"
+    },
+    {
+      "id": "length49_pattern4",
+      "n": 49,
+      "predicted_mean_hex": "3fd4af6b7cb4cb7f",
+      "predicted_sum_hex": "402fac9c96f4d79a"
+    },
+    {
+      "id": "length50_pattern0",
+      "n": 50,
+      "predicted_mean_hex": "3f90e52887ebbb7f",
+      "predicted_sum_hex": "3fea660f546054f6"
+    },
+    {
+      "id": "length50_pattern1",
+      "n": 50,
+      "predicted_mean_hex": "3f2392945a104661",
+      "predicted_sum_hex": "3f7e9507ccb96df8"
+    },
+    {
+      "id": "length50_pattern2",
+      "n": 50,
+      "predicted_mean_hex": "c0d204f966e309cf",
+      "predicted_sum_hex": "c12c27c5b0c2bf53"
+    },
+    {
+      "id": "length50_pattern3",
+      "n": 50,
+      "predicted_mean_hex": "40017b8b03e5fb78",
+      "predicted_sum_hex": "405b5109361758ec"
+    },
+    {
+      "id": "length50_pattern4",
+      "n": 50,
+      "predicted_mean_hex": "3fd53a9c734abda1",
+      "predicted_sum_hex": "403095ca3a126426"
+    },
+    {
+      "id": "length51_pattern0",
+      "n": 51,
+      "predicted_mean_hex": "bfcdc67f522041ad",
+      "predicted_sum_hex": "c027ba2d7571b456"
+    },
+    {
+      "id": "length51_pattern1",
+      "n": 51,
+      "predicted_mean_hex": "3f4274784787e670",
+      "predicted_sum_hex": "3f9d699fb2009742"
+    },
+    {
+      "id": "length51_pattern2",
+      "n": 51,
+      "predicted_mean_hex": "c0df69b1af084fc3",
+      "predicted_sum_hex": "c1390839977a9f8f"
+    },
+    {
+      "id": "length51_pattern3",
+      "n": 51,
+      "predicted_mean_hex": "4001b10ec03e7bde",
+      "predicted_sum_hex": "405c322f8263956a"
+    },
+    {
+      "id": "length51_pattern4",
+      "n": 51,
+      "predicted_mean_hex": "3fd5c783ed5c55ed",
+      "predicted_sum_hex": "40315afd21259479"
+    },
+    {
+      "id": "length52_pattern0",
+      "n": 52,
+      "predicted_mean_hex": "3fb721431945cfef",
+      "predicted_sum_hex": "4012cb068488b8f2"
+    },
+    {
+      "id": "length52_pattern1",
+      "n": 52,
+      "predicted_mean_hex": "3f542cf10125ea74",
+      "predicted_sum_hex": "3fb06483d0eece7e"
+    },
+    {
+      "id": "length52_pattern2",
+      "n": 52,
+      "predicted_mean_hex": "c0e28f8c22819209",
+      "predicted_sum_hex": "c13e2943b8128d4f"
+    },
+    {
+      "id": "length52_pattern3",
+      "n": 52,
+      "predicted_mean_hex": "4000293056b76b67",
+      "predicted_sum_hex": "405a42ee8cea0e88"
+    },
+    {
+      "id": "length52_pattern4",
+      "n": 52,
+      "predicted_mean_hex": "3fd53990cef1f494",
+      "predicted_sum_hex": "40313ec5a82496b8"
+    },
+    {
+      "id": "length55_pattern0",
+      "n": 55,
+      "predicted_mean_hex": "3faf6c02a6b6b011",
+      "predicted_sum_hex": "400b00d24744ff4f"
+    },
+    {
+      "id": "length55_pattern1",
+      "n": 55,
+      "predicted_mean_hex": "3f7156284c4eb6e4",
+      "predicted_sum_hex": "3fcdcc1543274a58"
+    },
+    {
+      "id": "length55_pattern2",
+      "n": 55,
+      "predicted_mean_hex": "40d5501c7c30ea62",
+      "predicted_sum_hex": "413250d87aba096c"
+    },
+    {
+      "id": "length55_pattern3",
+      "n": 55,
+      "predicted_mean_hex": "4002cd399832617a",
+      "predicted_sum_hex": "4060285d7ecb4bc5"
+    },
+    {
+      "id": "length55_pattern4",
+      "n": 55,
+      "predicted_mean_hex": "3fd55765c9f72f2f",
+      "predicted_sum_hex": "4032571b79906c8c"
+    },
+    {
+      "id": "length56_pattern0",
+      "n": 56,
+      "predicted_mean_hex": "3fc0de5751a067d9",
+      "predicted_sum_hex": "401d8518ced8b5bc"
+    },
+    {
+      "id": "length56_pattern1",
+      "n": 56,
+      "predicted_mean_hex": "3f76a0cd92f01a93",
+      "predicted_sum_hex": "3fd3ccb3e0921741"
+    },
+    {
+      "id": "length56_pattern2",
+      "n": 56,
+      "predicted_mean_hex": "c0d0b6c81fa77f6a",
+      "predicted_sum_hex": "c12d3fde37651efa"
+    },
+    {
+      "id": "length56_pattern3",
+      "n": 56,
+      "predicted_mean_hex": "40012b798d1f888c",
+      "predicted_sum_hex": "405e0c14b6f72ef5"
+    },
+    {
+      "id": "length56_pattern4",
+      "n": 56,
+      "predicted_mean_hex": "3fd489f1892d428a",
+      "predicted_sum_hex": "4031f8b358079a39"
+    },
+    {
+      "id": "length57_pattern0",
+      "n": 57,
+      "predicted_mean_hex": "3fa49d2a46049087",
+      "predicted_sum_hex": "40025bf9a65c10b8"
+    },
+    {
+      "id": "length57_pattern1",
+      "n": 57,
+      "predicted_mean_hex": "3f7c3bf60b685138",
+      "predicted_sum_hex": "3fd925672228e856"
+    },
+    {
+      "id": "length57_pattern2",
+      "n": 57,
+      "predicted_mean_hex": "c0c934e4e4aa2c78",
+      "predicted_sum_hex": "c126731bdba78f9b"
+    },
+    {
+      "id": "length57_pattern3",
+      "n": 57,
+      "predicted_mean_hex": "4002a921f3324fa6",
+      "predicted_sum_hex": "40609ea23c98cef0"
+    },
+    {
+      "id": "length57_pattern4",
+      "n": 57,
+      "predicted_mean_hex": "3fd3899d72d910ea",
+      "predicted_sum_hex": "403166903a495310"
+    },
+    {
+      "id": "length58_pattern0",
+      "n": 58,
+      "predicted_mean_hex": "bf82963ca10f7f4d",
+      "predicted_sum_hex": "bfe0d826f1f60b5e"
+    },
+    {
+      "id": "length58_pattern1",
+      "n": 58,
+      "predicted_mean_hex": "3f8114db49223c33",
+      "predicted_sum_hex": "3fdef5cd748e0d1d"
+    },
+    {
+      "id": "length58_pattern2",
+      "n": 58,
+      "predicted_mean_hex": "c0b0b533c6b5fde0",
+      "predicted_sum_hex": "c10e486dd829dc26"
+    },
+    {
+      "id": "length58_pattern3",
+      "n": 58,
+      "predicted_mean_hex": "4001345828bc9ad3",
+      "predicted_sum_hex": "405f2edfc9d5d89f"
+    },
+    {
+      "id": "length58_pattern4",
+      "n": 58,
+      "predicted_mean_hex": "3fd342269950b131",
+      "predicted_sum_hex": "403173f2faf12094"
+    },
+    {
+      "id": "length59_pattern0",
+      "n": 59,
+      "predicted_mean_hex": "3fa567458b20136b",
+      "predicted_sum_hex": "4003bb341c4191e7"
+    },
+    {
+      "id": "length59_pattern1",
+      "n": 59,
+      "predicted_mean_hex": "3f8413f0b25403be",
+      "predicted_sum_hex": "3fe28261e4657373"
+    },
+    {
+      "id": "length59_pattern2",
+      "n": 59,
+      "predicted_mean_hex": "40d29270dcc6db0f",
+      "predicted_sum_hex": "41311f000b8751f2"
+    },
+    {
+      "id": "length59_pattern3",
+      "n": 59,
+      "predicted_mean_hex": "40027becf400c8fd",
+      "predicted_sum_hex": "40610a3e70f0b949"
+    },
+    {
+      "id": "length59_pattern4",
+      "n": 59,
+      "predicted_mean_hex": "3fd345358065623b",
+      "predicted_sum_hex": "4031c3cd525d768e"
+    },
+    {
+      "id": "length60_pattern0",
+      "n": 60,
+      "predicted_mean_hex": "bfaaecbb22be6670",
+      "predicted_sum_hex": "c0093def70928009"
+    },
+    {
+      "id": "length60_pattern1",
+      "n": 60,
+      "predicted_mean_hex": "3f8716cb3ed28e4b",
+      "predicted_sum_hex": "3fe5a55e8ae56566"
+    },
+    {
+      "id": "length60_pattern2",
+      "n": 60,
+      "predicted_mean_hex": "c0f072af940ff3da",
+      "predicted_sum_hex": "c14ed709359de938"
+    },
+    {
+      "id": "length60_pattern3",
+      "n": 60,
+      "predicted_mean_hex": "40022bfa9e9b9dad",
+      "predicted_sum_hex": "4061093af4b1e3d2"
+    },
+    {
+      "id": "length60_pattern4",
+      "n": 60,
+      "predicted_mean_hex": "3fd23162b375f9a0",
+      "predicted_sum_hex": "40310e4c883e9a06"
+    },
+    {
+      "id": "length61_pattern0",
+      "n": 61,
+      "predicted_mean_hex": "bfc520b8f407b7c9",
+      "predicted_sum_hex": "c024233048975b2c"
+    },
+    {
+      "id": "length61_pattern1",
+      "n": 61,
+      "predicted_mean_hex": "3f8a116415e27509",
+      "predicted_sum_hex": "3fe8d89364dbd78d"
+    },
+    {
+      "id": "length61_pattern2",
+      "n": 61,
+      "predicted_mean_hex": "c08ac5d35dbc60ac",
+      "predicted_sum_hex": "c0e9848d75578c24"
+    },
+    {
+      "id": "length61_pattern3",
+      "n": 61,
+      "predicted_mean_hex": "400072c43f612cbd",
+      "predicted_sum_hex": "405f5ac618d13d49"
+    },
+    {
+      "id": "length61_pattern4",
+      "n": 61,
+      "predicted_mean_hex": "3fd1f9dad5c75b6f",
+      "predicted_sum_hex": "4031222493c20326"
+    },
+    {
+      "id": "length62_pattern0",
+      "n": 62,
+      "predicted_mean_hex": "bfb3e760ec94a4f9",
+      "predicted_sum_hex": "c0134825e52fffd1"
+    },
+    {
+      "id": "length62_pattern1",
+      "n": 62,
+      "predicted_mean_hex": "3f8cf5cb7608c325",
+      "predicted_sum_hex": "3fec0e1d1a587d0c"
+    },
+    {
+      "id": "length62_pattern2",
+      "n": 62,
+      "predicted_mean_hex": "c0afac5a378f2325",
+      "predicted_sum_hex": "c10eaef765d2aa0c"
+    },
+    {
+      "id": "length62_pattern3",
+      "n": 62,
+      "predicted_mean_hex": "40014c8c3a50a940",
+      "predicted_sum_hex": "4060c227d87e23f6"
+    },
+    {
+      "id": "length62_pattern4",
+      "n": 62,
+      "predicted_mean_hex": "3fd0dadb7639cbd2",
+      "predicted_sum_hex": "403054049a87fd73"
+    },
+    {
+      "id": "length63_pattern0",
+      "n": 63,
+      "predicted_mean_hex": "bfb9fc19302d46d5",
+      "predicted_sum_hex": "c0199428cb6c91ba"
+    },
+    {
+      "id": "length63_pattern1",
+      "n": 63,
+      "predicted_mean_hex": "3f8fa7fb229c4cdc",
+      "predicted_sum_hex": "3fef295b3611dba9"
+    },
+    {
+      "id": "length63_pattern2",
+      "n": 63,
+      "predicted_mean_hex": "40ded3d57bb91e4f",
+      "predicted_sum_hex": "413e588625ca39d6"
+    },
+    {
+      "id": "length63_pattern3",
+      "n": 63,
+      "predicted_mean_hex": "4000697fd9b5d62b",
+      "predicted_sum_hex": "406027d9da4efed2"
+    },
+    {
+      "id": "length63_pattern4",
+      "n": 63,
+      "predicted_mean_hex": "3fd048da7a979ed6",
+      "predicted_sum_hex": "403007b710ad405b"
+    },
+    {
+      "id": "length64_pattern0",
+      "n": 64,
+      "predicted_mean_hex": "bfba7ba6de7ff2a3",
+      "predicted_sum_hex": "c01a7ba6de7ff2a3"
+    },
+    {
+      "id": "length64_pattern1",
+      "n": 64,
+      "predicted_mean_hex": "3f91188f0ac64b80",
+      "predicted_sum_hex": "3ff1188f0ac64b80"
+    },
+    {
+      "id": "length64_pattern2",
+      "n": 64,
+      "predicted_mean_hex": "40d6bbb7153ba416",
+      "predicted_sum_hex": "4136bbb7153ba416"
+    },
+    {
+      "id": "length64_pattern3",
+      "n": 64,
+      "predicted_mean_hex": "40017c30b0bc6209",
+      "predicted_sum_hex": "40617c30b0bc6209"
+    },
+    {
+      "id": "length64_pattern4",
+      "n": 64,
+      "predicted_mean_hex": "3fce4e9f1ba206b7",
+      "predicted_sum_hex": "402e4e9f1ba206b7"
+    },
+    {
+      "id": "length65_pattern0",
+      "n": 65,
+      "predicted_mean_hex": "bfb5c2536e4c5855",
+      "predicted_sum_hex": "c016195cbc0589b6"
+    },
+    {
+      "id": "length65_pattern1",
+      "n": 65,
+      "predicted_mean_hex": "3f923e9e778ab15f",
+      "predicted_sum_hex": "3ff28798f168dc24"
+    },
+    {
+      "id": "length65_pattern2",
+      "n": 65,
+      "predicted_mean_hex": "c0ba156cca1de716",
+      "predicted_sum_hex": "c11a7dc27d465eb2"
+    },
+    {
+      "id": "length65_pattern3",
+      "n": 65,
+      "predicted_mean_hex": "4001972d86e8542f",
+      "predicted_sum_hex": "4061dd8a3d03f580"
+    },
+    {
+      "id": "length65_pattern4",
+      "n": 65,
+      "predicted_mean_hex": "3fcca7d27e0af907",
+      "predicted_sum_hex": "402d1a71c80324eb"
+    },
+    {
+      "id": "length70_pattern0",
+      "n": 70,
+      "predicted_mean_hex": "bfb0eb808111aac2",
+      "predicted_sum_hex": "c01281948d2b52c4"
+    },
+    {
+      "id": "length70_pattern1",
+      "n": 70,
+      "predicted_mean_hex": "3f95a8406cefb749",
+      "predicted_sum_hex": "3ff7b00677263078"
+    },
+    {
+      "id": "length70_pattern2",
+      "n": 70,
+      "predicted_mean_hex": "c0d4f8b58e287c1f",
+      "predicted_sum_hex": "c136f006937c47c2"
+    },
+    {
+      "id": "length70_pattern3",
+      "n": 70,
+      "predicted_mean_hex": "40033f6c88c7e865",
+      "predicted_sum_hex": "40650d5eb59aa62e"
+    },
+    {
+      "id": "length70_pattern4",
+      "n": 70,
+      "predicted_mean_hex": "3fc762fa8b02db24",
+      "predicted_sum_hex": "40299442080b1faf"
+    },
+    {
+      "id": "length71_pattern0",
+      "n": 71,
+      "predicted_mean_hex": "3f9bbc74d510c999",
+      "predicted_sum_hex": "3ffec5119c5e9fa6"
+    },
+    {
+      "id": "length71_pattern1",
+      "n": 71,
+      "predicted_mean_hex": "3f95cf53994410ee",
+      "predicted_sum_hex": "3ff83200be0782c8"
+    },
+    {
+      "id": "length71_pattern2",
+      "n": 71,
+      "predicted_mean_hex": "c0acce0c6e944eba",
+      "predicted_sum_hex": "c10ff495caac8756"
+    },
+    {
+      "id": "length71_pattern3",
+      "n": 71,
+      "predicted_mean_hex": "4001092b3181a817",
+      "predicted_sum_hex": "4062e62beaebd679"
+    },
+    {
+      "id": "length71_pattern4",
+      "n": 71,
+      "predicted_mean_hex": "3fc7162e04ce49db",
+      "predicted_sum_hex": "40299c9b0d54d9ef"
+    },
+    {
+      "id": "length72_pattern0",
+      "n": 72,
+      "predicted_mean_hex": "bf92c2a336ee0f41",
+      "predicted_sum_hex": "bff51af79dcbd129"
+    },
+    {
+      "id": "length72_pattern1",
+      "n": 72,
+      "predicted_mean_hex": "3f95c672b1ee0c1e",
+      "predicted_sum_hex": "3ff87f41082bcda2"
+    },
+    {
+      "id": "length72_pattern2",
+      "n": 72,
+      "predicted_mean_hex": "c0a60bb030def77c",
+      "predicted_sum_hex": "c108cd2636fad66c"
+    },
+    {
+      "id": "length72_pattern3",
+      "n": 72,
+      "predicted_mean_hex": "400368c9c91f56fa",
+      "predicted_sum_hex": "4065d5e3024341d9"
+    },
+    {
+      "id": "length72_pattern4",
+      "n": 72,
+      "predicted_mean_hex": "3fc5eb31d38e046a",
+      "predicted_sum_hex": "4028a8980dffc4f7"
+    },
+    {
+      "id": "length79_pattern0",
+      "n": 79,
+      "predicted_mean_hex": "3fbc144c36ce3c47",
+      "predicted_sum_hex": "4021548709d34934"
+    },
+    {
+      "id": "length79_pattern1",
+      "n": 79,
+      "predicted_mean_hex": "3f910d243a2b6b8e",
+      "predicted_sum_hex": "3ff50c38b7cd98c3"
+    },
+    {
+      "id": "length79_pattern2",
+      "n": 79,
+      "predicted_mean_hex": "c09d2c90c99d56a2",
+      "predicted_sum_hex": "c10201815c6f1b78"
+    },
+    {
+      "id": "length79_pattern3",
+      "n": 79,
+      "predicted_mean_hex": "4000cfbcc4e48a46",
+      "predicted_sum_hex": "4064c06d030a1aaf"
+    },
+    {
+      "id": "length79_pattern4",
+      "n": 79,
+      "predicted_mean_hex": "3fc4d4630b085148",
+      "predicted_sum_hex": "4029b62a419e4455"
+    },
+    {
+      "id": "length80_pattern0",
+      "n": 80,
+      "predicted_mean_hex": "3fa919a4af1748c6",
+      "predicted_sum_hex": "400f600ddadd1af8"
+    },
+    {
+      "id": "length80_pattern1",
+      "n": 80,
+      "predicted_mean_hex": "3f8fc2b398ff25e6",
+      "predicted_sum_hex": "3ff3d9b03f9f77b0"
+    },
+    {
+      "id": "length80_pattern2",
+      "n": 80,
+      "predicted_mean_hex": "c0bcb588146ef536",
+      "predicted_sum_hex": "c121f1750cc55942"
+    },
+    {
+      "id": "length80_pattern3",
+      "n": 80,
+      "predicted_mean_hex": "4001f206dfa22559",
+      "predicted_sum_hex": "40666e88978aaeaf"
+    },
+    {
+      "id": "length80_pattern4",
+      "n": 80,
+      "predicted_mean_hex": "3fc498e7ab9798ba",
+      "predicted_sum_hex": "4029bf21967d7ee8"
+    },
+    {
+      "id": "length81_pattern0",
+      "n": 81,
+      "predicted_mean_hex": "3f9939abdf9f82af",
+      "predicted_sum_hex": "3fffecfd8705e165"
+    },
+    {
+      "id": "length81_pattern1",
+      "n": 81,
+      "predicted_mean_hex": "3f8d48e24859ade7",
+      "predicted_sum_hex": "3ff2881f31c8c00c"
+    },
+    {
+      "id": "length81_pattern2",
+      "n": 81,
+      "predicted_mean_hex": "4086944866344bb1",
+      "predicted_sum_hex": "40ec93aba15a2fcc"
+    },
+    {
+      "id": "length81_pattern3",
+      "n": 81,
+      "predicted_mean_hex": "4001d64d0edf8f5c",
+      "predicted_sum_hex": "4066933986d2f170"
+    },
+    {
+      "id": "length81_pattern4",
+      "n": 81,
+      "predicted_mean_hex": "3fc5ef27a7d479f0",
+      "predicted_sum_hex": "402bc2ae3068ea54"
+    },
+    {
+      "id": "length95_pattern0",
+      "n": 95,
+      "predicted_mean_hex": "3fb5757d23fe575e",
+      "predicted_sum_hex": "401fda65c16d89af"
+    },
+    {
+      "id": "length95_pattern1",
+      "n": 95,
+      "predicted_mean_hex": "3f3393975f7a37dd",
+      "predicted_sum_hex": "3f9d0f14b1b96aec"
+    },
+    {
+      "id": "length95_pattern2",
+      "n": 95,
+      "predicted_mean_hex": "40c6eb2ea976a24e",
+      "predicted_sum_hex": "4131028ca1c60c76"
+    },
+    {
+      "id": "length95_pattern3",
+      "n": 95,
+      "predicted_mean_hex": "4001c5a072c7c8b0",
+      "predicted_sum_hex": "406a615a2a608de5"
+    },
+    {
+      "id": "length95_pattern4",
+      "n": 95,
+      "predicted_mean_hex": "3fc6dd8eb2251031",
+      "predicted_sum_hex": "4030f86fe8378204"
+    },
+    {
+      "id": "length96_pattern0",
+      "n": 96,
+      "predicted_mean_hex": "3fb897c2d71e8115",
+      "predicted_sum_hex": "402271d22156e0d0"
+    },
+    {
+      "id": "length96_pattern1",
+      "n": 96,
+      "predicted_mean_hex": "3f146e2a518aa210",
+      "predicted_sum_hex": "3f7ea53f7a4ff318"
+    },
+    {
+      "id": "length96_pattern2",
+      "n": 96,
+      "predicted_mean_hex": "40bfc6319bba51c8",
+      "predicted_sum_hex": "4127d4a534cbbd56"
+    },
+    {
+      "id": "length96_pattern3",
+      "n": 96,
+      "predicted_mean_hex": "400155c4057b9ede",
+      "predicted_sum_hex": "406a00a608396e4d"
+    },
+    {
+      "id": "length96_pattern4",
+      "n": 96,
+      "predicted_mean_hex": "3fc68ea37c379064",
+      "predicted_sum_hex": "4030eafa9d29ac4b"
+    },
+    {
+      "id": "length97_pattern0",
+      "n": 97,
+      "predicted_mean_hex": "3fb3b0dd17f0ae97",
+      "predicted_sum_hex": "401dd80f1848c89d"
+    },
+    {
+      "id": "length97_pattern1",
+      "n": 97,
+      "predicted_mean_hex": "bef116fb1cddf4a4",
+      "predicted_sum_hex": "bf59e6d497c066c8"
+    },
+    {
+      "id": "length97_pattern2",
+      "n": 97,
+      "predicted_mean_hex": "c0b9b33afb148f64",
+      "predicted_sum_hex": "c12379d2b24594aa"
+    },
+    {
+      "id": "length97_pattern3",
+      "n": 97,
+      "predicted_mean_hex": "40024f5b69729954",
+      "predicted_sum_hex": "406bc0468bd1b064"
+    },
+    {
+      "id": "length97_pattern4",
+      "n": 97,
+      "predicted_mean_hex": "3fc739a34801326c",
+      "predicted_sum_hex": "403199adbc90e836"
+    },
+    {
+      "id": "length127_pattern0",
+      "n": 127,
+      "predicted_mean_hex": "bfa3c94d8dec7515",
+      "predicted_sum_hex": "c013a1baf2d09c2b"
+    },
+    {
+      "id": "length127_pattern1",
+      "n": 127,
+      "predicted_mean_hex": "3f858ccbded1c30e",
+      "predicted_sum_hex": "3ff561b247141f88"
+    },
+    {
+      "id": "length127_pattern2",
+      "n": 127,
+      "predicted_mean_hex": "c0d8b05c15143100",
+      "predicted_sum_hex": "c1487efb5cea089e"
+    },
+    {
+      "id": "length127_pattern3",
+      "n": 127,
+      "predicted_mean_hex": "4002e4598fa96e86",
+      "predicted_sum_hex": "4072be90dc8a1ba9"
+    },
+    {
+      "id": "length127_pattern4",
+      "n": 127,
+      "predicted_mean_hex": "3fc19a40637ce1ff",
+      "predicted_sum_hex": "4031770be2b5e83b"
+    },
+    {
+      "id": "length128_pattern0",
+      "n": 128,
+      "predicted_mean_hex": "3fad647b504ccf2a",
+      "predicted_sum_hex": "401d647b504ccf2a"
+    },
+    {
+      "id": "length128_pattern1",
+      "n": 128,
+      "predicted_mean_hex": "3f8444bc4b8cccfc",
+      "predicted_sum_hex": "3ff444bc4b8cccfc"
+    },
+    {
+      "id": "length128_pattern2",
+      "n": 128,
+      "predicted_mean_hex": "c0cbaceb4334ba31",
+      "predicted_sum_hex": "c13baceb4334ba31"
+    },
+    {
+      "id": "length128_pattern3",
+      "n": 128,
+      "predicted_mean_hex": "4001d8cd3d8053ac",
+      "predicted_sum_hex": "4071d8cd3d8053ac"
+    },
+    {
+      "id": "length128_pattern4",
+      "n": 128,
+      "predicted_mean_hex": "3fc1a128a62a97c0",
+      "predicted_sum_hex": "4031a128a62a97c0"
+    },
+    {
+      "id": "length129_pattern0",
+      "n": 129,
+      "predicted_mean_hex": "bf89e797ca768d4c",
+      "predicted_sum_hex": "bffa1b66fa0b7a67"
+    },
+    {
+      "id": "length129_pattern1",
+      "n": 129,
+      "predicted_mean_hex": "3f82cd80461b15da",
+      "predicted_sum_hex": "3ff2f31b46a74c06"
+    },
+    {
+      "id": "length129_pattern2",
+      "n": 129,
+      "predicted_mean_hex": "c0bbca80bcf7b44b",
+      "predicted_sum_hex": "c12c0215be71a3b4"
+    },
+    {
+      "id": "length129_pattern3",
+      "n": 129,
+      "predicted_mean_hex": "4001f5aaa9340391",
+      "predicted_sum_hex": "40721995fe866b98"
+    },
+    {
+      "id": "length129_pattern4",
+      "n": 129,
+      "predicted_mean_hex": "3fc1a16c8ac6b8c0",
+      "predicted_sum_hex": "4031c4af63dc4631"
+    },
+    {
+      "id": "length192_pattern0",
+      "n": 192,
+      "predicted_mean_hex": "3fa3f071ab9e4aa1",
+      "predicted_sum_hex": "401de8aa816d6ff1"
+    },
+    {
+      "id": "length192_pattern1",
+      "n": 192,
+      "predicted_mean_hex": "3f1c2b57dfe3a6e5",
+      "predicted_sum_hex": "3f952081e7eabd2c"
+    },
+    {
+      "id": "length192_pattern2",
+      "n": 192,
+      "predicted_mean_hex": "40c08f90ba1685f6",
+      "predicted_sum_hex": "4138d7591721c8f1"
+    },
+    {
+      "id": "length192_pattern3",
+      "n": 192,
+      "predicted_mean_hex": "4002506ee8019f40",
+      "predicted_sum_hex": "407b78a65c026ee0"
+    },
+    {
+      "id": "length192_pattern4",
+      "n": 192,
+      "predicted_mean_hex": "3fb1aa6ed3307b68",
+      "predicted_sum_hex": "402a7fa63cc8b91c"
+    },
+    {
+      "id": "length193_pattern0",
+      "n": 193,
+      "predicted_mean_hex": "bfa223cd186f6518",
+      "predicted_sum_hex": "c01b59fb3ed7f66e"
+    },
+    {
+      "id": "length193_pattern1",
+      "n": 193,
+      "predicted_mean_hex": "3eecc1c49e187b3c",
+      "predicted_sum_hex": "3f65ae153b3074e8"
+    },
+    {
+      "id": "length193_pattern2",
+      "n": 193,
+      "predicted_mean_hex": "40bba0faa02886ca",
+      "predicted_sum_hex": "4134d45cf2be8d9e"
+    },
+    {
+      "id": "length193_pattern3",
+      "n": 193,
+      "predicted_mean_hex": "400123798d926f29",
+      "predicted_sum_hex": "4079d77d4776cb9c"
+    },
+    {
+      "id": "length193_pattern4",
+      "n": 193,
+      "predicted_mean_hex": "3fb2b502eda17215",
+      "predicted_sum_hex": "402c34ee6a4d6e03"
+    },
+    {
+      "id": "length255_pattern0",
+      "n": 255,
+      "predicted_mean_hex": "bfae49ad8a3a3948",
+      "predicted_sum_hex": "c02e2b63dcafff0f"
+    },
+    {
+      "id": "length255_pattern1",
+      "n": 255,
+      "predicted_mean_hex": "3f6b1bbd8a63b2bc",
+      "predicted_sum_hex": "3feb00a1ccd94f09"
+    },
+    {
+      "id": "length255_pattern2",
+      "n": 255,
+      "predicted_mean_hex": "40a8363de2b9fca3",
+      "predicted_sum_hex": "41281e07a4d742a6"
+    },
+    {
+      "id": "length255_pattern3",
+      "n": 255,
+      "predicted_mean_hex": "40019dcdae9d9004",
+      "predicted_sum_hex": "40818c2fe0eef274"
+    },
+    {
+      "id": "length255_pattern4",
+      "n": 255,
+      "predicted_mean_hex": "3fa9a388346ee4d1",
+      "predicted_sum_hex": "402989e4ac3a75ec"
+    },
+    {
+      "id": "length256_pattern0",
+      "n": 256,
+      "predicted_mean_hex": "bfa90e278137ff87",
+      "predicted_sum_hex": "c0290e278137ff87"
+    },
+    {
+      "id": "length256_pattern1",
+      "n": 256,
+      "predicted_mean_hex": "3f6e2a1926ae9082",
+      "predicted_sum_hex": "3fee2a1926ae9082"
+    },
+    {
+      "id": "length256_pattern2",
+      "n": 256,
+      "predicted_mean_hex": "40c12e38a4abb3f2",
+      "predicted_sum_hex": "41412e38a4abb3f2"
+    },
+    {
+      "id": "length256_pattern3",
+      "n": 256,
+      "predicted_mean_hex": "4001912acce08832",
+      "predicted_sum_hex": "4081912acce08832"
+    },
+    {
+      "id": "length256_pattern4",
+      "n": 256,
+      "predicted_mean_hex": "3fa71e862507807c",
+      "predicted_sum_hex": "40271e862507807c"
+    }
+  ],
+  "origin": "INDEPENDENT_PYTHON",
+  "source_MATLAB_not_yet_executed": true
+}
