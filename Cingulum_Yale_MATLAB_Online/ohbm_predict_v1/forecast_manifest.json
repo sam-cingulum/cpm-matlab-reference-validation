@@ -1,0 +1,57 @@
+{
+  "cases": {
+    "ohbm_partial_correlation_correlated_n51_s171863": {
+      "rust_sha256": "0e9d5514db10266098e4c0214f8ff627f7f402f4902218c5e387ed05cb55f03a",
+      "selection": "partial_correlation",
+      "subjects": 51
+    },
+    "ohbm_partial_correlation_normal_n31_s171847": {
+      "rust_sha256": "87f6f3e6c2ee7bedddae511051e42332197617f5dec55cbf2a464f72dfe44d8e",
+      "selection": "partial_correlation",
+      "subjects": 31
+    },
+    "ohbm_partial_correlation_outliers_n39_s171851": {
+      "rust_sha256": "6f9d9100b3733c1935a35413752b74e6c69d4b77ed70e0219214701839929659",
+      "selection": "partial_correlation",
+      "subjects": 39
+    },
+    "ohbm_pearson_normal_n31_s171801": {
+      "rust_sha256": "d1f50b24be539a5fe40e67806f7fe5c534549a62ddc40108938f168b0724b16b",
+      "selection": "pearson",
+      "subjects": 31
+    },
+    "ohbm_pearson_outliers_n39_s171811": {
+      "rust_sha256": "e5df4875714ae9d6d8008cd3c197e7c808c911943ac8501cee9c79740b7ee2ea",
+      "selection": "pearson",
+      "subjects": 39
+    },
+    "ohbm_pearson_rescaled_n51_s171823": {
+      "rust_sha256": "54084b107d540fb2e4c44f5bc7e7e17869a9dfda15b92ee386349d227084b923",
+      "selection": "pearson",
+      "subjects": 51
+    },
+    "ohbm_spearman_normal_n31_s171829": {
+      "rust_sha256": "d5d2be5db9fddabb7175ae3952ae6bc23605b3b0c116d6f593e418685c84e3b1",
+      "selection": "spearman",
+      "subjects": 31
+    },
+    "ohbm_spearman_rescaled_n51_s171841": {
+      "rust_sha256": "c21e52ea8791a8ba012b3e0192f5efffc7bcd491f265759ee880565b79cd928c",
+      "selection": "spearman",
+      "subjects": 51
+    },
+    "ohbm_spearman_ties_n39_s171833": {
+      "rust_sha256": "a44ab3eb8f7b5b942dfce47447be32cd307cd3933f4f48cd104251227cbdbc2a",
+      "selection": "spearman",
+      "subjects": 39
+    }
+  },
+  "experiment_id": "ohbm-predict-behavior-20261111-v1",
+  "original_source_commit": "708999b8bb27ae69722775c323da9f14ef6732c7",
+  "original_source_not_run": true,
+  "private_precommit": "602e071",
+  "public_precommit": "71acb7d",
+  "rust_binary_sha256": "3b6af51128f65dafc79d0d55bcae22d5fe626c1da2844450bf6ee64df45309f1",
+  "rust_forecasts_frozen_before_matlab": true,
+  "source_manifest_sha256": "f1bb35cb1453c355332d1f832ad49712245fe1c1e0daef0d3238955158a18938"
+}

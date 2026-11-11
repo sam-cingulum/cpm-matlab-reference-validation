@@ -1,0 +1,98 @@
+{
+  "all_three_prediction_vectors": true,
+  "cases": {
+    "ohbm_partial_correlation_correlated_n51_s171863": {
+      "covariate_columns": 2,
+      "kind": "correlated",
+      "n": 51,
+      "parcels": 7,
+      "seed": 171863,
+      "selection": "partial_correlation",
+      "sha256": "f48ed416eed04400f1eea3e94c5b50412abad77e4616dd1e083015034d0f7c4e"
+    },
+    "ohbm_partial_correlation_normal_n31_s171847": {
+      "covariate_columns": 2,
+      "kind": "normal",
+      "n": 31,
+      "parcels": 7,
+      "seed": 171847,
+      "selection": "partial_correlation",
+      "sha256": "e056339e78abf600f1c8e043b5ee163da29ea72a12b5e024a4bb1926180b7fd3"
+    },
+    "ohbm_partial_correlation_outliers_n39_s171851": {
+      "covariate_columns": 2,
+      "kind": "outliers",
+      "n": 39,
+      "parcels": 8,
+      "seed": 171851,
+      "selection": "partial_correlation",
+      "sha256": "a5d2887332821cc54e33f2704b49a12bd11c336c6ea96f70eede8ad38417f1ef"
+    },
+    "ohbm_pearson_normal_n31_s171801": {
+      "covariate_columns": 0,
+      "kind": "normal",
+      "n": 31,
+      "parcels": 7,
+      "seed": 171801,
+      "selection": "pearson",
+      "sha256": "43b1da6d857f40f977711ae2231b44dd001505a7fe7b444b23033c6ef6683518"
+    },
+    "ohbm_pearson_outliers_n39_s171811": {
+      "covariate_columns": 0,
+      "kind": "outliers",
+      "n": 39,
+      "parcels": 8,
+      "seed": 171811,
+      "selection": "pearson",
+      "sha256": "f68cdbff8e9542695fc923cc3075a0071ad89b486dd29b3d4cc150dfd91c18cd"
+    },
+    "ohbm_pearson_rescaled_n51_s171823": {
+      "covariate_columns": 0,
+      "kind": "rescaled",
+      "n": 51,
+      "parcels": 7,
+      "seed": 171823,
+      "selection": "pearson",
+      "sha256": "10539a0851527f325c4aac8af8f5aaca6d6b55db44daa85f45f140e002705a50"
+    },
+    "ohbm_spearman_normal_n31_s171829": {
+      "covariate_columns": 0,
+      "kind": "normal",
+      "n": 31,
+      "parcels": 7,
+      "seed": 171829,
+      "selection": "spearman",
+      "sha256": "68ae5055741e310d40e107aaa87489d6154d3c30a3d31239afbc88de2ba6aaf3"
+    },
+    "ohbm_spearman_rescaled_n51_s171841": {
+      "covariate_columns": 0,
+      "kind": "rescaled",
+      "n": 51,
+      "parcels": 7,
+      "seed": 171841,
+      "selection": "spearman",
+      "sha256": "72e8efa191344394d2deadf22e11f36b569dbd3ddfe6d4bbb45799dd2024cd27"
+    },
+    "ohbm_spearman_ties_n39_s171833": {
+      "covariate_columns": 0,
+      "kind": "ties",
+      "n": 39,
+      "parcels": 8,
+      "seed": 171833,
+      "selection": "spearman",
+      "sha256": "e1ae9b8ce0146b3385d238f3c4d2b745f9fdc9642396f80295c7141c439e1dec"
+    }
+  },
+  "coefficient_abs_tolerance": "1e-8",
+  "exact_edge_masks": true,
+  "experiment_id": "ohbm-predict-behavior-20261111-v1",
+  "mathworks_release": "R2026b",
+  "metric_abs_tolerance": "1e-9",
+  "original_source_not_run": true,
+  "parser": "serde_json/float_roundtrip",
+  "prediction_abs_tolerance": "1e-8",
+  "private_preregistered_commit": "602e071",
+  "public_preregistered_commit": "71acb7d",
+  "source_commit": "708999b8bb27ae69722775c323da9f14ef6732c7",
+  "synthetic_only": true
+}
