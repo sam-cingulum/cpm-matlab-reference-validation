@@ -1,0 +1,49 @@
+name: Genuine MATLAB R2026b | Yale find_lambda native fold labels only
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fold-labels-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate predeclared eight synthetic input fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,hashlib,json
+          p=pathlib.Path("Cingulum_Yale_MATLAB_Online/find_lambda_prospective")
+          m=json.loads((p/"manifest.json").read_text())
+          assert m["original_yale_revision"]=="b903f83b476b745417b1f062f6777f5ffe118f1a"
+          assert m["release"]=="R2026b" and m["official_matlab_runner_preregistered"]
+          assert m["original_source_unmodified"] and m["native_matlab_crossvalind_labels_retained"]
+          assert not m["patient_data_included"] and len(m["cases"])==8
+          for name,item in m["cases"].items():
+              for filename,digest in item["sha256"].items():
+                  f=p/name/filename
+                  assert hashlib.sha256(f.read_bytes()).hexdigest()==digest, (name,filename)
+          print("FIND_LAMBDA_EIGHT_FROZEN_INPUTS_SHA256_PASS")
+          print("FROZEN_INPUT_MANIFEST_SHA256",hashlib.sha256((p/"manifest.json").read_bytes()).hexdigest())
+          PY
+      - name: Install genuine MathWorks MATLAB R2026b and Statistics toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Run only native crossvalind, never original regression source
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_find_lambda_native_folds_only;
+      - name: Preserve eight native fold-label artifacts and summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-yale-find-lambda-native-folds-only-20261111
+          path: Cingulum_Yale_MATLAB_Online/find_lambda_native_folds_only_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
