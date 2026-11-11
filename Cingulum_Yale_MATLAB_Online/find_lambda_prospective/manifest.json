@@ -1,0 +1,184 @@
+{
+  "purpose": "PROSPECTIVE_ORIGINAL_YALE_FIND_LAMBDA_ENTIRE_INNER_FOLD_COEFFICIENT_IDENTITY",
+  "original_yale_revision": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "release": "R2026b",
+  "patient_data_included": false,
+  "original_source_unmodified": true,
+  "native_matlab_crossvalind_labels_retained": true,
+  "test_all_inner_fold_coefficients": true,
+  "test_all_edge_masks": true,
+  "test_full_mse_fold_matrix": true,
+  "selected_lambda_must_match_exact": true,
+  "coefficients_absolute_tolerance": 1e-09,
+  "intercept_absolute_tolerance": 1e-09,
+  "predictions_absolute_tolerance": 1e-06,
+  "mse_absolute_tolerance": 1e-06,
+  "official_matlab_runner_preregistered": true,
+  "input_generator_sha256": "5b66e7ddd143ca89b94e144530e46a267f3a864a14869bd5aef53fbedf0e7c23",
+  "rust_find_lambda_source_sha256": "de0c2a2196e1975cae5ff8e2dffee42ce14b8ce3b6201904c31752d2f35dbb14",
+  "rust_solver_source_sha256": "ef6a87f1f773e5f31193718c5eed3aced00dbaf3baf79b291daf52bc25fce40e",
+  "rust_cli_source_sha256": "2978ec331f6c6fac8696b063a3075c1d4290e43dfa9804913b03343b19b54e31",
+  "cases": {
+    "grid_normal_9011_n43": {
+      "spec": {
+        "name": "grid_normal_9011_n43",
+        "seed": 9011,
+        "n": 43,
+        "k": 3,
+        "kind": "normal",
+        "p": 0.05,
+        "grid": [
+          0.12,
+          0.025,
+          0.065,
+          0.25
+        ]
+      },
+      "sha256": {
+        "input.json": "bef32d5772041b7a5c5393359cb9ccd0ae9f5df0d7e1c0b6313ef6eebe69fb63",
+        "spec.json": "0786fb611d88541453128818b98d1d343fe1014a6388df38a9751df4c7b1a2ff"
+      }
+    },
+    "grid_lownoise_9103_n57": {
+      "spec": {
+        "name": "grid_lownoise_9103_n57",
+        "seed": 9103,
+        "n": 57,
+        "k": 4,
+        "kind": "lownoise",
+        "p": 0.05,
+        "grid": [
+          0.08,
+          0.17,
+          0.04,
+          0.33
+        ]
+      },
+      "sha256": {
+        "input.json": "0036e20860e4963d9a6d40df5cec284b2b0429b0c339a1a2a47234b2842aed20",
+        "spec.json": "259024b4ee3409f3d96719961c224a2f2492f310e87e88db385017119b057262"
+      }
+    },
+    "grid_outlier_9209_n61": {
+      "spec": {
+        "name": "grid_outlier_9209_n61",
+        "seed": 9209,
+        "n": 61,
+        "k": 5,
+        "kind": "outlier",
+        "p": 0.04,
+        "grid": [
+          0.14,
+          0.05,
+          0.28,
+          0.085
+        ]
+      },
+      "sha256": {
+        "input.json": "d7e547494ec8cb97f45d4df8ca9f2f628579b97aff05542046f956aa8989a564",
+        "spec.json": "68dee5841c473076a2db6aaaea30a5b2cfc4bc837f01791691289cea9cae6633"
+      }
+    },
+    "grid_collinear_9301_n69": {
+      "spec": {
+        "name": "grid_collinear_9301_n69",
+        "seed": 9301,
+        "n": 69,
+        "k": 4,
+        "kind": "collinear",
+        "p": 0.05,
+        "grid": [
+          0.028,
+          0.075,
+          0.16,
+          0.35
+        ]
+      },
+      "sha256": {
+        "input.json": "d3e29d5f7d40895b0d9363b08ce010c983fd8fbcfdacd55c1908040c9f8f9de4",
+        "spec.json": "6d702ddec6eb21ace702b85ead4eb93f27050f4e80ad4d9566e4ece66fa399b0"
+      }
+    },
+    "grid_weak_9403_n73": {
+      "spec": {
+        "name": "grid_weak_9403_n73",
+        "seed": 9403,
+        "n": 73,
+        "k": 5,
+        "kind": "weak",
+        "p": 0.07,
+        "grid": [
+          0.07,
+          0.21,
+          0.04,
+          0.12
+        ]
+      },
+      "sha256": {
+        "input.json": "b800c678b07f5562fbfe4bf495862e0c72d7658c675e0b59efad88f6555f1d89",
+        "spec.json": "6048236e9d1b5e0fd65ee70f21805addaa0be1f8a86317758879b99cd290e167"
+      }
+    },
+    "grid_ties_9509_n51": {
+      "spec": {
+        "name": "grid_ties_9509_n51",
+        "seed": 9509,
+        "n": 51,
+        "k": 3,
+        "kind": "ties",
+        "p": 0.05,
+        "grid": [
+          0.21,
+          0.033,
+          0.1,
+          0.06
+        ]
+      },
+      "sha256": {
+        "input.json": "8f1b7977f4d8a789054bd409a634cb8a19b021c8cf28451853192fdacadb0e9f",
+        "spec.json": "1c1a8e2b084bf851cacd7af454c5d04b7acd443d935365a69c7d931759565971"
+      }
+    },
+    "grid_rescale_9601_n47": {
+      "spec": {
+        "name": "grid_rescale_9601_n47",
+        "seed": 9601,
+        "n": 47,
+        "k": 4,
+        "kind": "rescale",
+        "p": 0.05,
+        "grid": [
+          0.16,
+          0.035,
+          0.08,
+          0.3
+        ]
+      },
+      "sha256": {
+        "input.json": "55d39ed7d619f7954cfc500e830ee46324a6caf389714a8aac75b05089a55272",
+        "spec.json": "e376e84f0257005e62134667e1ef00e898e469963fcb20df4ccf1564cba2bd5f"
+      }
+    },
+    "grid_stress_9709_n79": {
+      "spec": {
+        "name": "grid_stress_9709_n79",
+        "seed": 9709,
+        "n": 79,
+        "k": 5,
+        "kind": "correlated",
+        "p": 0.06,
+        "grid": [
+          0.09,
+          0.025,
+          0.18,
+          0.042,
+          0.3
+        ]
+      },
+      "sha256": {
+        "input.json": "d3190059447f2db2461bb212fcfd6c89af839867bc0683f8a589eb185b1800e6",
+        "spec.json": "eb6c34ebd868e95754ba844b7116b4ae7188775587699dd3f7ae11d6cd29b4a2"
+      }
+    }
+  }
+}
