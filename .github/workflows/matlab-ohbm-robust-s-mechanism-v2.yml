@@ -1,0 +1,47 @@
+name: Genuine MATLAB R2026b | robust_s built-in versus custom bisquare and numerical derivative fingerprint
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  robust-s-mechanism-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check sealed 20261111 original option3 inputs, no source mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,hashlib,json
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/ohbm_robust_option3_v1')
+          m=json.loads((root/'manifest.json').read_text())
+          f=json.loads((root/'forecast_manifest.json').read_text())
+          assert m['experiment_id']=='ohbm-original-robust-option3-20261111-v1'
+          assert f['rust_forecasts_frozen_before_matlab'] and len(m['cases'])==4
+          for name,case in m['cases'].items():
+              inp=root/name/'input.json'
+              assert hashlib.sha256(inp.read_bytes()).hexdigest()==case['sha256']
+              assert hashlib.sha256((root/name/'rust_forecast.json').read_bytes()).hexdigest()==f['cases'][name]['rust_sha256']
+          print('DISCLOSED_PRIOR_SOURCE_PARITY_INPUT_SHA256_FROZEN_VERIFIED')
+          PY
+      - name: Setup authentic MathWorks MATLAB R2026b with Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Probe genuine robust_s algorithm structure and derivative; metadata only, do not export code
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_ohbm_robust_s_mechanism_v2;
+      - name: Archive disclosed-case source numerical mechanism and bitwise evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: retrospective-original-r2026b-ohbm-robust-s-mechanism-v2
+          path: Cingulum_Yale_MATLAB_Online/ohbm_robust_s_mechanism_v2/*.json
+          if-no-files-found: warn
+          retention-days: 90
