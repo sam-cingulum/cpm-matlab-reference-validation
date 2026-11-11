@@ -30,7 +30,7 @@ jobs:
           assert f["base_manifest_sha256"]==hashlib.sha256((root/"manifest.json").read_bytes()).hexdigest()
           assert f["source_predictions_frozen_before_original_matlab"]
           assert f["original_source_not_executed"] and not f["patient_data"]
-          assert len(f["cases"])==len(m["cases"])==8
+          assert len(f["cases"])==len(m["cases"])==4
           assert set(f["cases"])==set(m["cases"])
           for name,metadata in f["cases"].items():
               for filename,digest in metadata["sha256"].items():

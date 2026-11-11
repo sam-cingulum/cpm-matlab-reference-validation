@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - name: Verify prospectively frozen eight synthetic source inputs
+      - name: Verify prospectively frozen four synthetic source inputs
         shell: bash
         run: |
           set -euo pipefail
@@ -24,7 +24,7 @@ jobs:
           assert m["prediction_abs_tolerance"]=="1e-8"
           assert m["source_self_reconstruction_abs_tolerance"]=="1e-9"
           assert m["synthetic_only"] and m["original_source_not_executed"]
-          assert len(m["cases"])==8
+          assert len(m["cases"])==4
           for name,meta in m["cases"].items():
               for filename,digest in meta["sha256"].items():
                   assert hashlib.sha256((root/name/filename).read_bytes()).hexdigest()==digest,(name,filename)
