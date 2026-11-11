@@ -1,0 +1,65 @@
+name: Genuine MATLAB R2026b | prospective original OHBM predict_behavior full LOO source
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-ohbm-predict:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify pre-frozen source-invisible inputs and actual Rust forecasts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,pathlib,hashlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/ohbm_predict_v1')
+          base=json.loads((root/'manifest.json').read_text())
+          frozen=json.loads((root/'forecast_manifest.json').read_text())
+          assert base['experiment_id']=='ohbm-predict-behavior-20261111-v1'
+          assert base['source_commit']=='708999b8bb27ae69722775c323da9f14ef6732c7'
+          assert base['mathworks_release']=='R2026b'
+          assert base['synthetic_only'] and base['original_source_not_run']
+          assert base['prediction_abs_tolerance']=='1e-8'
+          assert base['coefficient_abs_tolerance']=='1e-8'
+          assert base['metric_abs_tolerance']=='1e-9'
+          assert frozen['experiment_id']==base['experiment_id']
+          assert frozen['rust_forecasts_frozen_before_matlab'] and frozen['original_source_not_run']
+          assert frozen['source_manifest_sha256']==hashlib.sha256((root/'manifest.json').read_bytes()).hexdigest()
+          assert len(base['cases'])==len(frozen['cases'])==9
+          for name,item in base['cases'].items():
+              assert item['selection'] in ('pearson','spearman','partial_correlation')
+              src=root/name/'input.json';fit=root/name/'rust_forecast.json'
+              assert hashlib.sha256(src.read_bytes()).hexdigest()==item['sha256']
+              assert hashlib.sha256(fit.read_bytes()).hexdigest()==frozen['cases'][name]['rust_sha256']
+          print('PROSPECTIVE_ORIGINAL_OHBM_FORECAST_FREEZE_AND_INPUT_SHA256_PASS')
+          PY
+      - name: Fetch source exact pinned original OHBM repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM_OHBM.git Cingulum_Yale_MATLAB_Online/upstream/yale-ohbm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-ohbm checkout --quiet --detach 708999b8bb27ae69722775c323da9f14ef6732c7
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-ohbm rev-parse HEAD)" = 708999b8bb27ae69722775c323da9f14ef6732c7
+      - name: Install authentic MathWorks MATLAB R2026b and Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute unmodified Yale OHBM predict_behavior after Rust forecast freeze
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_ohbm_predict_behavior_v1;
+      - name: Retain original source and full reconstructed model evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-ohbm-original-predict-behavior-v1-20261111
+          path: Cingulum_Yale_MATLAB_Online/ohbm_predict_v1_original_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
