@@ -1,0 +1,74 @@
+name: Genuine MATLAB R2026b | original Yale cpm_cv complete model parity
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-cpmcv:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify original frozen inputs and all actual Rust model forecasts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,hashlib,json
+          root=pathlib.Path("Cingulum_Yale_MATLAB_Online/cpmcv_full_models_prospective")
+          m=json.loads((root/"manifest.json").read_text())
+          f=json.loads((root/"conditional_forecast_manifest.json").read_text())
+          assert m["experiment_id"]=="yale-cpmcv-full-model-two-stage-20261111-v1"
+          assert m["source_revision"]=="b903f83b476b745417b1f062f6777f5ffe118f1a"
+          assert m["mathworks_release"]=="R2026b" and m["synthetic_only"]
+          assert m["coefficient_abs_tolerance"]=="1e-9"
+          assert m["prediction_abs_tolerance"]=="1e-8"
+          assert m["source_self_reconstruction_abs_tolerance"]=="1e-9"
+          assert m["exact_edge_masks"] and m["exact_historical_zero_placeholders"]
+          assert f["experiment_id"]==m["experiment_id"]
+          assert f["original_source_revision"]==m["source_revision"]
+          assert f["base_manifest_sha256"]==hashlib.sha256((root/"manifest.json").read_bytes()).hexdigest()
+          assert f["source_predictions_frozen_before_original_matlab"]
+          assert f["original_source_not_executed"] and not f["patient_data"]
+          assert len(f["cases"])==len(m["cases"])==8
+          assert set(f["cases"])==set(m["cases"])
+          for name,metadata in f["cases"].items():
+              for filename,digest in metadata["sha256"].items():
+                  assert hashlib.sha256((root/name/filename).read_bytes()).hexdigest()==digest,(name,filename)
+              native=json.loads((root/name/"native_randperm.json").read_text())
+              assert native["runtime"]=="MathWorks MATLAB" and native["release"]=="2026b"
+              assert native["source_not_run"] and native["model_fit_not_run"]
+              rust=json.loads((root/name/"rust_source.json").read_text())
+              corrected=json.loads((root/name/"rust_corrected.json").read_text())
+              assert rust["policy"]=="yale_source_compatibility"
+              assert corrected["policy"]=="scientifically_corrected" and corrected["complete_partition"]
+          print("ORIGINAL_CPMCV_SOURCE_WITH_FROZEN_RUST_MODEL_FORECASTS_SHA256_PASS")
+          print("FORECAST_MANIFEST_SHA256",hashlib.sha256((root/"conditional_forecast_manifest.json").read_bytes()).hexdigest())
+          PY
+      - name: Fetch exact pinned unchanged original Yale source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install genuine MathWorks MATLAB R2026b with Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute unchanged Yale cpm_cv original source after Rust forecast freeze
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_cpmcv_full_original_source_prospective;
+      - name: Preserve original genuine MATLAB full-output artifacts even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-original-cpmcv-full-model-20261111
+          path: Cingulum_Yale_MATLAB_Online/cpmcv_full_models_original_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
