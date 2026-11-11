@@ -40,7 +40,12 @@ jobs:
               corrected=json.loads((root/name/'rust_corrected.json').read_text())
               assert native['runtime']=='MathWorks MATLAB' and native['source_not_run'] and native['model_fit_not_run']
               assert rust['policy']=='yale_source_compatibility'
-              assert corrected['policy']=='scientifically_corrected_canonical' and corrected['complete_partition']
+              assert corrected['policy']=='scientifically_corrected_canonical'
+              if case['source_branch']=='symmetric':
+                  assert corrected['complete_partition'] and not corrected['unassigned_indices']
+              else:
+                  assert corrected['scientific_rejection'] and corrected['return_code']!=0
+                  assert 'corrected canonical connectomes must' in corrected['diagnostic']
           print('YALE3D_FULL_FROZEN_RUST_FORECASTS_SHA256_PASS')
           PY
       - name: Fetch exact pinned Yale upstream source and verify file fingerprints
