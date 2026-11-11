@@ -1,0 +1,61 @@
+name: Genuine MATLAB R2026b | Yale 3D cpm_check_errors source ordering
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-3d:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify six frozen synthetic 3D matrices and actual Rust forecasts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/yale_3d_source_prospective')
+          m=json.loads((root/'manifest.json').read_text())
+          assert m['experiment_id']=='yale-cpm-3d-original-preprocessing-20261111-v1'
+          assert m['original_source']=='b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert m['matlab_release']=='R2026b'
+          assert m['strict_full_output_hex_equal'] and m['source_fitting_not_executed_before_freeze']
+          assert m['synthetic_only'] and len(m['cases'])==6
+          for case,spec in m['cases'].items():
+              for filename,digest in spec['sha256'].items():
+                  p=root/case/filename
+                  assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==digest,(case,filename)
+              original=json.loads((root/case/'rust_source.json').read_text())
+              assert original['policy']=='yale_source_compatibility'
+              assert original['first_subject_symmetric']==spec['first_subject_symmetric']
+              assert original['subject_count']==spec['subject_count']
+          print('YALE3D_ORIGINAL_SOURCE_SIX_PREDECLARED_FROZEN_FIXTURES_PASS')
+          print('INPUT_AND_RUST_MANIFEST_SHA256',hashlib.sha256((root/'manifest.json').read_bytes()).hexdigest())
+          PY
+      - name: Fetch exact pinned original Yale source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Cingulum_Yale_MATLAB_Online/upstream
+          git clone --quiet https://github.com/YaleMRRC/CPM.git Cingulum_Yale_MATLAB_Online/upstream/yale-cpm
+          git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm checkout --quiet --detach b903f83b476b745417b1f062f6777f5ffe118f1a
+          test "$(git -C Cingulum_Yale_MATLAB_Online/upstream/yale-cpm rev-parse HEAD)" = b903f83b476b745417b1f062f6777f5ffe118f1a
+      - name: Install genuine MathWorks MATLAB R2026b
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+      - name: Execute unchanged Yale cpm_check_errors on frozen 3D inputs
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_yale_3d_preprocessing_prospective;
+      - name: Always archive original MATLAB binary64 source outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-yale3d-original-source-20261111
+          path: Cingulum_Yale_MATLAB_Online/yale_3d_original_results/*.json
+          if-no-files-found: warn
+          retention-days: 90
