@@ -1,0 +1,114 @@
+{
+  "cases": {
+    "eight_symmetric_adversarial_decimal": {
+      "cols": 8,
+      "corrected_expected_accept": true,
+      "first_subject_symmetric": true,
+      "rows": 8,
+      "sha256": {
+        "matlab_input.json": "b768d3b89b75df2bbff3d6a01f2ac33cb9b5841f8343f8ec9c8df32ecccea164",
+        "rust_corrected.json": "cb160d409f31f32290f1d3c8ae784db077a95b091e9d540e7f47bd2882da2c6c",
+        "rust_input.json": "fa33fdb4bc7fb2d06cd39afb996c43a54f1ef0ff2413101aee0430836d3c63ee",
+        "rust_source.json": "6cc8dd23d5398a2d84628929a92aeb1bcc5c581ca5945205b3073103e01cbf29"
+      },
+      "subject_count": 4
+    },
+    "five_asymmetric_first_symmetric_later": {
+      "cols": 5,
+      "corrected_expected_accept": false,
+      "first_subject_symmetric": false,
+      "rows": 5,
+      "sha256": {
+        "matlab_input.json": "dac73460ac9d0a2bf82bbcc20abbefeac786f421dc07422a6d2a49f8e2d317e9",
+        "rust_input.json": "2e68c07abf4a77e960b354317ca343477adde812547d886ba9776185ec705b2e",
+        "rust_source.json": "a90eca6ed857667876e48f4b39b9db81d0864b66ad338fdc9a126978c5d8ca83"
+      },
+      "subject_count": 3
+    },
+    "five_symmetric_first_asymmetric_later": {
+      "cols": 5,
+      "corrected_expected_accept": false,
+      "first_subject_symmetric": true,
+      "rows": 5,
+      "sha256": {
+        "matlab_input.json": "bd1f7f1004e87bab88891f9961a04785a35b56cc8bf0d458c09c5672f200078c",
+        "rust_input.json": "859717685350e1241c4edf3740da5a65fb15ce39f8c6ba75671edcb5d3fcb5d7",
+        "rust_source.json": "3ef1e4c2b9162cedbff4ca9162f0905b1199255fa6684748041fff800eb06db4"
+      },
+      "subject_count": 3
+    },
+    "nine_symmetric_jittered": {
+      "cols": 9,
+      "corrected_expected_accept": true,
+      "first_subject_symmetric": true,
+      "rows": 9,
+      "sha256": {
+        "matlab_input.json": "2b5de4f3b60d4449a8335aab838514d6e6e5feb6e5a49b966611caeb022db209",
+        "rust_corrected.json": "0a88e6088c012ae11e3739e89d95308c0c236e5deb00ada37235aec1cf33f3c7",
+        "rust_input.json": "8d6ef5fe343f3f852fafa829e27f57f5e8df70f242aac2b6fbf8cfc6ca27c4d5",
+        "rust_source.json": "511393aa182fae9a08352c7739e4e1ec4ed4fedcbaea2caa9d1edeabaee2f914"
+      },
+      "subject_count": 3
+    },
+    "rectangular_four_by_seven": {
+      "cols": 7,
+      "corrected_expected_accept": false,
+      "first_subject_symmetric": false,
+      "rows": 4,
+      "sha256": {
+        "matlab_input.json": "a5fc896f4ee50c1dafaa16ca59037fcd916419c5aee3484630cb5c1f5f0afe5f",
+        "rust_input.json": "49874668eb5353815a071b339c5640661bbd01f155eef9c952a85af8a123966b",
+        "rust_source.json": "a42596794de853c0d11094ea40447f52a1377a6258247504afd474a3b234ae71"
+      },
+      "subject_count": 4
+    },
+    "rectangular_seven_by_three": {
+      "cols": 3,
+      "corrected_expected_accept": false,
+      "first_subject_symmetric": false,
+      "rows": 7,
+      "sha256": {
+        "matlab_input.json": "9b4d3111813d1a36d0b9aa2e548c171b801fe44f682c2dccea0727521c3b6341",
+        "rust_input.json": "904ca1bfd15fb05744da01abdc6d6d7ff9948a9cd2c5b2e59ba884ec534acb61",
+        "rust_source.json": "9ce96c0aae30067fd1f54c269e1df60a9da9e20f16fde6a62c9017f34b78188f"
+      },
+      "subject_count": 3
+    },
+    "seven_symmetric_jittered": {
+      "cols": 7,
+      "corrected_expected_accept": true,
+      "first_subject_symmetric": true,
+      "rows": 7,
+      "sha256": {
+        "matlab_input.json": "406290a5c67b0cd2494d197f1b85f17b7d5c72f44584470287666de293222e8c",
+        "rust_corrected.json": "6a76dc9e00f7edbad35e1c994729460228c54c6d981606ffb64aa4f8b64ce1d9",
+        "rust_input.json": "ad713c41d9e25b5d40bef0223841741339bc4bb4ca5c52d3ba3834e357601826",
+        "rust_source.json": "c8c0a2793679109023034bcbc88a606be5de518fe17f90a25bfe57867e48ca2b"
+      },
+      "subject_count": 4
+    },
+    "six_symmetric_extreme_dyadic": {
+      "cols": 6,
+      "corrected_expected_accept": true,
+      "first_subject_symmetric": true,
+      "rows": 6,
+      "sha256": {
+        "matlab_input.json": "79be4d7e0fa27ae3335db2ee5c003bbe1d965f0182c532d1e6c29f50815d1c19",
+        "rust_corrected.json": "edb6d42c90188aea6532f1682d0aa940580ecfc399f6f676e6be1b5dcb1d6083",
+        "rust_input.json": "de3bf597c06949b537501a8e84fab05858d8b20564eb6dbb4b4b760be9bbdc45",
+        "rust_source.json": "15984e3e5c8e94ba2b3879c07215b1c7d46a32f8c6d9d0d634da03256c875f12"
+      },
+      "subject_count": 5
+    }
+  },
+  "experiment_id": "yale-cpm-3d-binary64-roundtrip-second-20261111-v1",
+  "matlab_release": "R2026b",
+  "original_source": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "private_implementation_precommit": "6438b4b",
+  "public_original_matlab_runner_precommit": "318fc33",
+  "rust_binary_sha256": "189f04d26d86012e6865bdae08a7af3b5ace77fef75c155504a92e16937c76f4",
+  "scientific_correction_independent": true,
+  "source_fitting_not_executed_before_freeze": true,
+  "strict_full_output_hex_equal": true,
+  "synthetic_only": true
+}

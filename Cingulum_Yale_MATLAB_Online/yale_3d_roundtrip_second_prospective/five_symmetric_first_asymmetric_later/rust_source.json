@@ -1,0 +1,90 @@
+{
+  "policy": "yale_source_compatibility",
+  "feature_count": 10,
+  "row_count": 5,
+  "column_count": 5,
+  "subject_count": 3,
+  "first_subject_symmetric": true,
+  "feature_coordinates_row_col": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      3,
+      4
+    ]
+  ],
+  "features_by_subject": [
+    [
+      0.6101351752978114,
+      0.5300040579782616,
+      0.4517594955499668,
+      0.6891569617081625,
+      0.24213413554830107,
+      0.09662820644355571,
+      0.13232402427488552,
+      0.11655137118066233,
+      0.5392427900857497,
+      0.3595288963098963
+    ],
+    [
+      -0.10026227302086471,
+      0.6526903028500083,
+      0.6815997807740735,
+      0.4354505442723213,
+      0.4629121438992439,
+      0.7557077675434696,
+      0.34487595391957687,
+      0.09719223619882827,
+      0.6807046732199395,
+      0.6081645422060054
+    ],
+    [
+      0.08620075718163292,
+      0.5861484819271364,
+      0.16310852823511132,
+      0.049508265511383404,
+      0.19182933063021743,
+      0.06957108505042195,
+      0.4514092260675152,
+      0.6791508010618905,
+      0.8051148880279728,
+      0.5397980379513413
+    ]
+  ],
+  "original_function": "cpm_check_errors.m",
+  "scientific_warning": "Original Yale chooses strict upper-triangle MATLAB column-major order              using symmetry of ONLY the first subject. Later asymmetric matrices              are silently triangularized and discarded lower halves. Finite input              only; source NaN/Inf warning semantics not reproduced."
+}
