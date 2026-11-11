@@ -1,0 +1,62 @@
+name: Genuine R2026b delegated statrobustfit source callgraph metadata only
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  structure-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install genuine MathWorks MATLAB and Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Report only callable dependencies and source structure (no source text)
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            assert(strcmp(version('-release'),'2026b'));
+            run_ohbm_robustfit_delegate_metadata;
+            path=which('robustfit'); assert(~isempty(path));
+            [~,~,extension]=fileparts(path);
+            fprintf('ROBUSTFIT_OWNED_LICENSED_MATHWORKS_EXTENSION=%s\n',extension);
+            if ~strcmp(extension,'.m')
+                fprintf('ROBUSTFIT_NOT_PLAINTEXT_MFILE\n');
+            else
+                s=fileread(path);
+                lines=regexp(s,'\r\n|\n','split');
+                fprintf('ROBUSTFIT_MFILE_METADATA_LINE_COUNT=%d BYTES=%d\n',numel(lines),numel(s));
+                terms={'robust_s','ols_s','mad_s','psip','psi','dpsi','lambda',...
+                  'sqrt(eps)','sqrt(eps(' ,'eps(','eps ','eps;' ,...
+                  'correction','Street','Carroll','Ruppert','robustsigma',...
+                  'robusts','robustreg','robustcov','covb','tstat'};
+                low=lower(s);
+                for ti=1:numel(terms)
+                    pat=lower(terms{ti});
+                    fprintf('TERM_COUNT %s %d\n',pat,numel(strfind(low,pat)));
+                end
+                for li=1:numel(lines)
+                    ln=strtrim(lines{li});
+                    if startsWith(ln,'function ')
+                        fname=regexp(ln,'(?:function\s+(?:\[?[^=\]]*\]?\s*=\s*)?)?(\w+)\s*\(','tokens','once');
+                        if ~isempty(fname)
+                            fprintf('MATLAB_LOCAL_FUNCTION_LINE=%d NAME=%s\n',li,fname{1});
+                        else
+                            fprintf('MATLAB_LOCAL_FUNCTION_LINE=%d (signature classified only)\n',li);
+                        end
+                    end
+                end
+                for li=1:numel(lines)
+                    lowline=lower(lines{li});
+                    if contains(lowline,'robust_s') || contains(lowline,'robustsigma') || contains(lowline,'robusts')
+                        win=lower(strjoin(lines(max(1,li-5):min(numel(lines),li+5)),char(10)));
+                        fprintf('ROBUST_SCALE_REFERENCE line=%d near_EPS=%d near_PSI=%d near_LAMBDA=%d near_STREET=%d near_SQRT=%d near_LS=%d\n',...
+                          li,contains(win,'eps'),contains(win,'psi'),contains(win,'lambda'),...
+                          contains(win,'street'),contains(win,'sqrt'),contains(win,'ols_s'));
+                    end
+                end
+                fprintf('NO_PROPRIETARY_MATLAB_SOURCE_TEXT_EXPORTED\n');
+            end
