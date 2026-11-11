@@ -1,0 +1,322 @@
+{
+  "cases": {
+    "boundary_00": {
+      "category": "boundary",
+      "in_weight_contract": true,
+      "n": 7,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "49779f0dc7d6815ae898e0f2f7552dae4d42113e4862f2f72b4d66908cd6d642",
+        "input.json": "8b106f0e8255ba907514502046c07af3a199679238c9360a4ec502bb64ada221",
+        "rust.json": "0627516997e651ddb8bd453f736af7f6af62003d0027f3dc9835e8a210769a67"
+      }
+    },
+    "boundary_01": {
+      "category": "boundary",
+      "in_weight_contract": true,
+      "n": 16,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "62ffb8df5d7ac806c37fb03f1816a8f6a6329793447d40baae8e70e35ee45153",
+        "input.json": "84433ccc517734a3b5b8236c4677ccf98f020641a8943d01807b789498b2603e",
+        "rust.json": "416ec13026f49e797b76ef43a7f92a9829b79e7a23df2acd2f04adfb07e918d3"
+      }
+    },
+    "boundary_02": {
+      "category": "boundary",
+      "in_weight_contract": true,
+      "n": 31,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "d680c64311911b4997a6c49e12e2523441b5fc2252b16c554b5cf331c365030d",
+        "input.json": "2008d4c90c1c64e73d24348dc744971883faa5f23169bdf6f50aeb78ca9ad1fa",
+        "rust.json": "f69cc5b9d47336766773de14b53b5a1dc5655624305441d40fc281e87c8918a8"
+      }
+    },
+    "boundary_03": {
+      "category": "boundary",
+      "in_weight_contract": true,
+      "n": 64,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "e1224399f32c5e44a5ad45a1d9e018059135732b6ec332c7ba7fa017d49415e2",
+        "input.json": "6a8e65e55c8b339d34ee25405a65c5c3e01bf842e327a82333df96c79a4d77d9",
+        "rust.json": "3d8e4b1fce4bc12d38ba0f961dff4be4d0f3e56ea51d5bb0b7926023c4972898"
+      }
+    },
+    "boundary_04": {
+      "category": "boundary",
+      "in_weight_contract": true,
+      "n": 127,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "53fefdbf4dd41d93e698c39952ba2872ccc904aeff1e3267fef1ee88cbc4581f",
+        "input.json": "39ddb582d3e37f94d51e3f5069191169902e5c55707be042617d5a066a5ee08d",
+        "rust.json": "b0ca4cbfd296f33de53e676c6a01bbb4bbcd2f9e05b515ab5e2af5c235102eda"
+      }
+    },
+    "boundary_05": {
+      "category": "boundary",
+      "in_weight_contract": true,
+      "n": 256,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "78df1e4fd3bc4c4b7b49d10eab1dfb03a0b06931effef652cd59e7f424f6ac81",
+        "input.json": "9f90298af4129ff7088e2f867202811efbf2d73c9aa9f555e9f198afa36d83b5",
+        "rust.json": "0ac3ef7e6249f45bfec33300bf8a7d2880c0e4d0256e232516a8f08741df4a1d"
+      }
+    },
+    "boundary_06": {
+      "category": "boundary",
+      "in_weight_contract": true,
+      "n": 513,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "6be3c462d78e4b68a8a43c69fcb8c1aabf05d69d14f677e94dd2b5cb11c2db9f",
+        "input.json": "9ac2c1b9156c59e5fbee84daaff2d1b09a391bcb1edc127d83518f659fa77f1a",
+        "rust.json": "4e26487a1d49fa1bd6003054f68a5c344b13d264eff79630c2d44ef34359143b"
+      }
+    },
+    "cancellation_00": {
+      "category": "cancellation",
+      "in_weight_contract": true,
+      "n": 7,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "27d52341f1c0048e8965fba82302fa23fbfb78c28ae67ca3e8c6fc9c9452d930",
+        "input.json": "3cee200bf59c30b25ecb40541a958d0adccd9c1a9dad1781c8951a80aa7b02ad",
+        "rust.json": "897d3ceab00238c5071980c1d7d565b52090b732d9dc0a480a785a7f62c2bccd"
+      }
+    },
+    "cancellation_01": {
+      "category": "cancellation",
+      "in_weight_contract": true,
+      "n": 16,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "e5f75511a94de45008d6c18383874a15d020e5dfa9680002c2fcda029c972730",
+        "input.json": "b4d3f89512d321fcd119ea1b4fb96329a32100a28f6e40b9286696b63b01c751",
+        "rust.json": "fd31205367529333724078da977fe1cec3da8fe19c7c105f2ea414bf438b8885"
+      }
+    },
+    "cancellation_02": {
+      "category": "cancellation",
+      "in_weight_contract": true,
+      "n": 31,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "d7d359c50b733c2694f8c7597f6abaa30ef3a4425c83f3665ed0b0b75f42312c",
+        "input.json": "a561802d646adfb2524c65de152a5a399088c612c21c7f70b4187cd5b298b585",
+        "rust.json": "71316372dc1265d85f4ab79153bbc563c5274e150a3646f6e9f4e981e3421f2d"
+      }
+    },
+    "cancellation_03": {
+      "category": "cancellation",
+      "in_weight_contract": true,
+      "n": 64,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "1f8bf691b3e900efdd32ce311e79b4f9e89f1486f12d382db5afccbe5adfc24d",
+        "input.json": "b3fe21f7c713d270f95835774aa6a078f87a154a26a32e4c48d61db86de3be5b",
+        "rust.json": "98987f6c8001e9d456306726bef8200e9fadbc289da179051af94243103b5ee8"
+      }
+    },
+    "cancellation_04": {
+      "category": "cancellation",
+      "in_weight_contract": true,
+      "n": 127,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "a39a003afbba0b4dd01c0f1334384080bba3b385809949b36c679f793f9b4f34",
+        "input.json": "9dd12d202c8ced578a27a52b0714aed093028a5d03e057bf7d38479e3155bd30",
+        "rust.json": "2926eff174987bf1bc4510fb9ae05164738c4b275384f8ca4bea0d8ddc72de84"
+      }
+    },
+    "cancellation_05": {
+      "category": "cancellation",
+      "in_weight_contract": true,
+      "n": 256,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "b78fee1c5553b9c2e3580bb788bc7a70f808e719158f60e2b34d93b22c35b822",
+        "input.json": "cf7c26a04f5deb11ca116e4f530da58d86c1e7619fbbb975068a28db51ce90de",
+        "rust.json": "7b0b626bbc3a9f106a9794fbf15c577f90173ade009b84b466e19e79fa36af7a"
+      }
+    },
+    "cancellation_06": {
+      "category": "cancellation",
+      "in_weight_contract": true,
+      "n": 513,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "743ea68f73e5ed26c3701413f3d3deb9bb498b9baf4b9dc7824ed8a251a2a8d7",
+        "input.json": "cd936eae4f22f92fdc1da52b4037e7ebf7c1c919ac90ea8edfd59dde33771fc9",
+        "rust.json": "8b9c2a544634b3c960813d5e915ce4aea8571efa1b329400c94542fc975442bf"
+      }
+    },
+    "dyadic_00": {
+      "category": "dyadic",
+      "in_weight_contract": true,
+      "n": 7,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "b1bc3874cbd3dce48ab48a24c30a5d977403d77deae6863bcc9b2fad2f00c99a",
+        "input.json": "4054462c84e915218619cc61a5b7413403577e7d792036af70715e7ad4e336f7",
+        "rust.json": "3476aa54eebdbffa801b6cd29d68bd5152b4828996511ff38226fc828bba5532"
+      }
+    },
+    "dyadic_01": {
+      "category": "dyadic",
+      "in_weight_contract": true,
+      "n": 16,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "24b626f3cddeb688dd03ed5b8904d507ff17c8c876265e245ccd0a8d93aaf736",
+        "input.json": "2ef5f5345295acbb51b34b676d88c9ffe85e0488bd9824f8c535d24b56ac3a40",
+        "rust.json": "cac9ff97e8946dc3307ad1d67ca8f84d265ace56be0c889de5058526f8cc0d51"
+      }
+    },
+    "dyadic_02": {
+      "category": "dyadic",
+      "in_weight_contract": true,
+      "n": 31,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "cf28a1f99214f098fe239563b684831c0b77908407ccc3aa8b2e05a1d17dda8c",
+        "input.json": "34f88f9c2dca12500d6ba3535655e75b29344063ba97c3f126f0eb7effff027c",
+        "rust.json": "e1f4188acda06c4e84978268bef68c8ebe46a7d5548728709d0128208f55c536"
+      }
+    },
+    "dyadic_03": {
+      "category": "dyadic",
+      "in_weight_contract": true,
+      "n": 64,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "2cf7634a46f2014c232bebe8310a72544e851d0408c622b6397a00ea99a8f662",
+        "input.json": "ad3ff7496935e3a91bb12276f34c40e380b3f057460402fcc55f7c3deecef540",
+        "rust.json": "9e9eeeac8325765c2a537c8bccccd344bbdb49351c771200fdf9d7390886468a"
+      }
+    },
+    "dyadic_04": {
+      "category": "dyadic",
+      "in_weight_contract": true,
+      "n": 127,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "df5ff20d00cabf6d14f6e048bbd83d760d74fee0cc5f6d887f1b7b5e1e9a1747",
+        "input.json": "af74eab2110409ba0c5b08674b963a7a6c5eb641b8334a9c45bc73b33a975362",
+        "rust.json": "303ffaa93dc3770bab3edb1d17e7eb827b3a97def83cfadc0927dfdc1bfe118c"
+      }
+    },
+    "dyadic_05": {
+      "category": "dyadic",
+      "in_weight_contract": true,
+      "n": 256,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "602cb0295e83397db9f8f4648591026c12d7bf192f48cab621f7fe6602bd2f74",
+        "input.json": "8b6aabd439403f6e98c89b3539639a93fb41f13f20eddf8851a6eddee86899a7",
+        "rust.json": "573f2af145707a1e0df264f38c73310c63f123b9edf6186b2e512833b2a6092b"
+      }
+    },
+    "dyadic_06": {
+      "category": "dyadic",
+      "in_weight_contract": true,
+      "n": 513,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "b77464c1f278faaed1551cfd900a46dfc8ed636d65c7ad02e15a73dd932cdd2e",
+        "input.json": "aea68d8442b3fc11654ef8b045502e144eeff1c2eb2b5ee527a3d79e19339ea6",
+        "rust.json": "b4c01514521949b9eacf76058a5b68d836fd986ddbd687bd9c31eef589a2304c"
+      }
+    },
+    "nonunit_00": {
+      "category": "nonunit",
+      "in_weight_contract": false,
+      "n": 7,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "54a3d616001a6ad496c644ab9c6ea07e53fcf4d243a6d9a9a28eb0e02610a9a0",
+        "input.json": "cfdd36c7e6216d163eca4bad9e6315f243a9e0ff5f766d23c2d8aebda75850d8",
+        "rust.json": "4c31eff1602f9f2079dbb939d23826a74776e08c4ce4c14ffb7cee3a1d2c8e06"
+      }
+    },
+    "nonunit_01": {
+      "category": "nonunit",
+      "in_weight_contract": false,
+      "n": 16,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "8f290d3ea4863cf3bdb9b60598b6ad9e7905fa85f1c6c5025f135bcf1d221b57",
+        "input.json": "6b058c446504e2227716242ba32f158c729d03973ac00a5bc79d089c02ff0679",
+        "rust.json": "5a9c40790389089caba52859541f468f166c04f0a83f23d3d53dbf750016b69d"
+      }
+    },
+    "nonunit_02": {
+      "category": "nonunit",
+      "in_weight_contract": false,
+      "n": 31,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "b06563d2168c1f41001093d63be37e668e8a49760a01c4c177430df97b9c03df",
+        "input.json": "2d9fda9b81b1b717a76e71a1018b7a90ba9b9aa8c50f9943ed57a4243ed7d678",
+        "rust.json": "65d0eb638afefa21f899e97b2941ddfdf4c318c8f89cdb601bab3b735e648baa"
+      }
+    },
+    "nonunit_03": {
+      "category": "nonunit",
+      "in_weight_contract": false,
+      "n": 64,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "fc442b3dd867c257c0367e6367f05fc90e209b07bd73ee18e9ab42fae9e840df",
+        "input.json": "bc544c7d3dbdab9b9a0d1ebc91c141181d64b2739eb5687ded7414a735bb01af",
+        "rust.json": "7a529883efb5acab17c6cf45e7888ef5e474f0715efcc59b9217881ffd5528f7"
+      }
+    },
+    "nonunit_04": {
+      "category": "nonunit",
+      "in_weight_contract": false,
+      "n": 127,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "b60a7b724fd5bd69817c72886676b634e0367c9827bdbcdef6819c3f3233309d",
+        "input.json": "2869fdab6bdfde7c3a6cfa45168a2b78c39195936111fc722a9c381a1aec586a",
+        "rust.json": "6571267a9a67b4493277b30f978ae14bfc554f2057bd54dfe417e649dae7e990"
+      }
+    },
+    "nonunit_05": {
+      "category": "nonunit",
+      "in_weight_contract": false,
+      "n": 256,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "9d178103fc217d556d9c6288a43f0b14e6b700f1f586703af71c17e61f0ba680",
+        "input.json": "016f68fbaf6e182936d6ec6abb78b42ea9d075317bbc568c47b18d78e9b24167",
+        "rust.json": "796253cd9b4c2f6bdfff326e5f91ec1b82ba3a5ce07b9bb11c9b7287d136288a"
+      }
+    },
+    "nonunit_06": {
+      "category": "nonunit",
+      "in_weight_contract": false,
+      "n": 513,
+      "p": 3,
+      "sha256": {
+        "hypotheses.json": "74de351cb2f6e2767111d86fd3f53188b272f7de79bc1aaf08bd1c19001d9cf4",
+        "input.json": "d805c39c659ed6307a80f4a23b066ac72ebe649873c28e03c567ba8c1a902d12",
+        "rust.json": "a321ae2d4b859ccbcbcd535e127b1a10f005fe40b556bcac72528036e82967b4"
+      }
+    }
+  },
+  "experiment_id": "yale003-reductions-third-20261111-v1",
+  "matlab_release": "R2026b",
+  "patient_data": false,
+  "pinned_source": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "private_generator_verifier_commit": "0de3239",
+  "public_runner_commit": "3d6af60",
+  "random_seed": 20261111069,
+  "separate_bitwise_equality_gate": true,
+  "source_runner_precommitted": true,
+  "strict_tolerance_absolute": 1e-10
+}
