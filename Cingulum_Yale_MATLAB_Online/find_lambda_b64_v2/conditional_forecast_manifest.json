@@ -1,0 +1,112 @@
+{
+  "base_input_manifest_sha256": "6967497a757545696a5ccf9179ca7a0df9adbb5ee2a5e54cf819ee90fd8b5024",
+  "cases": {
+    "b64v2_grid_collinear_9301_n69_130052": {
+      "grid_count": 4,
+      "k": 4,
+      "n": 69,
+      "sha256": {
+        "conditional_request.json": "7d84103978d81c530b3b9baf4bb021344ffcb91c213c1e7b4529c420ea19aef6",
+        "input.json": "ed0d2db7460a211929f5a3fd16002b5720e538666097d9001a09409ef62b8894",
+        "native_fold_labels.json": "805adb5fe0091438373936988c932a303ae1590a23b68c6be9a9328fd4957501",
+        "rust.json": "838ff22772152cf8cb38112f516fea9120ed5ac2d8a67d7a8c956d5307e4a384",
+        "spec.json": "3142e177f588e4b9c57df904b78f40b63e38f6ef1104c50a4e390d456bc0ecac"
+      }
+    },
+    "b64v2_grid_lownoise_9103_n57_130018": {
+      "grid_count": 4,
+      "k": 4,
+      "n": 57,
+      "sha256": {
+        "conditional_request.json": "456b582584aa7bd3df1f2bc9edc4e4141025042eb171b88ad776d9ccd0091287",
+        "input.json": "2b856990b011fdb8705a86a5dfc07fe20ee3bd15ae317dadfa5a9bc29291a5d0",
+        "native_fold_labels.json": "792df15cf724f6a0d69c64c8d0ec8132fa88cd00e82fff653f8ad22c47be1e47",
+        "rust.json": "17deb4222355dddaec47d80d5de1145556a0c89fbecae7d2d181e899e8025390",
+        "spec.json": "a5a9b0159eb60f0d58405f15cd7b6870af4823333442270594b1beed881ca496"
+      }
+    },
+    "b64v2_grid_n43_130001": {
+      "grid_count": 4,
+      "k": 3,
+      "n": 43,
+      "sha256": {
+        "conditional_request.json": "f81769a807f649aa59ac9a14a3f6346f57e0b40ca0e813a60abb3af39333f5ad",
+        "input.json": "61c2d09744ed3e9f043f53c778d255cedad0b1e48cb94d9dc1078a48f78e3aad",
+        "native_fold_labels.json": "4f8bc7f6858a6faec1f95756b50afd6714471f833f13e6a860b4530847f14f47",
+        "rust.json": "8734173d1f166acaf4cdac335c2c1c8fd3a8353c1d3946b5b61c980f138fc01e",
+        "spec.json": "86a02771613d65209fdda2c489a0de2491c328fda6ec6e12401178976bb05f54"
+      }
+    },
+    "b64v2_grid_outlier_9209_n61_130035": {
+      "grid_count": 4,
+      "k": 5,
+      "n": 61,
+      "sha256": {
+        "conditional_request.json": "f9c4b48283590624dd4db3203c7aafb42ab81c58f59be5e63801c7a4d63c2a7a",
+        "input.json": "b5ac4d25bbe795355bdf5309ffbd1a16ad53a3fa5de62801cbdebc69591998c3",
+        "native_fold_labels.json": "7be2634587da3a2d3f76b5dd89b6ae6e87547460fa86c623bbc261703390cc18",
+        "rust.json": "d0ee3e5f86af8da4de265919d35bda1bdb1f45d835a5837860bd5322f6278c7d",
+        "spec.json": "dc546f3f19ce0b56aa561e15aa46ee4ce74dfe0bb2c55415cf97053d3c784868"
+      }
+    },
+    "b64v2_grid_rescale_9601_n47_130103": {
+      "grid_count": 4,
+      "k": 4,
+      "n": 47,
+      "sha256": {
+        "conditional_request.json": "4dd8e68fe8ae4fe962647b3574a83983027bd236459827a9c6624576c6701908",
+        "input.json": "7f2fc1cc061dbed5b857b1c299832e09bffa0308435f5c15f14c2fa5dda8448a",
+        "native_fold_labels.json": "059d664e4d40cc2f4c09d7f35db09260597f7420f1fe4294ee41832602eaf961",
+        "rust.json": "73aa3baacbd8550496d13e4f6e66e9918a358f40303c03d09a4d84abe6d40ec7",
+        "spec.json": "00b8f2f19196e57e7502fb14d74addfbcc995b524d829147dd72ace1b1fd917e"
+      }
+    },
+    "b64v2_grid_stress_9709_n79_130120": {
+      "grid_count": 5,
+      "k": 5,
+      "n": 79,
+      "sha256": {
+        "conditional_request.json": "bf1cc8c2b3bbc2c5b9605735739ecd0a7f86ee9f2d808434267005747b25cb89",
+        "input.json": "ff0bce26f2ac3b60ae3e023474f1e6e8590a0df8c58162e2dbaca8a5d552e93f",
+        "native_fold_labels.json": "cc237138d9b602b19fed3550d7192adbf8974dff79dcc2ae09a91536d375517a",
+        "rust.json": "4fe47a18b64b83f3f852f5e75eacaa12f7a58c7b7c1463d1d3dce3b5d7d25ace",
+        "spec.json": "79f52a7c6d571250e5b8c0994c251c2243ad63d2e9ee9ad54414abb26dcffe78"
+      }
+    },
+    "b64v2_grid_ties_9509_n51_130086": {
+      "grid_count": 4,
+      "k": 3,
+      "n": 51,
+      "sha256": {
+        "conditional_request.json": "31edd39bd7d089509915fc744ac4ee796c6f45defad53f0f5c875691fc145323",
+        "input.json": "e7f2351ac666d1d01d457d9e8f792a95b8221d4fc5d05ab33bb5bfd3c605e781",
+        "native_fold_labels.json": "2bb4d1499d0514861d68ebdf4e429612394cfd39be1f4785ccf124f766c026ca",
+        "rust.json": "4a0828911661e693beef70520f0d9b0b12c647cc7a39e420cea3e7196a08f9d1",
+        "spec.json": "7fe63e0c82966de8469f815d746f5ef0f7473630aa6d7843b18b3f2255e75eb8"
+      }
+    },
+    "b64v2_grid_weak_9403_n73_130069": {
+      "grid_count": 4,
+      "k": 5,
+      "n": 73,
+      "sha256": {
+        "conditional_request.json": "0fde1380760f19e6d353de6459f7f76bb1eaf8431c92853a88b5765b07bd0cb2",
+        "input.json": "bf465ad9da6b88195319996a0e7f9685a32a5a9ec15d7c9bfa3a632b42c2a8bc",
+        "native_fold_labels.json": "5a8a814cc253d75a94e82f43d4c23cd844089606e238e8ce82f44da0facf0a46",
+        "rust.json": "d9245d7fa524592ac53489c09ae08705ea9c93ed50f621ae21c5f855ba7a4414",
+        "spec.json": "fad9c29f485452bb014e3cbdaa933cf0b0b8a14c2db74cc16355c149463ffef2"
+      }
+    }
+  },
+  "experiment_id": "yale-find-lambda-b64-parser-20261111-v2",
+  "native_mathworks_stage_a_run_id": "42981870204",
+  "native_mathworks_stage_a_summary_sha256": "9065aa8341a02ffb010a86ee3c16a22f00fb36edcfa1ae3c6377af91567531a0",
+  "native_runner_precommit": "40b211c",
+  "original_source_has_not_been_executed_at_forecast_freeze": true,
+  "original_source_thresholds_unchanged": true,
+  "original_yale_sha": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "patient_data": false,
+  "release": "R2026b",
+  "rust_cli_binary_sha256": "22c7bac277bc8f6d938ec21d726a9803742e965af3cf8ec84434b217ee7ee5cb",
+  "rust_implementation_precommit": "ba202d5"
+}
