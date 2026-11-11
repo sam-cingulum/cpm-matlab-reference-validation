@@ -1,0 +1,46 @@
+name: Genuine MATLAB R2026b | independent internal normalized-residual binary64 arithmetic
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-internal-u:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      MKL_CBWR: COMPATIBLE
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm sealed original previously disclosed 24-case fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          p=Path('Cingulum_Yale_MATLAB_Online/robustfit_source_fd_prospective_v1')
+          m=json.loads((p/'manifest.json').read_text())
+          assert m['samples']==24 and m['source_not_run']
+          assert hashlib.sha256((p/'input.json').read_bytes()).hexdigest()==m['input_sha256']
+          print('AUTHENTIC_FROZEN_INPUT_SHA256',m['input_sha256'])
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Observe authentic internal u through independent user-authored bisquare callback
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_robustfit_u_exact_arithmetic_v1;
+      - name: Preserve source numeric artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-r2026b-callback-exact-u-arithmetic
+          path: Cingulum_Yale_MATLAB_Online/robustfit_u_exact_arithmetic_v1/*.json
+          if-no-files-found: error
+          retention-days: 90
