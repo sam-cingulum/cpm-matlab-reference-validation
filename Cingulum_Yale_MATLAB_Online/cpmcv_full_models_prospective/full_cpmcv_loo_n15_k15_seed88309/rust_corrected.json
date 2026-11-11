@@ -1,0 +1,807 @@
+{
+  "source_function": "cpm_cv.m / cpm_train.m / cpm_test.m",
+  "profile": "original_yale_robust_mean_difference",
+  "policy": "scientifically_corrected",
+  "predictions": [
+    1.6694918172429614,
+    2.135010040371599,
+    2.247958642996394,
+    2.9556341177087773,
+    3.0260140314624024,
+    3.1452778086159743,
+    2.848046463968968,
+    3.2106901065377036,
+    3.1822791137755253,
+    3.1283917034026825,
+    3.3403788996542154,
+    3.3216602502794705,
+    3.729889496288035,
+    3.167621283411728,
+    3.7030914726363267
+  ],
+  "fold_models": [
+    {
+      "fold": 1,
+      "held_out_indices": [
+        0
+      ],
+      "train_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11710137421450373,
+      "slope": 0.6494542195289189,
+      "robust_iterations": 10,
+      "held_out_predictions": [
+        1.6694918172429614
+      ]
+    },
+    {
+      "fold": 2,
+      "held_out_indices": [
+        14
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11642246458081207,
+      "slope": 0.6491881589354691,
+      "robust_iterations": 14,
+      "held_out_predictions": [
+        3.7030914726363267
+      ]
+    },
+    {
+      "fold": 3,
+      "held_out_indices": [
+        5
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11829095554700508,
+      "slope": 0.6496078213926773,
+      "robust_iterations": 12,
+      "held_out_predictions": [
+        3.1452778086159743
+      ]
+    },
+    {
+      "fold": 4,
+      "held_out_indices": [
+        4
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11978831368876319,
+      "slope": 0.6501773656439451,
+      "robust_iterations": 14,
+      "held_out_predictions": [
+        3.0260140314624024
+      ]
+    },
+    {
+      "fold": 5,
+      "held_out_indices": [
+        6
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11804528645642032,
+      "slope": 0.6498704064065652,
+      "robust_iterations": 11,
+      "held_out_predictions": [
+        2.848046463968968
+      ]
+    },
+    {
+      "fold": 6,
+      "held_out_indices": [
+        9
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11718944233893769,
+      "slope": 0.6491357009142142,
+      "robust_iterations": 15,
+      "held_out_predictions": [
+        3.1283917034026825
+      ]
+    },
+    {
+      "fold": 7,
+      "held_out_indices": [
+        10
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11489471897171644,
+      "slope": 0.6486719376778527,
+      "robust_iterations": 8,
+      "held_out_predictions": [
+        3.3403788996542154
+      ]
+    },
+    {
+      "fold": 8,
+      "held_out_indices": [
+        3
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11870393963667958,
+      "slope": 0.6496707203933116,
+      "robust_iterations": 11,
+      "held_out_predictions": [
+        2.9556341177087773
+      ]
+    },
+    {
+      "fold": 9,
+      "held_out_indices": [
+        11
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.1209998313012357,
+      "slope": 0.6503889714888573,
+      "robust_iterations": 14,
+      "held_out_predictions": [
+        3.3216602502794705
+      ]
+    },
+    {
+      "fold": 10,
+      "held_out_indices": [
+        13
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11677930385035085,
+      "slope": 0.6490595561774175,
+      "robust_iterations": 14,
+      "held_out_predictions": [
+        3.167621283411728
+      ]
+    },
+    {
+      "fold": 11,
+      "held_out_indices": [
+        2
+      ],
+      "train_indices": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.12618001062360173,
+      "slope": 0.6511835133161251,
+      "robust_iterations": 15,
+      "held_out_predictions": [
+        2.247958642996394
+      ]
+    },
+    {
+      "fold": 12,
+      "held_out_indices": [
+        1
+      ],
+      "train_indices": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11385317557513597,
+      "slope": 0.6488393887806801,
+      "robust_iterations": 15,
+      "held_out_predictions": [
+        2.135010040371599
+      ]
+    },
+    {
+      "fold": 13,
+      "held_out_indices": [
+        8
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.12005007411093827,
+      "slope": 0.6501609687125695,
+      "robust_iterations": 15,
+      "held_out_predictions": [
+        3.1822791137755253
+      ]
+    },
+    {
+      "fold": 14,
+      "held_out_indices": [
+        12
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.1278617319826556,
+      "slope": 0.6520267865862094,
+      "robust_iterations": 8,
+      "held_out_predictions": [
+        3.729889496288035
+      ]
+    },
+    {
+      "fold": 15,
+      "held_out_indices": [
+        7
+      ],
+      "train_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "positive_edge_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "negative_edge_indices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "intercept": -0.11957018004357689,
+      "slope": 0.650006651979764,
+      "robust_iterations": 14,
+      "held_out_predictions": [
+        3.2106901065377036
+      ]
+    }
+  ],
+  "unassigned_indices": [],
+  "complete_partition": true,
+  "scientific_warning": "Cingulum complete-coverage correction, not historical Yale source behavior for                  nondivisible n. Does not automatically preserve family/site blocking; grouped CV                  requires the separate production group-aware protocol."
+}
