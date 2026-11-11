@@ -1,0 +1,45 @@
+name: Genuine MATLAB R2026b | exploratory OHBM per-edge robustfit t-statistics
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-robustfit-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify already published old synthetic OHBM inputs only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,pathlib,json
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/ohbm_predict_v1')
+          m=json.loads((root/'manifest.json').read_text())
+          assert m['experiment_id']=='ohbm-predict-behavior-20261111-v1'
+          assert len(m['cases'])==9
+          assert m['source_commit']=='708999b8bb27ae69722775c323da9f14ef6732c7'
+          for n,rec in m['cases'].items():
+              assert hashlib.sha256((root/n/'input.json').read_bytes()).hexdigest()==rec['sha256']
+          print('DIAGNOSTIC_INPUT_PREVIOUSLY_PUBLISHED_AND_SHA256_VALID')
+          PY
+      - name: Install genuine MathWorks MATLAB and Statistics Toolbox
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute original MathWorks robustfit on prior disclosed synthetic examples
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_ohbm_edgewise_robust_diagnostics;
+      - name: Preserve MATLAB raw robustfit stats without implying prospective parity
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exploratory-matlab-r2026b-ohbm-edgewise-robust-stats-20261111
+          path: Cingulum_Yale_MATLAB_Online/ohbm_edgewise_robust_diagnostics/*.json
+          if-no-files-found: warn
+          retention-days: 90
