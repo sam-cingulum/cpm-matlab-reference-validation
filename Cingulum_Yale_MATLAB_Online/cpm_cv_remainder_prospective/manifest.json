@@ -1,0 +1,75 @@
+{
+  "acceptance_abs": "1e-9",
+  "bitwise_zero_unassigned": true,
+  "cases": {
+    "cpmcv_n13_k13_seed7401": {
+      "expected_unassigned": 0,
+      "k": 13,
+      "n": 13,
+      "seed": 7401,
+      "sha256": {
+        "input.json": "b70070ac300faf3a5f52de4d6f2f2cba43b5258ec58c4c644726e431b05b8587"
+      }
+    },
+    "cpmcv_n17_k4_seed7101": {
+      "expected_unassigned": 1,
+      "k": 4,
+      "n": 17,
+      "seed": 7101,
+      "sha256": {
+        "input.json": "b9703d25238989d3278a640a99ec627a40ee4978667a4990123b18c8b5b38930"
+      }
+    },
+    "cpmcv_n20_k4_seed7301": {
+      "expected_unassigned": 0,
+      "k": 4,
+      "n": 20,
+      "seed": 7301,
+      "sha256": {
+        "input.json": "e917773bae451d1a4811ef66c5a4326966b7c20a49478d5478deadd299cd78a1"
+      }
+    },
+    "cpmcv_n23_k5_seed7201": {
+      "expected_unassigned": 3,
+      "k": 5,
+      "n": 23,
+      "seed": 7201,
+      "sha256": {
+        "input.json": "409e3134c5211ba6ccd9ddc4d62e27ce4d70b5d395bcdfb9ccbd4a85a197c9ef"
+      }
+    },
+    "cpmcv_n29_k7_seed7601": {
+      "expected_unassigned": 1,
+      "k": 7,
+      "n": 29,
+      "seed": 7601,
+      "sha256": {
+        "input.json": "25f368b2405ecaed8236765c917b156e6b362800cdde22f0bd7206bcc670e264"
+      }
+    },
+    "cpmcv_n31_k6_seed7501": {
+      "expected_unassigned": 1,
+      "k": 6,
+      "n": 31,
+      "seed": 7501,
+      "sha256": {
+        "input.json": "81c407b81e84a216ba4e1ede1871050480410e6cd29b6051c0dd7e3238201028"
+      }
+    }
+  },
+  "experiment_id": "yale-cpmcv-remainder-original-source-20261111-v1",
+  "matlab_release": "R2026b",
+  "original_fitting_not_yet_executed": true,
+  "patient_data": false,
+  "pinned_source": "b903f83b476b745417b1f062f6777f5ffe118f1a",
+  "predeclared_expected_remainders": [
+    1,
+    3,
+    0,
+    0,
+    1,
+    1
+  ],
+  "private_precommit": "60540e4",
+  "public_runner_precommit": "e3b8ea2"
+}
