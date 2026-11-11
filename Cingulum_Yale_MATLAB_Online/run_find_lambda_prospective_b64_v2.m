@@ -1,4 +1,4 @@
-function report = run_find_lambda_b64_v2_b64_v2()
+function report = run_find_lambda_prospective_b64_v2()
 % Original pinned Yale find_lambda.m from the unmodified upstream checkout.
 % Two distinct authentic MathWorks executions, not post-hoc forecasts:
 % A) crossvalind-only produces native labels, before original model fitting.
@@ -15,7 +15,7 @@ f=jsondecode(fileread(fullfile(pack,'conditional_forecast_manifest.json')));
 assert(strcmp(version('-release'),'2026b'));
 assert(~m.patient_data_included && m.original_source_unmodified);
 assert(strcmp(m.original_yale_revision,'b903f83b476b745417b1f062f6777f5ffe118f1a'));
-assert(strcmp(f.experiment_id,'yale-find-lambda-two-stage-20261111-v1'));
+assert(strcmp(f.experiment_id,'yale-find-lambda-b64-parser-20261111-v2'));
 assert(strcmp(f.original_yale_sha,m.original_yale_revision));
 assert(strcmp(f.release,'R2026b') && ~f.patient_data);
 assert(f.original_source_has_not_been_executed_at_forecast_freeze);

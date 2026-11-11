@@ -82,7 +82,7 @@ jobs:
         with:
           command: |
             cd('Cingulum_Yale_MATLAB_Online');
-            run_find_lambda_b64_v2;
+            run_find_lambda_prospective_b64_v2;
 
       - name: Preserve original MATLAB source evidence even on numerical failure
         if: always()
