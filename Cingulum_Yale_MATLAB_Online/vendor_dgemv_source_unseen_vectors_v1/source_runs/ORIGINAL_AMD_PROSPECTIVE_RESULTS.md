@@ -11,3 +11,16 @@ Each genuine licensed MathWorks R2026b execution ran exact original `DGEQP3`/`ro
 | [43263403686](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43263403686) | AMD EPYC 7763 | **480/480** | 169/480 |
 
 The **480/480** AMD matched independent numerical forecasts were source-unseen, meaning the AMD native Rust `DGEMV` component is prospectively exactly reproducible across 40 new input lengths and 12 predictor/vector families on these measured original MATLAB execution profiles. This is not complete end-to-end QR/robustfit parity. Original Intel CPU-profile tests are pending and should be scored under the *same frozen* independent Rust forecast before claiming prospective Intel parity. No MATLAB proprietary binaries have been copied, patched or redistributed.
+
+## Additional independent original-source repetitions
+
+Four more original MathWorks runs were executed under the **same frozen input and pure-Rust predictions**, with the same A/B source bitwise noninterference gates and true vendor `DGEMV` duplicate-result agreement. They all passed:
+
+| Genuine run | Original CPU | Frozen AMD pure Rust | Frozen Intel pure Rust |
+|---|---|---|---|
+| [43264083899](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43264083899) | AMD EPYC 9V74 | **480/480** | 169/480 |
+| [43264089162](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43264089162) | AMD EPYC 9V74 | **480/480** | 169/480 |
+| [43264096153](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43264096153) | AMD EPYC 9V74 | **480/480** | 169/480 |
+| [43264102676](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43264102676) | AMD EPYC 7763 | **480/480** | 169/480 |
+
+**Total 7 independent licensed original MATLAB host executions, 3,360 source-unseen DGEMV results, AMD pure Rust exact 3,360/3,360.** Vendor arithmetic source control remains 100% bitwise identical to original `qr`/`robustfit` when traced and uninstrumented on each host. The CPU scheduler for these seven prospective runs selected AMD; **there is no original Intel-source prospective 480-case result yet**, and Intel parity MUST NOT be claimed from these seven AMD outcomes.
