@@ -1,0 +1,83 @@
+name: "Genuine MATLAB R2026b | identical full-48 controls on independent runners"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  independent-host-control:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate the immutable original synthetic inputs
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,pathlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/input.json')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b'
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Fingerprint CPU, kernel, glibc and genuine MATLAB runtime binaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          {
+            printf 'run_id=%s\ncommit=%s\n' "$GITHUB_RUN_ID" "$GITHUB_SHA"
+            printf 'MATLAB_release=2026b\nMKL_CBWR=%s\nMKL_NUM_THREADS=%s\nOMP_NUM_THREADS=%s\n' "$MKL_CBWR" "$MKL_NUM_THREADS" "$OMP_NUM_THREADS"
+            printf '\nUNAME\n';uname -a
+            printf '\nCPU\n';lscpu
+            printf '\nGLIBC\n';ldd --version | head -1
+            printf '\nMATHWORKS_BINARIES\n'
+            for x in MATLAB libmwlapack.so mkl.so; do
+              f=$(find /opt/hostedtoolcache/MATLAB -name "$x" -type f -print -quit)
+              if [ -z "$f" ]; then f=$(find /opt/hostedtoolcache/MATLAB -name "$x" -print -quit); fi
+              if [ -n "$f" ];then sha256sum "$f";else printf 'NOT_FOUND %s\n' "$x";fi
+            done
+          } > "$p/qr_cross_run_host_fingerprint_v4.txt"
+          grep -E '^(run_id|commit|Model name|Vendor ID|NUMA node|MATLAB_release|MKL_CBWR|MKL_NUM_THREADS|OMP_NUM_THREADS)' "$p/qr_cross_run_host_fingerprint_v4.txt" || true
+      - name: Execute identical uninstrumented all-48 genuine MATLAB R2026b
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_CASE_SCOPE: all48
+          QR_CONTROL_OUTPUT: qr_cross_run_v4.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: Certify all 48 are perfectly repeatable within independent process
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import collections,hashlib,json,pathlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation')
+          b=(p/'qr_cross_run_v4.json').read_bytes(); d=json.loads(b)
+          r=d['records'];assert len(r)==144
+          groups=collections.defaultdict(list)
+          for x in r:groups[x['id']].append(tuple(json.dumps(x[k],sort_keys=True) for k in ('R_hex','source_R_hex','source_h_hex','pivot')))
+          assert len(groups)==48 and all(len(g)==3 and g[0]==g[1]==g[2] for g in groups.values())
+          s={'run_id':'${{ github.run_id }}','sha256':hashlib.sha256(b).hexdigest(),'cases':48,'repeats':3,'records':144,'within_run_bitwise_exact':True}
+          (p/'qr_cross_run_v4_summary.json').write_text(json.dumps(s,sort_keys=True,indent=2)+'\n')
+          print('GENUINE_MATLAB_FULL48_INDEPENDENT_HOST',json.dumps(s,sort_keys=True))
+          PY
+      - name: Preserve CPU/binary fingerprint and uninstrumented full-output bitstrings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-cross-run-hardware-v4
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_cross_run_v4.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_cross_run_v4_summary.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_cross_run_host_fingerprint_v4.txt
+          retention-days: 90
+          if-no-files-found: warn
