@@ -1,0 +1,11 @@
+# Original MathWorks source, 320 raw-input cases, actual vendor DGEMV dot and full QR working columns
+
+Genuine licensed MathWorks MATLAB R2026b [run 43259045259](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43259045259), running its unchanged `DGEQP3`, `robustfit`, and dynamically resolved bundled `mkl.so` routines on an **AMD EPYC 7763**. Raw input is the same independently generated 320-case source-unseen battery whose Rust first-reflector and R12 forecasts were frozen and pushed to the private repository at commit `4c35c9824e15283aff57993fecd12415d847d5a9` before any original MATLAB execution.
+
+Original `qr` and `robustfit` were executed on the SAME runner both uninstrumented and under a wrapper that ONLY reads the finished original QR values and runs vendor `DLARF`/`DGEMV`/`DDOT` on scratch buffers; **all 960 record fields** (`R`, robustfit `R`, all `h`, beta, every double numeric statistic, pivots) are bitwise identical across those two runs, and MATLAB exited normally.
+
+All 320 original raw-x identities are captured in **1,920** valid private numerical events with zero overflow and exactly six repeats per raw case. The original first and second Householder working columns (`FIRST_A_HEX`, `SECOND_A_HEX`), original tau1/tau2, raw x, pivot, original `R12` and actual vendor `DGEMV` and `DDOT` dot binary64 values are archived in `qr_vendor_320_dot_source.log` for ALL 40 lengths, including never-before-tested boundaries. Source `DLARF` and vendor `DGEMV` exactly reproduced original `DGEQP3` R12 for **320/320 original cases**. Separate independent Rust source-free forecasts must be scored against these raw original bits without changing the originally frozen candidate.
+
+This original AMD source run is **not identical to the previous genuine Intel Xeon 8370C execution 43257619147**, despite input bytes and version being pinned. Comparing both original full numeric source oracles will quantify the cross-host reproducibility issue without attributing its root cause until dispatcher and runtime controls are sufficient.
+
+Original source data are scientific evidence, not replacements for independently compiled pure-Rust operations. The precommitted forecast and all prospective failures must be preserved unchanged.

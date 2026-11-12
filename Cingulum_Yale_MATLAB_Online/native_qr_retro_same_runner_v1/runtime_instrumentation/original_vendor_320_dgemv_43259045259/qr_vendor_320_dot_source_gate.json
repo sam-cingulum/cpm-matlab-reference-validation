@@ -1,0 +1,30 @@
+{
+  "clean_sha256": "3d6beeecff29e72f0b6b9d74bcc272a83380bfa551d569a77dd37e74b8b9b89d",
+  "distinct_original_raw_cases": 320,
+  "mismatched_record_fields": {
+    "R_hex": 0,
+    "id": 0,
+    "iteration": 0,
+    "n": 0,
+    "pivot": 0,
+    "robustfit_error": 0,
+    "robustfit_ok": 0,
+    "source_R_hex": 0,
+    "source_beta_hex": 0,
+    "source_h_hex": 0,
+    "source_numeric_stats": 0
+  },
+  "original_mathworks_bitwise_unchanged": true,
+  "original_matlab_vendor_r12_exact_cases": 320,
+  "original_vendor_dot_log_sha256": "f82fb30fab84795e334284902a7ed1968cd8afe6582895bb511245cf2443e865",
+  "overflows": [
+    0
+  ],
+  "repeat_stable_source_vendor_dots": true,
+  "run_id": "43259045259",
+  "source_vendor_scratch_events": 1920,
+  "total_original_qr_calls": 25891,
+  "trace_outcome": "success",
+  "trace_sha256": "3d6beeecff29e72f0b6b9d74bcc272a83380bfa551d569a77dd37e74b8b9b89d",
+  "unmatched_source_input_events": []
+}
