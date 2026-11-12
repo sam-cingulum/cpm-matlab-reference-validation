@@ -1,0 +1,114 @@
+name: "Genuine MATLAB R2026b | numerically gated real QR function interposition"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  qr-interposition:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin synthetic inputs, compile and independently test interposer
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          python3 - <<'PY'
+          import hashlib,pathlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/input.json')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b'
+          PY
+          gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_interpose_v1.c" -o "$p/qr_interpose_v1.so" -ldl
+          gcc -O2 -Wall -Wextra -Werror "$p/qr_interpose_selftest.c" -llapack -lblas -o "$p/qr_interpose_selftest"
+          "$p/qr_interpose_selftest" > "$p/qr_interpose_selftest_clean.txt"
+          QR_INTERPOSE_LOG="$PWD/$p/qr_interpose_selftest.log" LD_PRELOAD="$PWD/$p/qr_interpose_v1.so" "$p/qr_interpose_selftest" > "$p/qr_interpose_selftest_wrapped.txt"
+          cmp "$p/qr_interpose_selftest_clean.txt" "$p/qr_interpose_selftest_wrapped.txt"
+          grep -E 'name=dgeqrf_.*count=1' "$p/qr_interpose_selftest.log"
+          sha256sum "$p/qr_interpose_v1.c" "$p/qr_interpose_v1.so" > "$p/qr_interpose_build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Inspect real MATLAB runtime ELF exported symbols and relocations
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          lib=$(find /opt/hostedtoolcache/MATLAB -name libmwlapack.so -print -quit)
+          test -n "$lib"
+          echo "$lib" > "$p/matlab_elf_symbol_provenance.txt"
+          readelf -W -r "$lib" | grep -Ei '(dgeqp3|dgeqr2|dgeqrf|dlarfg|dlarf|lapack)' | head -200 >> "$p/matlab_elf_symbol_provenance.txt" || true
+          readelf -W -s "$lib" | grep -Ei '(dgeqp3|dgeqr2|dgeqrf|dlarfg|dlarf)' | head -200 >> "$p/matlab_elf_symbol_provenance.txt" || true
+      - name: A. Execute clean genuine MATLAB with three exact repeat runs
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_control_v4_clean.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: B. Execute identical genuine MATLAB via numeric-preserving function interposer
+        id: interposed
+        continue-on-error: true
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_control_v4_interposed.json
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_interpose_v1.so
+          QR_INTERPOSE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matlab_qr_interpose_calls.log
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: Inspect genuine MATLAB bitwise parity and actual symbol call counts
+        if: always()
+        shell: bash
+        env:
+          INTERPOSE_ACTION_OUTCOME: ${{ steps.interposed.outcome }}
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,os,re,hashlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation')
+          clean=p/'qr_control_v4_clean.json';intp=p/'qr_control_v4_interposed.json';log=p/'matlab_qr_interpose_calls.log'
+          s={'workflow_run':os.environ.get('GITHUB_RUN_ID'),'interpose_action_outcome':os.environ.get('INTERPOSE_ACTION_OUTCOME'),'clean_exists':clean.exists(),'interposed_exists':intp.exists(),'log_exists':log.exists()}
+          if clean.exists() and intp.exists():
+           a=clean.read_bytes();b=intp.read_bytes();r=json.loads(a)['records'];q=json.loads(b)['records']
+           assert len(r)==len(q)==18
+           s['clean_sha256']=hashlib.sha256(a).hexdigest();s['interposed_sha256']=hashlib.sha256(b).hexdigest()
+           s['mismatched_records']={key:sum(x[key]!=y[key] for x,y in zip(r,q)) for key in ['id','iteration','R_hex','source_R_hex','source_h_hex','pivot']}
+           s['bitwise_equal']=all(v==0 for v in s['mismatched_records'].values())
+          if log.exists():
+           calls=[]
+           for line in log.read_text().splitlines():
+            m=re.search(r'exe=(.*?)\tname=(.*?)\tcount=(\d+)$',line)
+            if m and int(m.group(3)):calls.append({'exe':m.group(1),'symbol':m.group(2),'count':int(m.group(3))})
+           s['nonzero_counts']=calls
+           s['total_qr_calls_observed']=sum(x['count'] for x in calls)
+          (p/'qr_interpose_v1_summary.json').write_text(json.dumps(s,indent=2,sort_keys=True))
+          print('QR_INTERPOSE_MATCHED_RESULT',json.dumps(s,sort_keys=True))
+          assert clean.exists() and intp.exists() and s['bitwise_equal'],'NUMERICAL_PARITY_FAILED'
+          assert s['interpose_action_outcome']=='success','MATLAB_PROCESS_FAILED'
+          assert s.get('total_qr_calls_observed',0)>0,'NO_CALLS_OBSERVED'
+          PY
+      - name: Archive trace and reference bits even on experiment failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-qr-interpose-matched-v1
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_control_v4_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matlab_qr_interpose_calls.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_interpose_v1_summary.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_interpose_build_sha256.txt
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_interpose_selftest.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matlab_elf_symbol_provenance.txt
+          retention-days: 90
+          if-no-files-found: warn
