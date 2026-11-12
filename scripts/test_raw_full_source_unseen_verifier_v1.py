@@ -81,6 +81,17 @@ class ProspectiveVerifierNegativeTests(unittest.TestCase):
             finally:
                 v.DIR = old_dir
 
+    def test_matlab_clears_mkl_env_but_single_thread_remains_required(self):
+        p = {"release": "2026b", "matlab_version": "26.2.0 (R2026b)",
+             "max_num_comp_threads": 1, "mkl_cbwr": "COMPATIBLE",
+             "mkl_num_threads": "", "omp_num_threads": "1",
+             "architecture": "GLNXA64", "cpu_model": "Intel Xeon",
+             "github_sha": "f" * 40, "github_run_id": "123"}
+        v.check_profile(p)
+        p["max_num_comp_threads"] = 2
+        with self.assertRaises(AssertionError):
+            v.check_profile(p)
+
     def test_unpinned_numeric_profile_rejected(self):
         p = {"release": "2026b", "matlab_version": "MATLAB R2026b",
              "max_num_comp_threads": 2, "mkl_cbwr": "AUTO",

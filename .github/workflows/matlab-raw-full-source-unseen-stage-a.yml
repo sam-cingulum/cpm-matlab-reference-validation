@@ -17,6 +17,9 @@ jobs:
       - name: Confirm fixed 48 cases, immutable input SHA and absence of original results
         run: |
           set -euo pipefail
+          test "${MKL_CBWR}" = COMPATIBLE
+          test "${MKL_NUM_THREADS}" = 1
+          test "${OMP_NUM_THREADS}" = 1
           python3 scripts/verify_raw_full_source_unseen_v1.py pre-clone
           python3 -m unittest discover -s scripts -p 'test_raw_full_source_unseen_verifier_v1.py' -v
           lscpu

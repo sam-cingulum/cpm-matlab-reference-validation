@@ -103,8 +103,12 @@ def check_profile(p: dict) -> None:
     require(p["release"] == "2026b" and "R2026b" in p["matlab_version"],
             "incompatible original MATLAB environment")
     require(p["max_num_comp_threads"] == 1, "MATLAB threads unpinned")
+    # GitHub runner must set MKL_NUM_THREADS=1 before MATLAB launches.
+    # MATLAB R2026b itself may clear it from getenv() after startup; record
+    # and compare the observed value across both independent source runs.
+    # maxNumCompThreads(1) remains mandatory, no bitwise gate is relaxed.
     require(p["mkl_cbwr"] == "COMPATIBLE" and
-            p["mkl_num_threads"] == "1" and p["omp_num_threads"] == "1",
+            p["mkl_num_threads"] in ("", "1") and p["omp_num_threads"] == "1",
             "BLAS/CPU environment unpinned")
     require(p["architecture"] and p["cpu_model"] and p["github_sha"] and p["github_run_id"],
             "missing runtime provenance")
