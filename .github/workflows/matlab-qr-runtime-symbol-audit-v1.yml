@@ -24,7 +24,8 @@ jobs:
           PY
           p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
           gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_symbol_audit.c" -o "$p/qr_symbol_audit.so"
-          sha256sum "$p/qr_symbol_audit.c" "$p/qr_symbol_audit.so" > "$p/build_sha256.txt"
+          gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_call_audit.c" -o "$p/qr_call_audit.so"
+          sha256sum "$p/qr_symbol_audit.c" "$p/qr_symbol_audit.so" "$p/qr_call_audit.c" "$p/qr_call_audit.so" > "$p/build_sha256.txt"
       - uses: matlab-actions/setup-matlab@v3
         with:
           release: R2026b
@@ -32,7 +33,8 @@ jobs:
       - name: Execute genuine licensed MATLAB with passive loader audit
         uses: matlab-actions/run-command@v3
         env:
-          LD_AUDIT: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_symbol_audit.so
+          LD_AUDIT: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_call_audit.so
+          QR_CALL_AUDIT_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/call_audit.log
           QR_AUDIT_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/loader_audit.log
         with:
           command: |
@@ -45,9 +47,9 @@ jobs:
         run: |
           set -euo pipefail
           p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
-          test -s "$p/loader_audit.log"
-          grep '^BIND' "$p/loader_audit.log" | sort -u > "$p/qr_bindings_unique.tsv" || true
-          grep -Ei 'mkl|blas|lapack|libmw' "$p/loader_audit.log" | sort -u > "$p/qr_libraries.tsv" || true
+          test -s "$p/call_audit.log"
+          grep '^BIND' "$p/call_audit.log" | sort -u > "$p/qr_bindings_unique.tsv" || true
+          grep -Ei 'mkl|blas|lapack|libmw' "$p/call_audit.log" | sort -u > "$p/qr_libraries.tsv" || true
           wc -l "$p"/*.log "$p"/*.tsv
       - name: Preserve raw passive runtime instrumentation evidence
         uses: actions/upload-artifact@v4
