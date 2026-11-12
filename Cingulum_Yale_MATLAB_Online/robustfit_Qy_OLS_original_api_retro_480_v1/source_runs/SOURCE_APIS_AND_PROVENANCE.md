@@ -1,0 +1,11 @@
+# Genuine original MATLAB R2026b Qy and initial OLS-source API discrimination
+
+Original licensed MathWorks MATLAB R2026b run [43290262157](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43290262157), on AMD EPYC 7763 with `MKL_CBWR=COMPATIBLE`, genuine *unmodified* `robustfit`. All 480 previously disclosed synthetic raw binary64 x/y inputs and their per-case source `robustfit` outputs were independently evaluated by MATLAB's standard public numerical operators **in the same original source execution**. Every original `robustfit` computation repeated bitwise identical within the same process.
+
+**Primary verified finding: original MathWorks `robustfit` reported `st.Qy` is exactly the pivot-restored genuine public MATLAB `Q' * y`, 480/480 complete Qy vectors, 960/960 binary64 original source elements.** The other independent MATLAB API formulations, including column-wise `dot`, `sum(Q.*y)`, and `R*(X\y)` are numerically different at binary64 despite mathematical equivalence. This provides a reliable operational definition of the original source Qy and narrows native Rust parity work to the true MATLAB vector-matrix multiplication reduction order, NOT a hidden different Qy definition.
+
+Initial OLS scale is NOT resolved: the best of eight alternate actual MATLAB public API formulas, `norm(y-X*(X\y))/sqrt(n-2)`, matched only 255/480 original `st.ols_s` values, and the next best only 211/480. This remains a failed exact gate.
+
+Complete original 480-case source Qy and scale outputs, independent candidate numeric vectors, exact counts, CPU/vendor library hashes and original-byte SHA256 are losslessly stored in `source_runs/43290262157/` with original-byte and archive-byte manifests. Input original SHA256 `c773fa57b0ec2e414c6fc7a448ba5440bd2e60544c034d06213ec452d81ce7f1`. Original source `Qy` is computed after original `qr(X,'econ','vector')` and pivot-restored by `accumarray(p,Q'*y,[2,1])`; the true input matrix X and y are original raw hex exact doubles.
+
+This is a **retrospective public original MATLAB numerical API comparison** on inputs that had already been disclosed to the research campaign, **NOT a new compiled Rust source-unseen Qy result**, and original OLS/IRLS/robust_s/t and complete Yale end-to-end binary64 identity remain unpassed.
