@@ -26,7 +26,8 @@ static void *resolve(const char *name) {
   void *p = dlsym(RTLD_NEXT, name);
   if (!p) {
     const char *message = "QR_INTERPOSE_ERROR unresolved original symbol\n";
-    write(2, message, sizeof("QR_INTERPOSE_ERROR unresolved original symbol\n")-1);
+    ssize_t ignored = write(2, message, sizeof("QR_INTERPOSE_ERROR unresolved original symbol\n")-1);
+    (void)ignored;
     _exit(127);
   }
   return p;
@@ -91,7 +92,7 @@ __attribute__((destructor)) static void report(void){
  const char *names[]={"dgeqp3_","dgeqr2_","dgeqrf_","dlarfg_","dlarf_", "LAPACKE_dgeqp3","LAPACKE_dgeqr2","LAPACKE_dgeqrf"};
  char buf[1400];for(int i=0;i<8;i++){
   int written=snprintf(buf,sizeof(buf),"QR_INTERPOSE_COUNT\tpid=%ld\texe=%s\tname=%s\tcount=%lu\n",(long)getpid(),exe,names[i],counts[i]);
-  if(written>0 && written<(int)sizeof(buf))write(fd,buf,(size_t)written);
+  if(written>0 && written<(int)sizeof(buf)){ssize_t ignored=write(fd,buf,(size_t)written);(void)ignored;}
  }
  close(fd);
 }
