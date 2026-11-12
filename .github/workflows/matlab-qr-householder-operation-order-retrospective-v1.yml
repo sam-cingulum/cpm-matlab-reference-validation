@@ -1,0 +1,61 @@
+name: "Genuine R2026b research | public QR Householder operation-order candidates (retrospective)"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  public-qr-operation-order:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm original disclosed input immutable SHA
+        run: |
+          set -euo pipefail
+          test "$MKL_CBWR" = COMPATIBLE
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1')
+          m=json.loads((p/'manifest.json').read_text())
+          d=json.loads((p/'input.json').read_text())
+          assert hashlib.sha256((p/'input.json').read_bytes()).hexdigest()==m['input_sha256']
+          assert len(d['cases'])==48
+          print('HISTORICAL_SOURCE_DISCLOSED_INPUTS_NOT_PROSPECTIVE')
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Genuine MATLAB public qr and numeric primitives, compare exact hex to QR R12
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_qr_householder_arithmetic_retrospective_v1;
+      - name: Validate complete 48-case 13-method numerical evidence
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/matlab_householder_arithmetic_original_api.json')
+          v=json.loads(p.read_text())
+          assert v['release']=='2026b' and v['mkl_cbwr']=='COMPATIBLE'
+          assert v['not_prospective'] and v['cases']==48
+          assert len(v['candidate_names'])==len(v['exact_case_counts'])==13
+          assert len(v['records'])==48
+          for c in v['records']:
+           assert len(c['candidate_hex'])==len(c['exact'])==13
+          print('RETROSPECTIVE_MATLAB_QR_ARITHMETIC_COMPLETE_48x13')
+          PY
+      - name: Preserve original MathWorks QR numerical operation forensics
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: genuine-matlab-r2026b-public-qr-householder-48-retrospective
+          path: Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/matlab_householder_arithmetic_original_api.json
+          if-no-files-found: warn
+          retention-days: 90
