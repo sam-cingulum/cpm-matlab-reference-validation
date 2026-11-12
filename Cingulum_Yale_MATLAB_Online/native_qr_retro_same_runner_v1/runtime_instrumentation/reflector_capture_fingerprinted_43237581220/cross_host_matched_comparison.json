@@ -1,0 +1,98 @@
+{
+  "R_hex": {
+    "differing_cases": [],
+    "exact": 192,
+    "full_cases": 48,
+    "total": 192
+  },
+  "case_ids": [
+    "baseline_n29_seed645481",
+    "baseline_n35_seed649087",
+    "baseline_n43_seed653895",
+    "baseline_n44_seed654496",
+    "baseline_n57_seed662309",
+    "baseline_n71_seed670723",
+    "heteroskedastic_n29_seed667314",
+    "heteroskedastic_n35_seed670920",
+    "heteroskedastic_n43_seed675728",
+    "heteroskedastic_n44_seed676329",
+    "heteroskedastic_n57_seed684142",
+    "heteroskedastic_n71_seed692556",
+    "high_leverage_n29_seed654838",
+    "high_leverage_n35_seed658444",
+    "high_leverage_n43_seed663252",
+    "high_leverage_n44_seed663853",
+    "high_leverage_n57_seed671666",
+    "high_leverage_n71_seed680080",
+    "near_flat_n29_seed657957",
+    "near_flat_n35_seed661563",
+    "near_flat_n43_seed666371",
+    "near_flat_n44_seed666972",
+    "near_flat_n57_seed674785",
+    "near_flat_n71_seed683199",
+    "negative_slope_n29_seed661076",
+    "negative_slope_n35_seed664682",
+    "negative_slope_n43_seed669490",
+    "negative_slope_n44_seed670091",
+    "negative_slope_n57_seed677904",
+    "negative_slope_n71_seed686318",
+    "outliers_n29_seed648600",
+    "outliers_n35_seed652206",
+    "outliers_n43_seed657014",
+    "outliers_n44_seed657615",
+    "outliers_n57_seed665428",
+    "outliers_n71_seed673842",
+    "positive_offset_n29_seed664195",
+    "positive_offset_n35_seed667801",
+    "positive_offset_n43_seed672609",
+    "positive_offset_n44_seed673210",
+    "positive_offset_n57_seed681023",
+    "positive_offset_n71_seed689437",
+    "rescaled_n29_seed651719",
+    "rescaled_n35_seed655325",
+    "rescaled_n43_seed660133",
+    "rescaled_n44_seed660734",
+    "rescaled_n57_seed668547",
+    "rescaled_n71_seed676961"
+  ],
+  "cases": 48,
+  "first_cases": 48,
+  "first_host": {
+    "CPU(s)": "4",
+    "Kernel": "Linux runnervm7aw5e 7.0.0-1017-azure #17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux",
+    "MATLAB_runtime_binary_sha256": {
+      "MATLAB": "65c14851fcf1b43a0dc505567c110acd0c8bb68f8294678a1cef8ca25a244460",
+      "libmwlapack.so": "8924853d749f3443c1f4f459c6059bd8d94b5befa317b30f95584e5c8a6c2120",
+      "mkl.so": "afbb1eb0bf3423ab2b049f10047f1d89de097848ded1dd25db060baf81427d04"
+    },
+    "Model name": "AMD EPYC 9V74 80-Core Processor",
+    "Vendor ID": "AuthenticAMD"
+  },
+  "first_sha256": "d059026575c68ea7b8e879157226e316f4eca65c8590e5ea09176ace44854a97",
+  "identical_pivots": 48,
+  "second_cases": 48,
+  "second_host": {
+    "CPU(s)": "4",
+    "Kernel": "Linux runnervm7aw5e 7.0.0-1017-azure #17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux",
+    "MATLAB_runtime_binary_sha256": {
+      "MATLAB": "65c14851fcf1b43a0dc505567c110acd0c8bb68f8294678a1cef8ca25a244460",
+      "libmwlapack.so": "8924853d749f3443c1f4f459c6059bd8d94b5befa317b30f95584e5c8a6c2120",
+      "mkl.so": "afbb1eb0bf3423ab2b049f10047f1d89de097848ded1dd25db060baf81427d04"
+    },
+    "Model name": "AMD EPYC 9V74 80-Core Processor",
+    "Vendor ID": "AuthenticAMD"
+  },
+  "second_sha256": "d059026575c68ea7b8e879157226e316f4eca65c8590e5ea09176ace44854a97",
+  "source_R_hex": {
+    "differing_cases": [],
+    "exact": 192,
+    "full_cases": 48,
+    "total": 192
+  },
+  "source_h_hex": {
+    "differing_cases": [],
+    "exact": 2232,
+    "full_cases": 48,
+    "total": 2232
+  }
+}

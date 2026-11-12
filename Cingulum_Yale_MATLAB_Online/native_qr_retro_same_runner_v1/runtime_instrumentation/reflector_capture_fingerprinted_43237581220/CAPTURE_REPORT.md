@@ -1,0 +1,11 @@
+# Fingerprinted genuine MATLAB R2026b original QR Householder trace on independently reproduced numerical profile
+
+- [Original licensed MathWorks MATLAB R2026b run 43237581220](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43237581220), clean and instrumented MATLAB processes completed successfully.
+- Host: AMD EPYC 9V74 80-Core Processor, 4 vCPU. Exact full `lscpu`, kernel and source executable/library hashes in `qr_buffer_capture_host_fingerprint_v4.txt`.
+- Input: immutable original 48-case synthetic source-data JSON with SHA256 `36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b`.
+- Three clean and three instrumented repetitions of all 48 cases: complete 144-record original MATLAB JSON output bytes identical with SHA256 `d059026575c68ea7b8e879157226e316f4eca65c8590e5ea09176ace44854a97`.
+- Exactly 288/288 original MathWorks `dgeqp3_` before/after A matrices, 64-bit pivot positions and binary64 tau tuples captured; 48/48 source input identities, 48/48 full reflector buffer repeatability and zero overflow; all complete original R, h, public QR R and pivot bits exact between clean and instrumented executions.
+- This 48-case output profile has been independently reproduced on **two different AMD hosts**, runner IDs **43236585713** (AMD EPYC 9V74) and **43236592480** (AMD EPYC 7763), with all 192 public QR entries, all 192 original robustfit R entries and all 2232 leverage entries exactly matching. Runtime executable/library SHA256 hashes also match. See `cross_host_matched_comparison.json` and `cross_run_host_pair_43236585713_43236592480/`.
+- An earlier authentic 48-case source run `43234972842` follows a **different** arithmetic profile: only 126/192 R and 1203/2232 h bits match this newly cross-host reproduced profile. Its private original Householder buffers must **not** be substituted for the matching buffers from the current execution. See `old_profile_mismatch_comparison.json`. The earlier run was not hardware-fingerprinted; the precise cause remains undetermined.
+
+All private MathWorks Householder internal buffers in this archive are source-disclosed historical diagnostics. No prospective unseen test or independently compiled Rust bitwise parity is claimed.
