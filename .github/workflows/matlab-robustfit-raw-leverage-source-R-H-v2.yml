@@ -1,0 +1,54 @@
+name: Genuine MATLAB R2026b | original R and h same-run numeric source for MKL conditional solver
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  posthoc-component-reductions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify sealed source-unseen synthetic inputs and real Rust release forecasts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          base=Path('Cingulum_Yale_MATLAB_Online/robustfit_source_fd_prospective_v1')
+          m=json.loads((base/'manifest.json').read_text())
+          d=json.loads((base/'input.json').read_text())
+          f=json.loads((base/'rust_forecast.json').read_text())
+          sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+          assert m['experiment_id']=='mathworks-robustfit-source-fd-prospective-20261111-v1'
+          assert m['source_not_run'] and m['original_matlab_unseen_at_freeze']
+          assert m['release']=='R2026b' and m['samples']==24
+          assert len(d['samples'])==len(f)==24
+          assert sha(base/'input.json')==m['input_sha256']
+          assert sha(base/'rust_forecast.json')==m['rust_forecast_sha256']
+          assert m['private_preregistered_commit'] and m['public_preregistered_commit']
+          assert m['robust_s_tolerance']=='1e-10' and m['t_tolerance']=='1e-9'
+          assert m['exact_binary64_gate_separate']
+          for x,y in zip(d['samples'],f):
+              assert x['id']==y['id'] and y['error'] is None
+          print('UNSEEN_INPUTS_AND_ACTUAL_RELEASE_RUST_FROZEN_BEFORE_REAL_MATLAB')
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Reconstruct source-exposed numeric stage calculations, original source unchanged
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_robustfit_raw_leverage_arithmetic_forensics_v2;
+      - name: Preserve already-disclosed source numeric stage diagnostics
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: genuine-mathworks-r2026b-original-R-and-H-same-run-v2
+          path: Cingulum_Yale_MATLAB_Online/robustfit_raw_leverage_forensics_v2/*.json
+          if-no-files-found: error
+          retention-days: 90
