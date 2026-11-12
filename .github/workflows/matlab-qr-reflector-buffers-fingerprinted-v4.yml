@@ -1,0 +1,119 @@
+name: "Genuine MATLAB R2026b | full-48 QR capture with hardware fingerprint"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  qr-interposition:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin synthetic inputs, compile and independently test interposer
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          python3 - <<'PY'
+          import hashlib,pathlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/input.json')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b'
+          PY
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq liblapack-dev libblas-dev
+          gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_interpose_buffers_v3.c" -o "$p/qr_interpose_buffers_v3.so" -ldl
+          gcc -O2 -Wall -Wextra -Werror "$p/qr_buffer_selftest.c" -llapack -lblas -o "$p/qr_buffer_selftest"
+          "$p/qr_buffer_selftest" > "$p/qr_buffer_selftest_clean.txt"
+          QR_CAPTURE_LOG="$PWD/$p/qr_buffer_selftest_capture.log" QR_INTERPOSE_LOG="$PWD/$p/qr_buffer_selftest.log" LD_PRELOAD="$PWD/$p/qr_interpose_buffers_v3.so" "$p/qr_buffer_selftest" > "$p/qr_buffer_selftest_wrapped.txt"
+          cmp "$p/qr_buffer_selftest_clean.txt" "$p/qr_buffer_selftest_wrapped.txt"
+          grep -E 'name=dgeqp3_.*count=1' "$p/qr_buffer_selftest.log"
+          grep -E 'QR_BUFFER_EVENT.*m=29.*n=2' "$p/qr_buffer_selftest_capture.log" | cut -c 1-180
+          sha256sum "$p/qr_interpose_buffers_v3.c" "$p/qr_interpose_buffers_v3.so" > "$p/qr_interpose_build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Fingerprint actual private QR capture CPU and MathWorks arithmetic libraries
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          {
+            printf 'run_id=%s\ncommit=%s\n' "$GITHUB_RUN_ID" "$GITHUB_SHA"
+            printf 'MATLAB_release=2026b\nMKL_CBWR=%s\nMKL_NUM_THREADS=%s\nOMP_NUM_THREADS=%s\n' "$MKL_CBWR" "$MKL_NUM_THREADS" "$OMP_NUM_THREADS"
+            printf '\nUNAME\n';uname -a
+            printf '\nCPU\n';lscpu
+            printf '\nGLIBC\n';ldd --version | head -1
+            printf '\nMATHWORKS_BINARIES\n'
+            for x in MATLAB libmwlapack.so mkl.so; do
+              f=$(find /opt/hostedtoolcache/MATLAB -name "$x" -type f -print -quit)
+              if [ -z "$f" ];then f=$(find /opt/hostedtoolcache/MATLAB -name "$x" -print -quit);fi
+              if [ -n "$f" ];then sha256sum "$f";else printf 'NOT_FOUND %s\n' "$x";fi
+            done
+          } > "$p/qr_buffer_capture_host_fingerprint_v4.txt"
+          grep -E '^(run_id|commit|Model name|Vendor ID|MATLAB_release|MKL_CBWR|MKL_NUM_THREADS|OMP_NUM_THREADS)' "$p/qr_buffer_capture_host_fingerprint_v4.txt" || true
+      - name: Inspect real MATLAB runtime ELF exported symbols and relocations
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          lib=$(find /opt/hostedtoolcache/MATLAB -name libmwlapack.so -print -quit)
+          test -n "$lib"
+          echo "$lib" > "$p/matlab_elf_symbol_provenance.txt"
+          readelf -W -r "$lib" | grep -Ei '(dgeqp3|dgeqr2|dgeqrf|dlarfg|dlarf|lapack)' | head -200 >> "$p/matlab_elf_symbol_provenance.txt" || true
+          readelf -W -s "$lib" | grep -Ei '(dgeqp3|dgeqr2|dgeqrf|dlarfg|dlarf)' | head -200 >> "$p/matlab_elf_symbol_provenance.txt" || true
+      - name: A. Execute clean genuine MATLAB with three exact repeat runs
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_control_v6_clean.json
+          QR_CONTROL_CASE_SCOPE: all48
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: B. Capture genuine MATLAB QR internal Householder buffers via function interposition
+        id: captured
+        continue-on-error: true
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_control_v6_captured.json
+          QR_CONTROL_CASE_SCOPE: all48
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_interpose_buffers_v3.so
+          QR_CAPTURE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matlab_qr_capture_buffers_all48.log
+          QR_INTERPOSE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matlab_qr_capture_calls_all48.log
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: Verify exact genuine MATLAB R/h equivalence and synthetic internal QR buffers
+        if: always()
+        shell: bash
+        env:
+          CAPTURE_ACTION_OUTCOME: ${{ steps.captured.outcome }}
+        run: |
+          python3 Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/verify_qr_buffers_all48_v3.py
+      - name: Archive trace and reference bits even on experiment failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-qr-reflector-buffers-fingerprinted-v4
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_control_v6_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matlab_qr_capture_calls_all48.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matlab_qr_capture_buffers_all48.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_buffer_all48_v3_summary.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_interpose_build_sha256.txt
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_buffer_capture_host_fingerprint_v4.txt
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_buffer_selftest.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_buffer_selftest_capture.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matlab_elf_symbol_provenance.txt
+          retention-days: 90
+          if-no-files-found: warn
