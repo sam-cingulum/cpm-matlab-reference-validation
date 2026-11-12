@@ -1,0 +1,30 @@
+# Genuine MathWorks R2026b: sealed prospective odd-length MAD median and final scale, conditional original beta/robust_s
+
+## Actual certified source-unseen result
+
+After the **original V6 479/480 MAD-scale failure was preserved**, the independently compiled pure Rust numerical rule for the even-number-of-values median was corrected from `(a+b)/2` to **`a+(b-a)/2`**. The corrected Rust source, the entire new V7 **480-case raw x/y** independent pure Rust QR/Q/R/leverage h/Qy/initial OLS-scale forecast, and the source-conditional final-MAD/final-scale arithmetic were frozen and **committed/pushed privately at `5ad7a6be550026c769eeadbed9cb446a5afcff10` BEFORE the first genuine MathWorks V7 original execution**. Original input SHA256 `4403b5567073100616de4e46d2b5b65d21ddecb19747d86f20d18e33406d082d`; frozen compiled native Rust full numeric prediction SHA256 `a6a2a25fb0a02b79e1f34e249e5c073f045ec1e8730955d672a9be6e1437c0c6`.
+
+The V7 challenge deliberately concentrates all **480 completely new raw IEEE754 data cases** on six distinct **odd sample lengths n=9,11,15,17,23,25**, each with 80 independently generated numerical scenarios. Every odd n makes the corrected two-element even median relevant after omitting the smallest absolute adjusted residual. These inputs were NOT included in the earlier V6 original source or retrospective numerical reconstruction. The exact original MATLAB workflow and source schema were pinned in public commit `ab436cb5a342720d3bd496780846e44d22defe25` before MATLAB ran.
+
+## Four authentic unchanged commercial MathWorks R2026b original source executions
+
+| Genuine original MATLAB R2026b run | Exact original host CPU | Frozen native Rust raw QR/h/Qy/OLS | Final MAD conditional on original final beta | Final s conditional on original robust_s | Complete specified conditional source gate |
+|---|---|---:|---:|---:|---:|
+| [43316739739](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43316739739) | AMD EPYC 9V74 | **480/480** | **480/480** | **480/480** | **480/480** |
+| [43316745176](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43316745176) | AMD EPYC 7763 | **480/480** | **480/480** | **480/480** | **480/480** |
+| [43316750465](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43316750465) | AMD EPYC 9V74 | **480/480** | **480/480** | **480/480** | **480/480** |
+| [43316755785](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43316755785) | **Intel Xeon Platinum 8573C** | **Fails AMD profile** | **380/480** | **452/480** | **20/480** negative control |
+
+All three original AMD MATLAB executions produced SHA256-**identical** complete original numeric output source bytes, `8f1755ea9563bfb78458d93dfaec0b12aff9f8f557ce9db4e45da8b6a56f0be9`, and every original report field was bitwise repeat-stable through three original unchanged and three original read-only QR-instrumented executions per host. The Intel original output was different but itself strictly repeat stable and **not** accepted as parity by weakening the numeric comparisons. Original MATLAB true CPU/vendor binary fingerprints, all exact original `qr` private-buffer captures, full original numerical output, source/noninterference gates and both original and archived SHA256 manifests are permanently preserved in this repository's per-run source folders, losslessly gzip compressed. Original proprietary MATLAB/MKL binaries are **not** distributed.
+
+Across 3 AMD runs, this certifies **1,440/1,440 fully exact combined raw QR/h/Qy/OLS + conditional final MAD/s cases** under these six observed odd n and the measured AMD CPU profiles, with every numeric comparison exact IEEE754 bitwise hex. The original V6 one-ULP falsification is explicitly retained in `matlab_irls_conditional_mad_final_s_source_unseen_480_v6/source_runs/` and is NOT regraded as source-unseen success merely because the retrospective correction matches it now. The new V7 is the separate valid prospective acceptance gate.
+
+## Strict scientific limitations
+
+- All **QR/Q/R/original leverage h/Qy/initial ols_s** inputs to the calculation came from independently compiled, before-original-frozen pure Rust, calculated from raw x/y without proprietary original MATLAB intermediates.
+- For the conditional final `mad_s`, MATLAB's **reported final regression coefficients `beta`** are explicitly GIVEN after original source execution. Rust does **not** yet independently predict original IRLS coefficients bitwise from raw x/y.
+- For conditional final `s`, MATLAB's **reported `robust_s`** is explicitly GIVEN after original execution. Rust does **not** yet independently reproduce original `robust_s` from raw x/y.
+- The true original reported `stats.w` is not simply weights recomputed from final `beta`, final `mad_s` and leverage. This is an unresolved original IRLS iteration-state/weight-formation gate, not a reason to relax parity.
+- No universal Intel MathWorks numerical profile is claimed, no source-original `robust_s`/beta end-to-end gate has passed, and the original four Yale OHBM predictive modelling modes remain separately uncertified. Source-faithful behavior and independent scientifically corrected behavior must remain separate.
+
+The private strict offline original/archived byte certification and regrading command is `python3 tests/matlab_free/replay_original_MathWorks_conditional_MAD_final_S_480_v7_odd_median_archived.py`, which checks frozen original-input/prediction SHA256, the full original numerical source output and read-only capture noninterference, SHA256-verifies losslessly archived original source bytes, and runs the independently compiled Rust numerical scorer against those original source bits. **480/480** exact fields on every AMD host are a hard gate, with an explicitly failed Intel negative control.
