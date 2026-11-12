@@ -1,0 +1,67 @@
+name: "Original MathWorks R2026b | exact binary64 BLAS matrix-vector reduction microprobes"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-mathworks-gemv:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce exact original binary64 numeric-probe inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_Qy_blas_reduction_microprobe_v1/input.json
+          test "$(sha256sum "$p"|cut -d' ' -f1)" = 1b34696f667a7ed057bdb25b799a67bdfd3f506ef2c89c24f450e9b934b6bcd1
+          python3 - <<'PY'
+          import json
+          p='Cingulum_Yale_MATLAB_Online/matlab_Qy_blas_reduction_microprobe_v1/input.json';d=json.load(open(p))
+          assert len(d['cases'])==3610 and len(d['lengths'])==27
+          assert len(set(q['id'] for q in d['cases']))==3610
+          assert all(len(q['Q_hex'])==2*q['n'] and len(q['y_hex'])==q['n'] for q in d['cases'])
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Fingerprint original unmodified MATLAB and MKL binaries and CPU
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_Qy_blas_reduction_microprobe_v1
+          { echo "run=$GITHUB_RUN_ID"; echo "public_commit=$GITHUB_SHA";lscpu;uname -a;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/original_mathworks_cpu_fingerprint.txt"
+      - name: Genuine original MathWorks R2026b binary64 matrix-vector product
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            maxNumCompThreads(1);
+            run_original_R2026b_Blas_Qy_reduction_microprobe_v1;
+      - name: Verify genuine exact original output and repeated original computations
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_Qy_blas_reduction_microprobe_v1/original_output.json
+          python3 - <<'PY'
+          import json,hashlib
+          p='Cingulum_Yale_MATLAB_Online/matlab_Qy_blas_reduction_microprobe_v1/original_output.json';d=json.load(open(p))
+          assert d['matlab_release']=='2026b' and d['cases']==3610 and len(d['records'])==3610
+          assert d['original_mtimes_unmodified'] and d['original_binary64_every_run_repeat_bitwise_exact']
+          assert all(len(r['original_public_Qy_hex'])==2 and r['repeat_bitwise_exact'] for r in d['records'])
+          print('REAL_MATHWORKS_Qy_3610_NUMERIC_PROBES_REPEAT_EXACT_SHA256',hashlib.sha256(open(p,'rb').read()).hexdigest())
+          PY
+      - name: Preserve original genuine MATLAB vector reduction forensic source data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-mathworks-r2026b-original-blas-Qy-microprobe-v1
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_Qy_blas_reduction_microprobe_v1/original_output.json
+            Cingulum_Yale_MATLAB_Online/matlab_Qy_blas_reduction_microprobe_v1/original_mathworks_cpu_fingerprint.txt
+          retention-days: 90
+          if-no-files-found: warn
