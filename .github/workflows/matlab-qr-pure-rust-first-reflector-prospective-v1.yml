@@ -1,0 +1,86 @@
+name: "Genuine MATLAB R2026b | prospective 72-case Rust first-reflector bitwise oracle"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  prospective-qr:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin previously frozen independent pure Rust predictions and synthetic source-unseen input
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum Cingulum_Yale_MATLAB_Online/qr_pure_rust_prospective_v1/input.json
+          test "$(sha256sum Cingulum_Yale_MATLAB_Online/qr_pure_rust_prospective_v1/input.json | cut -d' ' -f1)" = "10ee2f2e6c98e1a09ae10297609306b90b40d5ca48bde6f1589397ad21aa1908"
+          echo 'Pure Rust forecast private commit 412ecf99ec75f5a15e71df70e8a0b46166ef5a1a'
+          echo 'Sealed predictions bfffcb4603474da1b827f083f438b722fcbeb0ee4ba4996cca82d440855e7e6c'
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq liblapack-dev libblas-dev
+          gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_interpose_buffers_v3.c" -o "$p/qr_interpose_buffers_v3.so" -ldl
+          gcc -O2 -Wall -Wextra -Werror "$p/qr_buffer_selftest.c" -llapack -lblas -o "$p/qr_buffer_selftest"
+          "$p/qr_buffer_selftest" > "$p/qr_selftest_unwrapped.txt"
+          QR_CAPTURE_LOG="$PWD/$p/qr_selftest_prospective.log" QR_INTERPOSE_LOG="$PWD/$p/qr_selftest_count_prospective.log" LD_PRELOAD="$PWD/$p/qr_interpose_buffers_v3.so" "$p/qr_buffer_selftest" > "$p/qr_selftest_wrapped.txt"
+          cmp "$p/qr_selftest_unwrapped.txt" "$p/qr_selftest_wrapped.txt"
+          grep -q 'QR_BUFFER_EVENT' "$p/qr_selftest_prospective.log"
+          sha256sum "$p/qr_interpose_buffers_v3.so" "$p/qr_interpose_buffers_v3.c" > "$p/qr_pure_rust_prospective_v1_build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Record hardware and MATLAB runtime fingerprints
+        shell: bash
+        run: |
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          { echo "run=$GITHUB_RUN_ID";echo "commit=$GITHUB_SHA";lscpu;uname -a;ldd --version | head -1;for x in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$x" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/qr_pure_rust_prospective_v1_fingerprint.txt"
+      - name: A. Original MATLAB clean uninstrumented source-unseen QR
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_UNSEEN_OUTPUT: qr_pure_rust_prospective_v1_clean.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_pure_rust_prospective_v1;
+      - name: B. Original MATLAB source-unseen QR with true private working buffers captured
+        uses: matlab-actions/run-command@v3
+        id: captured
+        continue-on-error: true
+        env:
+          QR_UNSEEN_OUTPUT: qr_pure_rust_prospective_v1_trace.json
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_interpose_buffers_v3.so
+          QR_CAPTURE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_pure_rust_prospective_v1_buffers.log
+          QR_INTERPOSE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_pure_rust_prospective_v1_calls.log
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_pure_rust_prospective_v1;
+      - name: Require original source-unseen exact numerical baseline and private reflector stability
+        if: always()
+        shell: bash
+        env:
+          CAPTURE_ACTION_OUTCOME: ${{ steps.captured.outcome }}
+        run: |
+          python3 Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/verify_qr_pure_rust_prospective_v1.py
+      - name: Preserve full original source-unseen working buffers for deferred frozen Rust prediction comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-pure-rust-prospective-72-v1
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_pure_rust_prospective_v1_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_pure_rust_prospective_v1_*.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_pure_rust_prospective_v1_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_pure_rust_prospective_v1_build_sha256.txt
+          retention-days: 90
+          if-no-files-found: warn
