@@ -1,0 +1,92 @@
+{
+  "cases": {
+    "baseline_n29_seed645481": {
+      "R_hex": [
+        "c0158a68a4a8d9f4",
+        "0000000000000000",
+        "bff54b1186d008cc",
+        "c0040fd30f972baa"
+      ],
+      "count": 6,
+      "full_private_A_out_exact_across_6_calls": true,
+      "full_private_A_out_sha256": "f4b0243226edc3f833c60e86ed0a80826111bd07a4f64d78a43f68d434d170d1",
+      "jpvt_first_int64": 1,
+      "m": 29,
+      "tau_hex": "3ff2f89bacc7d771,3ff3466266d4960d"
+    },
+    "baseline_n35_seed649087": {
+      "R_hex": [
+        "c017aa10d193c22d",
+        "0000000000000000",
+        "bff4a8ae0519b3e5",
+        "3fff4f33e6e7e105"
+      ],
+      "count": 6,
+      "full_private_A_out_exact_across_6_calls": true,
+      "full_private_A_out_sha256": "71e7af30346f1c20a2d19a3948fcdbcc470f91004701138bcb7e0a8c567de455",
+      "jpvt_first_int64": 1,
+      "m": 35,
+      "tau_hex": "3ff2b459b18d3ac3,3ff0858095e54738"
+    },
+    "heteroskedastic_n71_seed692556": {
+      "R_hex": [
+        "c020da304d95fb05",
+        "0000000000000000",
+        "bfe6a466ac9ba9f2",
+        "c00eece5a29626c9"
+      ],
+      "count": 6,
+      "full_private_A_out_exact_across_6_calls": true,
+      "full_private_A_out_sha256": "95cb1cc727ba69315995da819c3fab02f02b4e580132d680a22f1268354618a8",
+      "jpvt_first_int64": 1,
+      "m": 71,
+      "tau_hex": "3ff1e61b138f18ae,3ff18f9b2f39cf22"
+    },
+    "high_leverage_n71_seed680080": {
+      "R_hex": [
+        "c020da304d95fb05",
+        "0000000000000000",
+        "bfdb76ab2f17b65e",
+        "c01a22d0bc2eead6"
+      ],
+      "count": 6,
+      "full_private_A_out_exact_across_6_calls": true,
+      "full_private_A_out_sha256": "4395f69613f4b650ecf1147f4a2ed88619a19eaaea0a0df662ed9366d65318e8",
+      "jpvt_first_int64": 1,
+      "m": 71,
+      "tau_hex": "3ff1e61b138f18ae,3ff0d214488cddfc"
+    },
+    "outliers_n29_seed648600": {
+      "R_hex": [
+        "c0158a68a4a8d9f4",
+        "0000000000000000",
+        "3fe3103cddacfe6d",
+        "4005087a6fc2a979"
+      ],
+      "count": 6,
+      "full_private_A_out_exact_across_6_calls": true,
+      "full_private_A_out_sha256": "3e7eb16800163531816b7c65eb42e4ec22261769424fb442a2f61265f977ce7e",
+      "jpvt_first_int64": 1,
+      "m": 29,
+      "tau_hex": "3ff2f89bacc7d771,3ff1c30b3e27bfb2"
+    },
+    "rescaled_n29_seed651719": {
+      "R_hex": [
+        "c046f09526e32f19",
+        "0000000000000000",
+        "c0158a3bcbd2960c",
+        "3fa5fa3bf40c0a6e"
+      ],
+      "count": 6,
+      "full_private_A_out_exact_across_6_calls": true,
+      "full_private_A_out_sha256": "9854df9c17f2417aba7d3c0da306d0414b0599cad3bada6101f6d688a66bebbb",
+      "jpvt_first_int64": 2,
+      "m": 29,
+      "tau_hex": "3ff2f83478f39c4f,3ff44e9fa209f21d"
+    }
+  },
+  "events": 36,
+  "matlab_run_id": "43233112468",
+  "reference_sha256": "9c11915b08520a0cc25cdce5fcb2d2d5ca95ef90f7d62a1c956868f291ac8b0c",
+  "scope": "RETROSPECTIVE_ORIGINAL_SYNTHETIC_SOURCE_DISCLOSED_ONLY"
+}
