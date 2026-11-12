@@ -1,0 +1,38 @@
+{
+  "cases": 80,
+  "conditional_source_components_only": true,
+  "expected_exact_covariance_count": 80,
+  "expected_exact_standard_error_count": 80,
+  "expected_exact_t_statistic_count": 80,
+  "experiment_id": "r2026b-qr-covariance-conditional-source-unseen-20261112-v1",
+  "frozen_conditional_arithmetic": "inv21=-(R21*(1/R11))/R22; inv22=1/R22; cov22=(inv21^2+inv22^2)*(s^2); se=sqrt(cov22); t=slope/se",
+  "frozen_input_sha256": "bd2a16669d3b91e400474a19e0f89858ab0e425557aafb03f7eff87f220bc959",
+  "independent_raw_x_y_exactness_not_claimed": true,
+  "matlab_preregistered_commit": "04ec678",
+  "original_robustfit_unmodified": true,
+  "original_source_version": "MathWorks MATLAB R2026b",
+  "rust_preregistered_commit": "e28b900",
+  "sample_sizes": [
+    31,
+    39,
+    43,
+    44,
+    45,
+    57,
+    64,
+    81,
+    95,
+    127
+  ],
+  "scenarios": [
+    "baseline",
+    "rescaled",
+    "leverage",
+    "negative_offset",
+    "y_outliers",
+    "small_x",
+    "positive_offset",
+    "negative_predictor"
+  ],
+  "source_not_run_at_freeze": true
+}
