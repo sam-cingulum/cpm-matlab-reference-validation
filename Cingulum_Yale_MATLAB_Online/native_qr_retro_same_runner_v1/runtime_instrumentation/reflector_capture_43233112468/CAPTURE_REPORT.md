@@ -1,8 +1,8 @@
 # Authentic MATLAB R2026b Householder QR reflector buffer capture
 
-**Genuine MathWorks licensed runner:** https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43233112468  
-**Input:** original 48-case synthetic JSON, SHA256 `36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b`  
-**Probe:** original `dgeqp3_` Fortran entrypoint inside MathWorks MATLAB executable using LD_PRELOAD forwarding, unmodified numerical inputs/outputs.  
+**Genuine MathWorks licensed runner:** https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43233112468
+**Input:** original 48-case synthetic JSON, SHA256 `36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b`
+**Probe:** original `dgeqp3_` Fortran entrypoint inside MathWorks MATLAB executable using LD_PRELOAD forwarding, unmodified numerical inputs/outputs.
 **Scope:** selected historical synthetic cases 1, 2, 7, 13, 24 and 48, three repeats, each with public `qr` and original `robustfit`; no independent prospective certification.
 
 ## Certified observations for this execution
