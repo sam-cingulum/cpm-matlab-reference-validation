@@ -1,0 +1,48 @@
+{
+  "bitwise_exact_original_mathworks": true,
+  "clean_exists": true,
+  "clean_sha256": "d059026575c68ea7b8e879157226e316f4eca65c8590e5ea09176ace44854a97",
+  "log_exists": true,
+  "micro_exists": true,
+  "microprobe_counts_per_shape": {
+    "29": 1134,
+    "35": 1683,
+    "43": 2583,
+    "44": 2709,
+    "57": 4620,
+    "71": 7245
+  },
+  "microprobe_events": 19974,
+  "microprobe_result_one_count": {
+    "29": 743,
+    "35": 1158,
+    "43": 1853,
+    "44": 1934,
+    "57": 3072,
+    "71": 4974
+  },
+  "microprobe_result_zero_count": {
+    "29": 391,
+    "35": 525,
+    "43": 730,
+    "44": 775,
+    "57": 1548,
+    "71": 2271
+  },
+  "microprobe_sha256": "072dfe349580d3ebae563ec3c93dacbf19f6caa50428e0ff8949b09f042fe321",
+  "mismatched_original_records": {
+    "R_hex": 0,
+    "id": 0,
+    "iteration": 0,
+    "pivot": 0,
+    "source_R_hex": 0,
+    "source_h_hex": 0
+  },
+  "run_id": "43251666766",
+  "trace_exists": true,
+  "trace_outcome": "success",
+  "trace_sha256": "d059026575c68ea7b8e879157226e316f4eca65c8590e5ea09176ace44854a97",
+  "vendor_dgemv_r12_exact_cases": 48,
+  "vendor_dlarf_r12_exact_cases": 48,
+  "vendor_second_full_coverage": 288
+}
