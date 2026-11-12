@@ -53,7 +53,9 @@ void name(void *a,void *b,void *c,void *d,void *e,void *f,void *g){ \
   typedef void (*fptr)(void*,void*,void*,void*,void*,void*,void*); \
   static fptr fn; if(!fn)fn=(fptr)resolve(#name); \
   atomic_fetch_add_explicit(&counter,1,memory_order_relaxed);fn(a,b,c,d,e,f,g); }
+#ifndef QR_INTERPOSE_OVERRIDE_DGEQP3
 FORTRAN_WRAPPER_9(dgeqp3_, n_dgeqp3)
+#endif
 FORTRAN_WRAPPER_7(dgeqr2_, n_dgeqr2)
 FORTRAN_WRAPPER_8(dgeqrf_, n_dgeqrf)
 FORTRAN_WRAPPER_5(dlarfg_, n_dlarfg)
