@@ -1,0 +1,45 @@
+{
+  "all_vendor_three_term_inputs_and_repeats_stable": true,
+  "clean_sha256": "c36bd89e6e0979ac8e5df26d97cbe4f75370aca51ebc682d2f035007d9fe1544",
+  "exhaustive_triple_count": 733194,
+  "expected_triples_by_n": {
+    "29": 21924,
+    "35": 39270,
+    "43": 74046,
+    "44": 79464,
+    "57": 175560,
+    "71": 342930
+  },
+  "mismatched_original_records": {
+    "R_hex": 0,
+    "id": 0,
+    "iteration": 0,
+    "pivot": 0,
+    "source_R_hex": 0,
+    "source_h_hex": 0
+  },
+  "original_result_stable": "all 48 cases x 3 repeats x public QR+robustfit",
+  "original_source_bitwise_exact": true,
+  "original_vendor_qr_events": 288,
+  "outcome_ones_by_n": {
+    "29": 14616,
+    "35": 26180,
+    "43": 49364,
+    "44": 52976,
+    "57": 117040,
+    "71": 228620
+  },
+  "outcome_zeros_by_n": {
+    "29": 7308,
+    "35": 13090,
+    "43": 24682,
+    "44": 26488,
+    "57": 58520,
+    "71": 114310
+  },
+  "run_id": "43260617316",
+  "source_trace_outcome": "success",
+  "traced_sha256": "c36bd89e6e0979ac8e5df26d97cbe4f75370aca51ebc682d2f035007d9fe1544",
+  "vendor_3term_sha256": "c653ee0064ae7d216d95b116c3c2353d0b095490fd62dda1884bb276cf7664c4",
+  "vendor_DGEMV_R12_exact": "48/48"
+}
