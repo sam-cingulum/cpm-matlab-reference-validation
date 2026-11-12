@@ -1,0 +1,90 @@
+name: "Genuine MATLAB R2026b | original QR dispatch pointer map with exact R/h gate"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  qr-dispatch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify raw 48-case input and compile passive QR function vector reader
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          test "$(sha256sum Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/input.json | cut -d' ' -f1)" = "36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b"
+          gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_dispatch_probe_v1.c" -o "$p/qr_dispatch_probe_v1.so" -ldl
+          sha256sum "$p/qr_dispatch_probe_v1.c" "$p/qr_dispatch_probe_v1.so" > "$p/qr_dispatch_build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Confirm actual MATLAB binary hashes, machine and environment
+        run: |
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          { echo "run=$GITHUB_RUN_ID";echo "commit=$GITHUB_SHA";lscpu;uname -a;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/qr_dispatch_fingerprint.txt"
+      - name: A. Original MATLAB 48-case uninstrumented R/h control
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_dispatch_clean.json
+          QR_CONTROL_CASE_SCOPE: all48
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: B. Original MATLAB 48-case passive dispatch reader
+        id: traced
+        continue-on-error: true
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_dispatch_traced.json
+          QR_CONTROL_CASE_SCOPE: all48
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_dispatch_probe_v1.so
+          QR_DISPATCH_PROBE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_dispatch_real_mkl_vectors.tsv
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: Strict matched control and real MATLAB process / QR vector verification
+        if: always()
+        shell: bash
+        env:
+          TRACE_OUTCOME: ${{ steps.traced.outcome }}
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib,hashlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation')
+          a=p/'qr_dispatch_clean.json';b=p/'qr_dispatch_traced.json';log=p/'qr_dispatch_real_mkl_vectors.tsv'
+          out={'outcome':os.getenv('TRACE_OUTCOME'),'clean_exists':a.exists(),'traced_exists':b.exists(),'dispatch_exists':log.exists(),'run':os.getenv('GITHUB_RUN_ID')}
+          if a.exists() and b.exists():
+           aa=a.read_bytes();bb=b.read_bytes();ra=json.loads(aa)['records'];rb=json.loads(bb)['records'];assert len(ra)==len(rb)==144
+           out['clean_sha256']=hashlib.sha256(aa).hexdigest();out['traced_sha256']=hashlib.sha256(bb).hexdigest()
+           out['bitwise_same']=all(x==y for x,y in zip(ra,rb))
+          if log.exists():
+           txt=log.read_text();out['matlab_process_seen']='exe=' in txt or 'executable=' in txt
+           out['qr_call_count']=sum(int(line.split('dgeqp3_calls=')[1]) for line in txt.splitlines() if 'dgeqp3_calls=' in line)
+           out['vector_names']=[line.split('\t')[1] for line in txt.splitlines() if line.startswith('QR_DISPATCH\t')]
+          (p/'qr_dispatch_summary.json').write_text(json.dumps(out,indent=2,sort_keys=True)+'\n')
+          print('QR_DISPATCH_NUMERICAL_GATE',json.dumps(out,sort_keys=True))
+          assert out.get('bitwise_same') and out['outcome']=='success' and out.get('qr_call_count',0)>0,'NUMERICAL_DISPATCH_GATE_FAILED'
+          PY
+      - name: Archive unmodified full QR/original robustfit outputs and active vendor dispatch
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: genuine-matlab-r2026b-active-qr-dispatch-forensic-v1
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_dispatch_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_dispatch_*.tsv
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_dispatch_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_dispatch_build_sha256.txt
+          retention-days: 90
