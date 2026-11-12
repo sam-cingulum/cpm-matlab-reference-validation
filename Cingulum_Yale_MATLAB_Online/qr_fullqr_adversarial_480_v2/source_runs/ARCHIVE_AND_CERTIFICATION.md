@@ -26,3 +26,16 @@ AMD source-unseen exact 18,432/18,432 first-column binary64 source values AND 18
 - `ARCHIVED_BYTES_SHA256SUMS.txt`: checksums for stored losslessly compressed evidence files.
 
 To audit, `cd <source_run_dir> && sha256sum -c ARCHIVED_BYTES_SHA256SUMS.txt`; to reproduce original source bytes, `gzip -dc qr_adversarial_fullqr_480_private_buffers.log.gz > /tmp/qr_adversarial_fullqr_480_private_buffers.log`, likewise for each `.json.gz` file, and verify SHA from `ORIGINAL_BYTES_SHA256SUMS.txt`. `gzip -n` removes any non-deterministic timestamp in the compressed transport. The exact-original-source evidence is therefore fully preserved after GitHub Actions artifact expiration.
+
+## Independent original MATLAB on Ubuntu 22.04: two additional AMD processor models
+
+We explicitly re-ran the original MATLAB source against the **same 480 source-unseen frozen pure-Rust outputs** (private original commit `ebeff71e7e1270c03473ca0a04a95eb152dda0f1`) using an alternate `ubuntu-22.04` GitHub runner to broaden hardware and OS coverage. Both original MathWorks executions independently passed the full 480-case exact gate. Original `qr` R, in-place 2×n A, both tau coefficients, pivots, original `robustfit` output and all source numeric statistics were unaffected by read-only capture, and all 2,880 source-private events repeated bitwise identically on both hosts.
+
+| Original licensed MathWorks source run | CPU | Frozen pure Rust complete A + full R + tau + pivot |
+|---|---|---:|
+| [43272898862](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43272898862) | AMD EPYC 7763 | **480/480** |
+| [43272904738](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43272904738) | AMD EPYC 9V45 | **480/480** |
+
+**Updated stress-suite AMD outcome: 1,920/1,920 complete-QR full-field results across 4 original AMD hosts (EPYC 9V74 twice, 7763, 9V45); 73,728/73,728 per-column individual original binary64 A entries exactly reproduced (4 × 18,432).** An additional 480-case Intel Xeon 8370C negative control is preserved as a formal failure (20/480 exact). Including the previous independently frozen 240-case battery, AMD full-QR prospective evidence totals **2,400/2,400** across six original MATLAB AMD executions. This proves only the tested numeric operation/profile and sample families, not universal MATLAB QR or any full-Yale CPM identity.
+
+The new Ubuntu 22.04 source files are independently archived with lossless `gzip -n`, original-byte and archived-byte SHA256 manifests and source CPU / vendor library hashes, exactly as the earlier original Ubuntu 24.04 runs.
