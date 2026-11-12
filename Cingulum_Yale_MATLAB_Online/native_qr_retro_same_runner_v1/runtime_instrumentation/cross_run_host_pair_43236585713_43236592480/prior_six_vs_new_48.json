@@ -1,0 +1,34 @@
+{
+  "R_hex": {
+    "differing_cases": [],
+    "exact": 24,
+    "full_cases": 6,
+    "total": 24
+  },
+  "case_ids": [
+    "baseline_n29_seed645481",
+    "baseline_n35_seed649087",
+    "heteroskedastic_n71_seed692556",
+    "high_leverage_n71_seed680080",
+    "outliers_n29_seed648600",
+    "rescaled_n29_seed651719"
+  ],
+  "cases": 6,
+  "first_cases": 6,
+  "first_sha256": "9c11915b08520a0cc25cdce5fcb2d2d5ca95ef90f7d62a1c956868f291ac8b0c",
+  "identical_pivots": 6,
+  "second_cases": 48,
+  "second_sha256": "d059026575c68ea7b8e879157226e316f4eca65c8590e5ea09176ace44854a97",
+  "source_R_hex": {
+    "differing_cases": [],
+    "exact": 24,
+    "full_cases": 6,
+    "total": 24
+  },
+  "source_h_hex": {
+    "differing_cases": [],
+    "exact": 264,
+    "full_cases": 6,
+    "total": 264
+  }
+}
