@@ -1,0 +1,60 @@
+name: Genuine MATLAB R2026b | source-unseen binary64 sum reduction v2 threshold 44 and long vectors
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unchanged-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: normal
+            cbwr: ''
+          - profile: compatible
+            cbwr: COMPATIBLE
+    env:
+      MKL_CBWR: ${{ matrix.cbwr }}
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify SHA256 frozen unseen numeric inputs and independent predictions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          p=Path('Cingulum_Yale_MATLAB_Online/sum_binary64_prospective_v2')
+          m=json.loads((p/'manifest.json').read_text())
+          d=json.loads((p/'input.json').read_text())
+          f=json.loads((p/'forecast.json').read_text())
+          sh=lambda name:hashlib.sha256((p/name).read_bytes()).hexdigest()
+          assert m['experiment_id']=='r2026b-matlab-sum-binary64-predeclared-source-unseen-v2'
+          assert m['source_not_run_at_freeze'] and m['hypotheses_frozen_before_genuine_source']
+          assert m['expected_all_sum_and_mean_binary64_exact']
+          assert sh('input.json')==m['frozen_input_sha256']
+          assert sh('forecast.json')==m['frozen_forecast_sha256']
+          assert len(d['examples'])==len(f['forecasts'])==m['examples_count']
+          print('SEALED_SOURCE_UNSEEN_INPUTS_SHA256',m['frozen_input_sha256'])
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute untouched MathWorks sum and mean on frozen input only
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_matlab_sum_binary64_prospective_v2;
+      - name: Preserve exact source hexadecimal verdict inputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-r2026b-source-sum-mean-v2-${{ matrix.profile }}
+          path: Cingulum_Yale_MATLAB_Online/sum_binary64_source_v2/*.json
+          if-no-files-found: error
+          retention-days: 90
