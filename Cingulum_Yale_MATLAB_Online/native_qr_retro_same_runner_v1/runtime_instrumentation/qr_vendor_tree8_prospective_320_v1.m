@@ -5,7 +5,7 @@ function qr_vendor_tree8_prospective_320_v1()
 % Run this script only AFTER verifying frozen independent Rust predictions.
 assert(strcmp(version('-release'),'2026b'),'incorrect MathWorks release');
 p=fileparts(mfilename('fullpath'));
-root=fileparts(fileparts(fileparts(p)));
+root=fileparts(fileparts(p));
 raw=jsondecode(fileread(fullfile(root,'qr_vendor_tree8_prospective_320_v1','input.json')));
 assert(strcmp(raw.schema,'CINGULUM_MATHWORKS_SOURCE_UNSEEN_QR_R12_320_V1'));
 assert(numel(raw.cases)==320);
