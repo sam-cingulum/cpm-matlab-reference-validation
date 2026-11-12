@@ -23,7 +23,7 @@ for k=1:24
  X=[ones(n,1),x];
  [~,st]=robustfit(x,y);
  [Q,R]=qr(X,0);
- [Qp,Rp,p]=qr(X,0,'vector');
+ [Qp,Rp,p]=qr(X,'econ','vector');
  assert(isequal(sort(double(p(:)')),1:2));
  % Numerical orthogonal/triangular factor reported by robustfit uses a
  % coefficient-order form of a possible pivoted Householder factor.
