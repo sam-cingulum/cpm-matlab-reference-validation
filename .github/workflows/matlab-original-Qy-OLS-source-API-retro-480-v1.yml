@@ -1,0 +1,60 @@
+name: "Genuine MathWorks R2026b | retrospective Qy and OLS source API discrimination 480"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-mathworks-qy-ols:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify disclosed exact raw source before original MATLAB
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/robustfit_conditional_480_v3/input.json
+          test "$(sha256sum "$p" | cut -d' ' -f1)" = c773fa57b0ec2e414c6fc7a448ba5440bd2e60544c034d06213ec452d81ce7f1
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Fingerprint original MathWorks executable and vendor library binaries
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/robustfit_Qy_OLS_original_api_retro_480_v1
+          mkdir -p "$p"
+          { echo "run=$GITHUB_RUN_ID"; echo "commit=$GITHUB_SHA";lscpu;uname -a;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/original_mathworks_cpu_and_vendor_fingerprint.txt"
+      - name: Run unchanged original robustfit and independent MATLAB Qy/OLS API expressions
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            maxNumCompThreads(1);
+            run_r2026b_original_Qy_OLS_api_retro_480_v1;
+      - name: Verify exact 480-record original source, normal outcome, and SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/robustfit_Qy_OLS_original_api_retro_480_v1
+          python3 - <<'PY'
+          import json,hashlib
+          p='Cingulum_Yale_MATLAB_Online/robustfit_Qy_OLS_original_api_retro_480_v1/original_matlab_qy_ols_methods.json'
+          d=json.load(open(p)); assert d['case_count']==480 and len(d['rows'])==480 and d['matlab_release']=='2026b'
+          assert d['source_robustfit_unmodified'] and d['original_source_repeats_bitwise_exact'] and d['source_disclosed_not_source_unseen']
+          assert len(d['qy_methods'])==8 and len(d['ols_methods'])==8
+          assert all(x['original_robustfit_repeat_exact'] for x in d['rows'])
+          print('ORIGINAL_SOURCE_Qy_OLS_480_CASES_SOURCE_REPEATS_EXACT',hashlib.sha256(open(p,'rb').read()).hexdigest())
+          PY
+      - name: Preserve complete genuine R2026b source Qy and OLS expression bits
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: genuine-matlab-r2026b-original-Qy-OLS-api-retro-480-v1
+          path: Cingulum_Yale_MATLAB_Online/robustfit_Qy_OLS_original_api_retro_480_v1/
+          retention-days: 90
+          if-no-files-found: warn
