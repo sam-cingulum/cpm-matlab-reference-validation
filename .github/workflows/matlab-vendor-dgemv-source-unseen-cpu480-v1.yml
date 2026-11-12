@@ -1,0 +1,85 @@
+name: "Genuine MATLAB R2026b | 480 precommitted Rust Intel/AMD DGEMV prospective vectors"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-vendor-cpu480:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source-unseen raw binary64 input and previously frozen independent Rust Intel/AMD outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          f=Cingulum_Yale_MATLAB_Online/vendor_dgemv_source_unseen_vectors_v1/input.tsv
+          test "$(sha256sum "$f" | cut -d' ' -f1)" = d82b8f0537918b8f1f7190329830b8a963df2889d19f33b1f4bc37977a8cc670
+          test "$(wc -l < "$f")" = 480
+          echo 'SOURCE_BLIND_INDEPENDENT_COMPILED_RUST_COMMIT=e00a8840b33e849e135de628eb54be001a094376'
+          echo 'SOURCE_BLIND_AMD_INTEL_FORECAST_SHA256=7e904510378f6e6cd6811a9b9ac1712dfbb34e94e0ff3cc9fe89933f73f375dd'
+      - name: Compile read-only original MATLAB QR hook and scratch-only vendor DGEMV numerical profiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/vendor_dgemv_source_unseen_vectors_v1
+          gcc -D_FORTIFY_SOURCE=2 -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_vendor_new_dot_probe_v1.c" -o "$p/qr_vendor_new_dot_probe_v1.so" -ldl
+          sha256sum "$p/qr_vendor_new_dot_probe_v1.c" "$p/qr_vendor_new_dot_probe_v1.so" > "$p/build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Fingerprint exact MathWorks vendor and physical processor
+        shell: bash
+        run: |
+          p=Cingulum_Yale_MATLAB_Online/vendor_dgemv_source_unseen_vectors_v1
+          { echo "run=$GITHUB_RUN_ID";echo "original_public_commit=$GITHUB_SHA";lscpu;uname -a;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/qr_vendor_source480_cpu_vendor_fingerprint.txt"
+      - name: A. Uninstrumented original MathWorks QR and robustfit full R/h bitwise reference
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_CASE_SCOPE: all48
+          QR_CONTROL_OUTPUT: qr_vendor_source480_clean.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: B. Unchanged original MathWorks QR/robustfit plus first-party vendor DGEMV on 480 untouched test vectors
+        id: instrumented
+        continue-on-error: true
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_CASE_SCOPE: all48
+          QR_CONTROL_OUTPUT: qr_vendor_source480_instrumented.json
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/vendor_dgemv_source_unseen_vectors_v1/qr_vendor_new_dot_probe_v1.so
+          QR_VENDOR_NEW_INPUT_TSV: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/vendor_dgemv_source_unseen_vectors_v1/input.tsv
+          QR_VENDOR_NEW_DOT_RESULTS: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_source480_original_dots.log
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: Fail closed unless all 480 original DGEMV dots repeat and original full R/h remains unchanged
+        if: always()
+        shell: bash
+        env:
+          INSTRUMENTED_EXIT: ${{ steps.instrumented.outcome }}
+        run: |
+          python3 Cingulum_Yale_MATLAB_Online/vendor_dgemv_source_unseen_vectors_v1/verify_original_mathworks_vendor480.py
+      - name: Archive all unmodified source data and CPU/MathWorks library fingerprints for post-freeze Rust scoring
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-mathworks-r2026b-source-blind-480-intel-amd-vendor-dgemv-v1
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_source480_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_source480_original_dots.log
+            Cingulum_Yale_MATLAB_Online/vendor_dgemv_source_unseen_vectors_v1/qr_vendor_source480_cpu_vendor_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/vendor_dgemv_source_unseen_vectors_v1/build_sha256.txt
+          retention-days: 90
