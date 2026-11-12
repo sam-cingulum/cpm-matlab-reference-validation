@@ -1,0 +1,656 @@
+{
+  "cases": [
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "baseline_n29_seed645481",
+      "n": 29,
+      "per_entry": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "baseline_n35_seed649087",
+      "n": 35,
+      "per_entry": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "baseline_n43_seed653895",
+      "n": 43,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "baseline_n44_seed654496",
+      "n": 44,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "baseline_n57_seed662309",
+      "n": 57,
+      "per_entry": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 1,
+      "exact_whole": false,
+      "id": "baseline_n71_seed670723",
+      "n": 71,
+      "per_entry": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "outliers_n29_seed648600",
+      "n": 29,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "outliers_n35_seed652206",
+      "n": 35,
+      "per_entry": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "outliers_n43_seed657014",
+      "n": 43,
+      "per_entry": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "outliers_n44_seed657615",
+      "n": 44,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "outliers_n57_seed665428",
+      "n": 57,
+      "per_entry": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "outliers_n71_seed673842",
+      "n": 71,
+      "per_entry": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 1,
+      "exact_whole": false,
+      "id": "rescaled_n29_seed651719",
+      "n": 29,
+      "per_entry": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "rescaled_n35_seed655325",
+      "n": 35,
+      "per_entry": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "rescaled_n43_seed660133",
+      "n": 43,
+      "per_entry": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 1,
+      "exact_whole": false,
+      "id": "rescaled_n44_seed660734",
+      "n": 44,
+      "per_entry": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "rescaled_n57_seed668547",
+      "n": 57,
+      "per_entry": [
+        false,
+        true,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "rescaled_n71_seed676961",
+      "n": 71,
+      "per_entry": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 4,
+      "exact_whole": true,
+      "id": "high_leverage_n29_seed654838",
+      "n": 29,
+      "per_entry": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "high_leverage_n35_seed658444",
+      "n": 35,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "high_leverage_n43_seed663252",
+      "n": 43,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 4,
+      "exact_whole": true,
+      "id": "high_leverage_n44_seed663853",
+      "n": 44,
+      "per_entry": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 4,
+      "exact_whole": true,
+      "id": "high_leverage_n57_seed671666",
+      "n": 57,
+      "per_entry": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "high_leverage_n71_seed680080",
+      "n": 71,
+      "per_entry": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 4,
+      "exact_whole": true,
+      "id": "near_flat_n29_seed657957",
+      "n": 29,
+      "per_entry": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "near_flat_n35_seed661563",
+      "n": 35,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "near_flat_n43_seed666371",
+      "n": 43,
+      "per_entry": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "near_flat_n44_seed666972",
+      "n": 44,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "near_flat_n57_seed674785",
+      "n": 57,
+      "per_entry": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "near_flat_n71_seed683199",
+      "n": 71,
+      "per_entry": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "negative_slope_n29_seed661076",
+      "n": 29,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "negative_slope_n35_seed664682",
+      "n": 35,
+      "per_entry": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "negative_slope_n43_seed669490",
+      "n": 43,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "negative_slope_n44_seed670091",
+      "n": 44,
+      "per_entry": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "negative_slope_n57_seed677904",
+      "n": 57,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "negative_slope_n71_seed686318",
+      "n": 71,
+      "per_entry": [
+        false,
+        true,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 1,
+      "exact_whole": false,
+      "id": "positive_offset_n29_seed664195",
+      "n": 29,
+      "per_entry": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "positive_offset_n35_seed667801",
+      "n": 35,
+      "per_entry": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "positive_offset_n43_seed672609",
+      "n": 43,
+      "per_entry": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "positive_offset_n44_seed673210",
+      "n": 44,
+      "per_entry": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "positive_offset_n57_seed681023",
+      "n": 57,
+      "per_entry": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 2,
+      "exact_whole": false,
+      "id": "positive_offset_n71_seed689437",
+      "n": 71,
+      "per_entry": [
+        false,
+        true,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "heteroskedastic_n29_seed667314",
+      "n": 29,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "heteroskedastic_n35_seed670920",
+      "n": 35,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "heteroskedastic_n43_seed675728",
+      "n": 43,
+      "per_entry": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 4,
+      "exact_whole": true,
+      "id": "heteroskedastic_n44_seed676329",
+      "n": 44,
+      "per_entry": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 3,
+      "exact_whole": false,
+      "id": "heteroskedastic_n57_seed684142",
+      "n": 57,
+      "per_entry": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "pivot_equal": true
+    },
+    {
+      "exact_bits": 1,
+      "exact_whole": false,
+      "id": "heteroskedastic_n71_seed692556",
+      "n": 71,
+      "per_entry": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "pivot_equal": true
+    }
+  ],
+  "exact_R_elements": 123,
+  "exact_pivots": 48,
+  "full_R_exact": 5,
+  "matlab_exact_Rust_transport_cases": 48,
+  "native_executable_sha256": "51a55ad385b393cc1e23e8bec848a94c4ec4fe6fb55bcb2deafb5d7fa08e289f",
+  "native_predictions_sha256": "6183ae5fccdf34e64e4a91ce6bc4138f1723e85ecd744865fca9fa5154aa3dc6",
+  "native_rust_compiled": true,
+  "native_source_sha256": "5361e7a91c6e4e3aa0241ce0b8b4e25cc743892d8a817f50f83b3fc264b47334",
+  "original_Yale_OHBM_option3_full_pipeline_certified": false,
+  "original_report_sha256": "7635cf3c78e9d0e5b38e60883206f3d76b52ded7ddbabe8b3a75e1f914c20ca9",
+  "per_R_element_columnmajor_exact": [
+    30,
+    41,
+    23,
+    29
+  ],
+  "prospectively_certified_native_binary64": false,
+  "raw_case_count": 48,
+  "release": "26.2.0.3433840 (R2026b) Update 1",
+  "robustfit_equals_MATLAB_qr_complete_cases": 48,
+  "runner_cpu": "model name\t: AMD EPYC 9V45 96-Core Processor",
+  "same_runner_original_and_native": true,
+  "source_free_native_R": true,
+  "source_git_sha": "af22bc0839d5f165911f57e4bc3389faf982fb1a",
+  "source_original": "genuine unchanged MATLAB R2026b robustfit",
+  "source_run": "43181373473",
+  "status": "RETROSPECTIVE_48_ALREADY_DISCLOSED_NOT_PROSPECTIVE",
+  "total_R_elements": 192
+}
