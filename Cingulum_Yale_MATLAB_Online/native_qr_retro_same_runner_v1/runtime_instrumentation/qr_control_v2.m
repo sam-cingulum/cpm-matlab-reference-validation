@@ -5,6 +5,7 @@ p=fileparts(mfilename('fullpath'));
 d=jsondecode(fileread(fullfile(root,'robustfit_raw_full_source_unseen_v1','input.json')));
 assert(numel(d.cases)==48);
 ids=[1 2 7 13 24 48];
+if strcmp(getenv('QR_CONTROL_CASE_SCOPE'),'all48');ids=1:48;end
 records=struct('id',{},'iteration',{},'R_hex',{},'source_R_hex',{},'source_h_hex',{},'pivot',{},'source_equal_public',{});
 for iter=1:3
  for k=ids
