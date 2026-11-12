@@ -1,0 +1,83 @@
+name: "Genuine MATLAB R2026b | same-runner vendor DLARF vs original QR R12"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  vendor-second-qr:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify historical inputs, build original vendor scratch-probe and bitwise self-test
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          test "$(sha256sum Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/input.json | cut -d' ' -f1)" = "36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b"
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq liblapack-dev libblas-dev
+          gcc -D_FORTIFY_SOURCE=2 -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_vendor_second_probe_v1.c" -o "$p/qr_vendor_second_probe_v1.so" -ldl
+          gcc -O2 -Wall -Wextra -Werror "$p/qr_vendor_second_selftest.c" -llapack -lblas -o "$p/qr_vendor_second_selftest"
+          "$p/qr_vendor_second_selftest" > "$p/qr_vendor_second_selftest_clean.txt"
+          QR_VENDOR_SECOND_LOG="$PWD/$p/qr_vendor_second_selftest.log" LD_PRELOAD="$PWD/$p/qr_vendor_second_probe_v1.so" "$p/qr_vendor_second_selftest" > "$p/qr_vendor_second_selftest_wrapped.txt"
+          cmp "$p/qr_vendor_second_selftest_clean.txt" "$p/qr_vendor_second_selftest_wrapped.txt"
+          grep -q 'QR_VENDOR_SECOND_EVENT' "$p/qr_vendor_second_selftest.log"
+          sha256sum "$p/qr_vendor_second_probe_v1.c" "$p/qr_vendor_second_probe_v1.so" > "$p/qr_vendor_second_build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Fingerprint original vendor and CPU dispatch provenance
+        shell: bash
+        run: |
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          { echo "run=$GITHUB_RUN_ID";echo "commit=$GITHUB_SHA";lscpu;uname -a;for f in MATLAB libmwlapack.so mkl.so;do x=$(find /opt/hostedtoolcache/MATLAB -name "$f" -type f -print -quit);if [ -n "$x" ];then sha256sum "$x";fi;done; } > "$p/qr_vendor_second_fingerprint.txt"
+      - name: A. Original MATLAB 48-case uninstrumented full R/h
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_vendor_second_clean.json
+          QR_CONTROL_CASE_SCOPE: all48
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: B. Original unchanged QR plus scratch copies through its OWN DLARF/DGEMV/DDOT
+        id: traced
+        continue-on-error: true
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_vendor_second_traced.json
+          QR_CONTROL_CASE_SCOPE: all48
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_second_probe_v1.so
+          QR_VENDOR_SECOND_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_second_actual.log
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: Demand bitwise original R/h identity then score original vendor scratch routines
+        if: always()
+        shell: bash
+        env:
+          TRACE_OUTCOME: ${{ steps.traced.outcome }}
+        run: |
+          python3 Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/verify_qr_vendor_second_v1.py
+      - name: Preserve vendor internal numerical evidence even if gate fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-original-vendor-dlarf-update-v1
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_second_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_second_*.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_second_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_second_build_sha256.txt
+          retention-days: 90
