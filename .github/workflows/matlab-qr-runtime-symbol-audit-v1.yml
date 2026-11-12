@@ -1,0 +1,56 @@
+name: "Genuine MATLAB R2026b | passive QR runtime symbol audit"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  qr-runtime-symbol-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin historical synthetic input and compile passive audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,pathlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/input.json')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b'
+          PY
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_symbol_audit.c" -o "$p/qr_symbol_audit.so"
+          sha256sum "$p/qr_symbol_audit.c" "$p/qr_symbol_audit.so" > "$p/build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute unchanged MATLAB under passive dynamic loader audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          p="$PWD/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation"
+          export QR_AUDIT_LOG="$p/loader_audit.log"
+          export LD_AUDIT="$p/qr_symbol_audit.so"
+          matlab -batch "cd('Cingulum_Yale_MATLAB_Online'); addpath('native_qr_retro_same_runner_v1/runtime_instrumentation'); qr_runtime_probe_v1" > "$p/matlab_stdout.log" 2> "$p/matlab_stderr.log"
+          unset LD_AUDIT
+          grep -q 'QR_AUDIT_CASE' "$p/matlab_stdout.log"
+          test -s "$p/loader_audit.log"
+          grep '^BIND' "$p/loader_audit.log" | sort -u > "$p/qr_bindings_unique.tsv" || true
+          grep -Ei 'mkl|blas|lapack|libmw' "$p/loader_audit.log" | sort -u > "$p/qr_libraries.tsv" || true
+          wc -l "$p"/*.log "$p"/*.tsv
+      - name: Preserve raw passive runtime instrumentation evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: genuine-matlab-r2026b-passive-qr-runtime-symbol-audit-v1
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/*.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/*.tsv
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/build_sha256.txt
+          if-no-files-found: warn
+          retention-days: 90
