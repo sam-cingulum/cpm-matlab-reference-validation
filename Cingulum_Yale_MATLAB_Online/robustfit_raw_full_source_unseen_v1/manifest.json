@@ -1,0 +1,49 @@
+{
+  "expected_all_binary64_exact": true,
+  "expected_case_count": 48,
+  "expected_exact_gates": [
+    "intercept",
+    "slope",
+    "R",
+    "h",
+    "w",
+    "mad_s",
+    "robust_s",
+    "ols_s",
+    "s",
+    "t",
+    "p",
+    "callbacks"
+  ],
+  "experiment_id": "cpm-r2026b-independently-implemented-raw-bisquare-original-source-unseen-v1",
+  "families": [
+    "baseline",
+    "outliers",
+    "rescaled",
+    "high_leverage",
+    "near_flat",
+    "negative_slope",
+    "positive_offset",
+    "heteroskedastic"
+  ],
+  "family_count": 8,
+  "independent_clone_method": "cpm_independent_bisquare_fit_raw_v2",
+  "independent_compiled_Rust_raw_xy_parity_not_claimed": true,
+  "initial_truth_reference": "MathWorks MATLAB R2026b",
+  "input_frozen_before_independent_clone_or_original_source": true,
+  "input_sha256": "36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b",
+  "no_proprietary_original_source_import": true,
+  "original_source_method": "robustfit",
+  "original_source_not_run_at_freeze": true,
+  "private_preregistered_commit": "242a77fa3e51aa54287340b5ac31b985334c1b77",
+  "public_preregistered_commit": "0afcae5448a46452605417201dc1341ada903040",
+  "sample_sizes": [
+    29,
+    35,
+    43,
+    44,
+    57,
+    71
+  ],
+  "separate_independent_prediction_freeze_before_source": true
+}

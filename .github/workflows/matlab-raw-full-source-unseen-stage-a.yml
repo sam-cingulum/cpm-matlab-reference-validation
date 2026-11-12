@@ -1,0 +1,40 @@
+name: R2026b original-source-unseen raw robustfit | A: seal clone-only forecasts
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MATLAB_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  MKL_CBWR: COMPATIBLE
+jobs:
+  independent-clone-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm fixed 48 cases, immutable input SHA and absence of original results
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_raw_full_source_unseen_v1.py pre-clone
+          python3 -m unittest discover -s scripts -p 'test_raw_full_source_unseen_verifier_v1.py' -v
+          lscpu
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Compute independent raw-x-y predictions WITHOUT original robustfit
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_raw_full_source_unseen_clone_only_v1;
+      - name: Preserve sealed-candidate bytes and provenance for committing BEFORE Stage B
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2026b-source-unseen-independent-full-48-stage-a-clone-predictions
+          path: |
+            Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/forecast.json
+          if-no-files-found: error
+          retention-days: 90

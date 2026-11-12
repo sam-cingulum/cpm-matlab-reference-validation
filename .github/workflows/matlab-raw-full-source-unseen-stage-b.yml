@@ -1,0 +1,48 @@
+name: R2026b original-source-unseen raw robustfit | B: original source and exact verifier
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MATLAB_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  MKL_CBWR: COMPATIBLE
+jobs:
+  original-source-fail-closed:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Require prior committed clone-only predictions, hash-sealed exact gates
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_raw_full_source_unseen_v1.py pre-source
+          python3 -m unittest discover -s scripts -p 'test_raw_full_source_unseen_verifier_v1.py' -v
+          lscpu
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Run unchanged original MathWorks robustfit on original raw x y only
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_raw_full_source_unseen_original_only_v1;
+      - name: Independent external strict binary64 full-array 12-field/48-case verifier
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_raw_full_source_unseen_v1.py compare
+      - name: Preserve authentic original output and exact comparison, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2026b-source-unseen-full-raw-48-stage-b-original-evidence
+          path: |
+            Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/source_result.json
+            Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/strict_external_verdict.json
+          if-no-files-found: warn
+          retention-days: 90
