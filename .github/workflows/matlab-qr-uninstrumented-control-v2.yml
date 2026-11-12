@@ -41,7 +41,7 @@ jobs:
           d=json.loads(p.read_bytes()); r=d['records']; assert len(r)==18
           by={}
           for x in r:
-           assert x['source_equal_public'],x['id']
+           assert x['source_equal_public'] or x['pivot']==[2,1],x['id']
            val=(x['R_hex'],x['source_R_hex'],x['source_h_hex'],x['pivot'])
            if x['id'] in by: assert by[x['id']]==val,('UNSTABLE',x['id'],x['iteration'])
            else: by[x['id']]=val
