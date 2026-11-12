@@ -1,0 +1,27 @@
+{
+  "bitwise_original_R_h_unchanged": true,
+  "captured_original_vendor_count": 480,
+  "input_sha256": "d82b8f0537918b8f1f7190329830b8a963df2889d19f33b1f4bc37977a8cc670",
+  "instrumented_exit": "success",
+  "mismatched_original_source_records": {
+    "R_hex": 0,
+    "id": 0,
+    "iteration": 0,
+    "pivot": 0,
+    "source_R_hex": 0,
+    "source_equal_public": 0,
+    "source_h_hex": 0
+  },
+  "original_vendor_capture_info": {
+    "count": "480",
+    "failures": "0",
+    "original_qr_calls": "3121",
+    "repeat_mismatches": "0"
+  },
+  "original_vendor_output_sha256": "aeebb84c10cf5602bf24c85de15ea554bf54cd7795264110b16d1061f9748a63",
+  "precommitted_private_rust_commit": "e00a8840b33e849e135de628eb54be001a094376",
+  "precommitted_two_cpu_profiles_forecast_sha256": "7e904510378f6e6cd6811a9b9ac1712dfbb34e94e0ff3cc9fe89933f73f375dd",
+  "run": "43263397233",
+  "source_clean_sha256": "d059026575c68ea7b8e879157226e316f4eca65c8590e5ea09176ace44854a97",
+  "source_instrumented_sha256": "d059026575c68ea7b8e879157226e316f4eca65c8590e5ea09176ace44854a97"
+}
