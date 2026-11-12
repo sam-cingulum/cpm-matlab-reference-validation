@@ -1,0 +1,91 @@
+name: "Genuine MATLAB R2026b | PREORACLE compiled Rust Q/R/h/Qy/initial OLS s 480 raw-input original-source binary64 oracle"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  prospective-rust-vendor-tree8:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check original predictor input is pinned after frozen private Rust predictions
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_ols_native_source_unseen_480_v5/input.json
+          test "$(sha256sum "$p" | cut -d' ' -f1)" = 0e098e490c9baa14eca8614e24c4aa278c7536ed18129e64e80114f4d1f50430
+          echo 'PRE_ORACLE_PRIVATE_RUST_FORECAST_COMMIT=de552a6421b06c5c2288e1a986df6d08291dfbaf'
+          echo 'PRE_ORACLE_RUST_FORECAST_SHA256=362b874b9680c0e7d22990e90fd845278e65762f90f246294a87f7f4640ccaf9'
+          python3 - <<'PY'
+          import json,hashlib
+          p='Cingulum_Yale_MATLAB_Online/matlab_ols_native_source_unseen_480_v5/input.json'
+          d=json.load(open(p));assert len(d['cases'])==480
+          assert len(set((c['id'],c['n']) for c in d['cases']))==480
+          assert {c['n'] for c in d['cases']}==set(d['lengths']) and len(d['lengths'])==12
+          assert all(len(c['x_hex'])==len(c['y_hex'])==c['n'] and all(len(z)==16 for z in c['x_hex']+c['y_hex']) for c in d['cases'])
+          print('ORIGINAL_SOURCE_NOT_YET_RUN: frozen independent Rust SHA recorded, 480 hex-exact raw inputs')
+          PY
+      - name: Build original MATLAB ABI recorder for 12 prospectively supported Qy reduction lengths
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          gcc -D_FORTIFY_SOURCE=2 -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_interpose_buffers_480_v2.c" -o "$p/qr_interpose_buffers_480_v2.so" -ldl
+          sha256sum "$p/qr_interpose_buffers_480_v2.c" "$p/qr_interpose_buffers_480_v2.so" > "$p/qr_native_ols_480_build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Archive original MATLAB and vendor MKL SHA256 and CPU fingerprint
+        shell: bash
+        run: |
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          { echo "run=$GITHUB_RUN_ID";echo "public_commit=$GITHUB_SHA"; echo 'sealed_private_commit=de552a6421b06c5c2288e1a986df6d08291dfbaf';lscpu;uname -a;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/qr_native_ols_480_cpu_and_vendor_fingerprint.txt"
+      - name: A. Run unchanged original MATLAB full Q, pivoted R and robustfit three times
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_NATIVE_OLS_480_OUTPUT: qr_native_ols_480_clean.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_native_ols_original_480_v5;
+      - name: B. Run identical original MathWorks full Q and robustfit with exact private buffer capture
+        id: captured
+        continue-on-error: true
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_NATIVE_OLS_480_OUTPUT: qr_native_ols_480_captured.json
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_interpose_buffers_480_v2.so
+          QR_CAPTURE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_native_ols_480_private_buffers.log
+          QR_INTERPOSE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_native_ols_480_calls.log
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_native_ols_original_480_v5;
+      - name: Strict original Q/R/h/Qy/OLS s noninterference, raw input and captured Householder stability gate
+        if: always()
+        shell: bash
+        env:
+          CAPTURE_OUTCOME: ${{ steps.captured.outcome }}
+        run: |
+          python3 Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/verify_qr_native_ols_480_v4.py
+      - name: Preserve untouched original MATLAB source-unseen oracle for post-freeze private Rust scoring
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-native-OLS-480-v5
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_native_ols_480_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_native_ols_480_*.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_native_ols_480_cpu_and_vendor_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_native_ols_480_build_sha256.txt
+          retention-days: 90
+          if-no-files-found: warn
