@@ -76,7 +76,7 @@ jobs:
         env:
           CAPTURE_OUTCOME: ${{ steps.captured.outcome }}
         run: |
-          python3 Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/verify_qr_q_robusth_480_v1.py
+          python3 Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/verify_qr_q_robusth_480_v2.py
       - name: Preserve untouched original MATLAB source-unseen oracle for post-freeze private Rust scoring
         if: always()
         uses: actions/upload-artifact@v4
