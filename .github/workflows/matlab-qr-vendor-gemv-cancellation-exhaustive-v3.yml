@@ -1,0 +1,87 @@
+name: "Genuine R2026b | exhaustive 733194 ordered DGEMV cancellation triples with R/h gate"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-vendor-micro:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile genuine vendor DGEMV scratch cancellation probe and test untouched system LAPACK
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          test "$(sha256sum Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/input.json | cut -d' ' -f1)" = "36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b"
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq liblapack-dev libblas-dev
+          gcc -D_FORTIFY_SOURCE=2 -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_vendor_microprobe_v3_exhaustive.c" -o "$p/qr_vendor_microprobe_v3_exhaustive.so" -ldl
+          gcc -O2 -Wall -Wextra -Werror "$p/qr_vendor_second_selftest.c" -llapack -lblas -o "$p/qr_vendor_second_selftest"
+          "$p/qr_vendor_second_selftest" > "$p/qr_vendor_exhaustive_selftest_clean.txt"
+          QR_VENDOR_MICRO_BINARY="$PWD/$p/qr_vendor_exhaustive_selftest.bin" QR_VENDOR_MICRO_SUMMARY_LOG="$PWD/$p/qr_vendor_exhaustive_selftest.summary" QR_VENDOR_SECOND_LOG="$PWD/$p/qr_vendor_exhaustive_selftest_second.log" LD_PRELOAD="$PWD/$p/qr_vendor_microprobe_v3_exhaustive.so" "$p/qr_vendor_second_selftest" > "$p/qr_vendor_exhaustive_selftest_wrapped.txt"
+          cmp "$p/qr_vendor_exhaustive_selftest_clean.txt" "$p/qr_vendor_exhaustive_selftest_wrapped.txt"
+          grep -q 'QR_VENDOR_MICRO_EXHAUSTIVE_SUMMARY.*events=21924.*overflow=0' "$p/qr_vendor_exhaustive_selftest.summary"
+          sha256sum "$p/qr_vendor_microprobe_v3_exhaustive.c" "$p/qr_vendor_microprobe_v3_exhaustive.so" > "$p/qr_vendor_exhaustive_build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Fingerprint host and original MathWorks CPU-specialized libraries
+        shell: bash
+        run: |
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          { echo "run=$GITHUB_RUN_ID";echo "commit=$GITHUB_SHA";lscpu;uname -a;for f in MATLAB libmwlapack.so mkl.so;do x=$(find /opt/hostedtoolcache/MATLAB -name "$f" -type f -print -quit);if [ -n "$x" ];then sha256sum "$x";fi;done; } > "$p/qr_vendor_exhaustive_fingerprint.txt"
+      - name: A. Uninstrumented unchanged MathWorks original QR and robustfit 48-case R/h
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_vendor_exhaustive_clean.json
+          QR_CONTROL_CASE_SCOPE: all48
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: B. Execute original QR unchanged then vendor BLAS DGEMV scratch cancellation probes
+        id: traced
+        continue-on-error: true
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_vendor_exhaustive_traced.json
+          QR_CONTROL_CASE_SCOPE: all48
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_microprobe_v3_exhaustive.so
+          QR_VENDOR_SECOND_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_exhaustive_second.log
+          QR_VENDOR_MICRO_BINARY: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_exhaustive_three_terms.bin
+          QR_VENDOR_MICRO_SUMMARY_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_exhaustive_capture.summary
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: Strict source bitwise gate plus six lengths of vendor cancellation microkernel fingerprints
+        if: always()
+        shell: bash
+        env:
+          TRACE_OUTCOME: ${{ steps.traced.outcome }}
+        run: |
+          python3 Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/verify_qr_vendor_exhaustive_v3.py
+      - name: Preserve exact experimental probes, numerical input and original source output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-vendor-gemv-exhaustive-733194-v3
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_exhaustive_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_exhaustive_*.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_exhaustive_*.bin
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_exhaustive_*.summary
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_exhaustive_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_exhaustive_build_sha256.txt
+          retention-days: 90
