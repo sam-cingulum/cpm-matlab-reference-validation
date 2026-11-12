@@ -1,0 +1,28 @@
+{
+  "bitwise_same": true,
+  "clean_exists": true,
+  "clean_sha256": "c36bd89e6e0979ac8e5df26d97cbe4f75370aca51ebc682d2f035007d9fe1544",
+  "dispatch_exists": true,
+  "matlab_process_seen": true,
+  "outcome": "success",
+  "qr_call_count": 3121,
+  "run": "43247348456",
+  "traced_exists": true,
+  "traced_sha256": "c36bd89e6e0979ac8e5df26d97cbe4f75370aca51ebc682d2f035007d9fe1544",
+  "vector_names": [
+    "name=dgeqp3_vector",
+    "name=dgeqpf_vector",
+    "name=dlarfg_vector",
+    "name=dlarf_vector",
+    "name=dlarf1f_vector",
+    "name=dgeqr2_vector",
+    "name=dgeqrf_vector",
+    "name=dgemv_vector",
+    "name=dger_vector",
+    "name=ddot_vector",
+    "name=daxpy_vector",
+    "name=dnrm2_vector",
+    "name=dscal_vector",
+    "name=drot_vector"
+  ]
+}

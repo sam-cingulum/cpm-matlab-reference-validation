@@ -1,0 +1,14 @@
+{
+  "status": "EXPLORATORY_COMPARISON_NOT_CAUSAL_ATTRIBUTION",
+  "intel_run": "43247348456",
+  "amd_run": "43237581220",
+  "records": 144,
+  "mismatch_records": {
+    "id": 0,
+    "R_hex": 123,
+    "source_R_hex": 123,
+    "source_h_hex": 117,
+    "pivot": 0
+  },
+  "warning": "Different CPU and separate runner. Difference cannot be uniquely attributed to hardware without controlling runtime startup and workload."
+}
