@@ -1,0 +1,15 @@
+# Authentic MATLAB R2026b 240-source-unseen full two-column Householder certification
+
+Independently compiled, **pure Rust** raw binary64 original-source-unseen predictor was frozen and pushed **before any original MathWorks MATLAB execution** at private Cingulum CPM commit `7fc016eb02f9841b6de1367ac07a8f9132b5a6fc`. All fields, including complete first and second in-place Householder A columns, R11/R12/R22, tau1/tau2, and pivot, were numerically frozen at output SHA256 `ce697fce0d4fe9a7e96d2ce8d87cedabfebc5729971e14fc2fd186b339b4fc64`. Separate raw-source input, 240 cases across 30 lengths 9–128 and eight predictors, was frozen at SHA256 `58bd102b473b28a4d3d276f781fd55e7d5b5e36c4f220a71a18e4c71b534e139`.
+
+Each original execution used genuine, licensed MathWorks MATLAB R2026b original `qr` and `robustfit`, running raw exact `hex2num` original binary64 x/y, each run containing **720 uninstrumented and 720 instrumented** complete original QR/robustfit output records. Complete source arrays, original leverage h, beta, original MATLAB stats, R, pivots, and all numeric fields are bitwise identical inside each host with or without read-only QR buffer capture. Each of 240 raw input cases generated **six exact duplicate original QR private-buffer events (1,440 samples per host)**, without overflow, unmatched input, source robustfit error, or original process exit error.
+
+| Original licensed run | Host CPU | Source-blind, frozen pure-Rust exact whole R | Frozen complete A columns/tau/pivot |
+|---|---|---:|---:|
+| [43268631484](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43268631484) | AMD EPYC 9V74 | **240/240** | **240/240** |
+| [43268934181](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43268934181) | AMD EPYC 9V74 | **240/240** | **240/240** |
+| [43268941737](https://github.com/sam-cingulum/cpm-matlab-reference-validation/actions/runs/43268941737) | Intel Xeon Platinum 8370C | **29/240** | **5/240** |
+
+Source-unseen original AMD in-place A equality is **20,592/20,592 first-column binary64 values and 20,592/20,592 second-column values across two AMD hosts**, complete original MATLAB R/tau/pivot full-field 480/480. Original Intel 8370C had 181/240 first A and 5/240 second A whole-column exact; Intel is a **formal failed gate**, demonstrating MathWorks execution-profile-specific numerical arithmetic despite identical original MATLAB binary SHA256 and identical x/y. No claim of universal CPU identity.
+
+Each run's folder contains complete actual original numerical oracle `qr_fullqr_240_clean.json`, instrumented original `qr_fullqr_240_captured.json`, original QR private A/tau/pivot in `qr_fullqr_240_private_buffers.log`, capture summary, CPU and exact MATLAB/math library fingerprints and SHA256SUMS. They are full archival evidence, not numerical inputs to the independent Rust forecast. The precommitted Rust candidate is not modified after original source reveal. Original full Q, original leverage h and robustfit statistical fields are **not independently certified by this QR milestone**.
