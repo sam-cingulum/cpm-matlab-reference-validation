@@ -1,0 +1,94 @@
+name: "Genuine MATLAB R2026b | matched QR uninstrumented vs loader-audit A/B"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  matched-ab:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin exact synthetic inputs and compile loader auditor
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,pathlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/input.json')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b'
+          PY
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_symbol_audit.c" -o "$p/qr_symbol_audit.so"
+          gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_call_audit.c" -o "$p/qr_call_audit.so"
+          sha256sum "$p"/*.so > "$p/matched_ab_build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: A. Run uninstrumented MATLAB QR and robustfit reference
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_control_v3_clean.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: B. Run same MATLAB QR and robustfit with passive LD_AUDIT
+        id: audit
+        continue-on-error: true
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_CONTROL_OUTPUT: qr_control_v3_audit.json
+          LD_AUDIT: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_symbol_audit.so
+          QR_AUDIT_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matched_ab_passive_audit.log
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: Verify exact same-runner numerical parity and report audit process status
+        if: always()
+        shell: bash
+        env:
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
+        run: |
+          python3 - <<'PY'
+          import pathlib,os,json,hashlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation')
+          clean=p/'qr_control_v3_clean.json'; audit=p/'qr_control_v3_audit.json'
+          summary={'workflow_run':os.getenv('GITHUB_RUN_ID'),'audit_action_outcome':os.getenv('AUDIT_OUTCOME'),'clean_exists':clean.exists(),'audit_exists':audit.exists()}
+          for name,path in [('clean',clean),('audit',audit)]:
+           if path.exists():
+            b=path.read_bytes();summary[name+'_sha256']=hashlib.sha256(b).hexdigest()
+            d=json.loads(b);summary[name+'_records']=len(d['records'])
+          if clean.exists() and audit.exists():
+           x=json.loads(clean.read_bytes())['records']; y=json.loads(audit.read_bytes())['records']
+           assert len(x)==len(y)==18
+           counts={k:sum(a[k]!=b[k] for a,b in zip(x,y)) for k in ['id','iteration','R_hex','source_R_hex','source_h_hex','pivot']}
+           summary['mismatch_record_counts']=counts
+           summary['numerical_bits_exact']=all(not v for v in counts.values())
+          (p/'matched_ab_v3_summary.json').write_text(json.dumps(summary,indent=2,sort_keys=True))
+          print('QR_MATCHED_AB_SUMMARY',json.dumps(summary,sort_keys=True))
+          assert clean.exists() and audit.exists(), 'MISSING_MATLAB_OUTPUT'
+          assert summary['numerical_bits_exact'], 'INSTRUMENTATION_NUMERICAL_NONINTERFERENCE_FAILED'
+          PY
+      - name: Preserve both raw MATLAB outputs and audit evidence regardless of failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-matched-qr-ab-v3
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_control_v3_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matched_ab_v3_summary.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matched_ab_passive_audit.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/matched_ab_build_sha256.txt
+          retention-days: 90
+          if-no-files-found: warn

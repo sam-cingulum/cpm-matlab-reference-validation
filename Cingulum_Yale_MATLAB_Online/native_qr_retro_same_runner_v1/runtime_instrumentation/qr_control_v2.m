@@ -22,6 +22,8 @@ end
 result.release=version('-release');result.matlab_version=version;
 result.computer=computer;result.mkl_cbwr=getenv('MKL_CBWR');result.mkl_threads=getenv('MKL_NUM_THREADS');
 result.omp_threads=getenv('OMP_NUM_THREADS');result.records=records;
-fid=fopen(fullfile(p,'qr_control_v2.json'),'w');assert(fid>0);
+out=getenv('QR_CONTROL_OUTPUT');
+if isempty(out);out='qr_control_v2.json';end
+fid=fopen(fullfile(p,out),'w');assert(fid>0);
 fprintf(fid,'%s',jsonencode(result));fclose(fid);
 end
