@@ -11,7 +11,10 @@ assert(strcmp(D.schema,'AUTHENTIC_ORIGINAL_MATHWORKS_R2026B_BLAS_GEMV_Qtranspose
 N=numel(D.cases);assert(N==3610);
 record=struct('id',{},'n',{},'scenario',{},'original_public_Qy_hex',{},'repeat_bitwise_exact',{});
 for k=1:N
- c=D.cases(k);n=double(c.n);
+ % Heterogeneous record fields (cancellation additive_terms versus random)
+ % intentionally cause jsondecode to return a cell array, not struct array.
+ if iscell(D.cases),c=D.cases{k};else,c=D.cases(k);end
+ n=double(c.n);
  Q=hex2num(char(c.Q_hex));Q=reshape(Q,n,2);y=hex2num(char(c.y_hex));y=y(:);
  assert(n>=9 && n<=128 && numel(y)==n && numel(Q)==n*2);
  assert(all(strcmp(cellstr(num2hex(Q(:))),cellstr(char(c.Q_hex)))));
