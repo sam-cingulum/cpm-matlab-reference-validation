@@ -29,8 +29,10 @@ static _Atomic unsigned selected;
 static _Atomic unsigned overflows;
 static _Atomic unsigned long total_qr;
 
-static int is_synthetic_qr(void *mp,void *np,void *ap,void *ldap){
- if(!mp||!np||!ap||!ldap)return 0;
+static int is_synthetic_qr(void *mp,void *np,void *ap,void *ldap,void *lworkp){
+ if(!mp||!np||!ap||!ldap||!lworkp)return 0;
+ int32_t lwork=0;memcpy(&lwork,lworkp,4);
+ if(lwork<1)return 0;
  int32_t m,n,lda;
  memcpy(&m,mp,4);memcpy(&n,np,4);memcpy(&lda,ldap,4);
  if(n!=2||(m!=29&&m!=35&&m!=43&&m!=44&&m!=57&&m!=71)||lda<m||lda>CAP_M)return 0;
@@ -47,7 +49,7 @@ void dgeqp3_(void *mp,void *np,void *ap,void *ldap,void *jp,void *tau,void *work
  typedef double (*ddot_fn)(const int64_t*,const double*,const int64_t*,const double*,const int64_t*);
  static original_fn original;
  if(!original){original=(original_fn)dlsym(RTLD_NEXT,"dgeqp3_");if(!original)_exit(127);}
- const int capture=is_synthetic_qr(mp,np,ap,ldap);
+ const int capture=is_synthetic_qr(mp,np,ap,ldap,lworkp);
  int64_t m=0,lda=0;double raw_x[CAP_M]={0};
  if(capture){
   memcpy(&m,mp,4);memcpy(&lda,ldap,4);
