@@ -1,0 +1,66 @@
+name: "Genuine MATLAB R2026b | exhaustive 14155 rooted triple CPU-specific GEMV reduction tree"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-exact-triple-topology:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify 14,155 exact source inputs and immutable numeric construction
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_Qy_reduction_triplet_topology_v1/input.json
+          test "$(sha256sum "$p" | cut -d' ' -f1)" = b79e19010d89975be124e861aa742b6920c1c4a63ea59ed217b6f02fef32c532
+          python3 - <<'PY'
+          import json,itertools
+          d=json.load(open('Cingulum_Yale_MATLAB_Online/matlab_Qy_reduction_triplet_topology_v1/input.json'))
+          assert len(d['triples'])==d['count']==14155 and len(d['lengths'])==12
+          assert all(x['triple']==sorted(x['triple']) and len(x['triple'])==3 for x in d['triples'])
+          print('ORIGINAL_NUMERICAL_TRIPLET_INPUT_SHA256_PINNED')
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Preserve unchanged MathWorks and MKL CPU-specific binary provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_Qy_reduction_triplet_topology_v1
+          { echo "run=$GITHUB_RUN_ID";echo "commit=$GITHUB_SHA";lscpu;uname -a;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/original_mathworks_cpu_fingerprint.txt"
+      - name: Genuine original R2026b Q-transpose times ones, all 14,155 exhaustive triples
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            maxNumCompThreads(1);
+            run_original_R2026b_Qy_rooted_triplet_topology_v1;
+      - name: Gate genuine original output provenance, completeness and numeric repeat
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib
+          p='Cingulum_Yale_MATLAB_Online/matlab_Qy_reduction_triplet_topology_v1/original_output.json'
+          d=json.load(open(p));assert d['matlab_release']=='2026b' and d['input_cases']==14155 and len(d['records'])==14155
+          assert d['summary']['original_source_repeats_all_identical'] and d['summary']['MATLAB_ORIGINAL_GEMV_UNMODIFIED']
+          assert all(len(x['original_output_hex'])==4 and x['repeated_original_source_bits_exact'] for x in d['records'])
+          print('GENUINE_MATLAB_14155_ROOTED_TRIPLES_SHA256',hashlib.sha256(open(p,'rb').read()).hexdigest())
+          PY
+      - name: Preserve whole original MATLAB CPU-specific arithmetic oracle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-rooted-triplet-gemv-v1
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_Qy_reduction_triplet_topology_v1/original_output.json
+            Cingulum_Yale_MATLAB_Online/matlab_Qy_reduction_triplet_topology_v1/original_mathworks_cpu_fingerprint.txt
+          retention-days: 90
+          if-no-files-found: warn
