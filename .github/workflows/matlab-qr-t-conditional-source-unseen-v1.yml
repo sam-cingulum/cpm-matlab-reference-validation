@@ -1,0 +1,60 @@
+name: Genuine MATLAB R2026b | source-unseen full QR covariance and t conditional
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-robustfit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: ordinary
+            cbwr: ''
+          - profile: mkl-compatible
+            cbwr: COMPATIBLE
+    env:
+      MKL_CBWR: ${{ matrix.cbwr }}
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen previously unseen source inputs and exact conditional hypothesis
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          p=Path('Cingulum_Yale_MATLAB_Online/qr_t_conditional_prospective_v1')
+          m=json.loads((p/'manifest.json').read_text())
+          d=json.loads((p/'input.json').read_text())
+          assert m['experiment_id']=='r2026b-qr-covariance-conditional-source-unseen-20261112-v1'
+          assert m['cases']==len(d['cases'])==80
+          assert m['source_not_run_at_freeze'] and m['conditional_source_components_only']
+          assert m['expected_exact_covariance_count']==80
+          assert m['expected_exact_standard_error_count']==80
+          assert m['expected_exact_t_statistic_count']==80
+          assert m['frozen_conditional_arithmetic']=='inv21=-(R21*(1/R11))/R22; inv22=1/R22; cov22=(inv21^2+inv22^2)*(s^2); se=sqrt(cov22); t=slope/se'
+          assert hashlib.sha256((p/'input.json').read_bytes()).hexdigest()==m['frozen_input_sha256']
+          print('ORIGINAL_SOURCE_UNSEEN_QR_CONDITIONAL_PRESEALED',m['frozen_input_sha256'])
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Run genuine unmodified MathWorks robustfit on sealed x/y without forecasts
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_qr_t_conditional_source_unseen_v1;
+      - name: Archive independently observed source covariance and t components
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-r2026b-source-unseen-qr-t-${{ matrix.profile }}
+          path: Cingulum_Yale_MATLAB_Online/qr_t_conditional_source_original_v1/*.json
+          if-no-files-found: error
+          retention-days: 90
