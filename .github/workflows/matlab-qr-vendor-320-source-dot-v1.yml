@@ -1,0 +1,90 @@
+name: "Genuine R2026b | full 320-case original vendor DGEMV dot and reflector working buffers"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  prospective-rust-vendor-tree8:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check original predictor input is pinned after frozen private Rust predictions
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/qr_vendor_tree8_prospective_320_v1/input.json
+          test "$(sha256sum "$p" | cut -d' ' -f1)" = b03922f51ae9c5edc2bec7f68df01979d8f915ec0d8467179bbd580fa9871efe
+          echo 'PRE_ORACLE_PRIVATE_RUST_FORECAST_COMMIT=4c35c9824e15283aff57993fecd12415d847d5a9'
+          echo 'PRE_ORACLE_RUST_FORECAST_SHA256=9d832bfd4563bc0e55b68c9d00378b7591500c3ad779e5eca5d7d00c9a77257c'
+          python3 - <<'PY'
+          import json,hashlib
+          p='Cingulum_Yale_MATLAB_Online/qr_vendor_tree8_prospective_320_v1/input.json'
+          d=json.load(open(p));assert len(d['cases'])==320
+          assert len(set((c['id'],c['n']) for c in d['cases']))==320
+          assert {c['n'] for c in d['cases']}==set(d['lengths']) and len(d['lengths'])==40
+          assert all(len(c['x_hex'])==len(c['y_hex'])==c['n'] and all(len(z)==16 for z in c['x_hex']+c['y_hex']) for c in d['cases'])
+          print('ORIGINAL_SOURCE_NOT_YET_RUN: frozen independent Rust SHA recorded, 320 hex-exact raw inputs')
+          PY
+      - name: Build original MATLAB vendor DGEMV scratch oracle for all 40 lengths
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          gcc -D_FORTIFY_SOURCE=2 -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_vendor_second_320_v1.c" -o "$p/qr_vendor_second_320_v1.so" -ldl
+          sha256sum "$p/qr_vendor_second_320_v1.c" "$p/qr_vendor_second_320_v1.so" > "$p/qr_vendor_320_dot_build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Archive original MATLAB and vendor MKL SHA256 and CPU fingerprint
+        shell: bash
+        run: |
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          { echo "run=$GITHUB_RUN_ID";echo "public_commit=$GITHUB_SHA"; echo 'sealed_private_commit=4c35c9824e15283aff57993fecd12415d847d5a9';lscpu;uname -a;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/qr_vendor_320_dot_cpu_and_vendor_fingerprint.txt"
+      - name: A. Run unchanged MATLAB R2026b public QR and original robustfit three times
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_UNSEEN_320_OUTPUT: qr_vendor_320_dot_clean.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_vendor_tree8_prospective_320_v1;
+      - name: B. Run unchanged MATLAB source and original vendor DGEMV on scratch first/second Householder vectors
+        id: traced
+        continue-on-error: true
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_UNSEEN_320_OUTPUT: qr_vendor_320_dot_traced.json
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_second_320_v1.so
+          QR_VENDOR_SECOND_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_320_dot_source.log
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_vendor_tree8_prospective_320_v1;
+      - name: Verify unchanged MATLAB R/h plus exact original vendor DGEMV R12 across all 320 cases
+        if: always()
+        shell: bash
+        env:
+          TRACE_OUTCOME: ${{ steps.traced.outcome }}
+        run: |
+          python3 Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/verify_qr_vendor_320_dot_v1.py
+      - name: Preserve vendor original 320-case dot bits and first and second Householder working buffers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-vendor-320-dgemv-dot-private-qr-v1
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_320_dot_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_320_dot_*.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_320_dot_cpu_and_vendor_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_vendor_320_dot_build_sha256.txt
+          retention-days: 90
+          if-no-files-found: warn
