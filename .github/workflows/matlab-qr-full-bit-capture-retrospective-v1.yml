@@ -1,0 +1,61 @@
+name: "Genuine MATLAB R2026b | full QR binary64 trace of 48 historical cases"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  qr-full-bit-capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin historical synthetic input
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,pathlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/input.json')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b'
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Capture all public QR output and reconstructed arithmetic bits
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_qr_householder_full_bit_capture_v1;
+      - name: Validate completeness of binary64 fields
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json,pathlib,re
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/full_bit_capture_v1.json')
+          d=json.loads(p.read_bytes());assert d['case_count']==len(d['records'])==48
+          assert d['release']=='2026b' and d['mkl_cbwr']=='COMPATIBLE'
+          assert d['private_qr_intermediates_not_observable']
+          h=re.compile(r'^[0-9a-fA-F]{16}$')
+          for r in d['records']:
+           n=r['n'];assert r['source_equals_public_pivot_R']
+           for k in ['raw_x_hex','raw_y_hex','first_raw_hex','second_raw_hex','first_v_reconstructed_hex','first_dot_terms_hex','first_dot_prefix_sequential_hex','first_dot_prefix_cumsum_hex','transformed_matrix_hex','transformed_dot_hex','transformed_sum_hex','transformed_sequential_hex','transformed_left_hex','transformed_fused_hex','original_robustfit_h_hex']:
+            assert len(r[k])==n and all(h.fullmatch(v) for v in r[k]),(r['id'],k)
+           for k in ['public_pivot_Q_hex','public_nonpivot_Q_hex']:
+            assert len(r[k])==2*n and all(h.fullmatch(v) for v in r[k]),(r['id'],k)
+           for k in ['original_robustfit_R_hex','public_pivot_R_hex','public_nonpivot_R_hex']:
+            assert len(r[k])==4 and all(h.fullmatch(v) for v in r[k]),(r['id'],k)
+          print('GENUINE_R2026B_FULL_48_CASE_BINARY64_QR_TRACE_VERIFIED')
+          PY
+      - name: Preserve complete runner evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: genuine-matlab-r2026b-full-qr-bit-capture-v1
+          path: Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/full_bit_capture_v1.json
+          if-no-files-found: warn
+          retention-days: 90
