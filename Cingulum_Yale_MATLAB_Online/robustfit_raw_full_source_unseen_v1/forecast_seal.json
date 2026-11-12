@@ -1,0 +1,50 @@
+{
+  "code_sha256": {
+    ".github/workflows/matlab-raw-full-source-unseen-stage-a.yml": "8625b0f06adfc0181da972546c092321d19ad33e4ea59134c016a1930b1e38ea",
+    ".github/workflows/matlab-raw-full-source-unseen-stage-b.yml": "80af1b610f75e8a83bc1488c97aac345973b710caaa2626f49e98d03352145e7",
+    "Cingulum_Yale_MATLAB_Online/cpm_independent_bisquare_fit_raw_v2.m": "f24057692cfbebee4cf5fe8744a4e5898fc264b09625ca7f367f9c4acbf85d10",
+    "Cingulum_Yale_MATLAB_Online/run_raw_full_source_unseen_clone_only_v1.m": "293d417889234a9bc9d0075a4bc7c0a40d8e152e863a21163259219f86a728db",
+    "Cingulum_Yale_MATLAB_Online/run_raw_full_source_unseen_original_only_v1.m": "7301e6da6c1618eb502ffe0a46834707ca8d18b4bf9acc4f47cd2a9081b3dc1e",
+    "scripts/verify_raw_full_source_unseen_v1.py": "f3e74554b992ea434bc4d5cc3c52467be321cd3d1078867c5c6c6e4ade2216f9"
+  },
+  "exactness": "all full-array IEEE-754 binary64 hex; no tolerance",
+  "experiment_id": "cpm-r2026b-independently-implemented-raw-bisquare-original-source-unseen-v1",
+  "field_names": [
+    "intercept",
+    "slope",
+    "R",
+    "h",
+    "w",
+    "mad_s",
+    "robust_s",
+    "ols_s",
+    "s",
+    "t",
+    "p",
+    "callbacks"
+  ],
+  "forecast_sha256": "435000a897ab50b5443ff88cc17ed76431d7f9c881d3ad5e3d4c5fd81ad9eaac",
+  "independent_source_method": "cpm_independent_bisquare_fit_raw_v2",
+  "input_sha256": "36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b",
+  "manifest_sha256": "21209de9beec42fc4c6b33d524c233ad7c2c72ac648542b43c5c5165652b5a62",
+  "native_compiled_Rust_parity_claimed": false,
+  "original_source_name": "unchanged MathWorks MATLAB R2026b robustfit",
+  "prediction_git_sha": "bd05c9bd19cd2bfb6d528261ed9bd2b532b78bb1",
+  "prediction_run_attempt": "1",
+  "prediction_run_id": "43177058314",
+  "prospective_unseen_original_not_yet_run": true,
+  "runtime_profile": {
+    "architecture": "GLNXA64",
+    "cpu_model": "model name\t: AMD EPYC 9V74 80-Core Processor",
+    "github_run_attempt": "1",
+    "github_run_id": "43177058314",
+    "github_sha": "bd05c9bd19cd2bfb6d528261ed9bd2b532b78bb1",
+    "matlab_version": "26.2.0.3433840 (R2026b) Update 1",
+    "max_num_comp_threads": 1,
+    "mkl_cbwr": "COMPATIBLE",
+    "mkl_num_threads": "",
+    "omp_num_threads": "1",
+    "release": "2026b"
+  },
+  "status": "STAGE_A_PREDICTIONS_FROZEN_BEFORE_FIRST_ORIGINAL_SOURCE_CALL"
+}
