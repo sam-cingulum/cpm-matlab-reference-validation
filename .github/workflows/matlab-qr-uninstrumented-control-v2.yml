@@ -1,0 +1,58 @@
+name: "Genuine MATLAB R2026b | QR uninstrumented repeatability control"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  qr-uninstrumented-control:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin historical synthetic input
+        run: |
+          python3 - <<'PY'
+          import hashlib,pathlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/robustfit_raw_full_source_unseen_v1/input.json')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='36f70d7cfd31da808f4c5f61f1127e292597097287a21248782723436f26fa1b'
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute genuine uninstrumented MATLAB three repeats
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_control_v2;
+      - name: Verify all raw bits are stable across repeats
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_control_v2.json')
+          d=json.loads(p.read_bytes()); r=d['records']; assert len(r)==18
+          by={}
+          for x in r:
+           assert x['source_equal_public'],x['id']
+           val=(x['R_hex'],x['source_R_hex'],x['source_h_hex'],x['pivot'])
+           if x['id'] in by: assert by[x['id']]==val,('UNSTABLE',x['id'],x['iteration'])
+           else: by[x['id']]=val
+          assert len(by)==6
+          print('GENUINE_MATLAB_UNINSTRUMENTED_REPEATABILITY_PASS 6 cases x 3 repeats, R and h exact')
+          PY
+      - name: Preserve control evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: genuine-matlab-r2026b-uninstrumented-qr-control-v2
+          path: Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_control_v2.json
+          if-no-files-found: warn
+          retention-days: 90
