@@ -1,4 +1,4 @@
-name: R2026b original-source-unseen raw robustfit | B: original source and exact verifier
+name: "R2026b original-source-unseen raw robustfit | B: original source and exact verifier"
 on:
   workflow_dispatch:
 permissions:

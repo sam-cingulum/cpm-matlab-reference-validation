@@ -1,4 +1,4 @@
-name: R2026b original-source-unseen raw robustfit | A: seal clone-only forecasts
+name: "R2026b original-source-unseen raw robustfit | A: seal clone-only forecasts"
 on:
   workflow_dispatch:
 permissions:
