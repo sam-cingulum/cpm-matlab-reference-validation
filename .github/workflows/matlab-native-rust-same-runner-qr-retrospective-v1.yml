@@ -1,0 +1,59 @@
+name: "R2026b research | native Rust and unchanged robustfit QR on same runner (retrospective)"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  same-host-numerical-research:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check historical input, compile independent native Rust candidate, freeze output before oracle
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$MKL_CBWR" = COMPATIBLE
+          test "$MKL_NUM_THREADS" = 1
+          test "$OMP_NUM_THREADS" = 1
+          f=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1
+          python3 -m py_compile "$f/verify.py"
+          python3 "$f/verify.py" export
+          rustc --version
+          rustc --edition=2024 -C opt-level=3 -C target-cpu=x86-64 -C target-feature=-fma -C codegen-units=1 -D warnings "$f/standalone_qr_probe.rs" -o "$f/native_qr_executable"
+          "$f/native_qr_executable" < "$f/raw_x_hex.tsv" > "$f/native_r_hex.tsv"
+          test "$(wc -l < "$f/native_r_hex.tsv")" = 48
+          sha256sum "$f/standalone_qr_probe.rs" "$f/native_qr_executable" "$f/native_r_hex.tsv"
+          lscpu
+          echo 'INDEPENDENT_NATIVE_RUST_ORIGINAL_SOURCE_BLIND_FORECAST_COMPUTED_FIRST'
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Execute unchanged original MathWorks robustfit and independent built-in MATLAB qr on SAME host
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            run_native_qr_same_runner_retrospective_v1;
+      - name: Check identical raw binary64 transport, source API, pivot and native original exact bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/verify.py compare
+      - name: Preserve retrospective true and false findings with original source and native run profile
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: matlab-r2026b-independent-native-rust-same-runner-qr-48-retrospective
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/raw_x_hex.tsv
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/native_r_hex.tsv
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/original_same_runner.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/retrospective_same_runner_verdict.json
+          if-no-files-found: warn
+          retention-days: 90
