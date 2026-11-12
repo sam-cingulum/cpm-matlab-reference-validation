@@ -1,0 +1,91 @@
+name: "Genuine MATLAB R2026b | cross-runner Ubuntu 22 exact full QR 480-case source-blind certification"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  prospective-rust-vendor-tree8:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check source-blind independent Rust hash and exact input before original MATLAB (alternate OS host)
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/qr_fullqr_adversarial_480_v2/input.json
+          test "$(sha256sum "$p" | cut -d' ' -f1)" = 2f73eb85ae189b39959aeda941d00eb858782d28514099e4a89dfddf2ac959f5
+          echo 'PRE_ORACLE_PRIVATE_RUST_FORECAST_COMMIT=ebeff71e7e1270c03473ca0a04a95eb152dda0f1'
+          echo 'PRE_ORACLE_RUST_FORECAST_SHA256=eca6b5b7c9dfc8fd4aba94686064ce2d3137742ab79aa16839fd5c067a271ac3'
+          python3 - <<'PY'
+          import json,hashlib
+          p='Cingulum_Yale_MATLAB_Online/qr_fullqr_adversarial_480_v2/input.json'
+          d=json.load(open(p));assert len(d['cases'])==480
+          assert len(set((c['id'],c['n']) for c in d['cases']))==480
+          assert {c['n'] for c in d['cases']}==set(d['lengths']) and len(d['lengths'])==40
+          assert all(len(c['x_hex'])==len(c['y_hex'])==c['n'] and all(len(z)==16 for z in c['x_hex']+c['y_hex']) for c in d['cases'])
+          print('ORIGINAL_SOURCE_NOT_YET_RUN: frozen independent Rust SHA recorded, 480 hex-exact raw inputs')
+          PY
+      - name: Build original MATLAB ABI recorder for all 40 lengths
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          gcc -D_FORTIFY_SOURCE=2 -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/qr_interpose_buffers_480_v2.c" -o "$p/qr_interpose_buffers_480_v2.so" -ldl
+          sha256sum "$p/qr_interpose_buffers_480_v2.c" "$p/qr_interpose_buffers_480_v2.so" > "$p/qr_adversarial_fullqr_480_build_sha256.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Archive original MATLAB and vendor MKL SHA256 and CPU fingerprint
+        shell: bash
+        run: |
+          p=Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation
+          { echo "run=$GITHUB_RUN_ID";echo "public_commit=$GITHUB_SHA"; echo 'sealed_private_commit=ebeff71e7e1270c03473ca0a04a95eb152dda0f1';lscpu;uname -a;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/qr_adversarial_fullqr_480_cpu_and_vendor_fingerprint.txt"
+      - name: A. Run unchanged MATLAB R2026b public QR and original robustfit three times
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_ADVERSARIAL_480_OUTPUT: qr_adversarial_fullqr_480_clean.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_adversarial_fullqr_480_v2;
+      - name: B. Run identical unchanged MATLAB source with genuine QR input/output and tau capture
+        id: captured
+        continue-on-error: true
+        uses: matlab-actions/run-command@v3
+        env:
+          QR_ADVERSARIAL_480_OUTPUT: qr_adversarial_fullqr_480_captured.json
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_interpose_buffers_480_v2.so
+          QR_CAPTURE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_adversarial_fullqr_480_private_buffers.log
+          QR_INTERPOSE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_adversarial_fullqr_480_calls.log
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online');
+            addpath('native_qr_retro_same_runner_v1/runtime_instrumentation');
+            maxNumCompThreads(1);
+            qr_adversarial_fullqr_480_v2;
+      - name: Strict full original R/h noninterference, raw input and captured Householder stability gate
+        if: always()
+        shell: bash
+        env:
+          CAPTURE_OUTCOME: ${{ steps.captured.outcome }}
+        run: |
+          python3 Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/verify_qr_adversarial_fullqr_480_v2.py
+      - name: Preserve untouched original MATLAB source-unseen oracle for post-freeze private Rust scoring
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-adversarial-full-qr-480-v2
+          path: |
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_adversarial_fullqr_480_*.json
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_adversarial_fullqr_480_*.log
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_adversarial_fullqr_480_cpu_and_vendor_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/native_qr_retro_same_runner_v1/runtime_instrumentation/qr_adversarial_fullqr_480_build_sha256.txt
+          retention-days: 90
+          if-no-files-found: warn
