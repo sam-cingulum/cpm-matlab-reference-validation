@@ -1,0 +1,45 @@
+name: "Genuine MATLAB R2026b | V8 disclosed first IRLS std floor retrospective forensics"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  std-floor-disclosed-v8:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify this is the PREVIOUSLY REVEALED V8 cohort, not a new source-unseen battery
+        run: |
+          set -euo pipefail
+          test "$(sha256sum Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v8/input.json | cut -d' ' -f1)" = 609c357dd4059cfa9fdd4b1459498bcf54dab8f14458cc195f1027900a6adec2
+          echo 'RETROSPECTIVE_SOURCE_DISCLOSED_V8_ONLY, 42 actual prospective Rust callback failures preserved.'
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Record genuine original CPU/MATLAB/MKL SHA256 profile
+        shell: bash
+        run: |
+          p=Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v8
+          { echo "run=$GITHUB_RUN_ID";echo "commit=$GITHUB_SHA";lscpu;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/retrospective_std_floor_v8_cpu.txt"
+      - name: Inspect actual MathWorks std(y) binary64, compare hypothesized initial callback using disclosed V8
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v8');
+            run_disclosed_std_floor_forensics_v8;
+      - name: Archive original source-REVEALED retrospective outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-mathworks-v8-disclosed-std-floor-retrospective
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v8/retrospective_std_floor_v8_matlab_original.json
+            Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v8/retrospective_std_floor_v8_cpu.txt
+          retention-days: 90
+          if-no-files-found: warn
