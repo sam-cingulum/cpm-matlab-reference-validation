@@ -11,6 +11,8 @@ assert(strcmp(raw.schema,'CINGULUM_MATHWORKS_R2026B_RAW_XY_FIRST_BISQUARE_CALLBA
 assert(numel(raw.cases)==480);
 global CINGULUM_V9_WLS_REVEALED_CAPTURE;
 records=struct('id',{},'n',{},'scenario',{},'pivot_w',{},'qw_hex',{},'rw_hex',{},'qwy_hex',{},...
+  'qu_hex',{},'ru_hex',{},'quwy_hex',{},...
+  'unpivoted_qr_beta_hex',{},'pivoted_qr_beta_hex',{},'lscov_beta_hex',{},...
   'w_first_hex',{},'wx_first_hex',{},'wy_first_hex',{},...
   'next_wls_beta_backslash_hex',{},'source_second_u_hex',{},'source_second_w_hex',{},...
   'second_u_from_wls_hex',{},'second_u_wls_exact_elements',{},...
@@ -35,6 +37,11 @@ for k=1:480
  [Qw,Rw,pw]=qr(WX,'econ','vector');
  assert(isequal(sort(pw),[1 2]));
  bw=WX\Wy;
+ [Qu,Ru]=qr(WX,'econ');
+ quwy=Qu'*Wy;
+ bu=Ru\quwy;
+ bp=zeros(2,1);bp(pw)=Rw\(Qw'*Wy);
+ bl=lscov(X,y,w);
  uw=independent_next_u_v9_revealed(x,y,st.h,bw);
  qwy=Qw'*Wy;
  rec=struct();
@@ -42,6 +49,12 @@ for k=1:480
  rec.qw_hex=cellstr(num2hex(Qw(:)));
  rec.rw_hex=cellstr(num2hex(Rw(:)));
  rec.qwy_hex=cellstr(num2hex(qwy(:)));
+ rec.qu_hex=cellstr(num2hex(Qu(:)));
+ rec.ru_hex=cellstr(num2hex(Ru(:)));
+ rec.quwy_hex=cellstr(num2hex(quwy(:)));
+ rec.unpivoted_qr_beta_hex=cellstr(num2hex(bu(:)));
+ rec.pivoted_qr_beta_hex=cellstr(num2hex(bp(:)));
+ rec.lscov_beta_hex=cellstr(num2hex(bl(:)));
  rec.w_first_hex=cellstr(num2hex(w(:)));
  rec.wx_first_hex=cellstr(num2hex(WX(:)));
  rec.wy_first_hex=cellstr(num2hex(Wy(:)));
