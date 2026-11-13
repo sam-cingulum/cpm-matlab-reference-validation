@@ -1,0 +1,84 @@
+name: "Genuine MathWorks R2026b | V10 NEW 480 complete full robustfit source-unseen AMD"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-new-v10-full-robustfit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject input modifications, verify new original-untouched cohort, and reference already-pushed Rust preoracle SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10
+          test "$(sha256sum "$p/input.json" | cut -d' ' -f1)" = aee017a203f286c70333eea04d2229fdd380d86c0d8c98e0f748a3587b09b41a
+          echo "PRIVATE_RUST_PRE_ORACLE_COMMIT=e2ff51bb753531410f84b61bc6460cb8b0a9ad61"
+          echo "PRIVATE_RUST_FROZEN_FORECAST_SHA256=08d747315c5d2babbe265628f14ad08ce3137e5ad99e30987d55ea498af44a25"
+          python3 - <<'PY'
+          import json
+          p='Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10/input.json'
+          d=json.load(open(p))
+          assert d['schema']=='CINGULUM_MATHWORKS_R2026B_RAW_XY_FULL_ROBUSTFIT_480_V10_SOURCE_UNSEEN'
+          assert d['seed']==202611131906 and len(d['cases'])==480
+          assert len({c['id'] for c in d['cases']})==480
+          assert sorted({c['n'] for c in d['cases']})==[9,11,15,17,23,25]
+          assert all(sum(c['n']==n for c in d['cases'])==80 for n in [9,11,15,17,23,25])
+          assert all(len(c['x_hex'])==len(c['y_hex'])==c['n'] for c in d['cases'])
+          print("V10 NEW cohort validated; no original MATLAB has run on this input yet.")
+          PY
+      - name: Fail closed on unsupported genuine original MATLAB hardware BEFORE calling MATLAB
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10
+          { echo "GitHub Original V10 Run=$GITHUB_RUN_ID";echo "Public Commit=$GITHUB_SHA";lscpu;uname -a; } > "$p/original_v10_cpu_and_vendor_fingerprint.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Real original MathWorks host hardware: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(9V74|9V45|7763)'; then
+            echo "REJECT source-unseen run before genuine MATLAB on unsupported model $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Pin version/fingerprint of exact genuine vendor MathWorks, not redistribute files
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10
+          for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f" >> "$p/original_v10_cpu_and_vendor_fingerprint.txt";fi;done
+      - name: Original untouched genuine MathWorks robustfit TWICE on each genuinely NEW raw V10 case
+        uses: matlab-actions/run-command@v3
+        env:
+          V10_ORIGINAL_FULL_OUTPUT: original_v10_480_raw_full_robustfit_clean.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10');
+            run_original_full_robustfit_v10;
+      - name: Strict 480-case two-pass all-field original MATLAB execution consistency and callback noninterference
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10/verify_original_v10_self_consistency.py
+          p=Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10
+          sha256sum "$p/original_v10_480_raw_full_robustfit_clean.json" "$p/original_v10_source_self_consistency.json" "$p/original_v10_cpu_and_vendor_fingerprint.txt" > "$p/original_v10_original_sha256_manifest.txt"
+      - name: Preserve all original original-source numerical fields, source noninterference and AMD vendor fingerprint
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-original-MathWorks-R2026b-V10-NEW-full-robustfit-480-amd
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10/original_v10_480_raw_full_robustfit_clean.json
+            Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10/original_v10_source_self_consistency.json
+            Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10/original_v10_cpu_and_vendor_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v10/original_v10_original_sha256_manifest.txt
+          retention-days: 90
+          if-no-files-found: warn
