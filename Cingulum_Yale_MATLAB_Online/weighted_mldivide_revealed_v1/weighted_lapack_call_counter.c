@@ -44,6 +44,7 @@ struct rhs_event {
  char routine[8], side, trans, diag;
  int32_t m,n,k,info;
  uint64_t before[MAX_SAMPLES],after[MAX_SAMPLES],first_stage[MAX_SAMPLES],a[4];
+ uint64_t packed_a[2*MAX_SAMPLES],tau_vals[2];
  int32_t first_stage_valid;
 };
 static struct rhs_event rhs_events[MAX_STAGES];
@@ -115,14 +116,21 @@ void dormqr_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void
  typedef void(*fp)(void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,size_t,size_t);
  static fp original;if(!original)original=(fp)next("dormqr_");
  atomic_fetch_add(&cnt_dormqr_,1);
- int32_t rows=lo32(c),columns=lo32(d),reflectors=lo32(e),ldc=lo32(j),work=lo32(l);
+ int32_t rows=lo32(c),columns=lo32(d),reflectors=lo32(e),lda=lo32(g),ldc=lo32(j),work=lo32(l);
  struct rhs_event *event=NULL;
- if(rows>=9&&rows<=MAX_SAMPLES&&columns==1&&reflectors==2&&ldc>=rows&&work>=1){
+ if(rows>=9&&rows<=MAX_SAMPLES&&columns==1&&reflectors==2&&lda>=rows&&ldc>=rows&&work>=1){
    event=event_new("dormqr");
    if(event){
      event->side=a?*(char*)a:0;event->trans=b?*(char*)b:0;event->diag='-';
      event->m=rows;event->n=columns;event->k=reflectors;
      save_numbers(event->before,i,(unsigned)rows);
+     const unsigned char *ap=(const unsigned char*)f;
+     for(int column=0;column<2;column++){
+       for(int row=0;row<rows;row++){
+         memcpy(&event->packed_a[column*rows+row],ap+8u*((size_t)column*(size_t)lda+(size_t)row),8);
+       }
+     }
+     save_numbers(event->tau_vals,h,2);
    }
  }
  original(a,b,c,d,e,f,g,h,i,j,k,l,m,s,t);
@@ -234,6 +242,11 @@ __attribute__((destructor)) static void report(void) {
    if(ev->first_stage_valid){
       fprintf(out,"\tFIRST_STAGE=");
       for(int32_t j=0;j<ev->m;j++)fprintf(out,"%s%016llx",j?",":"",(unsigned long long)ev->first_stage[j]);
+   }
+   if(strcmp(ev->routine,"dormqr")==0){
+     fprintf(out,"\tPACKED_A=");
+     for(int32_t j=0;j<ev->m*2;j++)fprintf(out,"%s%016llx",j?",":"",(unsigned long long)ev->packed_a[j]);
+     fprintf(out,"\tTAU=%016llx,%016llx",(unsigned long long)ev->tau_vals[0],(unsigned long long)ev->tau_vals[1]);
    }
    fputc('\n',out);
  }
