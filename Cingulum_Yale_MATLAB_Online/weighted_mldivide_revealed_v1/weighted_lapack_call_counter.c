@@ -54,7 +54,7 @@ static unsigned rhs_overflow;
 /* 16,365 controlled cancellation triples for six previously disclosed V9
  * AMD DORMQR dimensions. Every probe is synthetic and uses the genuine
  * original exported vendor LAPACK at runtime. No vendor code is copied. */
-#define MAX_MICROS 20000
+#define MAX_MICROS 32000
 struct cancellation_event {
  uint8_t m,i,j,k,permutation,observer,invalid;
  uint64_t output_bits;
@@ -67,7 +67,7 @@ typedef void(*dormqr_original_fn)(
  void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,size_t,size_t);
 static void run_disclosed_dormqr_cancellation_triples(int rows,dormqr_original_fn original){
  if(!getenv("WLS_DORMQR_CANCELLATION_TRIPLES"))return;
- if(rows<9||rows>MAX_SAMPLES)return;
+ if(rows<8||rows>MAX_SAMPLES)return;
  unsigned mask=(unsigned)1u<<(unsigned)rows;
  if(atomic_fetch_or(&micro_mask,mask)&mask)return;
  /* C is width-one. Fabricated reflector v_i=1, tau=1 and C_observer=0.
@@ -215,6 +215,9 @@ void dormqr_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void
      }
    }
    run_disclosed_dormqr_cancellation_triples(rows,original);
+   /* Second reflector acts on rows 2..m. Probe that genuine vendor width
+    * separately, not by assuming the first-reflector reduction generalises. */
+   run_disclosed_dormqr_cancellation_triples(rows-1,original);
  }
 }
 void dtrtrs_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void*j,size_t s,size_t t,size_t u){

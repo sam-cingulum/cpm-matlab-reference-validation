@@ -72,7 +72,7 @@ jobs:
           assert buffers.count(b'FIRST_STAGE=')>=960,'missing unchanged-k1 original reflector shadow output'
           assert buffers.count(b'PACKED_A=')>=960 and buffers.count(b'TAU=')>=960,'original packed Householder inputs not captured'
           micros=(p/'weighted_480_original_vendor_cancellation_triples.log').read_bytes()
-          assert micros.count(b'VENDOR_DORMQR_TRIPLE\t')==16365,'expected all 16,365 full-vector cancellation triples'
+          assert micros.count(b'VENDOR_DORMQR_TRIPLE\t')==30357,'expected all 30,357 original first-and-second reflector full-vector cancellation triples'
           assert b'failures=0' in micros and b'invalid=1' not in micros,'vendor cancellation microprobe repeat failure'
           assert b'overflow=0' in buffers and b'overflow=1' not in buffers,'tracer overflow'
           print('SOURCE DISCLOSED 480 V9 A/B BITWISE IDENTITY; DORMQR=',buffers.count(b'routine=dormqr'),'DTRSV=',buffers.count(b'routine=dtrsv'))
