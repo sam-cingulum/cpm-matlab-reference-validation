@@ -14,7 +14,7 @@
  */
 static void *next(const char *name) {
  void *p=dlsym(RTLD_NEXT,name);
- if(!p) {write(2,"WLS_TRACE_SYMBOL_NOT_FOUND\n",27);_exit(127);}
+ if(!p) {ssize_t ignored=write(2,"WLS_TRACE_SYMBOL_NOT_FOUND\n",27);(void)ignored;_exit(127);}
  return p;
 }
 #define DECLARE_COUNTER(name) static _Atomic unsigned long cnt_##name;
