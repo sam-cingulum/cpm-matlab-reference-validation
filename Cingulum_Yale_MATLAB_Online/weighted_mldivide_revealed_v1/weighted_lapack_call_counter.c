@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 /* Passive source-revealed six-case MathWorks weighted backslash study.
  * All function pointers forwarded verbatim, and no float calculations or
@@ -34,6 +35,32 @@ DECLARE_COUNTER(dormqr_)
 DECLARE_COUNTER(dtrtrs_)
 DECLARE_COUNTER(dtrsv_)
 DECLARE_COUNTER(dtrsm_)
+/* In-memory snapshots from only small disclosed synthetic weighted solvers.
+ * No filesystem activity within the original vendor numerics. Capturing
+ * bytes does not alter FPU state, input arrays, or their arithmetic. */
+#define MAX_STAGES 128
+#define MAX_SAMPLES 25
+struct rhs_event {
+ char routine[8], side, trans, diag;
+ int32_t m,n,k,info;
+ uint64_t before[MAX_SAMPLES],after[MAX_SAMPLES],a[4];
+};
+static struct rhs_event rhs_events[MAX_STAGES];
+static _Atomic unsigned rhs_count;
+static unsigned rhs_overflow;
+static struct rhs_event *event_new(const char *routine) {
+ unsigned slot=atomic_fetch_add(&rhs_count,1);
+ if(slot>=MAX_STAGES){rhs_overflow++;return NULL;}
+ struct rhs_event *v=&rhs_events[slot];
+ strncpy(v->routine,routine,sizeof(v->routine)-1);
+ return v;
+}
+static int32_t lo32(const void *p){int32_t x=0;if(p)memcpy(&x,p,sizeof x);return x;}
+static void save_numbers(uint64_t *dst,const void *src,unsigned n){
+ if(!src)return;
+ const unsigned char *p=src;
+ for(unsigned i=0;i<n;i++)memcpy(&dst[i],p+8u*i,8);
+}
 #define WRAP_3(name) \
 void name(void *a,void *b,void *c){ \
  typedef void (*fp)(void*,void*,void*);static fp original;if(!original)original=(fp)next(#name); \
@@ -86,7 +113,22 @@ WRAP_6(daxpy_)
 void dormqr_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void*j,void*k,void*l,void*m,size_t s,size_t t){
  typedef void(*fp)(void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,size_t,size_t);
  static fp original;if(!original)original=(fp)next("dormqr_");
- atomic_fetch_add(&cnt_dormqr_,1);original(a,b,c,d,e,f,g,h,i,j,k,l,m,s,t);
+ atomic_fetch_add(&cnt_dormqr_,1);
+ int32_t rows=lo32(c),columns=lo32(d),reflectors=lo32(e),ldc=lo32(j),work=lo32(l);
+ struct rhs_event *event=NULL;
+ if(rows>=9&&rows<=MAX_SAMPLES&&columns==1&&reflectors==2&&ldc>=rows&&work>=1){
+   event=event_new("dormqr");
+   if(event){
+     event->side=a?*(char*)a:0;event->trans=b?*(char*)b:0;
+     event->m=rows;event->n=columns;event->k=reflectors;
+     save_numbers(event->before,i,(unsigned)rows);
+   }
+ }
+ original(a,b,c,d,e,f,g,h,i,j,k,l,m,s,t);
+ if(event){
+   save_numbers(event->after,i,(unsigned)rows);
+   event->info=lo32(m);
+ }
 }
 void dtrtrs_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void*j,size_t s,size_t t,size_t u){
  typedef void(*fp)(void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,size_t,size_t,size_t);
@@ -96,7 +138,20 @@ void dtrtrs_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void
 void dtrsv_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,size_t s,size_t t,size_t u){
  typedef void(*fp)(void*,void*,void*,void*,void*,void*,void*,void*,size_t,size_t,size_t);
  static fp original;if(!original)original=(fp)next("dtrsv_");
- atomic_fetch_add(&cnt_dtrsv_,1);original(a,b,c,d,e,f,g,h,s,t,u);
+ atomic_fetch_add(&cnt_dtrsv_,1);
+ int32_t dim=lo32(d),lda=lo32(f),incx=lo32(h);
+ struct rhs_event *event=NULL;
+ if(dim==2 && lda>=2 && incx==1){
+   event=event_new("dtrsv");
+   if(event){
+     event->side=a?*(char*)a:0;event->trans=b?*(char*)b:0;event->diag=c?*(char*)c:0;
+     event->m=dim;event->n=1;event->k=0;
+     save_numbers(event->before,g,2);
+     save_numbers(event->a,e,4);
+   }
+ }
+ original(a,b,c,d,e,f,g,h,s,t,u);
+ if(event)save_numbers(event->after,g,2);
 }
 void dtrsm_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void*j,void*k,size_t s,size_t t,size_t u,size_t v){
  typedef void(*fp)(void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,size_t,size_t,size_t,size_t);
@@ -135,4 +190,25 @@ __attribute__((destructor)) static void report(void) {
   if(n>0 && n<(int)sizeof(buffer)){ssize_t unused=write(fd,buffer,(size_t)n);(void)unused;}
  }
  close(fd);
+ const char *rhs_path=getenv("WLS_NUMERIC_BUFFER_LOG");
+ if(!rhs_path||!*rhs_path)return;
+ FILE *out=fopen(rhs_path,"a");
+ if(!out)return;
+ unsigned total=atomic_load(&rhs_count);
+ for(unsigned n=0;n<total&&n<MAX_STAGES;n++){
+   const struct rhs_event *ev=&rhs_events[n];
+   if(!ev->routine[0])continue;
+   fprintf(out,"WLS_NUMERIC_BUFFER\tpid=%ld\tsequence=%u\troutine=%s\tflags=%c,%c,%c\tm=%d\tn=%d\tk=%d\tinfo=%d\tA=",
+           (long)getpid(),n,ev->routine,ev->side,ev->trans,ev->diag,ev->m,ev->n,ev->k,ev->info);
+   if(strcmp(ev->routine,"dtrsv")==0){
+     for(unsigned j=0;j<4;j++)fprintf(out,"%s%016llx",j?",":"",(unsigned long long)ev->a[j]);
+   }
+   fprintf(out,"\tBEFORE=");
+   for(int32_t j=0;j<ev->m;j++)fprintf(out,"%s%016llx",j?",":"",(unsigned long long)ev->before[j]);
+   fprintf(out,"\tAFTER=");
+   for(int32_t j=0;j<ev->m;j++)fprintf(out,"%s%016llx",j?",":"",(unsigned long long)ev->after[j]);
+   fputc('\n',out);
+ }
+ fprintf(out,"WLS_NUMERIC_SUMMARY\tpid=%ld\tselected=%u\toverflow=%u\n",(long)getpid(),total,rhs_overflow);
+ fclose(out);
 }

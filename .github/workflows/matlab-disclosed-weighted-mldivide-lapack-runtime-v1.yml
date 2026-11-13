@@ -47,6 +47,7 @@ jobs:
           WEIGHTED_LSQ_PROBE_OUTPUT: mldivide_six_interposed.json
           LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_lapack_call_counter.so
           WLS_LAPACK_TRACE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_native_lapack_calls.log
+          WLS_NUMERIC_BUFFER_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_vendor_rhs_numeric_buffers.log
         with:
           command: |
             cd('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1');
@@ -58,6 +59,7 @@ jobs:
           p=Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1
           cmp "$p/mldivide_six_control.json" "$p/mldivide_six_interposed.json"
           grep -q 'WLS_LAPACK_CALL' "$p/mldivide_native_lapack_calls.log"
+          grep -q 'WLS_NUMERIC_BUFFER' "$p/mldivide_vendor_rhs_numeric_buffers.log"
           python3 - <<'PY'
           import json
           p='Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_six_control.json'
@@ -67,6 +69,9 @@ jobs:
           log=open('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_native_lapack_calls.log').read()
           pivots=[int(s.split('count=')[1]) for s in log.splitlines() if 'name=dgeqp3_' in s]
           assert sum(pivots)>0,'no real original vendor dgeqp3 calls instrumented'
+          trace=open('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_vendor_rhs_numeric_buffers.log').read()
+          assert trace.count('routine=dormqr')>=12,'missing genuine RHS transform'
+          assert trace.count('routine=dtrsv')>=12,'missing genuine triangular solve'
           print('NATIVE ORIGINAL PIVOTED DGEQP3 CALLS:',sum(pivots))
           print('SIX ORIGINAL MATLAB DISCLOSED WEIGHTED BACKSLASH BIN64 NONINTERFERENCE PASS')
           PY
@@ -79,6 +84,7 @@ jobs:
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_six_control.json
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_six_interposed.json
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_native_lapack_calls.log
+            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_vendor_rhs_numeric_buffers.log
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_runtime_cpu_and_vendor.txt
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/native_probe_build_sha256.txt
           retention-days: 90
