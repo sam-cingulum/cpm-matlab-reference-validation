@@ -1,0 +1,45 @@
+{
+  "compression_is_exact_lossless": true,
+  "files": [
+    {
+      "archived_filename": "original_v11_480_raw_full_robustfit_clean.json.gz",
+      "archived_gzip_sha256": "ea37fd5bd1f8d56e919f676b214974b5b736c0e55461aad6cd5bf6fa789c14c8",
+      "gzip_bytes": 1293427,
+      "original_bytes": 3456993,
+      "original_filename": "original_v11_480_raw_full_robustfit_clean.json",
+      "original_sha256": "f8dd823bdbebd96944d2a49474d23fb39cb6aae2431b2b32df80b61c6fc6cf79"
+    },
+    {
+      "archived_filename": "original_v11_source_self_consistency.json.gz",
+      "archived_gzip_sha256": "935e2f26a31f9101565de0b63c7937136c5f23377d1ffaefba0097c9b48360a8",
+      "gzip_bytes": 402,
+      "original_bytes": 580,
+      "original_filename": "original_v11_source_self_consistency.json",
+      "original_sha256": "fc77b61dfe33f92c5704742959c40db71d5dc90c2fc893c2401e792f3f526357"
+    },
+    {
+      "archived_filename": "original_v11_cpu_and_vendor_fingerprint.txt.gz",
+      "archived_gzip_sha256": "8896f8765e23e748db576a23126a337f9ec08285bbc7f5c063e22eb65b7544c8",
+      "gzip_bytes": 1523,
+      "original_bytes": 3800,
+      "original_filename": "original_v11_cpu_and_vendor_fingerprint.txt",
+      "original_sha256": "4e36d21af1c3cc36ece9ad2522c617e86cc6fa2403b1b54a487e4dde1a2ec132"
+    },
+    {
+      "archived_filename": "original_v11_original_sha256_manifest.txt.gz",
+      "archived_gzip_sha256": "9b5415482a023079710c0eb86105282c31981f890e0857b3fc61afeafad89aa5",
+      "gzip_bytes": 296,
+      "original_bytes": 565,
+      "original_filename": "original_v11_original_sha256_manifest.txt",
+      "original_sha256": "498aaeb7e5efdf933456763d46fb46f24decee15f05e35bd9c66768f3f70652a"
+    }
+  ],
+  "first_original_exposure_to_v11": true,
+  "frozen_native_private_preoracle_SHA256": "c633624b9867e2a273fda4d0cd2fafa50ec6b749b3eba2fca9e896f1d0b8335f",
+  "frozen_native_private_preoracle_commit": "997b3f8714e655d7d600c3e0c529d15cd7230fb1",
+  "irreversible_numeric_rewrite": false,
+  "original_ran_twice_per_480_case": true,
+  "original_run": "43367517837",
+  "original_source_public_commit": "d0570e6b9cca0c1dc0fa2a1d38c67d20f71051cb",
+  "status": "LOSSLESS_ORIGINAL_MATHWORKS_R2026B_V11_FIRST_SOURCE_UNSEEN_RUN_PUBLIC_ARCHIVE"
+}
