@@ -43,7 +43,8 @@ DECLARE_COUNTER(dtrsm_)
 struct rhs_event {
  char routine[8], side, trans, diag;
  int32_t m,n,k,info;
- uint64_t before[MAX_SAMPLES],after[MAX_SAMPLES],a[4];
+ uint64_t before[MAX_SAMPLES],after[MAX_SAMPLES],first_stage[MAX_SAMPLES],a[4];
+ int32_t first_stage_valid;
 };
 static struct rhs_event rhs_events[MAX_STAGES];
 static _Atomic unsigned rhs_count;
@@ -128,6 +129,22 @@ void dormqr_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void
  if(event){
    save_numbers(event->after,i,(unsigned)rows);
    event->info=lo32(m);
+   /* Instrumentation-only controlled synthetic shadow: genuine original
+    * DORMQR with k=1 on an independently allocated copy of original C,
+    * AFTER the genuine k=2 production call has returned. Source C is not
+    * changed and the original output must match a completely clean run
+    * byte-for-byte. This exposes the first reflector result without any
+    * proprietary MATLAB source or vendor binary redistribution. */
+   if(getenv("WLS_CAPTURE_DORMQR_STAGE1")){
+     double tmp_c[MAX_SAMPLES]={0},tmp_work[512]={0};
+     memcpy(tmp_c,event->before,(size_t)rows*sizeof(double));
+     int64_t one=1,ldtmp=rows,lwtmp=512,infotmp=0;
+     original(a,b,c,d,&one,f,g,h,tmp_c,&ldtmp,tmp_work,&lwtmp,&infotmp,s,t);
+     if(infotmp==0){
+       save_numbers(event->first_stage,tmp_c,(unsigned)rows);
+       event->first_stage_valid=1;
+     }
+   }
  }
 }
 void dtrtrs_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void*j,size_t s,size_t t,size_t u){
@@ -214,6 +231,10 @@ __attribute__((destructor)) static void report(void) {
    for(int32_t j=0;j<ev->m;j++)fprintf(out,"%s%016llx",j?",":"",(unsigned long long)ev->before[j]);
    fprintf(out,"\tAFTER=");
    for(int32_t j=0;j<ev->m;j++)fprintf(out,"%s%016llx",j?",":"",(unsigned long long)ev->after[j]);
+   if(ev->first_stage_valid){
+      fprintf(out,"\tFIRST_STAGE=");
+      for(int32_t j=0;j<ev->m;j++)fprintf(out,"%s%016llx",j?",":"",(unsigned long long)ev->first_stage[j]);
+   }
    fputc('\n',out);
  }
  fprintf(out,"WLS_NUMERIC_SUMMARY\tpid=%ld\tselected=%u\toverflow=%u\n",(long)getpid(),total,rhs_overflow);

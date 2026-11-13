@@ -47,6 +47,7 @@ jobs:
           LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_lapack_call_counter.so
           WLS_LAPACK_TRACE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_lapack_calls.log
           WLS_NUMERIC_BUFFER_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_vendor_rhs_buffers.log
+          WLS_CAPTURE_DORMQR_STAGE1: "1"
         with:
           command: |
             cd('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1');
@@ -67,6 +68,7 @@ jobs:
           buffers=(p/'weighted_480_vendor_rhs_buffers.log').read_bytes()
           assert buffers.count(b'routine=dormqr')>=960,'not all 480 original weighted solve RHS calls were traced twice'
           assert buffers.count(b'routine=dtrsv')>=960,'not all original upper triangular RHS results traced'
+          assert buffers.count(b'FIRST_STAGE=')>=960,'missing unchanged-k1 original reflector shadow output'
           assert b'overflow=0' in buffers and b'overflow=1' not in buffers,'tracer overflow'
           print('SOURCE DISCLOSED 480 V9 A/B BITWISE IDENTITY; DORMQR=',buffers.count(b'routine=dormqr'),'DTRSV=',buffers.count(b'routine=dtrsv'))
           PY
