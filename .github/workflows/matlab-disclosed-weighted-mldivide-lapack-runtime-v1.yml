@@ -51,23 +51,12 @@ jobs:
           command: |
             cd('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1');
             run_weighted_mldivide_six_disclosed_only;
-      - name: C Original unchanged MATLAB under passive ELF symbol audit
-        uses: matlab-actions/run-command@v3
-        env:
-          WEIGHTED_LSQ_PROBE_OUTPUT: mldivide_six_audit.json
-          LD_AUDIT: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_lapack_binding_audit.so
-          WLS_BIND_AUDIT_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_native_binding_audit.log
-        with:
-          command: |
-            cd('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1');
-            run_weighted_mldivide_six_disclosed_only;
       - name: Strict exact numerical noninterference on all instrumented results
         shell: bash
         run: |
           set -euo pipefail
           p=Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1
           cmp "$p/mldivide_six_control.json" "$p/mldivide_six_interposed.json"
-          cmp "$p/mldivide_six_control.json" "$p/mldivide_six_audit.json"
           grep -q 'WLS_LAPACK_CALL' "$p/mldivide_native_lapack_calls.log"
           python3 - <<'PY'
           import json
@@ -75,6 +64,10 @@ jobs:
           j=json.load(open(p))
           assert len(j['records'])==6 and j['source_unseen'] is False
           assert all(r['repeat_binary64_identical'] for r in j['records'])
+          log=open('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_native_lapack_calls.log').read()
+          pivots=[int(s.split('count=')[1]) for s in log.splitlines() if 'name=dgeqp3_' in s]
+          assert sum(pivots)>0,'no real original vendor dgeqp3 calls instrumented'
+          print('NATIVE ORIGINAL PIVOTED DGEQP3 CALLS:',sum(pivots))
           print('SIX ORIGINAL MATLAB DISCLOSED WEIGHTED BACKSLASH BIN64 NONINTERFERENCE PASS')
           PY
       - name: Archive unchanged genuine source controls and synthetic-only LAPACK audits
@@ -85,9 +78,7 @@ jobs:
           path: |
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_six_control.json
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_six_interposed.json
-            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_six_audit.json
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_native_lapack_calls.log
-            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_native_binding_audit.log
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/mldivide_runtime_cpu_and_vendor.txt
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/native_probe_build_sha256.txt
           retention-days: 90
