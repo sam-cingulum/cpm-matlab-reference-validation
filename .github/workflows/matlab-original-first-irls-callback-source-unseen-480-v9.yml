@@ -1,0 +1,66 @@
+name: "Genuine MATLAB R2026b | V9 first bisquare callback u/w 480 NEW source-unseen raw x/y"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  first-irls-callback-v9:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify input is wholly new and full private Rust forecast was pushed before source
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9/input.json
+          test "$(sha256sum "$p" | cut -d' ' -f1)" = d85eb82d20f1293436c8d510026f63bb89f79be28346f67b839df11f46c7093d
+          echo 'PRE_ORACLE_PRIVATE_RUST_COMMIT=189053c7c76bf0d6643dfec5cef0c85192d55dfb'
+          echo 'PRE_ORACLE_FROZEN_COMPILED_RUST_ALL_NUMERIC_FIELDS_SHA256=e6d49b317945dfe94a98e764361cb2617fc1dbb3aeecaf80cb4eca3c3b5784b5'
+          python3 - <<'PY'
+          import json
+          d=json.load(open('Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9/input.json'))
+          assert len(d['cases'])==480
+          assert sum(c['scenario']=='large' for c in d['cases'])==216
+          assert {c['n'] for c in d['cases']}=={9,11,15,17,23,25}
+          assert len({c['id'] for c in d['cases']})==480
+          assert all(c['n']==len(c['x_hex'])==len(c['y_hex']) for c in d['cases'])
+          print('V9 strict raw input check PASSED; original MATLAB has not executed in this job')
+          PY
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Record CPU profile and original MATLAB/MKL binary SHA256 without redistributing binaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9
+          { echo "run=$GITHUB_RUN_ID";echo "public_commit=$GITHUB_SHA";lscpu;uname -a;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/first_callback_v9_cpu_and_vendor_fingerprint.txt"
+      - name: Run unchanged genuine robustfit and independently authored callback TWICE on 480 NEW inputs
+        uses: matlab-actions/run-command@v3
+        env:
+          FIRST_IRLS_V9_OUTPUT: first_callback_v9_original_clean.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9');
+            run_original_first_irls_callback_source_unseen_480_v9;
+      - name: Strict two-execution original-source self-consistency and callback noninterference
+        shell: bash
+        run: |
+          python3 Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9/verify_original_v9_self_consistency.py
+      - name: Preserve original MATLAB fields (do not grade against private Rust until retrieved)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-original-MathWorks-R2026b-first-bisquare-callback-480-v9
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9/first_callback_v9_original_clean.json
+            Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9/first_callback_v9_self_consistency.json
+            Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9/first_callback_v9_cpu_and_vendor_fingerprint.txt
+          retention-days: 90
+          if-no-files-found: warn
