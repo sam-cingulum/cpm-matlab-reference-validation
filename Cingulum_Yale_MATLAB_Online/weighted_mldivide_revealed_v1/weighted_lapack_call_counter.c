@@ -35,6 +35,7 @@ DECLARE_COUNTER(dormqr_)
 DECLARE_COUNTER(dtrtrs_)
 DECLARE_COUNTER(dtrsv_)
 DECLARE_COUNTER(dtrsm_)
+DECLARE_COUNTER(dgemv_)
 /* In-memory snapshots from only small disclosed synthetic weighted solvers.
  * No filesystem activity within the original vendor numerics. Capturing
  * bytes does not alter FPU state, input arrays, or their arithmetic. */
@@ -190,6 +191,11 @@ void dtrsm_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void*
  static fp original;if(!original)original=(fp)next("dtrsm_");
  atomic_fetch_add(&cnt_dtrsm_,1);original(a,b,c,d,e,f,g,h,i,j,k,s,t,u,v);
 }
+void dgemv_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void*j,void*k,size_t len){
+ typedef void(*fp)(void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,size_t);
+ static fp original;if(!original)original=(fp)next("dgemv_");
+ atomic_fetch_add(&cnt_dgemv_,1);original(a,b,c,d,e,f,g,h,i,j,k,len);
+}
 /* Floating-return functions forward DOUBLE return, not void. */
 double ddot_(void *a,void *b,void *c,void *d,void *e){
  typedef double (*fp)(void*,void*,void*,void*,void*);static fp original;
@@ -208,13 +214,13 @@ __attribute__((destructor)) static void report(void) {
  int fd=open(path,O_WRONLY|O_CREAT|O_APPEND,0600);if(fd<0)return;
  const char *names[]={"dgeqp3_","dgeqrf_","dgeqr2_","dorgqr_","dlarfg_",
   "dgelsy_","dgelsd_","dgesv_","dscal_","daxpy_","ddot_","dnrm2_",
-  "dormqr_","dtrtrs_","dtrsv_","dtrsm_"};
+  "dormqr_","dtrtrs_","dtrsv_","dtrsm_","dgemv_"};
  unsigned long counts[]={atomic_load(&cnt_dgeqp3_),atomic_load(&cnt_dgeqrf_),
  atomic_load(&cnt_dgeqr2_),atomic_load(&cnt_dorgqr_),atomic_load(&cnt_dlarfg_),
  atomic_load(&cnt_dgelsy_),atomic_load(&cnt_dgelsd_),atomic_load(&cnt_dgesv_),
  atomic_load(&cnt_dscal_),atomic_load(&cnt_daxpy_),atomic_load(&cnt_ddot_),
  atomic_load(&cnt_dnrm2_),atomic_load(&cnt_dormqr_),atomic_load(&cnt_dtrtrs_),
- atomic_load(&cnt_dtrsv_),atomic_load(&cnt_dtrsm_)};
+ atomic_load(&cnt_dtrsv_),atomic_load(&cnt_dtrsm_),atomic_load(&cnt_dgemv_)};
  char buffer[256];
  for(size_t i=0;i<sizeof(counts)/sizeof(counts[0]);i++){
   int n=snprintf(buffer,sizeof(buffer),"WLS_LAPACK_CALL\tpid=%ld\tname=%s\tcount=%lu\n",
