@@ -13,9 +13,10 @@ assert(raw.seed==202611131963 && numel(raw.cases)==480);
 records=struct('id',{},'original_rep',{},'n',{},...
  'original_fieldnames',{},'beta_hex',{},'covb_col_major_hex',{},...
  'coeffcorr_col_major_hex',{},'se_hex',{},'t_hex',{},'p_hex',{},...
- 'resid_hex',{},'rstud_hex',{},'dfe_hex',{},...
+ 'resid_hex',{},'rstud_hex',{},'dfe_hex',{},'Rtol_col_major_hex',{},...
  'tcdf_negative_twosided_hex',{},'tcdf_positive_complement_twosided_hex',{},...
- 'betainc_twosided_hex',{});
+ 'betainc_twosided_hex',{},'betainc_complement_small_hex',{},...
+ 'betainc_upper_small_hex',{},'betainc_complement_scaled_hex',{});
 for rep=1:2
  for i=1:480
   c=raw.cases(i);x=hex2num(char(c.x_hex));y=hex2num(char(c.y_hex));
@@ -32,9 +33,16 @@ for rep=1:2
   row.resid_hex=cellstr(num2hex(st.resid(:)));
   row.rstud_hex=cellstr(num2hex(st.rstud(:)));
   row.dfe_hex=num2hex(st.dfe);
+  row.Rtol_col_major_hex=cellstr(num2hex(st.Rtol(:)));
   row.tcdf_negative_twosided_hex=cellstr(num2hex(2*tcdf(-abs(st.t(:)),st.dfe)));
   row.tcdf_positive_complement_twosided_hex=cellstr(num2hex(2*(1-tcdf(abs(st.t(:)),st.dfe))));
   row.betainc_twosided_hex=cellstr(num2hex(betainc(st.dfe./(st.dfe+st.t(:).^2),st.dfe/2,0.5)));
+  u=(st.t(:).^2)./(st.dfe+st.t(:).^2);
+  row.betainc_complement_small_hex=cellstr(num2hex(1-betainc(u,0.5,st.dfe/2)));
+  row.betainc_upper_small_hex=cellstr(num2hex(betainc(u,0.5,st.dfe/2,'upper')));
+  scaled=abs(st.t(:))./sqrt(st.dfe);
+  uscaled=(scaled.^2)./(1+scaled.^2);
+  row.betainc_complement_scaled_hex=cellstr(num2hex(1-betainc(uscaled,0.5,st.dfe/2)));
   records(end+1)=row; %#ok<AGROW>
  end
  fprintf('GENUINE DISCLOSED V11 R2026b full inference %d / 2 repetitions complete\n',rep);

@@ -13,7 +13,9 @@ assert len(rows) == 960
 fields = ["beta_hex", "covb_col_major_hex", "coeffcorr_col_major_hex", "se_hex",
           "t_hex", "p_hex", "resid_hex", "rstud_hex", "dfe_hex",
           "tcdf_negative_twosided_hex", "tcdf_positive_complement_twosided_hex",
-          "betainc_twosided_hex", "original_fieldnames"]
+          "betainc_twosided_hex", "betainc_complement_small_hex",
+          "betainc_upper_small_hex", "betainc_complement_scaled_hex",
+          "Rtol_col_major_hex", "original_fieldnames"]
 for i in range(480):
     a, b = rows[i], rows[i + 480]
     assert a["original_rep"] == 1 and b["original_rep"] == 2
