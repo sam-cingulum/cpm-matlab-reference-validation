@@ -1,0 +1,7 @@
+# V12 full original `[b,stats]` prospective source-unseen gate: INACTIVE
+
+This folder contains **only preauthored original-source infrastructure**. There is deliberately **NO** `input.json`, `PREORACLE_V12_LOCK.json`, original full output, frozen Rust forecast, nor original MathWorks run. The workflow MUST fail closed until independently compiled Rust predicts all 17 original stats fields and `[b]` from raw x/y, that prediction is pushed and SHA-frozen, and the next fresh raw input challenge is sealed under the audited preoracle protocol.
+
+The original MATLAB R2026b calls remain unchanged, and the complete source output preserves all numeric values as hexadecimal binary64 in MATLAB column-major order with explicit 2-D shapes and exact fieldnames. The CPU preflight permits only the separately certified AMD profile and rejects other processors **before** MATLAB execution. The CLI strict scorer under `tests/matlab_free/strict_full_robustfit_contract.py` in the private Rust repository must be frozen before V12 source exposure. A clean source-unseen result requires its independent historical lock/forecast/original timestamp chronology, genuine original two-pass repeatability, source/hash provenance and full numeric output field equality.
+
+V12 is NOT launched until that standard is met. Previous V10 failure, V11 19-field success and disclosed V11 9-field inference passes remain distinct immutable historical results.

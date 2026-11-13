@@ -1,0 +1,64 @@
+name: "Genuine MathWorks R2026b | V12 complete [b,stats] 17-field source-unseen AMD (LOCKED INACTIVE)"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-full-v12:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: FAIL CLOSED unless fresh V12 independent Rust complete forecast is already frozen and pushed
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v12
+          python3 "$p/verify_preoracle_v12_frozen_manifest.py"
+      - name: Reject unsupported CPU BEFORE first genuine MATLAB execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v12
+          { echo "Original Run=$GITHUB_RUN_ID"; echo "Public Commit=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu_vendor_fingerprint.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45|9V74)' || { echo "Original MATLAB V12 hardware unsupported: $model" >&2; exit 86; }
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Pin genuine original MATLAB binary hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v12
+          for n in MATLAB libmwlapack.so mkl.so; do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit); if [ -n "$f" ]; then sha256sum "$f" >> "$p/original_cpu_vendor_fingerprint.txt"; fi; done
+      - name: Execute genuine unchanged MathWorks R2026b original robustfit on fresh sealed V12 twice
+        uses: matlab-actions/run-command@v3
+        env:
+          V12_ORIGINAL_FULL_OUTPUT: original_v12_complete_full_stats.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v12');
+            run_original_full_robustfit_v12;
+      - name: SHA-archive genuine complete original [b,stats]
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v12
+          sha256sum "$p/original_v12_complete_full_stats.json" "$p/original_cpu_vendor_fingerprint.txt" > "$p/original_sha256_manifest.txt"
+      - name: Preserve original source outputs, even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-original-r2026b-v12-locked-full-17-stats
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v12/original_v12_complete_full_stats.json
+            Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v12/original_cpu_vendor_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/matlab_robustfit_end_to_end_source_unseen_480_v12/original_sha256_manifest.txt
+          retention-days: 90
+          if-no-files-found: warn
