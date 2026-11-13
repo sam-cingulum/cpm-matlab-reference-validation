@@ -48,6 +48,7 @@ jobs:
           WLS_LAPACK_TRACE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_lapack_calls.log
           WLS_NUMERIC_BUFFER_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_vendor_rhs_buffers.log
           WLS_CAPTURE_DORMQR_STAGE1: "1"
+          WLS_DORMQR_CANCELLATION_TRIPLES: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_original_vendor_cancellation_triples.log
         with:
           command: |
             cd('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1');
@@ -70,6 +71,9 @@ jobs:
           assert buffers.count(b'routine=dtrsv')>=960,'not all original upper triangular RHS results traced'
           assert buffers.count(b'FIRST_STAGE=')>=960,'missing unchanged-k1 original reflector shadow output'
           assert buffers.count(b'PACKED_A=')>=960 and buffers.count(b'TAU=')>=960,'original packed Householder inputs not captured'
+          micros=(p/'weighted_480_original_vendor_cancellation_triples.log').read_bytes()
+          assert micros.count(b'VENDOR_DORMQR_TRIPLE\t')==13992,'expected all 13,992 source-disclosed cancellation triples'
+          assert b'failures=0' in micros and b'invalid=1' not in micros,'vendor cancellation microprobe repeat failure'
           assert b'overflow=0' in buffers and b'overflow=1' not in buffers,'tracer overflow'
           print('SOURCE DISCLOSED 480 V9 A/B BITWISE IDENTITY; DORMQR=',buffers.count(b'routine=dormqr'),'DTRSV=',buffers.count(b'routine=dtrsv'))
           PY
@@ -83,6 +87,7 @@ jobs:
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_original_control.json
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_original_interposed.json
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_vendor_rhs_buffers.log
+            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_original_vendor_cancellation_triples.log
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_lapack_calls.log
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_v9_480_cpu_and_vendor.txt
             Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/vendor_full480_build_sha256.txt

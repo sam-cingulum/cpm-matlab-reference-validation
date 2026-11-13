@@ -51,6 +51,62 @@ struct rhs_event {
 static struct rhs_event rhs_events[MAX_STAGES];
 static _Atomic unsigned rhs_count;
 static unsigned rhs_overflow;
+/* 13,992 controlled cancellation triples for six previously disclosed V9
+ * AMD DORMQR dimensions. Every probe is synthetic and uses the genuine
+ * original exported vendor LAPACK at runtime. No vendor code is copied. */
+#define MAX_MICROS 16000
+struct cancellation_event {
+ uint8_t m,i,j,k,permutation,invalid;
+ uint64_t output_bits;
+};
+static struct cancellation_event micro_events[MAX_MICROS];
+static _Atomic unsigned micro_count;
+static _Atomic unsigned micro_mask;
+static _Atomic unsigned micro_failures;
+typedef void(*dormqr_original_fn)(
+ void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,size_t,size_t);
+static void run_disclosed_dormqr_cancellation_triples(int rows,dormqr_original_fn original){
+ if(!getenv("WLS_DORMQR_CANCELLATION_TRIPLES"))return;
+ if(rows<9||rows>MAX_SAMPLES)return;
+ unsigned mask=(unsigned)1u<<(unsigned)rows;
+ if(atomic_fetch_or(&micro_mask,mask)&mask)return;
+ /* C is width-one. Fabricated reflector v_i=1, tau=1, C_0=0:
+  * original MATLAB DORMQR's output C_0 is exactly minus its reduced dot.
+  * All other input terms are 0, +2^53, -2^53, or +1. */
+ double packed_a[MAX_SAMPLES];
+ for(int z=0;z<rows;z++)packed_a[z]=1.0;
+ double tau=1.0;
+ int64_t m=(int64_t)rows,n=1,k=1,lda=m,ldc=m,lwork=512;
+ char side='L',trans='T';
+ for(int i=1;i<rows-2;i++)for(int j=i+1;j<rows-1;j++)for(int kidx=j+1;kidx<rows;kidx++){
+  for(int perm=0;perm<3;perm++){
+   unsigned slot=atomic_fetch_add(&micro_count,1);
+   if(slot>=MAX_MICROS){atomic_fetch_add(&micro_failures,1);return;}
+   int big=(perm==2)?j:i;
+   int neg=(perm==0)?j:kidx;
+   int unit=(perm==0)?kidx:((perm==1)?j:i);
+   uint64_t saved=0;
+   int bad=0;
+   for(int repeat=0;repeat<2;repeat++){
+    double rhs[MAX_SAMPLES]={0.0};
+    double work[512]={0.0};
+    rhs[big]=0x1p53;rhs[neg]=-0x1p53;rhs[unit]=1.0;
+    int64_t info=0;
+    original(&side,&trans,&m,&n,&k,packed_a,&lda,&tau,rhs,&ldc,work,&lwork,&info,1,1);
+    uint64_t observed=0;
+    memcpy(&observed,&rhs[0],8);
+    if(info!=0||!__builtin_isfinite(rhs[0]))bad=1;
+    if(repeat==0)saved=observed;
+    else if(observed!=saved)bad=1;
+   }
+   struct cancellation_event *e=&micro_events[slot];
+   e->m=(uint8_t)rows;e->i=(uint8_t)i;e->j=(uint8_t)j;
+   e->k=(uint8_t)kidx;e->permutation=(uint8_t)perm;
+   e->invalid=(uint8_t)bad;e->output_bits=saved;
+   if(bad)atomic_fetch_add(&micro_failures,1);
+  }
+ }
+}
 static struct rhs_event *event_new(const char *routine) {
  unsigned slot=atomic_fetch_add(&rhs_count,1);
  if(slot>=MAX_STAGES){rhs_overflow++;return NULL;}
@@ -114,8 +170,7 @@ WRAP_6(daxpy_)
  * hidden char-length words as well as every original pointer. Instrumented
  * output must remain BYTE-IDENTICAL to the uninstru­mented control. */
 void dormqr_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void*j,void*k,void*l,void*m,size_t s,size_t t){
- typedef void(*fp)(void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,size_t,size_t);
- static fp original;if(!original)original=(fp)next("dormqr_");
+ static dormqr_original_fn original;if(!original)original=(dormqr_original_fn)next("dormqr_");
  atomic_fetch_add(&cnt_dormqr_,1);
  int32_t rows=lo32(c),columns=lo32(d),reflectors=lo32(e),lda=lo32(g),ldc=lo32(j),work=lo32(l);
  struct rhs_event *event=NULL;
@@ -154,6 +209,7 @@ void dormqr_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void
        event->first_stage_valid=1;
      }
    }
+   run_disclosed_dormqr_cancellation_triples(rows,original);
  }
 }
 void dtrtrs_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void*j,size_t s,size_t t,size_t u){
@@ -258,4 +314,20 @@ __attribute__((destructor)) static void report(void) {
  }
  fprintf(out,"WLS_NUMERIC_SUMMARY\tpid=%ld\tselected=%u\toverflow=%u\n",(long)getpid(),total,rhs_overflow);
  fclose(out);
+ const char *micro_path=getenv("WLS_DORMQR_CANCELLATION_TRIPLES");
+ if(micro_path&&*micro_path){
+  FILE *mfile=fopen(micro_path,"a");
+  if(mfile){
+   unsigned count=atomic_load(&micro_count);
+   for(unsigned idx=0;idx<count&&idx<MAX_MICROS;idx++){
+     const struct cancellation_event *e=&micro_events[idx];
+     fprintf(mfile,"VENDOR_DORMQR_TRIPLE\twidth=%u\ti=%u\tj=%u\tk=%u\tunit_position=%u\toutput=%016llx\tinvalid=%u\n",
+       e->m,e->i,e->j,e->k,e->permutation,
+       (unsigned long long)e->output_bits,e->invalid);
+   }
+   fprintf(mfile,"VENDOR_DORMQR_TRIPLE_SUMMARY\tpid=%ld\ttriples=%u\tfailures=%u\n",
+     (long)getpid(),count,atomic_load(&micro_failures));
+   fclose(mfile);
+  }
+ }
 }
