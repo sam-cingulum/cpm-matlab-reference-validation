@@ -1,0 +1,87 @@
+name: "MathWorks R2026b | DISCLOSED V9 480 weighted DORMQR/DTRSV RHS capture"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-disclosed-v9-full-weighted-rhs:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild immutable previously REVEALED V9 source-derived weights and compile passive ABI observers
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1
+          python3 "$p/generate_480_already_disclosed.py"
+          test "$(sha256sum "$p/inputs_v9_480_disclosed.json" | cut -d' ' -f1)" = 98ad41caf24db8e5fbc6f7f104a98e5e25fe1608cb8edc00f9de98ce98bef0b1
+          gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC "$p/weighted_lapack_call_counter.c" -o "$p/weighted_lapack_call_counter.so" -ldl
+          sha256sum "$p/weighted_lapack_call_counter.c" "$p/weighted_lapack_call_counter.so" > "$p/vendor_full480_build_sha256.txt"
+          echo 'V9 SOURCE FIRST WEIGHTS ALREADY PUBLISHED: retrospective only, no prospective certification.'
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Fingerprint genuine host, MathWorks vendor and policy
+        shell: bash
+        run: |
+          p=Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1
+          { echo "run=$GITHUB_RUN_ID";echo "commit=$GITHUB_SHA";lscpu;uname -a;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/weighted_v9_480_cpu_and_vendor.txt"
+      - name: Run genuine untouched MATLAB 480 disclosed weighted solves without instrumentation
+        uses: matlab-actions/run-command@v3
+        env:
+          WLS_480_OUTPUT: weighted_480_original_control.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1');
+            run_disclosed_480_weighted_rhs_transform;
+      - name: Run IDENTICAL original 480 under lossless passive DGEQP3 DORMQR DTRSV observation
+        uses: matlab-actions/run-command@v3
+        env:
+          WLS_480_OUTPUT: weighted_480_original_interposed.json
+          LD_PRELOAD: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_lapack_call_counter.so
+          WLS_LAPACK_TRACE_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_lapack_calls.log
+          WLS_NUMERIC_BUFFER_LOG: ${{ github.workspace }}/Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_vendor_rhs_buffers.log
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1');
+            run_disclosed_480_weighted_rhs_transform;
+      - name: Reject instrumentation interference, lost source buffers, non-repeated MATLAB output
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1
+          cmp "$p/weighted_480_original_control.json" "$p/weighted_480_original_interposed.json"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1')
+          d=json.load(open(p/'weighted_480_original_control.json'))
+          assert d['n']==480 and d['source_unseen'] is False
+          assert all(row['repeat_identical'] and row['beta_hex']==row['beta_repeat_hex'] for row in d['records'])
+          buffers=(p/'weighted_480_vendor_rhs_buffers.log').read_bytes()
+          assert buffers.count(b'routine=dormqr')>=960,'not all 480 original weighted solve RHS calls were traced twice'
+          assert buffers.count(b'routine=dtrsv')>=960,'not all original upper triangular RHS results traced'
+          assert b'overflow=0' in buffers and b'overflow=1' not in buffers,'tracer overflow'
+          print('SOURCE DISCLOSED 480 V9 A/B BITWISE IDENTITY; DORMQR=',buffers.count(b'routine=dormqr'),'DTRSV=',buffers.count(b'routine=dtrsv'))
+          PY
+      - name: Archive full original raw-RHS numerical observation and provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-MathWorks-R2026b-V9-disclosed-480-DORMQR-DTRSV-full-ABI
+          path: |
+            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/inputs_v9_480_disclosed.sha256
+            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_original_control.json
+            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_original_interposed.json
+            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_vendor_rhs_buffers.log
+            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_480_lapack_calls.log
+            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/weighted_v9_480_cpu_and_vendor.txt
+            Cingulum_Yale_MATLAB_Online/weighted_mldivide_revealed_v1/vendor_full480_build_sha256.txt
+          retention-days: 90
+          if-no-files-found: warn

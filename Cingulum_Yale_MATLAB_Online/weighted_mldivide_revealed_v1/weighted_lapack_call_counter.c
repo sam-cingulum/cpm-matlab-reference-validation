@@ -38,7 +38,7 @@ DECLARE_COUNTER(dtrsm_)
 /* In-memory snapshots from only small disclosed synthetic weighted solvers.
  * No filesystem activity within the original vendor numerics. Capturing
  * bytes does not alter FPU state, input arrays, or their arithmetic. */
-#define MAX_STAGES 128
+#define MAX_STAGES 4096
 #define MAX_SAMPLES 25
 struct rhs_event {
  char routine[8], side, trans, diag;
@@ -119,7 +119,7 @@ void dormqr_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,void*i,void
  if(rows>=9&&rows<=MAX_SAMPLES&&columns==1&&reflectors==2&&ldc>=rows&&work>=1){
    event=event_new("dormqr");
    if(event){
-     event->side=a?*(char*)a:0;event->trans=b?*(char*)b:0;
+     event->side=a?*(char*)a:0;event->trans=b?*(char*)b:0;event->diag='-';
      event->m=rows;event->n=columns;event->k=reflectors;
      save_numbers(event->before,i,(unsigned)rows);
    }
@@ -147,7 +147,14 @@ void dtrsv_(void*a,void*b,void*c,void*d,void*e,void*f,void*g,void*h,size_t s,siz
      event->side=a?*(char*)a:0;event->trans=b?*(char*)b:0;event->diag=c?*(char*)c:0;
      event->m=dim;event->n=1;event->k=0;
      save_numbers(event->before,g,2);
-     save_numbers(event->a,e,4);
+     /* DTRSV uses the UPPER TRIANGLE at column-major LDA. The intervening
+      * packed Householder entries are NOT R[1,0] or R[0,1]. Earlier v3
+      * contiguous-A capture could falsely suggest a different R. */
+     save_numbers(event->a,e,1);
+     event->a[1]=0;
+     const unsigned char *base=(const unsigned char*)e;
+     memcpy(&event->a[2],base+8u*(size_t)lda,8);
+     memcpy(&event->a[3],base+8u*((size_t)lda+1u),8);
    }
  }
  original(a,b,c,d,e,f,g,h,s,t,u);
