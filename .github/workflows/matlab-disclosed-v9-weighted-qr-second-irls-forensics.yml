@@ -1,0 +1,63 @@
+name: "Genuine MATLAB R2026b | DISCLOSED V9 weighted QR and second IRLS retrospective"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  already-disclosed-v9-weighted-qr:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify V9 disclosed input hash, never classify as prospective
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9
+          test "$(sha256sum "$p/input.json" | cut -d' ' -f1)" = d85eb82d20f1293436c8d510026f63bb89f79be28346f67b839df11f46c7093d
+          echo 'RETROSPECTIVE: Original V9 MATLAB already revealed in three prior runs.'
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Fingerprint real MathWorks CPU and vendor libraries
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9
+          { echo "run=$GITHUB_RUN_ID";echo "commit=$GITHUB_SHA";lscpu;for n in MATLAB libmwlapack.so mkl.so;do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit);if [ -n "$f" ];then sha256sum "$f";fi;done; } > "$p/retrospective_weighted_qr_v9_cpu.txt"
+      - name: Run original unmodified robustfit plus numeric second-callback observations
+        uses: matlab-actions/run-command@v3
+        env:
+          WLS_V9_REVEALED_OUTPUT: retrospective_weighted_qr_second_callback_v9_original.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9');
+            run_disclosed_v9_full_irls_weighted_stage_forensics;
+      - name: Validate original output is explicitly retrospective and noninterfering
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          p='Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9/retrospective_weighted_qr_second_callback_v9_original.json'
+          d=json.load(open(p))
+          assert d['case_count']==480 and d['source_unseen'] is False
+          assert all(r['original_and_callback_noninterfering'] for r in d['records'])
+          assert sum(r['n'] for r in d['records'])==d['second_u_total']
+          assert sum(r['second_u_wls_exact_elements'] for r in d['records'])==d['second_u_wls_exact_elements_total']
+          print('RETROSPECTIVE V9 WEIGHTED QR:',d['second_u_wls_exact_elements_total'],'/',d['second_u_total'])
+          PY
+      - name: Archive source-visible weighted QR, second callback and final stats
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-original-MATLAB-disclosed-V9-weighted-QR-second-IRLS
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9/retrospective_weighted_qr_second_callback_v9_original.json
+            Cingulum_Yale_MATLAB_Online/matlab_first_callback_source_unseen_480_v9/retrospective_weighted_qr_v9_cpu.txt
+          retention-days: 90
+          if-no-files-found: warn
