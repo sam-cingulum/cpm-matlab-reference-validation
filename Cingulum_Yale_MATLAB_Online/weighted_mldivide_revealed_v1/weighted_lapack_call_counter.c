@@ -51,12 +51,12 @@ struct rhs_event {
 static struct rhs_event rhs_events[MAX_STAGES];
 static _Atomic unsigned rhs_count;
 static unsigned rhs_overflow;
-/* 13,992 controlled cancellation triples for six previously disclosed V9
+/* 16,365 controlled cancellation triples for six previously disclosed V9
  * AMD DORMQR dimensions. Every probe is synthetic and uses the genuine
  * original exported vendor LAPACK at runtime. No vendor code is copied. */
-#define MAX_MICROS 16000
+#define MAX_MICROS 20000
 struct cancellation_event {
- uint8_t m,i,j,k,permutation,invalid;
+ uint8_t m,i,j,k,permutation,observer,invalid;
  uint64_t output_bits;
 };
 static struct cancellation_event micro_events[MAX_MICROS];
@@ -70,38 +70,43 @@ static void run_disclosed_dormqr_cancellation_triples(int rows,dormqr_original_f
  if(rows<9||rows>MAX_SAMPLES)return;
  unsigned mask=(unsigned)1u<<(unsigned)rows;
  if(atomic_fetch_or(&micro_mask,mask)&mask)return;
- /* C is width-one. Fabricated reflector v_i=1, tau=1, C_0=0:
-  * original MATLAB DORMQR's output C_0 is exactly minus its reduced dot.
-  * All other input terms are 0, +2^53, -2^53, or +1. */
+ /* C is width-one. Fabricated reflector v_i=1, tau=1 and C_observer=0.
+  * Original MATLAB DORMQR's output C_observer is exactly minus its dot.
+  * Include leaf 0 in the tree. Use +/-2^54, NOT +/-2^53: +1 is then
+  * swallowed by BOTH signs (no asymmetric boundary near -2^53), so a
+  * binary reduction tree yields exactly ONE nonzero of the three probes
+  * for each three-leaf triple. */
  double packed_a[MAX_SAMPLES];
  for(int z=0;z<rows;z++)packed_a[z]=1.0;
  double tau=1.0;
  int64_t m=(int64_t)rows,n=1,k=1,lda=m,ldc=m,lwork=512;
  char side='L',trans='T';
- for(int i=1;i<rows-2;i++)for(int j=i+1;j<rows-1;j++)for(int kidx=j+1;kidx<rows;kidx++){
+ for(int i=0;i<rows-2;i++)for(int j=i+1;j<rows-1;j++)for(int kidx=j+1;kidx<rows;kidx++){
   for(int perm=0;perm<3;perm++){
    unsigned slot=atomic_fetch_add(&micro_count,1);
    if(slot>=MAX_MICROS){atomic_fetch_add(&micro_failures,1);return;}
    int big=(perm==2)?j:i;
    int neg=(perm==0)?j:kidx;
    int unit=(perm==0)?kidx:((perm==1)?j:i);
+   int observer=0;
+   while(observer==i||observer==j||observer==kidx)observer++;
    uint64_t saved=0;
    int bad=0;
    for(int repeat=0;repeat<2;repeat++){
     double rhs[MAX_SAMPLES]={0.0};
     double work[512]={0.0};
-    rhs[big]=0x1p53;rhs[neg]=-0x1p53;rhs[unit]=1.0;
+    rhs[big]=0x1p54;rhs[neg]=-0x1p54;rhs[unit]=1.0;
     int64_t info=0;
     original(&side,&trans,&m,&n,&k,packed_a,&lda,&tau,rhs,&ldc,work,&lwork,&info,1,1);
     uint64_t observed=0;
-    memcpy(&observed,&rhs[0],8);
-    if(info!=0||!__builtin_isfinite(rhs[0]))bad=1;
+    memcpy(&observed,&rhs[observer],8);
+    if(info!=0||!__builtin_isfinite(rhs[observer]))bad=1;
     if(repeat==0)saved=observed;
     else if(observed!=saved)bad=1;
    }
    struct cancellation_event *e=&micro_events[slot];
    e->m=(uint8_t)rows;e->i=(uint8_t)i;e->j=(uint8_t)j;
-   e->k=(uint8_t)kidx;e->permutation=(uint8_t)perm;
+   e->k=(uint8_t)kidx;e->permutation=(uint8_t)perm;e->observer=(uint8_t)observer;
    e->invalid=(uint8_t)bad;e->output_bits=saved;
    if(bad)atomic_fetch_add(&micro_failures,1);
   }
@@ -321,8 +326,8 @@ __attribute__((destructor)) static void report(void) {
    unsigned count=atomic_load(&micro_count);
    for(unsigned idx=0;idx<count&&idx<MAX_MICROS;idx++){
      const struct cancellation_event *e=&micro_events[idx];
-     fprintf(mfile,"VENDOR_DORMQR_TRIPLE\twidth=%u\ti=%u\tj=%u\tk=%u\tunit_position=%u\toutput=%016llx\tinvalid=%u\n",
-       e->m,e->i,e->j,e->k,e->permutation,
+     fprintf(mfile,"VENDOR_DORMQR_TRIPLE\twidth=%u\ti=%u\tj=%u\tk=%u\tunit_position=%u\tobserver=%u\toutput=%016llx\tinvalid=%u\n",
+       e->m,e->i,e->j,e->k,e->permutation,e->observer,
        (unsigned long long)e->output_bits,e->invalid);
    }
    fprintf(mfile,"VENDOR_DORMQR_TRIPLE_SUMMARY\tpid=%ld\ttriples=%u\tfailures=%u\n",
