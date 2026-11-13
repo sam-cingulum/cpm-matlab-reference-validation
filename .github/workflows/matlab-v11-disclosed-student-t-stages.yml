@@ -1,0 +1,64 @@
+name: "Genuine MathWorks R2026b | disclosed V11 tcdf and beta numerical primitive stages"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-disclosed-v11-stages:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject mutated historical input, incompatible CPU before genuine MATLAB
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online
+          p=$root/matlab_robustfit_end_to_end_source_unseen_480_v11/input.json
+          q=$root/matlab_v11_disclosed_student_t_stages
+          test "$(sha256sum "$p" | cut -d' ' -f1)" = 1144418910dc6a81ba3b98f9540fe914ac796d9a9bab25ce75f6c1ef2ace2f53
+          { echo "Original Run=$GITHUB_RUN_ID"; echo "Source Commit=$GITHUB_SHA"; lscpu; uname -a; } > "$q/cpu_and_vendor_fingerprint.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original source CPU=$model"
+          printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45|9V74)' || { echo 'Unsupported original source CPU, no MATLAB run' >&2; exit 86; }
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Audit genuine vendor binary and exact unchanged probe SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          q=Cingulum_Yale_MATLAB_Online/matlab_v11_disclosed_student_t_stages
+          for n in MATLAB libmwlapack.so mkl.so; do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit); if [ -n "$f" ]; then sha256sum "$f" >> "$q/cpu_and_vendor_fingerprint.txt"; fi; done
+          sha256sum "$q/run_original_v11_student_t_stages.m" >> "$q/cpu_and_vendor_fingerprint.txt"
+      - name: Execute original MathWorks Student-t, betainc, gamma numerical probes twice
+        uses: matlab-actions/run-command@v3
+        env:
+          V11_DISCLOSED_STUDENT_T_OUTPUT: original_v11_disclosed_student_t_stages.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online/matlab_v11_disclosed_student_t_stages');
+            run_original_v11_student_t_stages;
+      - name: Verify source original repeat and SHA-archive bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          q=Cingulum_Yale_MATLAB_Online/matlab_v11_disclosed_student_t_stages
+          python3 "$q/verify_original_v11_student_t_stages.py" "$q/original_v11_disclosed_student_t_stages.json"
+          sha256sum "$q/original_v11_disclosed_student_t_stages.json" "$q/cpu_and_vendor_fingerprint.txt" > "$q/original_sha256_manifest.txt"
+      - name: Preserve read-only ORIGINAL source bytes and CPU profile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-v11-disclosed-student-t-stages
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_v11_disclosed_student_t_stages/original_v11_disclosed_student_t_stages.json
+            Cingulum_Yale_MATLAB_Online/matlab_v11_disclosed_student_t_stages/cpu_and_vendor_fingerprint.txt
+            Cingulum_Yale_MATLAB_Online/matlab_v11_disclosed_student_t_stages/original_sha256_manifest.txt
+          retention-days: 90
+          if-no-files-found: warn
