@@ -1,0 +1,35 @@
+{
+  "beta_count": 567,
+  "classification": "PERMANENT_ARCHIVE_GENUINE_ORIGINAL_R2026B_SOURCE_DISCLOSED_SWITCH_V2_TWO_AMD_HOSTS",
+  "gamma_count": 126,
+  "genuine_original_numeric_sha256": "e0f056aa297f8c9d26232e879b69f13dbf8dcd6a2e4d6f68e91ea8766a1aba33",
+  "original_repetitions_per_run": 2,
+  "original_source_head": "2e329bd5038ace9d99d5668c3811fad89941aadd",
+  "original_source_input_sha256": "bae7d427f4866d92f4435a8803730b9114886199edb0c03df594bbd3803159dc",
+  "source_unseen_V12": "NOT_RUN",
+  "student_count": 170,
+  "successful_original_runs": {
+    "43541967648": {
+      "cpu_gzip_sha256": "35bbf9077bbc589c31ab733977fab514dc86835861f71477c6d27f044ca92dff",
+      "cpu_model": "AMD EPYC 9V45",
+      "cpu_uncompressed_sha256": "a3e56660fe238d918eb138842b894fff83d5fc592595ab13d5ebc6ce03bfb43b",
+      "original_gzip_sha256": "65037143fe909d6ae5069468871dea754fd1b5557cfa7f7273b0c9a874ece3be",
+      "original_uncompressed_sha256": "e0f056aa297f8c9d26232e879b69f13dbf8dcd6a2e4d6f68e91ea8766a1aba33",
+      "public_source_head": "2e329bd5038ace9d99d5668c3811fad89941aadd",
+      "source_original_repetitions": 2
+    },
+    "43541973927": {
+      "cpu_gzip_sha256": "6dc434eba0791ddaee4b4458d30c4fa7c8ac2080c5c29765de22915d53aaab85",
+      "cpu_model": "AMD EPYC 7763",
+      "cpu_uncompressed_sha256": "1fed0e79481aa33503d0780692b5c8699c845a11da5eda749fe9b30c3f97c8de",
+      "original_gzip_sha256": "65037143fe909d6ae5069468871dea754fd1b5557cfa7f7273b0c9a874ece3be",
+      "original_uncompressed_sha256": "e0f056aa297f8c9d26232e879b69f13dbf8dcd6a2e4d6f68e91ea8766a1aba33",
+      "public_source_head": "2e329bd5038ace9d99d5668c3811fad89941aadd",
+      "source_original_repetitions": 2
+    }
+  },
+  "unsupported_host_runs_rejected_before_original_MATLAB": [
+    43541830604,
+    43541970655
+  ]
+}
