@@ -1,0 +1,31 @@
+{
+  "classification": "SOURCE_DISCLOSED_ORIGINAL_MATHWORKS_R2026B_NOT_V12_SOURCE_UNSEEN",
+  "genuine_original_repetitions_per_run": 2,
+  "original_outputs_identical_across_amd_9v45_and_9v74": true,
+  "original_runner_commit": "012963ae6efe6ae690ad394ded08f0e22c8a82c9",
+  "original_source_numeric_sha256": "e887aac8fb98a748c142247ad8d33babb810e0b2737f49c6f835d6b22faf38f7",
+  "published_input_sha256": "0c7da494a9c70dee799e49de266c3de5d543b323169309e7b57b16938a1f67af",
+  "runs": [
+    {
+      "cpu_manifest_sha256": "c7b048a42bc301d1b6c1097cfe0bc29b79e00d2914b77ffc1d8a542de88a20aa",
+      "immutable_archive": "source_runs/43534195678",
+      "original_manifest_sha256": "57fd9462af2409c1fe9691dfc485f0bc75c42805b6849429001fa28b70a11756",
+      "original_sha256": "e887aac8fb98a748c142247ad8d33babb810e0b2737f49c6f835d6b22faf38f7",
+      "run_id": 43534195678
+    },
+    {
+      "cpu_manifest_sha256": "52b39a62800ac10fa5165a36e6b77022504a1b1551fc080ae89547e1a27b4d27",
+      "immutable_archive": "source_runs/43534693103",
+      "original_manifest_sha256": "14213bc6aae47f9a314c1bfd0905c3ef41ee32170a7bcfe986bc6f45ce97af3b",
+      "original_sha256": "e887aac8fb98a748c142247ad8d33babb810e0b2737f49c6f835d6b22faf38f7",
+      "run_id": 43534693103
+    },
+    {
+      "cpu_manifest_sha256": "714356f5d3f3e74706f18b1507dad0f82fd07a62b18e3f926b4ba03bc0890422",
+      "immutable_archive": "source_runs/43534696574",
+      "original_manifest_sha256": "fdfd61fbd5463378bc28443ca19abf0ccb57b5dd245798878e82a74fdd6c420e",
+      "original_sha256": "e887aac8fb98a748c142247ad8d33babb810e0b2737f49c6f835d6b22faf38f7",
+      "run_id": 43534696574
+    }
+  ]
+}
