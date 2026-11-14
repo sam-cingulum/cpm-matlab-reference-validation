@@ -1,0 +1,63 @@
+name: "Genuine MATLAB R2026b | disclosed gamma beta wider numerical grid v1"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-gamma-beta-disclosed:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: SHA-verify pre-published disclosed input and eligible CPU before MATLAB
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_grid_v1
+          cd "$p"
+          sha256sum -c input.sha256
+          { echo "Run=$GITHUB_RUN_ID"; echo "Commit=$GITHUB_SHA"; lscpu; uname -a; } > cpu_original.txt
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Source CPU=$model"
+          printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45|9V74)' || { echo 'Unsupported CPU: original MATLAB skipped' >&2; exit 86; }
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Hash original MathWorks vendor libraries
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_grid_v1
+          sha256sum "$p/run_original_gamma_beta_grid_v1.m" >> "$p/cpu_original.txt"
+          for n in MATLAB libmwlapack.so mkl.so; do f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit); if [ -n "$f" ]; then sha256sum "$f" >> "$p/cpu_original.txt"; fi; done
+      - name: Run genuine original MATLAB gamma and beta twice each
+        uses: matlab-actions/run-command@v3
+        env:
+          DISCLOSED_GAMMA_BETA_OUTPUT: original_disclosed_gamma_beta_grid_v1.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_grid_v1');
+            run_original_gamma_beta_grid_v1;
+      - name: Verify two source repetitions and archive SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_grid_v1
+          python3 "$p/verify_disclosed_original_gamma_beta_grid_v1.py" "$p/original_disclosed_gamma_beta_grid_v1.json"
+          sha256sum "$p/original_disclosed_gamma_beta_grid_v1.json" "$p/cpu_original.txt" "$p/input.json" > "$p/original_manifest.sha256"
+      - name: Preserve genuine disclosed numerical probe and CPU evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-r2026b-disclosed-gamma-beta-grid-v1
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_grid_v1/original_disclosed_gamma_beta_grid_v1.json
+            Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_grid_v1/cpu_original.txt
+            Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_grid_v1/original_manifest.sha256
+          retention-days: 90
+          if-no-files-found: warn
