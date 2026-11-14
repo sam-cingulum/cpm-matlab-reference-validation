@@ -1,0 +1,77 @@
+name: "Genuine MATLAB R2026b | SOURCE-DISCLOSED gamma beta switch microprobe v2"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-disclosed-switch-v2:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail closed if disclosed input SHA or eligible AMD CPU mismatches
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_switch_microprobe_v2
+          (cd "$p" && sha256sum -c input.sha256)
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_switch_microprobe_v2")
+          x=json.loads((p/"input.json").read_bytes())
+          assert x["classification"]=="SOURCE_DISCLOSED_NUMERICAL_BRANCH_MICROPROBE_NOT_SOURCE_UNSEEN"
+          assert x["source_unseen_V12"]=="NOT_GENERATED"
+          assert x["original_MATLAB_numeric_data_supplied"] is False
+          PY
+          { echo "Run=$GITHUB_RUN_ID"; echo "Commit=$GITHUB_SHA"; lscpu; uname -a; } > "$p/cpu_and_original_vendor.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original vendor CPU=$model"
+          printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45|9V74)' || {
+            echo "Unsupported original CPU: MATLAB NOT EXECUTED" >&2
+            exit 86
+          }
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Record source + vendor binary hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_switch_microprobe_v2
+          sha256sum "$p/run_original_gamma_beta_switch_microprobe_v2.m" "$p/input.json" >> "$p/cpu_and_original_vendor.txt"
+          for n in MATLAB libmwlapack.so mkl.so; do
+            f=$(find /opt/hostedtoolcache/MATLAB -name "$n" -type f -print -quit)
+            if [ -n "$f" ]; then sha256sum "$f" >> "$p/cpu_and_original_vendor.txt"; fi
+          done
+      - name: Unchanged genuine MathWorks R2026b source execution twice
+        uses: matlab-actions/run-command@v3
+        env:
+          DISCLOSED_SWITCH_V2_OUTPUT: original_gamma_beta_switch_microprobe_v2.json
+        with:
+          command: |
+            cd('Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_switch_microprobe_v2');
+            run_original_gamma_beta_switch_microprobe_v2;
+      - name: Validate all original original rows and archive SHA manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_switch_microprobe_v2
+          python3 "$p/verify_original_gamma_beta_switch_microprobe_v2.py" "$p/original_gamma_beta_switch_microprobe_v2.json"
+          sha256sum "$p/original_gamma_beta_switch_microprobe_v2.json" "$p/cpu_and_original_vendor.txt" "$p/input.json" > "$p/original_sha256_manifest.txt"
+      - name: Retain complete original source and CPU provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-R2026b-SOURCE-DISCLOSED-gamma-beta-switch-microprobe-v2
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_switch_microprobe_v2/original_gamma_beta_switch_microprobe_v2.json
+            Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_switch_microprobe_v2/cpu_and_original_vendor.txt
+            Cingulum_Yale_MATLAB_Online/matlab_disclosed_gamma_beta_switch_microprobe_v2/original_sha256_manifest.txt
+          retention-days: 90
+          if-no-files-found: warn
