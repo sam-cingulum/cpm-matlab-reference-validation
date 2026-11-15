@@ -1,0 +1,82 @@
+{
+  "classification": "THREE_GENUINE_ORIGINAL_MATHWORKS_R2026B_SOURCE_DISCLOSED_V7_AMD_CROSSRUN_BYTE_IDENTICAL",
+  "genuine_original_numeric_sha256": "3b8ba0b61812aaff6a943fe50b5bfc3364aac2f0b262ba4fba2a89a4c1f586a2",
+  "input_sha256": "60ef98bbe1d779ef4d79e7d82c9c3c51d2b2c8b14b79be158574d437c058e233",
+  "native_private_preoriginal_forecast_commit": "30d2f78bc04d578728f73d2f39556027377c94ab",
+  "public_original_runner_precommit": "ed031bd3897573defc4d3ddde1f7970fc5e9747a",
+  "runs": [
+    {
+      "archived": {
+        "cpu": {
+          "compressed_sha256": "c57058556c89fc7b13741f0b6c600ebd7efe4ea3b19acc308ee851a62db4179a",
+          "path": "source_runs/43678433690/cpu_and_original_vendor.txt.gz",
+          "uncompressed_sha256": "e1daf54c524152fa81d6ce93f155c209d7166d0f4fb443b83b63e3163be92524"
+        },
+        "original": {
+          "compressed_sha256": "6126b9b9a72051f41c7d46d9ef2c0dc72624a0fbf3ccd357563031cb22b1998e",
+          "path": "source_runs/43678433690/original_gamma_beta_branch_v7_disclosed.json.gz",
+          "uncompressed_sha256": "3b8ba0b61812aaff6a943fe50b5bfc3364aac2f0b262ba4fba2a89a4c1f586a2"
+        },
+        "original_manifest": {
+          "compressed_sha256": "739f3ae0ddd6fffc5d8d293490efd1e949c32d5ab9c70b842a1644addf886296",
+          "path": "source_runs/43678433690/original_sha256_manifest.txt.gz",
+          "uncompressed_sha256": "c2911555556ef666a2b2b051bcfa57d2c8072bc0e732ccec750ac8ad7817c82e"
+        }
+      },
+      "cpu": "AMD EPYC 7763",
+      "input_sha256": "60ef98bbe1d779ef4d79e7d82c9c3c51d2b2c8b14b79be158574d437c058e233",
+      "original_sha256": "3b8ba0b61812aaff6a943fe50b5bfc3364aac2f0b262ba4fba2a89a4c1f586a2",
+      "original_vendor_cpu_sha256": "e1daf54c524152fa81d6ce93f155c209d7166d0f4fb443b83b63e3163be92524",
+      "run": "43678433690"
+    },
+    {
+      "archived": {
+        "cpu": {
+          "compressed_sha256": "2bc087e4086ba67428fded76e6e0f190efc56f7c4dac093d1c05baa75636ab68",
+          "path": "source_runs/43678440057/cpu_and_original_vendor.txt.gz",
+          "uncompressed_sha256": "afa7f2dfa65e0b7cce0fdaf6cdb19be39476553a7603a977da3c26908f9f2b27"
+        },
+        "original": {
+          "compressed_sha256": "6126b9b9a72051f41c7d46d9ef2c0dc72624a0fbf3ccd357563031cb22b1998e",
+          "path": "source_runs/43678440057/original_gamma_beta_branch_v7_disclosed.json.gz",
+          "uncompressed_sha256": "3b8ba0b61812aaff6a943fe50b5bfc3364aac2f0b262ba4fba2a89a4c1f586a2"
+        },
+        "original_manifest": {
+          "compressed_sha256": "97b8d2944cb763fca27bfd49546b696435550534f277a88cfd43f2d5d1ce274b",
+          "path": "source_runs/43678440057/original_sha256_manifest.txt.gz",
+          "uncompressed_sha256": "44d1d62d791e339853bb723af6996f8cc06f487c9f1879f1265b4c01e26b20f2"
+        }
+      },
+      "cpu": "AMD EPYC 9V45",
+      "input_sha256": "60ef98bbe1d779ef4d79e7d82c9c3c51d2b2c8b14b79be158574d437c058e233",
+      "original_sha256": "3b8ba0b61812aaff6a943fe50b5bfc3364aac2f0b262ba4fba2a89a4c1f586a2",
+      "original_vendor_cpu_sha256": "afa7f2dfa65e0b7cce0fdaf6cdb19be39476553a7603a977da3c26908f9f2b27",
+      "run": "43678440057"
+    },
+    {
+      "archived": {
+        "cpu": {
+          "compressed_sha256": "6d5a350f0eb7cd4c139d3c9cbcb17ac6f497a54328b6b28fab00db2f8bcaab0c",
+          "path": "source_runs/43678436063/cpu_and_original_vendor.txt.gz",
+          "uncompressed_sha256": "31aeb108c20e4eff59a5d4ad4e534db54da52e9c2e9f64c75150b361f54dccf9"
+        },
+        "original": {
+          "compressed_sha256": "6126b9b9a72051f41c7d46d9ef2c0dc72624a0fbf3ccd357563031cb22b1998e",
+          "path": "source_runs/43678436063/original_gamma_beta_branch_v7_disclosed.json.gz",
+          "uncompressed_sha256": "3b8ba0b61812aaff6a943fe50b5bfc3364aac2f0b262ba4fba2a89a4c1f586a2"
+        },
+        "original_manifest": {
+          "compressed_sha256": "5c87fda931b7599c69bdc4319e705bfc1d91c5a65cfebd872feaf983f606dac7",
+          "path": "source_runs/43678436063/original_sha256_manifest.txt.gz",
+          "uncompressed_sha256": "b02e0aa22ec4ab6700dc907d0ccd792b97448e37fc851b7e5da420b69814bb5a"
+        }
+      },
+      "cpu": "AMD EPYC 9V74",
+      "input_sha256": "60ef98bbe1d779ef4d79e7d82c9c3c51d2b2c8b14b79be158574d437c058e233",
+      "original_sha256": "3b8ba0b61812aaff6a943fe50b5bfc3364aac2f0b262ba4fba2a89a4c1f586a2",
+      "original_vendor_cpu_sha256": "31aeb108c20e4eff59a5d4ad4e534db54da52e9c2e9f64c75150b361f54dccf9",
+      "run": "43678436063"
+    }
+  ],
+  "source_unseen_V12": "NOT_GENERATED"
+}
