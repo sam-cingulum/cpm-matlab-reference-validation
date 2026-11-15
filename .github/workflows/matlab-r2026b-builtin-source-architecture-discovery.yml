@@ -1,0 +1,29 @@
+name: "Genuine MATLAB R2026b | Builtin source architecture discovery (non-numeric)"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect-source-architecture-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record runner metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "SOURCE-INSPECTION-ONLY; NOT NUMERICAL PARITY, NOT V12"
+          uname -a
+          lscpu | grep -E '^Vendor ID:|^Model name:'
+          sha256sum Cingulum_Yale_MATLAB_Online/matlab_r2026b_builtin_source_architecture_discovery_v1.m
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Inspect function M-file/built-in availability and licensed products
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            addpath('Cingulum_Yale_MATLAB_Online');
+            matlab_r2026b_builtin_source_architecture_discovery_v1;
