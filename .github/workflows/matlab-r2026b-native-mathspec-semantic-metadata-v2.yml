@@ -1,0 +1,45 @@
+name: "Genuine MATLAB R2026b | Numerical function call topology and binary metadata V2"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-numerical-native-metadata:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      MKL_CBWR: COMPATIBLE
+      MKL_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check metadata probe provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'Classification: installed native symbol/dep metadata only, NO vendor binary or proprietary source copied'
+          sha256sum Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/inspect_installed_mathspec_v2.py
+          python3 -m py_compile Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/inspect_installed_mathspec_v2.py
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Inspect R2026b mathspec exports, dependencies and M-file call-site names
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)"
+          test -n "$root"
+          root="${root%/bin/glnxa64/libmwmathspec.so}"
+          p=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 "$p/inspect_installed_mathspec_v2.py" "$root" "$p/mathspec_metadata_v2.json"
+          sha256sum "$p/mathspec_metadata_v2.json" > "$p/mathspec_metadata_v2.sha256"
+      - name: Retain metadata ONLY (no MathWorks binary or M-file content)
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-R2026b-native-mathspec-numerical-entrypoint-metadata-only-v2
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/mathspec_metadata_v2.json
+            Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/mathspec_metadata_v2.sha256
+          retention-days: 90
+          if-no-files-found: error
