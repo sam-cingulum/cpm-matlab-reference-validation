@@ -1,0 +1,70 @@
+name: "Genuine R2026b | resolve runtime gamma helper indirect trampoline v11"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-gamma-helper-runtime-destination:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build only user-authored research program
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 -m py_compile "$root/resolve_original_mathspec_helper_v11.gdb.py"
+          g++ -std=c++17 -O0 -g -Wall -Wextra -Werror -fno-fast-math \
+            "$root/resolve_original_mathspec_helper_v11.cpp" \
+            -o /tmp/original_r2026b_gamma_helper_v11 -ldl
+          if ! command -v gdb >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gdb
+          fi
+          sha256sum "$root/resolve_original_mathspec_helper_v11.cpp" \
+            "$root/resolve_original_mathspec_helper_v11.gdb.py"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Resolve original R2026b helper runtime destination without exporting numerical outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848"
+          sym=$(nm -D --defined-only "$lib" | awk '$3=="_ZN8mathspec7gammalnEd" {print $3}')
+          test "$sym" = "_ZN8mathspec7gammalnEd"
+          export LD_LIBRARY_PATH="$(dirname "$lib"):${LD_LIBRARY_PATH:-}"
+          export CINGULUM_HELPER_V11_OUTPUT=original_helper_runtime_resolution_v11.json
+          if ! timeout 900 gdb -nx --batch -q \
+              -x "$root/resolve_original_mathspec_helper_v11.gdb.py" \
+              --args /tmp/original_r2026b_gamma_helper_v11 "$lib" "$sym" 0x632e0 \
+              >/tmp/cingulum_vendor_gdb_v11_private.log 2>&1; then
+            echo "ORIGINAL_HELPER_TRACING_FAILED_WITH_PRIVATE_LOG_SUPPRESSED"
+            rm -f /tmp/cingulum_vendor_gdb_v11_private.log
+            exit 1
+          fi
+          rm -f /tmp/cingulum_vendor_gdb_v11_private.log
+          python3 - <<'PY'
+          import json,hashlib
+          p=json.load(open('original_helper_runtime_resolution_v11.json'))
+          assert p['known_indirect_stub_offset']=='0x632e0'
+          assert p['original_libmwmathspec_sha256']=='625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          assert not p['vendor_instruction_or_operand_bytes_provided']
+          assert not p['original_numeric_outputs_provided']
+          assert p['pure_Rust_gamma_beta_exactness']=='NOT_CERTIFIED'
+          assert p['source_unseen_V12']=='NOT_GENERATED'
+          print('SANITIZED_HELPER_DESTINATION',p['resolved_second_step_relative_offset'])
+          print('RESULT_SHA256',hashlib.sha256(open('original_helper_runtime_resolution_v11.json','rb').read()).hexdigest())
+          PY
+      - name: Upload sanitized helper runtime offset only
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-R2026b-gamma-helper-runtime-destination-v11
+          path: original_helper_runtime_resolution_v11.json
+          retention-days: 90
+          if-no-files-found: error
