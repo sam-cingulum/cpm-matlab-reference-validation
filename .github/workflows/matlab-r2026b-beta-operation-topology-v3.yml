@@ -1,0 +1,40 @@
+name: "Genuine MATLAB R2026b | Beta numerical operation topology V3"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-beta-operation-metadata-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate independent metadata inspection script
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 -m py_compile "$p/inspect_mathspec_symbol_topology_v3.py"
+          sha256sum "$p/inspect_mathspec_symbol_topology_v3.py"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Summarize installed beta numerical execution structure without copying binary
+        shell: bash
+        run: |
+          set -euo pipefail
+          lib="$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)"
+          test -n "$lib"
+          root="${lib%/bin/glnxa64/libmwmathspec.so}"
+          p=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 "$p/inspect_mathspec_symbol_topology_v3.py" "$root" "$p/beta_operation_topology_v3.json"
+          sha256sum "$p/beta_operation_topology_v3.json" > "$p/beta_operation_topology_v3.sha256"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: genuine-R2026b-mathspec-beta-operation-metadata-only-v3
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/beta_operation_topology_v3.json
+            Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/beta_operation_topology_v3.sha256
+          retention-days: 90
+          if-no-files-found: error
