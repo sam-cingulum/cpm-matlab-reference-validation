@@ -1,0 +1,76 @@
+name: "Genuine R2026b | gamma Cody boundary one-ULP paths v14"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-gamma-runtime-families:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build user-authored debugger probe without proprietary code
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 -m py_compile "$root/trace_gamma_cody_boundaries_v14.gdb.py"
+          g++ -std=c++17 -O0 -g -Wall -Wextra -Werror -fno-fast-math \
+            "$root/trace_gamma_cody_boundaries_v14.cpp" \
+            -o /tmp/cingulum_original_gamma_cody_v14 -ldl
+          sha256sum "$root/trace_gamma_cody_boundaries_v14.cpp" \
+            "$root/trace_gamma_cody_boundaries_v14.gdb.py"
+          if ! command -v gdb >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gdb
+          fi
+          command -v gdb
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: SHA verify original MathWorks runtime; trace only aggregate gamma branch metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848"
+          sym=$(nm -D --defined-only "$lib" | awk '$3=="_ZN8mathspec7gammalnEd" {print $3}')
+          test "$sym" = "_ZN8mathspec7gammalnEd"
+          export LD_LIBRARY_PATH="$(dirname "$lib"):${LD_LIBRARY_PATH:-}"
+          export CINGULUM_TRACE_OUTPUT=original_gamma_cody_boundaries_v14.json
+          # GDB can print vendor instruction text when single-stepping. NEVER
+          # print, upload or persist its console log: only upload sanitized
+          # aggregate JSON produced by the debugger's Python adapter.
+          if ! timeout 900 gdb -nx --batch -q \
+              -x "$root/trace_gamma_cody_boundaries_v14.gdb.py" \
+              --args /tmp/cingulum_original_gamma_cody_v14 "$lib" "$sym" 0x8f1e0 \
+              >/tmp/cingulum_gdb_private_v14.log 2>&1; then
+            echo "FAIL_ORIGINAL_GAMMA_BRANCH_PROBE_NO_PROPRIETARY_LOG_EXPORTED"
+            rm -f /tmp/cingulum_gdb_private_v14.log
+            exit 1
+          fi
+          rm -f /tmp/cingulum_gdb_private_v14.log
+          python3 - <<'PY'
+          import json,hashlib
+          p=json.load(open('original_gamma_cody_boundaries_v14.json'))
+          assert p['vendor_mathspec_sha256']=='625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          assert p['sample_count']==24
+          assert p['classification']=='SHA_PINNED_ORIGINAL_R2026B_GAMMA_CODY_BOUNDARY_HYPOTHESIS_MICROPROBE_V14'
+          assert p['unique_runtime_path_count']>=1
+          assert p['no_vendor_assembly_operands_constants_f64_intermediates_or_original_outputs_exported']
+          assert p['native_pure_Rust_gamma_or_beta_bit_parity']=='NOT_CERTIFIED'
+          assert p['source_unseen_V12']=='NOT_GENERATED'
+          assert all(c['returned_to_original_abi_caller'] for c in p['cases'])
+          print('GAMMA_ORIGINAL_R2026B_RUNTIME_BRANCH_FAMILIES',p['unique_runtime_path_count'])
+          print('OUTPUT_SHA256',hashlib.sha256(open('original_gamma_cody_boundaries_v14.json','rb').read()).hexdigest())
+          PY
+      - name: Publish user-authored aggregate branch metadata only
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-R2026b-gamma-Cody-boundary-one-ULP-v14-metadata
+          path: original_gamma_cody_boundaries_v14.json
+          retention-days: 90
+          if-no-files-found: error
