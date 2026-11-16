@@ -1,0 +1,49 @@
+name: "Genuine R2026b | map mathspec common gamma/beta callee symbol metadata v9"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-mathspec-call-target-symbols:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare bounded user-authored symbol resolver
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 -m py_compile "$root/resolve_mathspec_import_helpers_v9.py"
+          sha256sum "$root/resolve_mathspec_import_helpers_v9.py"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Resolve SHA-pinned original shared call targets to imported symbol names only
+        shell: bash
+        run: |
+          set -euo pipefail
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          root=$(dirname "$(dirname "$(dirname "$lib")")")
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848"
+          python3 Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/resolve_mathspec_import_helpers_v9.py \
+            "$root" original_mathspec_symbols_v9.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('original_mathspec_symbols_v9.json'))
+          assert d['vendor_library_sha256']=='625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          assert d['dynamic_symbol_name_metadata_only']
+          assert not d['vendor_assembly_or_math_outputs_published']
+          assert d['independent_pure_Rust_exactness']=='NOT_CERTIFIED'
+          assert d['source_unseen_V12']=='NOT_GENERATED'
+          assert len(d['call_target_resolution'])==10
+          PY
+      - name: Archive imported symbol names, NEVER vendor code or instructions
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-R2026b-mathspec-import-symbol-names-v9
+          path: original_mathspec_symbols_v9.json
+          retention-days: 90
+          if-no-files-found: error
