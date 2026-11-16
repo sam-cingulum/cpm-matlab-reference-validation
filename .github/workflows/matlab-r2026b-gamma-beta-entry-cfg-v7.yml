@@ -1,0 +1,51 @@
+name: "Genuine R2026b | SHA-pinned gamma/beta control-flow reachability v7"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-gamma-beta-cfg-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate source-authored research script
+        shell: bash
+        run: |
+          set -euo pipefail
+          src=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/inspect_gamma_beta_entry_cfg_v7.py
+          python3 -m py_compile "$src"
+          sha256sum "$src"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original binary and compute static reachable entry CFG
+        shell: bash
+        run: |
+          set -euo pipefail
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          root=$(dirname "$(dirname "$(dirname "$lib")")")
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848"
+          lscpu | grep -E '^Vendor ID:|^Model name:' || true
+          python3 Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/inspect_gamma_beta_entry_cfg_v7.py \
+            "$root" original_entry_cfg_v7.json
+          python3 - <<'PY'
+          import json
+          p=json.load(open('original_entry_cfg_v7.json'))
+          assert p['original_library_sha256']=='625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          assert not p['vendor_code_assembly_constants_numeric_outputs_exported']
+          assert p['compiled_pure_Rust_gamma_beta_exactness']=='NOT_CERTIFIED'
+          assert p['source_unseen_V12']=='NOT_GENERATED'
+          for val in p['entry_reachability'].values():
+              assert val['reachable_instructions_static']>10
+              assert val['reachable_return_offsets'] or val['escape_counts']
+          PY
+      - name: Retain high-level architecture metadata only
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-R2026b-gamma-beta-entry-static-cfg-v7-metadata
+          path: original_entry_cfg_v7.json
+          retention-days: 90
+          if-no-files-found: error
