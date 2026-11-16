@@ -51,7 +51,7 @@ def main():
         operand=match.group(3)
         if not (begin<=addr<end):continue
         instr.append((addr,opcode,operand))
-    assert len(instr)>100,("too few decoded instructions",len(instr))
+    assert len(instr)>5,("could not decode exported numerical entrypoint",len(instr))
     hist=collections.Counter(op for _,op,_ in instr)
     calls=[]
     for addr,opcode,operand in instr:
@@ -87,6 +87,7 @@ def main():
         "betainc_entrypoint":{"public_abi_symbol_name":symbol["name"],
                               "symbol_size_bytes":symbol["size"],
                               "instruction_count":len(instr),
+                              "is_small_forwarding_wrapper_candidate":len(instr)<100,
                               "instruction_categories":categories,
                               "unique_named_call_targets":sorted(set(calls))[:50],
                               "named_call_target_frequencies":dict(sorted(collections.Counter(calls).items()))},
