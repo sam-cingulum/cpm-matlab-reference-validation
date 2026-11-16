@@ -1,0 +1,62 @@
+name: "Genuine R2026b | mathspec ABI gamma 60 and beta 2812 exact source V10"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-original-abi-full-frozen-v10:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate original-blind V10 input provenance and compile source-only probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v8
+          python3 -m py_compile "$root/score_original_mathspec_v10_abi_v8.py"
+          python3 "$root/score_original_mathspec_v10_abi_v8.py" --prepare
+          sha256sum "$root/"*.py "$root/"*.cpp "$root/"*.m
+          mkdir -p /tmp/cingulum-r2026b-original-abi-research-v8
+          g++ -std=c++17 -O0 -Wall -Wextra -Werror -fno-fast-math \
+             "$root/original_mathspec_v10_abi_bulk_v8.cpp" \
+             -o /tmp/cingulum-r2026b-original-abi-research-v8/original_abi -ldl
+          echo "PRECOMMITTED_V10_RAW_INPUT_VERIFIED"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Evaluate unmodified genuine R2026b gamma and BOTH beta tails on frozen V10 grid
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            addpath('Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v8');
+            original_matlab_v10_beta_gamma_for_abi_v8;
+      - name: Execute MathWorks numeric ABI only in original licensed runner and strictly score all inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v8
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = '625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          echo "ORIGINAL_R2026B_BINARY_IDENTICAL_TO_ARCHITECTURE_SHA"
+          lscpu | grep -E '^Vendor ID:|^Model name:' || true
+          gammasym=$(nm -D --defined-only "$lib" | awk '$3=="_ZN8mathspec7gammalnEd" {print $3}')
+          betasym=$(nm -D --defined-only "$lib" | awk '$3 ~ /^_ZN8mathspec7betaincEddd/ {print $3}')
+          test "$gammasym" = '_ZN8mathspec7gammalnEd'
+          test -n "$betasym"
+          test "$(printf '%s\n' "$betasym" | wc -l)" -eq 1
+          echo "MATLAB_NATIVE_BETA_EXPORTED_ABI=$betasym"
+          export LD_LIBRARY_PATH="$(dirname "$lib"):$(printenv LD_LIBRARY_PATH || true)"
+          /tmp/cingulum-r2026b-original-abi-research-v8/original_abi \
+            "$lib" "$gammasym" "$betasym" \
+            < "$root/abi_input_v8.txt" > "$root/abi_v10_gamma_beta_hex_v8.txt"
+          python3 "$root/score_original_mathspec_v10_abi_v8.py" --score
+      - name: Upload scientific exact-bit COUNTS ONLY (no proprietary code or vendor source values)
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-R2026b-ABI-v10-60-gamma-2812-beta-source-disclosed-summary-v8
+          path: Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v8/comparison_summary_v8.json
+          retention-days: 90
+          if-no-files-found: error
