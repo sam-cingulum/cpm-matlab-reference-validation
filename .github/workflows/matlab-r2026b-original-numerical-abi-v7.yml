@@ -1,0 +1,87 @@
+name: "Genuine R2026b | Original mathspec gammaln ABI versus MATLAB on same runner V7"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-mathspec-abi-validation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Original MATLAB R2026b numeric oracle (local only)
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            assert(strcmp(version('-release'),'2026b'));
+            x=[1,2.5,7.5,10.25,100.5,168.75];
+            root='Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v7';
+            fid=fopen(fullfile(root,'original_mathworks_hex.txt'),'w');
+            assert(fid>0);
+            for k=1:numel(x)
+              fprintf(fid,'%s %s\n',num2hex(x(k)),num2hex(gammaln(x(k))));
+            end
+            fclose(fid);
+            fprintf('GENUINE_R2026B_ORIGINAL_GAMMA_SIX_FIXED_VALUES_RECORDED_TEMPORARILY\n');
+      - name: Compile original-compatible ABI probe and compare bits with actual original interpreter
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo CLASSIFICATION=GENUINE_MATHWORKS_SAME_RUNNER_ABI_EXECUTION_DIAGNOSTIC_NOT_RUST_PARITY
+          lscpu | grep -E '^Vendor ID:|^Model name:' || true
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v7
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = '625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          mkdir -p /tmp/cingulum-numeric-abi-research-v7
+          g++ -std=c++17 -O0 -Wall -Wextra -Werror -fno-fast-math "$root/original_mathspec_gammaln_abi_probe_v7.cpp" -o /tmp/cingulum-numeric-abi-research-v7/abi_probe -ldl
+          symbol=$(nm -D --defined-only "$lib" | awk '$3=="_ZN8mathspec7gammalnEd" {print $3}')
+          test "$symbol" = "_ZN8mathspec7gammalnEd"
+          export LD_LIBRARY_PATH="$(dirname "$lib"):$(printenv LD_LIBRARY_PATH || true)"
+          : > "$root/abi_mathspec_hex.txt"
+          for h in \
+             3ff0000000000000 \
+             4004000000000000 \
+             401e000000000000 \
+             4024800000000000 \
+             4059200000000000 \
+             4065180000000000; do
+            /tmp/cingulum-numeric-abi-research-v7/abi_probe "$lib" "$symbol" "$h" >> "$root/abi_mathspec_hex.txt"
+          done
+          python3 - <<'PY'
+          import pathlib,re,hashlib,json
+          root=pathlib.Path('Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v7')
+          original=[x.split() for x in (root/'original_mathworks_hex.txt').read_text().splitlines()]
+          abi=[]
+          for s in (root/'abi_mathspec_hex.txt').read_text().splitlines():
+              m=re.fullmatch(r'ABI_NUMERIC_HEX input=([0-9a-f]{16}) output=([0-9a-f]{16})',s)
+              assert m,s
+              abi.append([m.group(1),m.group(2)])
+          assert len(original)==len(abi)==6,(original,abi)
+          agreement=[]
+          for i,(lhs,rhs) in enumerate(zip(original,abi)):
+              assert lhs[0].lower()==rhs[0].lower(),(i,lhs,rhs)
+              agreement.append(lhs[1].lower()==rhs[1].lower())
+          report={'classification':'Genuine R2026b same-runner ABI versus original interpreter numeric DIAGNOSTIC only',
+                  'original_genuine_mathworks':True,'sample_count':6,
+                  'bit_exact_count':sum(agreement),'bit_exact':agreement,
+                  'sha_of_user_input_dataset':hashlib.sha256(
+                      (''.join(a[0] for a in original)).encode()).hexdigest(),
+                  'proprietary_numerical_source_or_binary_copied':False,
+                  'MATLAB_vendor_output_supplied_to_pure_Rust':False,
+                  'source_unseen_V12':'NOT_GENERATED'}
+          print('R2026B_SAME_HOST_ABI_BIT_EXACT',sum(agreement),'/6')
+          print('R2026B_SAME_HOST_BITWISE_COMPARISON',json.dumps(agreement))
+          (root/'comparison_summary_v7.json').write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Upload comparison summary ONLY, excluding all native binaries or numerical intermediate values
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-R2026b-original-gammaln-ABI-vs-interpreter-six-case-summary-v7
+          path: Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v7/comparison_summary_v7.json
+          retention-days: 90
+          if-no-files-found: error
