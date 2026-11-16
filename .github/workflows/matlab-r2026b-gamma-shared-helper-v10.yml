@@ -1,0 +1,48 @@
+name: "Genuine R2026b | shared gamma helper bounded CFG v10"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-shared-gamma-helper:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate user-authored metadata-only structural inspector
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 -m py_compile "$root/inspect_common_gamma_helper_v10.py" "$root/inspect_gamma_beta_entry_cfg_v7.py"
+          sha256sum "$root/inspect_common_gamma_helper_v10.py"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: SHA-pin original installed MathWorks library and inspect bounded helper CFG
+        shell: bash
+        run: |
+          set -euo pipefail
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          root=$(dirname "$(dirname "$(dirname "$lib")")")
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848"
+          python3 Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/inspect_common_gamma_helper_v10.py "$root" original_shared_gamma_helper_v10.json
+          python3 - <<'PY'
+          import json
+          p=json.load(open('original_shared_gamma_helper_v10.json'))
+          assert p['original_library_sha256']=='625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          assert p['helper_cfg']['entry']=='0x632e0'
+          assert p['helper_cfg']['reachable_instructions_static']>10
+          assert not p['vendor_source_disassembly_constants_or_values_published']
+          assert p['pure_Rust_gamma_beta_bit_parity']=='NOT_CERTIFIED'
+          assert p['source_unseen_V12']=='NOT_GENERATED'
+          PY
+      - name: Archive only bounded original helper structural metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-R2026b-gamma-common-helper-v10-structural-metadata
+          path: original_shared_gamma_helper_v10.json
+          retention-days: 90
+          if-no-files-found: error
