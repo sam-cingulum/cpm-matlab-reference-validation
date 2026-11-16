@@ -1,0 +1,40 @@
+name: "Genuine MATLAB R2026b | Hidden beta numeric region summary V5"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sha-pinned-math-kernel-region:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate metadata-only observation script
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 -m py_compile "$p/inspect_hidden_beta_arithmetic_regions_v5.py"
+          sha256sum "$p/inspect_hidden_beta_arithmetic_regions_v5.py"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Profile hidden beta arithmetic domain without storing implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          root="${lib%/bin/glnxa64/libmwmathspec.so}"
+          p=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 "$p/inspect_hidden_beta_arithmetic_regions_v5.py" "$root" "$p/beta_hidden_arithmetic_region_v5.json"
+          sha256sum "$p/beta_hidden_arithmetic_region_v5.json" > "$p/beta_hidden_arithmetic_region_v5.sha256"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: genuine-R2026b-hidden-beta-arithmetic-region-metadata-only-v5
+          path: |
+            Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/beta_hidden_arithmetic_region_v5.json
+            Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2/beta_hidden_arithmetic_region_v5.sha256
+          retention-days: 90
+          if-no-files-found: error
