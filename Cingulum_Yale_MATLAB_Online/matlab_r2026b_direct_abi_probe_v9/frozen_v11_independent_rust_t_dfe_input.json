@@ -1,0 +1,4332 @@
+{
+  "classification": "SOURCE_DISCLOSED_INDEPENDENT_RUST_V11_T_DFE_INPUTS_ONLY_FOR_ORIGINAL_R2026B_ABI_RESEARCH",
+  "coefficient_count": 960,
+  "native_Rust_predictor_decompressed_sha256": "efc63f5d1aeb979495bfe3d070c0bfe5d5be63a3386e47a5b7e029fdf6026f71",
+  "oracle_repetitions_expected": 2,
+  "original_MATLAB_reference_numeric_values_used_to_generate": false,
+  "raw_case_count": 480,
+  "rows": [
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep0_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402eed362f58684f",
+        "bf2c2223844c966e"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep1_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "3fe76bd40f2a8f93",
+        "3fe4f65c141f3561"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep2_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40376ad6405cf591",
+        "4026d4edbd821c42"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep3_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "bfd706895633ca4a",
+        "3fd70689568848cc"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep4_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "403c801dca893997",
+        "3ff62b1d04c668a3"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep5_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40242b4905fba608",
+        "401eefa3797d8ab8"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep6_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4022962430f13e34",
+        "bfe08a2f11e7796d"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep7_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4036b6e63e7aca2c",
+        "4165c28f6c0a1ba0"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep8_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402b73a2cc5d311a",
+        "3fe0188160264044"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep9_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4029a0869deb2465",
+        "400f00d7ac135d45"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep10_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402ed23a3afd4260",
+        "3fe63ece44e4c672"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep11_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40349d3f9098e50f",
+        "40093b447f99926a"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep12_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4030074c6bdd8a9c",
+        "3ffa679c596271df"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep13_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4010759ef4817b43",
+        "bffd74f8b5efb5b2"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep14_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "403de1b75bfacac2",
+        "40220746b2a2cfd3"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep15_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "3feafce9e776d220",
+        "bfeafce9e71ba012"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep16_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402e05d81adde244",
+        "3ff58e294d529717"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep17_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4021efc990d5ace4",
+        "401a249a4f6560ed"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep18_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402a48d195cf8140",
+        "3fdd9c56c7fcd790"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep19_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4030badb9d8c4d85",
+        "4165c28f56b05563"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep20_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4030c679bb3998eb",
+        "3ff7a52d5011d301"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep21_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40389f5093d68194",
+        "401b56f748a6fe34"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep22_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4038c4c85bb2fb12",
+        "400c4ef639847c6d"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep23_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4039b7b65285a9aa",
+        "3fe63acebdd2d999"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep24_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4037371571a702ce",
+        "3ff1b7c299da50a9"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep25_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "3fe23abbe61be1bd",
+        "3fd4e715885e5cc6"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep26_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4032301108ba7fa8",
+        "40157ac509365eb2"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep27_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "bff048e1621aae92",
+        "3ff048e1624a43f8"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep28_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402a0128b087ddb6",
+        "40028ac54a613c5b"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep29_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402e2f107718e659",
+        "403e816e02d921ec"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep30_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402722fdda6fd9a0",
+        "3fc8383714dd84c6"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep31_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4033f05c7eb0ac1f",
+        "4165c28f5cbbe1c0"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep32_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40261e188d1f5983",
+        "bfb43bb8aed2bccd"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep33_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40324b811fb669e0",
+        "40142e84d223d12b"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep34_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402d86f415a7fb60",
+        "3fef1deb196beddf"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep35_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402cd212f9db895b",
+        "bffcc0c6d352cdac"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep36_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402ffdfd7d7f8e11",
+        "3ffe798ef59e3ee6"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep37_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "bfebc49b4d50c258",
+        "4008c4ebc3776b49"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep38_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4029bc368d2ee8ff",
+        "3ffe5dd85febc05f"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep39_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "3ffb6dcadaa0318a",
+        "bffb6dcada8b26a2"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep40_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40333512c0cc1ec8",
+        "400203466943f81a"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep41_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40294ff2fc6d65e9",
+        "40206a9173dc6aef"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep42_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402e5c3545b69aed",
+        "3ff497ce4cfb03b5"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep43_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4031d84f9e280fa4",
+        "4165c28f58a195f6"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep44_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "403117f8b87dc56b",
+        "400dd99a89487c7d"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep45_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40229552db983cb6",
+        "400b5db265cbf81d"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep46_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402456dbf657b993",
+        "3ff390cfff4de1b9"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep47_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "403113f0bd05919b",
+        "bfe096e09c0489f7"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep48_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402e20bf4de10fa9",
+        "4165c28f565ee064"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep49_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4031547f21d5c171",
+        "4165c28f5a88bd0b"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep50_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402d2471ecd2909a",
+        "4165c28f5d55891a"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep51_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402d0cd73ca96e4f",
+        "4165c28f5dad5833"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep52_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4024a44622723d00",
+        "4165c28f56c01653"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep53_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40360fca812fc254",
+        "4165c28f499b3be8"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep54_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40392d5461bfa583",
+        "4165c28f695bbbfc"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep55_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4029e7fef7d32b77",
+        "4165c28f549ccede"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep56_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4034a50a008c4223",
+        "4165c28f5bb7c24b"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep57_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402fe5dd09f7bc1f",
+        "4165c28f5f5717c3"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep58_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402dec0142c42b07",
+        "4165c28f62487e7d"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep59_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402f9886a3c89cf8",
+        "4165c28f58f76fe1"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep60_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4032b299d044de7b",
+        "4165c28f5417df25"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep61_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40283aa7c92310b1",
+        "4165c28f5ac89e2d"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep62_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40323c6c0751c5ff",
+        "4165c28f5e815b74"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep63_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402b37155bbb8267",
+        "4165c28f56a38c14"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep64_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402da2f5b431f94e",
+        "4165c28f53ce1dc3"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep65_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40460b0c9f00efe5",
+        "4165c28f5992f9be"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep66_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40325ee73f09f311",
+        "4165c28f6692f0bd"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep67_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4030081c01f4e522",
+        "4165c28f61fbd0d2"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep68_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40250c6a6aec5aee",
+        "4165c28f5c59b6e4"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep69_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4030eb748436a793",
+        "4165c28f5ceb7376"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep70_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4040f3a516a16496",
+        "4165c28f544e2c48"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep71_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402ac8be9aeb30b5",
+        "4165c28f52599644"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep72_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "403f3081594d7b11",
+        "4165c28f60626474"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep73_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402f52e7d08ed6fa",
+        "4165c28f4b0e8d0a"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep74_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4034a5584a8757b4",
+        "4165c28f5e3c99c7"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep75_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4031b1a7c86c134c",
+        "4165c28f5da2bc51"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep76_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40324cdf2a7fb07f",
+        "4165c28f5717c372"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep77_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "402f4153c6f3c332",
+        "4165c28f568d38ba"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep78_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "4035f8315e5d73b3",
+        "4165c28f6492f4c9"
+      ]
+    },
+    {
+      "dfe_hex": "401c000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep79_n9_seed202611131963",
+      "n": 9,
+      "t_hex": [
+        "40276d025e332803",
+        "4165c28f54118784"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep0_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402ec204aa070da2",
+        "400684355854881d"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep1_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "3ff8a88bd53d07f7",
+        "3fa21e9f5bbf420a"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep2_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40355f590553e1b9",
+        "40198a3f5a1f7230"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep3_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "bff26bc2f6e4e18d",
+        "3ff26bc2f6ff3a6b"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep4_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403a35e24cd7c5eb",
+        "40106a6c1baa17d6"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep5_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403126a204b654bf",
+        "4011a0bd1a4d48c3"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep6_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40348d83082a82ad",
+        "3fec27cc2f63b3a4"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep7_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40347a9dba58a278",
+        "4165c28f5d198153"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep8_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402da332c161ed97",
+        "bfd4e5d836b32155"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep9_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403c9c63e9d86e2c",
+        "4020949f7705e7f9"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep10_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403609ef515a08b3",
+        "40068eff080a9c5c"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep11_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403231488f7ae0b7",
+        "3fed0c57acdd4688"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep12_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4033dafb9f81ad1a",
+        "401078cf0275df08"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep13_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "400ad3d258b773f3",
+        "bfe0e2e3b7f06973"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep14_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402bd9d6d075fc09",
+        "401cb0209491d43c"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep15_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "3fea36a89371e3fb",
+        "bfea36a8931ba778"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep16_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403868d58f697b34",
+        "3ffad82ef8599778"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep17_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402fe351b44bd735",
+        "402369eeb0cf7e27"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep18_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4029d848adb681e9",
+        "3fc075d774e97a62"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep19_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40304707269e5daf",
+        "4165c28f5e7ce01a"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep20_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40313ff5fd87fb16",
+        "bfea48bd5fd09f70"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep21_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402f4adb285a8724",
+        "40229a001d7ba68a"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep22_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40359ec7ab075ca9",
+        "400ff34938d4dbc2"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep23_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403472a892feca43",
+        "3fd47ad876006454"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep24_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40425bc0b6fc7f37",
+        "400142193ead0ece"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep25_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "3fd4d2464540aed7",
+        "3ff7757eb0dfc8e3"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep26_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403179ee94479dc6",
+        "4019063999d640ac"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep27_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "3ff00d617aa51f41",
+        "bff00d617a93cfce"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep28_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402c8ae3c29ef028",
+        "3ffedb6edc53852c"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep29_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402a5ee593e00a45",
+        "401cddec26fbbfab"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep30_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40336d5e4ef06f59",
+        "3fc6b43d2d3742e5"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep31_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40319186d11cf443",
+        "4165c28f6126a202"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep32_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402d68a5bae28062",
+        "3fff43a0331564b2"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep33_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40274b73f9b03801",
+        "401f95f2ead19790"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep34_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402a25672dc083ae",
+        "4008cf17297f911f"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep35_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402635a17b488141",
+        "3fe9119fa2840b80"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep36_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4025e9a26a05b686",
+        "bfd6eb35ba565861"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep37_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "3ff005c4179df64d",
+        "bfc551b97643fa98"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep38_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4032e28470394dc0",
+        "403152787498c313"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep39_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "3fdc3ebf2674d5b9",
+        "bfdc3ebf260620ca"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep40_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402f5b5ac20cfc7d",
+        "400216a1c76e632b"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep41_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40287cd25ded3311",
+        "40210cb4acda5c0a"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep42_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4029537a63a0fe2b",
+        "bfdb3547c6028100"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep43_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40282db2c7892fab",
+        "4165c28f5fcdc1f6"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep44_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402599b861694f11",
+        "3fedb895428ef7f9"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep45_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4032be0c5e15d7d3",
+        "4023e671a8277187"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep46_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4031da281c7fe1b1",
+        "40055dae3a5936a1"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep47_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40341f6c7ae2c1c3",
+        "3fe683e208336725"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep48_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403796799114977d",
+        "4165c28f56d888fa"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep49_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4036bd17c6be97a6",
+        "4165c28f5cff551d"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep50_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403249e17bea2ab7",
+        "4165c28f5909dd2d"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep51_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4031b20f818f9be9",
+        "4165c28f5466c995"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep52_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40343aa711630e25",
+        "4165c28f56108279"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep53_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4035ba3ab343fdf9",
+        "4165c28f5f7ce279"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep54_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402d25f4a7122b5c",
+        "4165c28f58893e38"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep55_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4032a782f86820f2",
+        "4165c28f5e80ea15"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep56_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40325f102f6717c6",
+        "4165c28f681ff98a"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep57_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40336994a7c3f0a5",
+        "4165c28f61c7f650"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep58_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403ab6659d524871",
+        "4165c28f68b2ac9c"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep59_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402a1a5a92e47b95",
+        "4165c28f61fb3815"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep60_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402e8f03a328f23d",
+        "4165c28f55c3f326"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep61_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403c367cf38091eb",
+        "4165c28f638acefc"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep62_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40325c3a4f0a9efc",
+        "4165c28f54155f05"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep63_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403808b0a3611cbd",
+        "4165c28f5fb879c0"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep64_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4038e7fa20f4844c",
+        "4165c28f5295f5fe"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep65_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4039be52a44893ef",
+        "4165c28f6387bbc1"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep66_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4038b85b155fd893",
+        "4165c28f644d8c98"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep67_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40379acb23be21f7",
+        "4165c28f64b82955"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep68_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4034b31e9ad6b174",
+        "4165c28f5c824599"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep69_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403e0188f47427d3",
+        "4165c28f59a500c4"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep70_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403209fc45948a75",
+        "4165c28f6974261d"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep71_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403a6440bd75aa2d",
+        "4165c28f58f4d2af"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep72_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402c5c051994378c",
+        "4165c28f642125ae"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep73_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4037093f96433fa3",
+        "4165c28f54491e01"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep74_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4031ab2747906ca2",
+        "4165c28f6087eba4"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep75_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40321553cf90c292",
+        "4165c28f601e91a1"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep76_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "403873de0fcd6f71",
+        "4165c28f66905b16"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep77_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "402f186a0eb3f3e1",
+        "4165c28f5cf0bf26"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep78_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "40300a55369f18b5",
+        "4165c28f5451a031"
+      ]
+    },
+    {
+      "dfe_hex": "4022000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep79_n11_seed202611131963",
+      "n": 11,
+      "t_hex": [
+        "4029fa12302ed8e2",
+        "4165c28f5f718687"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep0_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4038a7e4bbb31530",
+        "3fe6326218884487"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep1_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40023a8603b7e8e6",
+        "bfe0b645b00aeb08"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep2_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4032a13ce8f71233",
+        "4027b77e43bc6d53"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep3_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "3fe4ee26a78f8f6f",
+        "bfe4ee26a736145c"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep4_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "402b7314dc08b2ac",
+        "3fff6f99e8303f7f"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep5_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4033591c29d71f12",
+        "402381b39d3010c2"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep6_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40396204e3784ed8",
+        "3fda68b4d2a5eeb0"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep7_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40380e25f1e60a89",
+        "4165c28f54bcdb61"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep8_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4038ee3df31654da",
+        "400fb5c9b00bbfe8"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep9_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4034ca5cb9e4e83a",
+        "40276defec013834"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep10_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40323bc5e5ffab74",
+        "3ff0195b59389562"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep11_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403121afa104ac95",
+        "3ffb196c114f18e6"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep12_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4036cec28fc2aa0c",
+        "4004ae0bcec281b1"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep13_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "400152359a5f5e3d",
+        "bfe09680ada5753a"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep14_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4030f01c5f83f991",
+        "4029dc6fdcc75204"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep15_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "bfe55a6ff14e6c5b",
+        "3fe55a6ff1a7e8f4"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep16_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40376ec9d08d360e",
+        "3ffc570bc7ebff53"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep17_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403386fd3faa3c88",
+        "3ff3797e9439d7d2"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep18_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40259edc87909f95",
+        "3fe59c788f61a0d1"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep19_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40318c2107d08bf2",
+        "4165c28f62b14b1c"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep20_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "402e4ff279dad526",
+        "4004c7e8498beec4"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep21_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "402eb133797ec5c3",
+        "401b667f0b88f82c"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep22_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40389a6e8f4d9a41",
+        "400171f877bda2f5"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep23_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403bba98d23ad1da",
+        "3fecfe7a29743023"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep24_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40334221377238de",
+        "3ffeeddee7fb126c"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep25_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "400653d219a12370",
+        "bfebdb6415e8236f"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep26_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403243aace9a9258",
+        "401dcee41d36b2cd"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep27_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "bfcaad5e69f22c3d",
+        "3fcaad5e6b3ba801"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep28_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4035795befd278bb",
+        "40098eacf6520ae5"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep29_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4032628e26ed813b",
+        "402102b57d4aa33b"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep30_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40307f52768b97f2",
+        "bfca93949cd10c98"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep31_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403570b4fccc9232",
+        "4165c28f586ce1d6"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep32_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40365e7850c38723",
+        "3fe1898585573166"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep33_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4033ad1782d6c199",
+        "4025612ae5ba53fc"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep34_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4035d2a4ae4bec94",
+        "4009a7a1cc28bd9e"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep35_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40373b89be56969c",
+        "3fdb40b3164747d6"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep36_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40374450ea69f6e6",
+        "3fcb9d307a2de712"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep37_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4008108b03d506e0",
+        "bff4e7089e0897ba"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep38_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4031db3c0ef7c6f8",
+        "40267987d161f5d7"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep39_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "bfb696fa14f83f42",
+        "3fb696fa1737ecf6"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep40_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40348faeff26042c",
+        "3ffc59ab96218675"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep41_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403b9d945dcdc4a8",
+        "402568e50312d8c8"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep42_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40348aaceb128cc2",
+        "3ff18dfbd859bf4d"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep43_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403d3772d50b1f4e",
+        "4165c28f5e513ee8"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep44_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4034d3c454e8beaf",
+        "3fd3c2ea06793b8f"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep45_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4039953955ee149e",
+        "402976e0f1c846b9"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep46_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403460148a86f6b6",
+        "400495c7e0267100"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep47_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40334278ab08a567",
+        "3fc89ab64e9f6b01"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep48_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403822e4503be21c",
+        "4165c28f60e291a8"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep49_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4031256197a9c5a2",
+        "4165c28f5eca3fae"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep50_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403657b1c3a9faf6",
+        "4165c28f5c884a8d"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep51_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40326a1ed6fd3af0",
+        "4165c28f5ca6c882"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep52_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4035505ef365e9aa",
+        "4165c28f593e2c98"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep53_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4036c67950042ee9",
+        "4165c28f5cd5b794"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep54_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4030fe2aecec0061",
+        "4165c28f60bad1fe"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep55_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40349410d3a202b7",
+        "4165c28f58cfa9a6"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep56_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403a63f3d92dd17a",
+        "4165c28f601c495b"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep57_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "402ff2f2964f1eab",
+        "4165c28f60bc3e40"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep58_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403456d4a65ab7c7",
+        "4165c28f5970f5cc"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep59_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403cdde8c7a26879",
+        "4165c28f69a83b6c"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep60_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403cfda98db555be",
+        "4165c28f6257cd5c"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep61_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40345d44bd309a15",
+        "4165c28f577a285f"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep62_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403a32a8559463c6",
+        "4165c28f5be73dee"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep63_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40417f5b59a5c201",
+        "4165c28f5b7eaa21"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep64_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403bfa5fcc6d9e1f",
+        "4165c28f605d1b5f"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep65_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4030802e74033786",
+        "4165c28f57656db8"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep66_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40367b2e6c2ea1cf",
+        "4165c28f5d5c903e"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep67_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40395f26e6636375",
+        "4165c28f58d1aca6"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep68_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "402f5cf6768c6f6c",
+        "4165c28f5bf7a1e7"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep69_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403a1c02e60f7cc0",
+        "4165c28f579ef70b"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep70_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403bd7d4886d06be",
+        "4165c28f678e8a0c"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep71_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4034dfe88a83217e",
+        "4165c28f57181e83"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep72_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403a094caa12583b",
+        "4165c28f5a3206b9"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep73_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4033286e7118a175",
+        "4165c28f5b647a6c"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep74_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403a285452279a32",
+        "4165c28f5b8cd702"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep75_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403468b213062949",
+        "4165c28f5e2ea2dd"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep76_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "403097b47c3121df",
+        "4165c28f5773b4cc"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep77_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "402ec403ea1ebd2d",
+        "4165c28f4f742f2f"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep78_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "4031b38578a1e95a",
+        "4165c28f665cfc1d"
+      ]
+    },
+    {
+      "dfe_hex": "402a000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep79_n15_seed202611131963",
+      "n": 15,
+      "t_hex": [
+        "40361fab9fee6aa6",
+        "4165c28f596396e9"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep0_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40399fc4643a432f",
+        "4017afc6dce2dc0d"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep1_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "3ffc30db22d9d563",
+        "3fe65b315ce37a0e"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep2_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403918b210ab7f33",
+        "40302ef781a27a7d"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep3_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "3fd1a45e47fa81b5",
+        "bfd1a45e47687ea2"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep4_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403251b48cdeff72",
+        "3ff826459d99a19d"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep5_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40359c89108558b8",
+        "402a11c214fa2728"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep6_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403656f7b62f9381",
+        "bff5caa704d2c526"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep7_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4033d8d6cdd8bd0f",
+        "4165c28f5c7a1afd"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep8_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4036bb4b53fba1a5",
+        "4003651f199351b7"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep9_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403d684435b7d0f9",
+        "402bee470ca35429"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep10_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40476d0c8431b1c5",
+        "4024ba233889bd0a"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep11_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403867a2e06197a6",
+        "3ff98d59449ac42b"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep12_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40357c5496589a62",
+        "4000c4c2e4a45ddc"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep13_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4002eb7e0d899b67",
+        "bfa73d3d2ff2236e"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep14_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403a1238d30f4774",
+        "402e9e4c5729770a"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep15_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "3fee195ed1f5da60",
+        "bfee195ed1886316"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep16_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403c7358ff576b9e",
+        "4009350f86dfe7a6"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep17_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "402dad3a4d1589ce",
+        "4020f5526d48e91d"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep18_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403d4fbfba0c8dec",
+        "bff1a16a1b10dfbf"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep19_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4037d1ef16349191",
+        "4165c28f5a707ba9"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep20_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403cfcba01402900",
+        "401c0a352f3a6eab"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep21_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40307004a0c79218",
+        "4020bdab9af8b4c4"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep22_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "402f7898fbff8c5a",
+        "3ff8d11ffad06597"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep23_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40351002f9063da5",
+        "bfd682925d82ef7a"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep24_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403362524dc6223a",
+        "4003f7e8fc048953"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep25_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "bfcbaa4b78974960",
+        "400430b9405f54aa"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep26_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403dae1ef1449d6d",
+        "40287efe507ea3e8"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep27_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "3fe828ddc7f7ef4f",
+        "bfe828ddc74e04eb"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep28_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40393f8dc98299e7",
+        "40021be78c2a1785"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep29_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40307aae6e6de319",
+        "40221ac629d02759"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep30_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40328b97f4ed6348",
+        "3fe752a96655dc99"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep31_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4041bb6df3d26664",
+        "4165c28f6675dd35"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep32_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403dd374ddf6093a",
+        "40066e8e607fb71c"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep33_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40349deca772270e",
+        "4025433f5a2e42c0"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep34_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4034b31ea8240582",
+        "3ffeb8d8a17ca51e"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep35_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403d298edf59c20f",
+        "3fd312ea45af113c"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep36_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40327dc70d6d6703",
+        "3ffc6621a02853d5"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep37_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4015f16b1ee94fa1",
+        "c00217a5161fbca2"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep38_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4038446f5980e72c",
+        "402810aa0a5e0cfc"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep39_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "bff572fa98368f3f",
+        "3ff572fa98686b19"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep40_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403819f947406b61",
+        "400f8804273b3b5a"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep41_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40385a23466e4274",
+        "4012e8cfef552676"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep42_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4034b10058b2606b",
+        "3fe6e5a9396796b5"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep43_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403bd7670c801aed",
+        "4165c28f632aaf42"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep44_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4033a51e1929230c",
+        "400e448fd7909c18"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep45_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40400b0125664a3b",
+        "402d137cba6e7ab5"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep46_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4037574072bb96b5",
+        "4019c61a800c756b"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep47_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40397327d6d2a608",
+        "3fd49282a4ef7ff4"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep48_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403e485b911b7703",
+        "4165c28f5f7c83ea"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep49_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4039c4675b9ed89c",
+        "4165c28f60eb211b"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep50_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403884583b78f019",
+        "4165c28f5e25fe12"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep51_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4034f3bc448d1209",
+        "4165c28f562b66c1"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep52_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4035bd7ca7e3a20b",
+        "4165c28f5f225b65"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep53_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "402f852fc3347e5a",
+        "4165c28f53553bad"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep54_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403295269717d25e",
+        "4165c28f640b59d7"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep55_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40365214ecb3ad34",
+        "4165c28f5ec3ef2c"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep56_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40391122a3874692",
+        "4165c28f5f5a64f0"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep57_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403668953eb7bfaa",
+        "4165c28f54c23986"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep58_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40366fb4b833bb28",
+        "4165c28f5938f92d"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep59_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403720ae9f489bbf",
+        "4165c28f67c0a50a"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep60_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4035ca858ae7a8fe",
+        "4165c28f4ef19095"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep61_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40307ac3ee6bb997",
+        "4165c28f5a946ed8"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep62_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4032eae87e08d396",
+        "4165c28f5850339c"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep63_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403a701c4188ee5c",
+        "4165c28f5d635714"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep64_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40373282ce8d5d51",
+        "4165c28f5c9b7e72"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep65_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4034ceda63b5e9d6",
+        "4165c28f5ad31868"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep66_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4034cd734ce2e934",
+        "4165c28f5b726e62"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep67_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4034f1f5ee8ebde8",
+        "4165c28f56d0c6c8"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep68_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403e93f182530497",
+        "4165c28f5f0cfb25"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep69_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40359e600793f6d6",
+        "4165c28f59d89447"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep70_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40325b38606f0177",
+        "4165c28f5b71d0e1"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep71_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403a6b6c136dd29b",
+        "4165c28f594be036"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep72_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4033dd86e78c6ec6",
+        "4165c28f60fe4bd6"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep73_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4035c73109859d80",
+        "4165c28f59f38a40"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep74_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "40412551bd8719cb",
+        "4165c28f5fd010f1"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep75_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4035bff5baa86480",
+        "4165c28f5d4eeaa5"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep76_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403ec09e202016d3",
+        "4165c28f5a9a69ec"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep77_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4035074913e00973",
+        "4165c28f5b06bd56"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep78_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "4039be467c6eb4dc",
+        "4165c28f56a2a5c9"
+      ]
+    },
+    {
+      "dfe_hex": "402e000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep79_n17_seed202611131963",
+      "n": 17,
+      "t_hex": [
+        "403442351acc497f",
+        "4165c28f621d9a1e"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep0_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403f8f5bca18d499",
+        "400793f54246171f"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep1_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "3ffc2cd40b2863ff",
+        "400499d53252c62e"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep2_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4035ca14901a15f9",
+        "40281ee6f10344d6"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep3_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "3fe1995e4d6b2cfe",
+        "bfe1995e4d0a5942"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep4_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4036d14ae80ff53d",
+        "3ff2ac770181ab6c"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep5_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4040572e468eefea",
+        "402e51cecd2d66f2"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep6_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403039a7fd0792f1",
+        "3ff17c06cbe8c0a4"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep7_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4037af53f6706afd",
+        "4165c28f597cdf8f"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep8_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40350ac8e42fa4cf",
+        "3fec2d01e91f8c27"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep9_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403c56ea2a2c85e0",
+        "403162d1df78a4b7"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep10_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403c42489be9ac83",
+        "4010faab56d917d1"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep11_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40370b8e37078351",
+        "bfeb668855c568dd"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep12_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403c7d890f31d4f5",
+        "3ff8df2478c3972f"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep13_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "bfd6446f91387d32",
+        "4000e1b9f00ec4ed"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep14_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403fe9707e66b93f",
+        "402bd26aeccd9267"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep15_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "3fb88047cce7013f",
+        "bfb88047c90e49e7"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep16_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4036a1740b72836e",
+        "3fd96ffa41ad74dc"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep17_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4042271270419da6",
+        "40247980248f9501"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep18_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403aa900449408e7",
+        "3fe1fcd5cbf0cbda"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep19_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403b3456836a11c4",
+        "4165c28f5ba85840"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep20_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403c283e51cf6c69",
+        "400b71c4fc4d630c"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep21_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4038168cd454d7a1",
+        "402f0d221e0c93fa"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep22_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4034e8bfeea2def4",
+        "4003d503e5ba2b55"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep23_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403626dc8efc9b1c",
+        "bfd78397f477e2db"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep24_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40430c82281e1c6f",
+        "400594fcb0ea9415"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep25_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "3fef02928391b77f",
+        "3ff39cd8034bef82"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep26_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403e0f5e3b89c44e",
+        "4032fbc3c793b2c6"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep27_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "3ff1d2ce5bc81f65",
+        "bff1d2ce5b83ba6f"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep28_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4035f0f7612478de",
+        "3ff418ad14f132bb"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep29_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40387c4294f34f3e",
+        "402aaa8ef2b27087"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep30_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4042a7d98b2f9490",
+        "3fef5312b5a39268"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep31_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403b5d6d54683937",
+        "4165c28f5c96e4ab"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep32_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403d5e1365f70d93",
+        "40019bcca18a892b"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep33_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4036ac1cb53c0f57",
+        "402ac1fc2dd71a12"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep34_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40408c3257add481",
+        "400a6206d649a3aa"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep35_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403bdd9682c6684b",
+        "4001338b7208a2d1"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep36_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4039586092313516",
+        "4000f8629fe7cbff"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep37_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "401115e076a43bd7",
+        "bfea94b47b288389"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep38_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403d22cd2143f96b",
+        "403136d222d84f35"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep39_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "3fec2578752b10f8",
+        "bfec257874b1d2fb"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep40_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40391000bebbfeae",
+        "4003029b168d3bb4"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep41_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4034b1577b009ad9",
+        "4024a50d1e69c650"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep42_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40392f05d6a72178",
+        "3fee617aa9083d35"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep43_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403cf7fc598c0a68",
+        "4165c28f599ed08f"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep44_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40303012beff5195",
+        "3ff34699c647b1a4"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep45_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403255c342299ab3",
+        "402387d00ddb09ee"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep46_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4036923f4815f751",
+        "400118181e0e7e60"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep47_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403780405767453c",
+        "bfeeb3f4657260ea"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep48_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40381b879b71cfc6",
+        "4165c28f59182f2b"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep49_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403688494dc75966",
+        "4165c28f5d0d610c"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep50_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403cac744d94ef8d",
+        "4165c28f5ae5e5c9"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep51_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40415054ded47e99",
+        "4165c28f5f94799c"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep52_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403c8618e0fa4c7b",
+        "4165c28f5b18cde3"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep53_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403d486cc51cd453",
+        "4165c28f5d803718"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep54_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4040313c8ea87bfd",
+        "4165c28f5e97f78c"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep55_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403b0f634622323e",
+        "4165c28f62e498a5"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep56_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4037d1f41b50310c",
+        "4165c28f61a6218a"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep57_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40359f9930300b43",
+        "4165c28f57664e23"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep58_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403c17f3ff1393e0",
+        "4165c28f5b2c09f6"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep59_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4037f4573274e95a",
+        "4165c28f643795ea"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep60_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4037b547ac3f9379",
+        "4165c28f54c2c283"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep61_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403e7a8092231d95",
+        "4165c28f5eeb8bb5"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep62_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403a877118d85054",
+        "4165c28f5c2e4002"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep63_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403e2e189162ccf8",
+        "4165c28f5e4b5cac"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep64_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403c65be8135903b",
+        "4165c28f5bf0de6e"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep65_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4037c0329dc868ce",
+        "4165c28f6131969e"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep66_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403f78f48745f838",
+        "4165c28f62c5a68e"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep67_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40417ddb25db2158",
+        "4165c28f5a9b0f82"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep68_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403ee04d6d637b57",
+        "4165c28f60bb094c"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep69_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403e946caf8cfea6",
+        "4165c28f5cb8f0b6"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep70_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4040047b9f2327e7",
+        "4165c28f544fde80"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep71_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40344d7dfc291724",
+        "4165c28f571d096a"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep72_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403990a5a9fb9343",
+        "4165c28f5d8a807e"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep73_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4038f9e7909fcafe",
+        "4165c28f5ff5c783"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep74_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403cb0680ceaddb6",
+        "4165c28f5bb4f7bc"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep75_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4036e2d02c897177",
+        "4165c28f5fa66bb9"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep76_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "4041892ab2243ffc",
+        "4165c28f596cf98f"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep77_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40409a77cff21003",
+        "4165c28f5cb14ac8"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep78_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "40390fcad4294358",
+        "4165c28f56a023a6"
+      ]
+    },
+    {
+      "dfe_hex": "4035000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep79_n23_seed202611131963",
+      "n": 23,
+      "t_hex": [
+        "403879761e2aea5f",
+        "4165c28f54f48f66"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep0_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403feb365eaaa37a",
+        "3fe62143be9980b7"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep1_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "3fcd080df5c3d98f",
+        "40021e103525ac55"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep2_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403f72200d0e0c61",
+        "40382e2d5083cccf"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep3_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "bff29bcba4eb04ac",
+        "3ff29bcba52c5ad1"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep4_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4034dfe98b1dc21d",
+        "4002f6e6a816400b"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep5_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403db3ff9ebbd6fe",
+        "4027db6190944270"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep6_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40410e774473ccfc",
+        "bf8199f7c3ff51fe"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep7_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403c3c6f6067141b",
+        "4165c28f61836889"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep8_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40351815e212f9bd",
+        "3fda7ada7746c336"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep9_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403a2ada6900dcd2",
+        "402acc4b0a60b11a"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep10_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403e3334c4534771",
+        "4009e8b84bb0c3bc"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep11_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4036ec64dbeab9b2",
+        "3fe3ab04d3f3e42a"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep12_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403f4978fe058f2a",
+        "4005db62088a3b45"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep13_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "3ffcc24cc2e1bb55",
+        "3fe7e3895d3b4f5f"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep14_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403edc5533d8e798",
+        "402c60f4539f98e9"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep15_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "3ff1701e4900940f",
+        "bff1701e48bf6c1e"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep16_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4037b770fd78bb4a",
+        "400bfb5cd13a5836"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep17_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4033fb9a47bf3944",
+        "40202aec16f464af"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep18_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40409d8513f2e401",
+        "3fdb739a5814b79a"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep19_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403f82d05fdac539",
+        "4165c28f5b4a0db8"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep20_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40414b5602241d34",
+        "40034e380e918a09"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep21_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40396eb9086beec4",
+        "402be0c3ae1ed88c"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep22_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4041e89386efa29f",
+        "4010c2269f23b88b"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep23_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "404097aef878dc42",
+        "bffd4621973decef"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep24_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40329743daded000",
+        "400504125be22c32"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep25_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "bfe154282025d0cb",
+        "400d670191f19ea6"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep26_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403c1b890c9e9738",
+        "4022101ff17de557"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep27_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "bff03740a7e37afe",
+        "3ff03740a80cbd7b"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep28_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4039f43960e16e1d",
+        "3ff4c69223a8bc1a"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep29_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403a0c714fdef654",
+        "402b4fee116351df"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep30_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403cc53f2ddd1088",
+        "bfccd60f4c0d0ca5"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep31_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4034879d1ccde1a6",
+        "4165c28f5ba8fef3"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep32_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403831491caee58b",
+        "3ffba8f6cfa39db6"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep33_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403499d81ce90cbb",
+        "40290eb7d70e174d"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep34_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40379dba60a06a6c",
+        "40047dc1d978b7c7"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep35_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403b526b99bfdcf7",
+        "3fe55e34073833ac"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_gaussian_rep36_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403e697ae8671da1",
+        "400fa3e1e5d757d6"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_shifted_rep37_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4001b7c28fbe3a1a",
+        "3fe9e1993fc50330"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_scaled_rep38_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403d1a2ec6095878",
+        "40214e1e0b30ba99"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_nearflat_rep39_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "bfdf8a19f9ee91ba",
+        "3fdf8a19fb040569"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_alternating_rep40_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4035957d4c4cb4e8",
+        "3ffad479df91f7ab"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_impulse_rep41_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4039fba5fb49ff9c",
+        "4026630f18bcee79"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_tiny_rep42_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403d7c5cb4898064",
+        "3fedd45970b48fdc"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep43_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40429ddc1787510c",
+        "4165c28f5e765364"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_heavy_tails_rep44_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403b38bc821fe650",
+        "bfdf8c2e3281399f"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_power_bands_rep45_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40361452bc93f22a",
+        "4028dde95401a084"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_clusters_rep46_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403d401fc781e18c",
+        "400a77ff7ed189ff"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_ramped_rep47_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40417521f1ada701",
+        "3fe9b51739064a28"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep48_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4033e4eedb9be80a",
+        "4165c28f57ad2d7a"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep49_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403f80795c83a118",
+        "4165c28f5ac98998"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep50_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4040a5eb5cb0aaf2",
+        "4165c28f5d935070"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep51_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403fcebaf0c067e4",
+        "4165c28f5b78c327"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep52_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4037ab778b74e18a",
+        "4165c28f5642d3ef"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep53_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403bd3758ff04734",
+        "4165c28f5b497728"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep54_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4037ba342fb4b7ce",
+        "4165c28f611330d8"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep55_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403a7d2e7e571e92",
+        "4165c28f5ab08cc2"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep56_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4037fb9eac859f55",
+        "4165c28f5d04e4ee"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep57_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403925e1a28bdd74",
+        "4165c28f5e7c5900"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep58_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403d145f5e7eabdb",
+        "4165c28f5ce4afd5"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep59_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40409dde62a490a2",
+        "4165c28f5b8a1ae3"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep60_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403de95df6430bed",
+        "4165c28f599aff9c"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep61_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4037b4e7eb6962a6",
+        "4165c28f595cf784"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep62_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403e7e31ac08f98c",
+        "4165c28f5d96f344"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep63_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403f94859df64ccb",
+        "4165c28f614b6ed7"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep64_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403bc0179d668cee",
+        "4165c28f5faf2cdf"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep65_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40432e4edce9aa29",
+        "4165c28f5f57981e"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep66_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403c67ad2244bb0e",
+        "4165c28f5de7466a"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep67_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4044a364e32bf2e9",
+        "4165c28f629b8684"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep68_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403cd1efee5ad6a2",
+        "4165c28f5aad8de0"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep69_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "404021398efbb4be",
+        "4165c28f56a8072c"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep70_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403e42f1f8747009",
+        "4165c28f5b376e44"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep71_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40362dc0d83a439c",
+        "4165c28f5eefea9b"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep72_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4034ea758a18374a",
+        "4165c28f58e8448d"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep73_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403d0c1d2e9aff13",
+        "4165c28f56a41df9"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep74_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "40420f661578e7c0",
+        "4165c28f5a9169d6"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep75_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403f523b7c2fa35a",
+        "4165c28f6a04d55d"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep76_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4039e57b4eed0e2d",
+        "4165c28f63760e7c"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep77_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "4040d82846b16cc5",
+        "4165c28f585ed147"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep78_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403d092eb7289aae",
+        "4165c28f56df176b"
+      ]
+    },
+    {
+      "dfe_hex": "4037000000000000",
+      "id": "matlab_raw_robustfit_v11_unseen_large_rep79_n25_seed202611131963",
+      "n": 25,
+      "t_hex": [
+        "403a37650a257640",
+        "4165c28f5e640527"
+      ]
+    }
+  ],
+  "source_numeric_outputs_supplied_to_compiled_Rust": false,
+  "source_unseen_V12": "NOT_GENERATED"
+}

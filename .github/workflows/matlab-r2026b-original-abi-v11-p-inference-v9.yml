@@ -1,0 +1,57 @@
+name: "Genuine R2026b | Rust-native t/dfe -> original ABI Student-t p V11 1920 exact"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-abi-inference-from-independent-rust:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen independent Rust V11 t inputs and compile original-only research bridge
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v9
+          python3 -m py_compile "$root/score_v11_rust_t_gamma_beta_original_abi_v9.py"
+          python3 "$root/score_v11_rust_t_gamma_beta_original_abi_v9.py" --prepare
+          g++ -std=c++17 -O0 -Wall -Wextra -Werror -fno-fast-math \
+            "$root/original_mathspec_v11_student_t_abi_v9.cpp" \
+            -o /tmp/cingulum-mathworks-v11-abi-original-research -ldl
+          sha256sum "$root/frozen_v11_independent_rust_t_dfe_input.json"
+          echo "FROZEN_V11_INDEPENDENT_RUST_T_DFE_SOURCE_ONLY_RESEARCH_PREPARED"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Original R2026b tcdf from independently calculated Rust t and degrees of freedom
+        uses: matlab-actions/run-command@v3
+        with:
+          command: |
+            addpath('Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v9');
+            original_matlab_v11_student_t_for_abi_v9;
+      - name: Same-host MathWorks beta ABI from identical Rust t/dfe, score against archived original 1920 p
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v9
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = '625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          betasym=$(nm -D --defined-only "$lib" | awk '$3 ~ /^_ZN8mathspec7betaincEddd/ {print $3}')
+          test -n "$betasym"
+          test "$(printf '%s\n' "$betasym" | wc -l)" -eq 1
+          lscpu | grep -E '^Vendor ID:|^Model name:' || true
+          export LD_LIBRARY_PATH="$(dirname "$lib"):$(printenv LD_LIBRARY_PATH || true)"
+          /tmp/cingulum-mathworks-v11-abi-original-research \
+            "$lib" "$betasym" \
+            < "$root/v11_rust_t_dfe_abi_input.txt" > "$root/abi_v11_p_from_rust_t_v9.txt"
+          python3 "$root/score_v11_rust_t_gamma_beta_original_abi_v9.py" --score
+      - name: Preserve only exact counts and provenance, not vendor source or original numeric outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-R2026b-V11-independent-Rust-t-to-original-beta-ABI-p-summary-v9
+          path: Cingulum_Yale_MATLAB_Online/matlab_r2026b_direct_abi_probe_v9/comparison_summary_v9.json
+          retention-days: 90
+          if-no-files-found: error
