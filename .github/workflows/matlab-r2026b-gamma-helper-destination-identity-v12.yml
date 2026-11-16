@@ -1,0 +1,69 @@
+name: "Genuine R2026b | original gamma helper external public symbol identity v12"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-gamma-helper-identity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile user-authored research-only helper probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 -m py_compile "$root/identify_original_gamma_helper_destination_v12.gdb.py"
+          g++ -std=c++17 -O0 -g -Wall -Wextra -Werror -fno-fast-math \
+            "$root/resolve_original_mathspec_helper_v11.cpp" \
+            -o /tmp/original_gamma_identity_v12 -ldl
+          if ! command -v gdb >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gdb
+          fi
+          sha256sum "$root/identify_original_gamma_helper_destination_v12.gdb.py"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: SHA-verify MathWorks original and identify system numerical helper by public symbol
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848"
+          sym=$(nm -D --defined-only "$lib" | awk '$3=="_ZN8mathspec7gammalnEd" {print $3}')
+          test "$sym" = "_ZN8mathspec7gammalnEd"
+          export LD_LIBRARY_PATH="$(dirname "$lib"):${LD_LIBRARY_PATH:-}"
+          export CINGULUM_HELPER_IDENTITY_V12_OUTPUT=original_gamma_helper_external_identity_v12.json
+          if ! timeout 900 gdb -nx --batch -q \
+              -x "$root/identify_original_gamma_helper_destination_v12.gdb.py" \
+              --args /tmp/original_gamma_identity_v12 "$lib" "$sym" 0x632e0 \
+              >/tmp/cingulum_gdb_identity_v12_private.log 2>&1; then
+            echo "FAIL_ORIGINAL_RUNTIME_PUBLIC_SYMBOL_PROBE_PRIVATE_LOG_SUPPRESSED"
+            rm -f /tmp/cingulum_gdb_identity_v12_private.log
+            exit 1
+          fi
+          rm -f /tmp/cingulum_gdb_identity_v12_private.log
+          python3 - <<'PY'
+          import json,hashlib
+          p=json.load(open('original_gamma_helper_external_identity_v12.json'))
+          assert p['original_libmwmathspec_sha256']=='625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          assert p['original_stub_relative_offset']=='0x632e0'
+          assert p['destination_is_external_to_mathspec']
+          assert p['symbol_whitelist_only']
+          assert not p['vendor_assembly_or_numeric_intermediates_exported']
+          assert p['independent_pure_rust_gamma_beta_parity']=='NOT_CERTIFIED'
+          print('SHARED_GAMMA_HELPER_IDENTITY',p['standard_public_symbol'],p['destination_library_category'])
+          print('OUTPUT_SHA256',hashlib.sha256(open('original_gamma_helper_external_identity_v12.json','rb').read()).hexdigest())
+          PY
+      - name: Upload only public-standard helper category metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-R2026b-gamma-helper-external-symbol-identity-v12
+          path: original_gamma_helper_external_identity_v12.json
+          retention-days: 90
+          if-no-files-found: error
