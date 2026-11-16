@@ -20,6 +20,10 @@ jobs:
             -o /tmp/cingulum_original_gamma_trace_v8 -ldl
           sha256sum "$root/trace_gamma_runtime_branch_families_v8.cpp" \
             "$root/trace_gamma_runtime_branch_families_v8.gdb.py"
+          if ! command -v gdb >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gdb
+          fi
           command -v gdb
       - uses: matlab-actions/setup-matlab@v3
         with:
