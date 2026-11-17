@@ -1,0 +1,75 @@
+name: "Genuine R2026b | beta nested hidden helper runtime paths v23"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-beta-root-runtime-paths:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile only author-written numerical research test
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 -m py_compile "$root/trace_beta_nested_helpers_v23.gdb.py"
+          g++ -std=c++17 -O0 -g -Wall -Wextra -Werror -fno-fast-math \
+            "$root/trace_beta_runtime_branch_families_v22.cpp" \
+            -o /tmp/original_R2026b_beta_root_v23 -ldl
+          if ! command -v gdb >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gdb
+          fi
+          sha256sum "$root/trace_beta_runtime_branch_families_v22.cpp" "$root/trace_beta_nested_helpers_v23.gdb.py"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Probe authenticated original hidden beta branch path hashes; suppress all vendor code
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848"
+          betasym=$(nm -D --defined-only "$lib" | awk '$3 ~ /^_ZN8mathspec7betaincEddd/ {print $3}')
+          test -n "$betasym"
+          test "$(printf '%s\n' "$betasym" | wc -l)" = "1"
+          export LD_LIBRARY_PATH="$(dirname "$lib"):${LD_LIBRARY_PATH:-}"
+          export CINGULUM_BETA_NESTED_V23_OUTPUT=original_r2026b_beta_nested_helpers_v23.json
+          if ! timeout 1800 gdb -nx --batch -q \
+              -x "$root/trace_beta_nested_helpers_v23.gdb.py" \
+              --args /tmp/original_R2026b_beta_root_v23 "$lib" "$betasym" 0xeb010 \
+              >/tmp/original_R2026b_beta_gdb_v23_private.log 2>&1; then
+            echo "GENUINE_BETA_RUNTIME_RESEARCH_FAILED_PRIVATE_ASSEMBLY_LOG_NOT_PUBLISHED"
+            rm -f /tmp/original_R2026b_beta_gdb_v23_private.log
+            exit 1
+          fi
+          rm -f /tmp/original_R2026b_beta_gdb_v23_private.log
+          python3 - <<'PY'
+          import json,hashlib
+          p=json.load(open('original_r2026b_beta_nested_helpers_v23.json'))
+          assert p['original_mathspec_sha256']=='625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          assert p['source_disclosed_input_count']==12
+          assert p['actual_helper_executions']==24
+          assert p['original_beta_root_entry_offset']=='0xeb010'
+          assert len(p['helper_execution_summaries'])==24
+          assert all(x['returned_to_original_abi_caller'] for x in p['helper_execution_summaries'])
+          assert len(p['unique_execution_paths_by_helper'])==2
+          assert p['numeric_calls_stepped_over']
+          assert p['original_vendor_assembly_operands_constants_registers_values_or_output_distributed'] is False
+          assert p['pure_Rust_betainc_lower_upper_all_grid_exact']=='NOT_CERTIFIED'
+          assert p['source_unseen_V12']=='NOT_GENERATED'
+          print('ORIGINAL_BETA_NESTED_HELPER_PATHS',p['actual_helper_executions'],'GROUPS',p['unique_execution_paths_by_helper'])
+          print('RESULT_SHA256',hashlib.sha256(open('original_r2026b_beta_nested_helpers_v23.json','rb').read()).hexdigest())
+          PY
+      - name: Upload sanitized original beta path categories, never numerical output
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-R2026b-beta-two-hidden-helpers-12-samples-v23
+          path: original_r2026b_beta_nested_helpers_v23.json
+          retention-days: 90
+          if-no-files-found: error
