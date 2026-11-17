@@ -1,0 +1,73 @@
+name: "Genuine R2026b | beta lower upper original hidden root runtime paths v22"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-beta-root-runtime-paths:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile only author-written numerical research test
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 -m py_compile "$root/trace_beta_runtime_branch_families_v22.gdb.py"
+          g++ -std=c++17 -O0 -g -Wall -Wextra -Werror -fno-fast-math \
+            "$root/trace_beta_runtime_branch_families_v22.cpp" \
+            -o /tmp/original_R2026b_beta_root_v22 -ldl
+          if ! command -v gdb >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gdb
+          fi
+          sha256sum "$root/trace_beta_runtime_branch_families_v22.cpp" "$root/trace_beta_runtime_branch_families_v22.gdb.py"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Probe authenticated original hidden beta branch path hashes; suppress all vendor code
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848"
+          betasym=$(nm -D --defined-only "$lib" | awk '$3 ~ /^_ZN8mathspec7betaincEddd/ {print $3}')
+          test -n "$betasym"
+          test "$(printf '%s\n' "$betasym" | wc -l)" = "1"
+          export LD_LIBRARY_PATH="$(dirname "$lib"):${LD_LIBRARY_PATH:-}"
+          export CINGULUM_BETA_PATH_V22_OUTPUT=original_r2026b_beta_root_paths_v22.json
+          if ! timeout 1800 gdb -nx --batch -q \
+              -x "$root/trace_beta_runtime_branch_families_v22.gdb.py" \
+              --args /tmp/original_R2026b_beta_root_v22 "$lib" "$betasym" 0xeb010 \
+              >/tmp/original_R2026b_beta_gdb_v22_private.log 2>&1; then
+            echo "GENUINE_BETA_RUNTIME_RESEARCH_FAILED_PRIVATE_ASSEMBLY_LOG_NOT_PUBLISHED"
+            rm -f /tmp/original_R2026b_beta_gdb_v22_private.log
+            exit 1
+          fi
+          rm -f /tmp/original_R2026b_beta_gdb_v22_private.log
+          python3 - <<'PY'
+          import json,hashlib
+          p=json.load(open('original_r2026b_beta_root_paths_v22.json'))
+          assert p['original_mathspec_sha256']=='625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          assert p['sample_count']==28
+          assert p['original_beta_numerical_entry_offset']=='0xeb010'
+          assert len(p['public_probe_cases'])==28
+          assert all(x['returned_to_original_abi_caller'] for x in p['public_probe_cases'])
+          assert p['all_nested_vendor_and_libm_calls_stepped_over']
+          assert p['vendor_instruction_bytes_operands_constants_xmm_numerical_results_or_intermediates_distributed'] is False
+          assert p['independently_compiled_pure_Rust_betainc_lower_upper_exact']=='NOT_CERTIFIED'
+          assert p['new_sealed_source_unseen_V12']=='NOT_GENERATED'
+          print('ORIGINAL_BETA_SANITIZED_PATHS',p['sample_count'],'UNIQUE',p['unique_runtime_root_path_count'])
+          print('RESULT_SHA256',hashlib.sha256(open('original_r2026b_beta_root_paths_v22.json','rb').read()).hexdigest())
+          PY
+      - name: Upload sanitized original beta path categories, never numerical output
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-R2026b-beta-hidden-root-28-dynamic-probes-v22
+          path: original_r2026b_beta_root_paths_v22.json
+          retention-days: 90
+          if-no-files-found: error
