@@ -1,0 +1,99 @@
+name: "Genuine R2026b | beta prospective original helper versus independent Lentz iteration hypothesis v28"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-beta-root-runtime-paths:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile only author-written numerical research test
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          python3 -m py_compile "$root/trace_beta_lentz_iteration_v28.gdb.py"
+          (cd "$root" && sha256sum -c beta_lentz_iteration_v28_raw_inputs.sha256)
+          python3 - <<'PYINPUT'
+          import json,struct,hashlib,re
+          from pathlib import Path
+          p=Path('Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2')
+          raw=(p/'beta_lentz_iteration_v28_raw_inputs.json').read_bytes()
+          d=json.loads(raw)
+          assert d['original_input_count']==len(d['cases'])==80
+          assert d['source_unseen_V12']=='NOT_GENERATED'
+          assert d['original_MATLAB_numeric_data_supplied'] is False
+          body=(p/'trace_beta_lentz_iteration_v28.cpp').read_text()
+          combos=re.findall(r'^\s*\{(0x[0-9a-f.p+-]+), (0x[0-9a-f.p+-]+), (0x[0-9a-f.p+-]+), ([01])\},$',body,re.M)
+          assert len(combos)==80
+          bits=lambda x:struct.pack('>d',x).hex()
+          for row,(x,a,b,tail) in zip(d['cases'],combos):
+              assert row['a_hex']==bits(float.fromhex(a))
+              assert row['b_hex']==bits(float.fromhex(b))
+              assert row['x_hex']==bits(float.fromhex(x))
+              assert row['tail']==int(tail)
+          debugger=(p/'trace_beta_lentz_iteration_v28.gdb.py').read_text()
+          assert all(row['label'] in debugger for row in d['cases'])
+          print('PROSPECTIVE_ORIGINAL_BETA_V28_RAW_ONLY_CASES_VERIFIED',len(combos))
+          PYINPUT
+          g++ -std=c++17 -O0 -g -Wall -Wextra -Werror -fno-fast-math \
+            "$root/trace_beta_lentz_iteration_v28.cpp" \
+            -o /tmp/original_R2026b_beta_root_v28 -ldl
+          if ! command -v gdb >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gdb
+          fi
+          sha256sum "$root/trace_beta_lentz_iteration_v28.cpp" "$root/trace_beta_lentz_iteration_v28.gdb.py"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Probe authenticated original hidden beta branch path hashes; suppress all vendor code
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=Cingulum_Yale_MATLAB_Online/matlab_r2026b_special_function_native_metadata_v2
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          test -n "$lib"
+          test "$(sha256sum "$lib" | cut -d' ' -f1)" = "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848"
+          betasym=$(nm -D --defined-only "$lib" | awk '$3 ~ /^_ZN8mathspec7betaincEddd/ {print $3}')
+          test -n "$betasym"
+          test "$(printf '%s\n' "$betasym" | wc -l)" = "1"
+          export LD_LIBRARY_PATH="$(dirname "$lib"):${LD_LIBRARY_PATH:-}"
+          export CINGULUM_BETA_ITER_V28_OUTPUT=original_r2026b_beta_lentz_iteration_v28.json
+          if ! timeout 1800 gdb -nx --batch -q \
+              -x "$root/trace_beta_lentz_iteration_v28.gdb.py" \
+              --args /tmp/original_R2026b_beta_root_v28 "$lib" "$betasym" 0xeb010 \
+              >/tmp/original_R2026b_beta_gdb_v28_private.log 2>&1; then
+            echo "GENUINE_BETA_RUNTIME_RESEARCH_FAILED_PRIVATE_ASSEMBLY_LOG_NOT_PUBLISHED"
+            rm -f /tmp/original_R2026b_beta_gdb_v28_private.log
+            exit 1
+          fi
+          rm -f /tmp/original_R2026b_beta_gdb_v28_private.log
+          python3 - <<'PY'
+          import json,hashlib
+          p=json.load(open('original_r2026b_beta_lentz_iteration_v28.json'))
+          assert p['original_mathspec_sha256']=='625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848'
+          assert p['source_disclosed_input_count']==80
+          assert p['actual_helper_executions']==80
+          assert p['original_beta_root_entry_offset']=='0xeb010'
+          assert p['original_disclosed_input_sha256']=='c6cec58300d8801d6216f653202fdb7e91e63ed7794f39f301f00e7d029d6825'
+          assert len(p['helper_execution_summaries'])==80
+          assert all(x['returned_to_original_abi_caller'] for x in p['helper_execution_summaries'])
+          assert len(p['unique_execution_paths_by_helper'])==1
+          assert p['numeric_calls_stepped_over']
+          assert p['original_vendor_assembly_operands_constants_registers_values_or_output_distributed'] is False
+          assert p['pure_Rust_betainc_lower_upper_all_grid_exact']=='NOT_CERTIFIED'
+          assert p['source_unseen_V12']=='NOT_GENERATED'
+          print('ORIGINAL_BETA_NESTED_HELPER_PATHS',p['actual_helper_executions'],'GROUPS',p['unique_execution_paths_by_helper'])
+          print('RESULT_SHA256',hashlib.sha256(open('original_r2026b_beta_lentz_iteration_v28.json','rb').read()).hexdigest())
+          PY
+      - name: Upload sanitized original beta path categories, never numerical output
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-R2026b-beta-source-disclosed-Lentz-80-samples-v28
+          path: original_r2026b_beta_lentz_iteration_v28.json
+          retention-days: 90
+          if-no-files-found: error
