@@ -39,7 +39,7 @@ jobs:
           test -n "$betasym"
           test "$(printf '%s\n' "$betasym" | wc -l)" = "1"
           export LD_LIBRARY_PATH="$(dirname "$lib"):${LD_LIBRARY_PATH:-}"
-          export CINGULUM_BETA_SHAPE_V24_OUTPUT=original_r2026b_beta_shape_vs_x_v24.json
+          export CINGULUM_BETA_NESTED_V24_OUTPUT=original_r2026b_beta_shape_vs_x_v24.json
           if ! timeout 1800 gdb -nx --batch -q \
               -x "$root/trace_beta_shape_vs_x_v24.gdb.py" \
               --args /tmp/original_R2026b_beta_root_v24 "$lib" "$betasym" 0xeb010 \
