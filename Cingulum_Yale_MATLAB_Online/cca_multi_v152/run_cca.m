@@ -18,6 +18,13 @@ for rep=1:2
         end
         beta=struct('ratio',num2hex(ratio),'x',num2hex(z),'a',a1,'b',b1,...
             'tail',tail,'p',num2hex(betainc(z,a1,b1,tail)));
+        wd=(1/stats.F)*stats.df2;
+        if wd < stats.df1
+            wb=wd/(wd+stats.df1);
+        else
+            wb=stats.df1/(wd+stats.df1);
+        end
+        beta.weighted_x=num2hex(wb);beta.weighted_p=num2hex(betainc(wb,a1,b1,tail));
         rows{j}=struct('id',q.id,'pivot',{bits(p)},'qx',{bits(Q)},'rx',{bits(R(triu(true(q.m))))}, ...
             'qy',{bits(Qy)},'ry',num2hex(Ry),'cross',{bits(cross)},'r',num2hex(r),'weight',{bits(A*sign(B))}, ...
             'by',num2hex(abs(B)),'u',{bits(U*sign(B))},'v',{bits(V*sign(B))},'f',num2hex(stats.F), ...
