@@ -31,11 +31,11 @@ for rep=1:2
             task=reshape(A(:,:,:,t),nr*nc,n);
             F((t-1)*numel(loc)+(1:numel(loc)),:)=task(loc,:);
         end
-        igrid={};ilabel={};imse={};isel={};icoef={};iintercept={};ipred={};imean={};ise={};osel={};
+        igrid={};ilabel={};imse={};isel={};icoef={};iintercept={};ipred={};imean={};ise={};osel={};ocount=[];icount=[];itcount=[];
         for fold=1:q.k
             tr=labels~=fold;B=F(:,tr);yy=y(tr);
             [~,ep]=corr(B',yy);
-            chosen_edges=find(ep<=q.threshold);osel=[osel;bits(chosen_edges-1)];
+            chosen_edges=find(ep<=q.threshold);osel=[osel;bits(chosen_edges-1)];ocount(end+1)=numel(chosen_edges);
             if numel(q.lambda_value)==1,continue;end
             grid=q.lambda_value;
             if isempty(grid)
@@ -59,6 +59,7 @@ for rep=1:2
                     [coeff,info]=lasso(E(selected,:)',target,args{:});
                     forecast=B(selected,itest)'*coeff+info.Intercept;
                     assert(isequal(num2hex(mean((forecast-yy(itest)).^2)),num2hex(loss(z,li))));
+                    icount(end+1)=numel(coeff);itcount(end+1)=numel(forecast);
                     isel=[isel;bits(selected-1)];icoef=[icoef;bits(coeff)];
                     iintercept=[iintercept;bits(info.Intercept)];ipred=[ipred;bits(forecast)];
                 end
@@ -70,6 +71,7 @@ for rep=1:2
         shapes=cellfun(@size,fields,'UniformOutput',false);
         rows{j}=struct('id',q.id,'returned',true,'q_s',num2hex(qs),'q_s_fold',{bits(qf)},'r_pearson',num2hex(r), ...
           'r_rank',num2hex(rank),'y',{bits(pred)},'beta_total',{bits(b)},'intercept_total',{bits(ic)}, ...
+          'outer_counts',{bits(ocount)},'inner_counts',{bits(icount)},'inner_test_counts',{bits(itcount)}, ...
           'outer_selector',{osel},'inner_selector',{isel},'inner_coef',{icoef},'inner_intercept',{iintercept}, ...
           'inner_predictions',{ipred},'inner_means',{imean},'inner_se',{ise},'inner_grid',{igrid},'inner_labels',{ilabel},'inner_mse',{imse},'lambda_total',{bits(lam)},'labels',{bits(labels)},'shapes',{shapes},'warning_id',wid,'warning_message',msg);
     end
@@ -80,5 +82,5 @@ out.commit=getenv('GITHUB_SHA');out.release=version;out.run=getenv('GITHUB_RUN_I
 fid=fopen('original.json','w');assert(fid>=0);fprintf(fid,'%s\n',jsonencode(out));assert(fclose(fid)==0);
 end
 function b=bits(x)
-b=cellstr(num2hex(double(x(:))));
+if isempty(x),b=cell(0,1);else,b=cellstr(num2hex(double(x(:))));end
 end
