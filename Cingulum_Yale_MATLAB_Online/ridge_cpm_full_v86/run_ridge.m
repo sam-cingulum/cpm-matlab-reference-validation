@@ -13,7 +13,12 @@ for rep=1:2
             labels=q.fold_labels(:);k=labels;
         end
         lastwarn('');
-        [qs,qf,r,rank,pred,b,ic,lam]=ridgeCPM(A,y,q.threshold,q.alpha,q.lambda_value,k,q.seed);
+        try
+            [qs,qf,r,rank,pred,b,ic,lam]=ridgeCPM(A,y,q.threshold,q.alpha,q.lambda_value,k,q.seed);
+        catch e
+            rows{j}=struct('id',q.id,'returned',false,'error_id',e.identifier,'error_message',e.message);
+            continue;
+        end
         [msg,wid]=lastwarn;
         % Independently reproduce the original sequence of outer and inner RNG calls.
         rng(q.seed,'twister');
@@ -63,7 +68,7 @@ for rep=1:2
         end
         fields={qs,qf,r,rank,pred,b,ic,lam};
         shapes=cellfun(@size,fields,'UniformOutput',false);
-        rows{j}=struct('id',q.id,'q_s',num2hex(qs),'q_s_fold',{bits(qf)},'r_pearson',num2hex(r), ...
+        rows{j}=struct('id',q.id,'returned',true,'q_s',num2hex(qs),'q_s_fold',{bits(qf)},'r_pearson',num2hex(r), ...
           'r_rank',num2hex(rank),'y',{bits(pred)},'beta_total',{bits(b)},'intercept_total',{bits(ic)}, ...
           'outer_selector',{osel},'inner_selector',{isel},'inner_coef',{icoef},'inner_intercept',{iintercept}, ...
           'inner_predictions',{ipred},'inner_means',{imean},'inner_se',{ise},'inner_grid',{igrid},'inner_labels',{ilabel},'inner_mse',{imse},'lambda_total',{bits(lam)},'labels',{bits(labels)},'shapes',{shapes},'warning_id',wid,'warning_message',msg);
