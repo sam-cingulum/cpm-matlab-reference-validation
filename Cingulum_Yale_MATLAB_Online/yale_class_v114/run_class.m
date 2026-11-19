@@ -1,4 +1,5 @@
-function run_class
+function run_class(record_two_output_rank)
+if nargin==0,record_two_output_rank=false;end
 assert(contains(version,'(R2026b) Update 1'));maxNumCompThreads(1);
 base=fullfile(pwd,'upstream','matlab','oop');addpath(base);
 assert(strcmp(which('cpm'),fullfile(base,'cpm.m')) && strcmp(which('rcpm'),fullfile(base,'rcpm.m')));
@@ -30,6 +31,9 @@ for rep=1:2
                 row.public_metrics=bits([obj.q_s;obj.r_pearson;obj.r_rank;obj.mse]);
                 mse=sum((obj.Y-Y).^2)/n;qs=1-mse/var(Y,1);
                 r=corr(obj.Y,Y);rank=corr(obj.Y,Y,'type','spearman');
+                if record_two_output_rank
+                    [rr,rp]=corr(obj.Y,Y,'type','spearman');row.two_output_rank=num2hex(rr);
+                end
                 row.metrics=bits([qs;r;rank;mse]);row.transcript=outtext;
                 rng(q.seed);part=cvpartition(n,'k',q.k);labels=zeros(n,1);masks=[];
                 for fold=1:q.k
