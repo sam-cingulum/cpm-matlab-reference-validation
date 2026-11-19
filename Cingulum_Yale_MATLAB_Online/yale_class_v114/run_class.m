@@ -12,8 +12,8 @@ for rep=1:2
             subs(i)=subject(A(:,:,i,:),i,"synthetic","none");
         end
         g=group(subs);Y=hex2num(char(h.outcomes));p=phenotype("synthetic",Y);
-        % The JSON contains one row of hex strings per control.
-        rawcontrols=reshape(hex2num(char(q.controls(:))),size(q.controls))';
+        % Input stores contiguous control columns in MATLAB order.
+        rawcontrols=reshape(hex2num(char(q.controls)),n,2);
         assert(isequal(size(rawcontrols),[n 2]));
         X=reshape(permute(g.all_edges,[1 3 2]),[],n);
         for mode=["cpm","rcpm"]
@@ -34,7 +34,7 @@ for rep=1:2
                 rng(q.seed);part=cvpartition(n,'k',q.k);labels=zeros(n,1);masks=[];
                 for fold=1:q.k
                     testidx=test(part,fold);tr=~testidx;labels(testidx)=fold;
-                    if mode=="rcpm",Z=C(tr);else,Z=C(tr,:);end
+                    if isempty(C),Z=[];elseif mode=="rcpm",Z=C(tr);else,Z=C(tr,:);end
                     if isempty(Z),[rho,prob]=corr(X(:,tr)',Y(tr));else,[rho,prob]=partialcorr(X(:,tr)',Y(tr),Z);end
                     masks=[masks;sign(rho).*(prob<q.threshold)];
                 end

@@ -25,7 +25,7 @@ for j,n in enumerate((39,46,53,66,79,91,106,122)):
                     if sym:slab[c+r*side]=v
             matrix.extend(slab)
     rows.append(dict(id=f"class_{j}",group=dict(shape=[side,side,n,tasks],matrix=list(map(bits,matrix)),outcomes=list(map(bits,y))),
-                     controls=[list(map(bits,v)) for v in controls],cpm_controls=j%3,rcpm_controls=1+j%2,
+                     controls=[bits(x) for v in controls for x in v],cpm_controls=j%3,rcpm_controls=1+j%2,
                      k=3+j%3,seed=rng.randrange(1000000),threshold=[.01,.05,.2][j%3],alpha=[.35,1e-6,.85][j%3]))
 p=Path(__file__).with_name("input.json");p.write_text(json.dumps(rows,separators=(",",":"))+"\n")
 p.with_suffix(".sha256").write_text(hashlib.sha256(p.read_bytes()).hexdigest()+"  input.json\n")
