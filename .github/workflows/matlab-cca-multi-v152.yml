@@ -1,0 +1,39 @@
+name: R2026b original three- through six-task canonical correlation for Yale cCPM V152
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  numeric-probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: Cingulum_Yale_MATLAB_Online/cca_multi_v152
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sha256sum -c input.sha256
+          lscpu > cpu.txt
+          head -n 20 cpu.txt
+          grep -E '^Model name: *AMD EPYC .*(7763|9V45)' cpu.txt
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - run: |
+          lib=$(find /opt/hostedtoolcache/MATLAB -path '*/bin/glnxa64/libmwmathspec.so' -type f -print -quit)
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $lib" | sha256sum -c -
+      - uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/cca_multi_v152'); run_cca
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cca-multi-v152
+          path: |
+            Cingulum_Yale_MATLAB_Online/cca_multi_v152/original.json
+            Cingulum_Yale_MATLAB_Online/cca_multi_v152/cpu.txt
+          if-no-files-found: error
