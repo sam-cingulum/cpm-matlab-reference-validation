@@ -3,7 +3,7 @@ assert(contains(version,'(R2026b) Update 1') && strcmp(getenv('MKL_CBWR'),'COMPA
 maxNumCompThreads(1);
 assert(maxNumCompThreads==1);
 raw=jsondecode(fileread('input.json'));
-assert(numel(raw.cases)==128);
+assert(numel(raw.cases)==272);
 for rep=1:2
  for i=1:numel(raw.cases)
     c=raw.cases(i);
