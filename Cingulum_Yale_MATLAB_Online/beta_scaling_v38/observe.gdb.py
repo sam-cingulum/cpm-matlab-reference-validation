@@ -76,21 +76,26 @@ for idx, row in enumerate(cases):
             fractions.append(argument())
     else:
         raise RuntimeError("root did not return within bound")
-    scale, = scales
-    fraction, = fractions
-    assert len(matches) == 3
-    lower = "a" in matches[2]
-    assert lower != ("b" in matches[2])
+    # Early-return paths can omit a named operation. Score every missed
+    # prediction as false and retain the number of observations on every row.
+    lower = None
+    if len(matches) == 3 and ("a" in matches[2]) != ("b" in matches[2]):
+        lower = "a" in matches[2]
     upper_request = row["upper"] == "1"
     def deliver(direct):
         return 1.0-direct if upper_request == lower else direct
-    predicates_met.update(scale=agrees("scale", scale),
-        fraction=agrees("fraction", fraction),
-        reciprocal_fraction=agrees("reciprocal_fraction", fraction),
-        root_equals_product=(argument() == deliver(scale * fraction)),
-        root_equals_quotient=(fraction != 0 and argument() == deliver(scale / fraction)),
+    have_scale = len(scales) == 1
+    have_fraction = len(fractions) == 1
+    compose = lower is not None and have_scale and have_fraction
+    predicates_met.setdefault("log_scale", False)
+    predicates_met.update(scale=have_scale and agrees("scale", scales[0]),
+        fraction=have_fraction and agrees("fraction", fractions[0]),
+        reciprocal_fraction=have_fraction and agrees("reciprocal_fraction", fractions[0]),
+        root_equals_product=compose and argument() == deliver(scales[0] * fractions[0]),
+        root_equals_quotient=compose and fractions[0] != 0 and argument() == deliver(scales[0] / fractions[0]),
         root_equals_forecast=agrees("upper" if upper_request else "lower", argument()))
-    rows.append({"id":row["id"], "predicates":predicates_met, "lower_internal":lower})
+    rows.append({"id":row["id"], "predicates":predicates_met, "lower_internal":lower,
+                 "log_calls":len(matches),"scale_calls":len(scales),"fraction_calls":len(fractions)})
     if idx+1 < len(cases):
         execute("continue")
 execute("continue")

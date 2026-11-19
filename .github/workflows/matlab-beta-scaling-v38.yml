@@ -36,7 +36,11 @@ jobs:
           symbol=$(nm -D --defined-only "$lib" | awk '$3 ~ /^_ZN8mathspec7betaincEddd/ {print $3}')
           test -n "$symbol"
           export LD_LIBRARY_PATH="$(dirname "$lib"):${LD_LIBRARY_PATH:-}"
-          timeout 1200 gdb -nx --batch -q -x observe.gdb.py --args /tmp/v38-invoke "$lib" "$symbol" inputs.tsv >/tmp/v38-private.log 2>&1
+          if ! timeout 1200 gdb -nx --batch -q -x observe.gdb.py --args /tmp/v38-invoke "$lib" "$symbol" inputs.tsv >/tmp/v38-private.log 2>&1; then
+            # Print only independently authored probe source line numbers.
+            python3 -c 'import re; s=open("/tmp/v38-private.log").read(); print("probe source lines",re.findall(r"observe[.]gdb[.]py.{1}, line (\d+)",s))'
+            exit 1
+          fi
           python3 -c 'import json; d=json.load(open("observed.json")); assert len(d["rows"])==60 and all("predicates" in r for r in d["rows"])'
       - uses: matlab-actions/run-command@v3
         env:
