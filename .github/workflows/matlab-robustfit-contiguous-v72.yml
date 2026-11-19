@@ -1,4 +1,4 @@
-name: R2026b complete robustfit across twenty new lengths V72
+name: R2026b complete robustfit at every sample size 9 to 128 V72
 on: workflow_dispatch
 permissions:
   contents: read
