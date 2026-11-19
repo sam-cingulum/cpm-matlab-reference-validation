@@ -1,0 +1,186 @@
+{
+  "beta": [
+    {
+      "a_hex": "4027000000000000",
+      "b_hex": "3ff8000000000000",
+      "id": "branch_v7_beta_00698",
+      "x_hex": "3feaaaaaaaaaaaaa"
+    },
+    {
+      "a_hex": "3fe0000000000000",
+      "b_hex": "3fe0000000000000",
+      "id": "branch_v7_beta_00000",
+      "x_hex": "3cf0000000000000"
+    },
+    {
+      "a_hex": "3fa24c5ca6cd0429",
+      "b_hex": "404a11b73ab55838",
+      "id": "v10_beta_00124",
+      "x_hex": "3f947ae147ae147b"
+    },
+    {
+      "a_hex": "3fa7569cd5c02698",
+      "b_hex": "3fb210ac2f8fd307",
+      "id": "v10_beta_00142",
+      "x_hex": "3fd91dde71f3a96e"
+    },
+    {
+      "a_hex": "3fc0000000000000",
+      "b_hex": "3fc0000000000000",
+      "id": "v10_beta_00217",
+      "x_hex": "3fe0000000000000"
+    },
+    {
+      "a_hex": "3fc0000000000000",
+      "b_hex": "402a800000000000",
+      "id": "v10_beta_00291",
+      "x_hex": "3fb2bb512bb512bc"
+    },
+    {
+      "a_hex": "3fc733024890ea34",
+      "b_hex": "3fb328b6ad1f8748",
+      "id": "v10_beta_00388",
+      "x_hex": "3fe6a5e8493edb52"
+    },
+    {
+      "a_hex": "3fcce7c4b28eeb12",
+      "b_hex": "3ff61e3409208b79",
+      "id": "v10_beta_00425",
+      "x_hex": "3fd5be2edc9aa0ae"
+    },
+    {
+      "a_hex": "3fd0000000000000",
+      "b_hex": "3ff4000000000000",
+      "id": "v10_beta_00483",
+      "x_hex": "3fe0000000000000"
+    },
+    {
+      "a_hex": "3fdc11e6c3c9e4a0",
+      "b_hex": "3fdc8df3f0754fad",
+      "id": "v10_beta_00612",
+      "x_hex": "3fdfb9e5290a817d"
+    },
+    {
+      "a_hex": "3fe18abc42c724f6",
+      "b_hex": "3fa18a912edd8837",
+      "id": "v10_beta_00629",
+      "x_hex": "3fe0000000000000"
+    },
+    {
+      "a_hex": "3fe5d4c221747bf4",
+      "b_hex": "403c1ea54925ee2d",
+      "id": "v10_beta_00669",
+      "x_hex": "3fabf662fe284553"
+    },
+    {
+      "a_hex": "3fe5d4c221747bf4",
+      "b_hex": "403c1ea54925ee2d",
+      "id": "v10_beta_00670",
+      "x_hex": "3fabf662fe284554"
+    },
+    {
+      "a_hex": "3fe8000000000000",
+      "b_hex": "3fe8000000000000",
+      "id": "v10_beta_00707",
+      "x_hex": "3fe0000000000001"
+    },
+    {
+      "a_hex": "3fe8000000000000",
+      "b_hex": "402a800000000000",
+      "id": "v10_beta_00760",
+      "x_hex": "3fbc000000000000"
+    },
+    {
+      "a_hex": "3fe8000000000000",
+      "b_hex": "402a800000000000",
+      "id": "v10_beta_00761",
+      "x_hex": "3fbc000000000001"
+    },
+    {
+      "a_hex": "3ff15aaddaa15099",
+      "b_hex": "3fb2c95aa085b1e8",
+      "id": "v10_beta_00854",
+      "x_hex": "3fe51f9c1d9b9d54"
+    },
+    {
+      "a_hex": "3ff4000000000000",
+      "b_hex": "3fe8000000000000",
+      "id": "v10_beta_00914",
+      "x_hex": "3fe3ffffffffffff"
+    },
+    {
+      "a_hex": "3ff4000000000000",
+      "b_hex": "400e000000000000",
+      "id": "v10_beta_00949",
+      "x_hex": "3fe0000000000000"
+    },
+    {
+      "a_hex": "3ffa76b77dd987f7",
+      "b_hex": "4038e2f1815ffaa8",
+      "id": "v10_beta_01023",
+      "x_hex": "3fc5c28f5c28f5c3"
+    },
+    {
+      "a_hex": "4028a786db67f59d",
+      "b_hex": "3f99964c759e12da",
+      "id": "v10_beta_01857",
+      "x_hex": "3fedb6f41b64008b"
+    },
+    {
+      "a_hex": "4029800000000000",
+      "b_hex": "3fc0000000000000",
+      "id": "v10_beta_01895",
+      "x_hex": "3fed946fdd946fdd"
+    },
+    {
+      "a_hex": "4036400000000000",
+      "b_hex": "3fe8000000000000",
+      "id": "v10_beta_02104",
+      "x_hex": "3fedc28f5c28f5c2"
+    },
+    {
+      "a_hex": "4048c00000000000",
+      "b_hex": "3fe8000000000000",
+      "id": "v10_beta_02351",
+      "x_hex": "3feeeda07596a908"
+    },
+    {
+      "a_hex": "40524ec235acb2b5",
+      "b_hex": "3fbd54da069db80c",
+      "id": "v10_beta_02503",
+      "x_hex": "3fef5c28f5c28f5c"
+    },
+    {
+      "a_hex": "40524ec235acb2b5",
+      "b_hex": "3fbd54da069db80c",
+      "id": "v10_beta_02504",
+      "x_hex": "3fef86d0fa10e72b"
+    },
+    {
+      "a_hex": "40673ac15c259c60",
+      "b_hex": "40723aae8d5cb4b2",
+      "id": "v10_beta_02763",
+      "x_hex": "3fd8e85dd3761de1"
+    },
+    {
+      "a_hex": "406e8ba59e186dd2",
+      "b_hex": "4068284829851b29",
+      "id": "v10_beta_02802",
+      "x_hex": "3fe1dc269986f170"
+    },
+    {
+      "a_hex": "406e8ba59e186dd2",
+      "b_hex": "4068284829851b29",
+      "id": "v10_beta_02805",
+      "x_hex": "3fe1de53ad03c23b"
+    },
+    {
+      "a_hex": "3f8b5c2e0bb12bec",
+      "b_hex": "406e1c5187126382",
+      "id": "v10_beta_00000",
+      "x_hex": "3370000000000000"
+    }
+  ],
+  "original_MATLAB_numeric_data_supplied": false,
+  "source_unseen_V12": "NOT_GENERATED"
+}

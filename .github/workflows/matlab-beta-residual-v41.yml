@@ -1,0 +1,59 @@
+name: R2026b beta residual fraction stages V41
+on:
+  workflow_dispatch:
+    inputs:
+      commitments:
+        description: SHA-256 commitments of the frozen independent predictions
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  observe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: Cingulum_Yale_MATLAB_Online/beta_residual_v41
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sha256sum -c inputs.sha256
+          lscpu > cpu.txt
+          grep -E '^Model name: *AMD EPYC .*(7763|9V45|9V74)' cpu.txt
+          g++ -std=c++17 -O0 -g -Wall -Wextra -Werror -fno-fast-math ../beta_log_arguments_v34/invoke.cpp -o /tmp/v38-invoke -ldl
+          if ! command -v gdb; then sudo apt-get update -qq && sudo apt-get install -y -qq gdb; fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - env:
+          COMMITMENTS: ${{ inputs.commitments }}
+        run: |
+          set -eu
+          lib=$(find /opt/hostedtoolcache/MATLAB -path '*/bin/glnxa64/libmwmathspec.so' -type f -print -quit)
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $lib" | sha256sum -c -
+          symbol=$(nm -D --defined-only "$lib" | awk '$3 ~ /^_ZN8mathspec7betaincEddd/ {print $3}')
+          test -n "$symbol"
+          export LD_LIBRARY_PATH="$(dirname "$lib"):${LD_LIBRARY_PATH:-}"
+          if ! timeout 1200 gdb -nx --batch -q -x ../beta_scaling_v38/observe.gdb.py --args /tmp/v38-invoke "$lib" "$symbol" inputs.tsv >/tmp/v38-private.log 2>&1; then
+            # Print only independently authored probe source line numbers.
+            python3 -c 'import re; s=open("/tmp/v38-private.log").read(); print("probe source lines",re.findall(r"observe[.]gdb[.]py.{1}, line (\d+)",s))'
+            exit 1
+          fi
+          python3 -c 'import json; d=json.load(open("observed.json")); assert len(d["rows"])==60 and all("predicates" in r for r in d["rows"])'
+      - uses: matlab-actions/run-command@v3
+        env:
+          MKL_CBWR: COMPATIBLE
+          MKL_NUM_THREADS: "1"
+          OMP_NUM_THREADS: "1"
+        with:
+          command: addpath(fullfile(pwd,'Cingulum_Yale_MATLAB_Online/beta_odds_v32')); cd('Cingulum_Yale_MATLAB_Online/beta_residual_v41'); run_beta_odds_v32
+      - uses: actions/upload-artifact@v4
+        with:
+          name: beta-residual-v41
+          path: |
+            Cingulum_Yale_MATLAB_Online/beta_residual_v41/observed.json
+            Cingulum_Yale_MATLAB_Online/beta_residual_v41/cpu.txt
+            Cingulum_Yale_MATLAB_Online/beta_residual_v41/original.json
+          if-no-files-found: error
