@@ -47,7 +47,7 @@ while pending:
 offsets=sorted(set(offsets))
 assert len(offsets)>1
 Path("branches.json").write_text(json.dumps(offsets))
-cmd = ["/tmp/cpm-gamma-v161b", lib, symbol]
+cmd = ["/tmp/cpm-gamma-v169", lib, symbol]
 def run():
     plain = subprocess.check_output(cmd, input="\n".join(inputs)+"\n", text=True)
     subprocess.run(["gdb", "-q", "-nx", "--batch", "-x", "count.py", "--args", *cmd], check=True)
