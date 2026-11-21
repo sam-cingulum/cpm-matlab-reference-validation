@@ -1,4 +1,4 @@
-"""V189 original-blind out-of-distribution Yale Hotelling stress design.
+"""V195 original-blind out-of-distribution Yale Hotelling stress design.
 
 Eight independent statistical regimes, three deterministic cases each, six
 matrix dimensions; 144 unseen raw two-group data sets. No original MATLAB
@@ -81,4 +81,4 @@ path.write_text(json.dumps(cases, separators=(",", ":")) + "\n")
 path.with_suffix(".sha256").write_text(
     hashlib.sha256(path.read_bytes()).hexdigest() + "  input.json\n"
 )
-print("V189 source-unseen high-stress input SHA:", hashlib.sha256(path.read_bytes()).hexdigest())
+print("V195 source-unseen high-stress input SHA:", hashlib.sha256(path.read_bytes()).hexdigest())
