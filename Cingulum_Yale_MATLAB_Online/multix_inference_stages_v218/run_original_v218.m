@@ -26,7 +26,16 @@ for rep=1:2
   [Q,R,E]=qr(A,0);
   [~,stats]=robustfit(X,y);
   assert(numel(stats.h)==n && isequal(size(Q),[n,p+1]));
-  assert(isequal(size(E),[p+1,p+1]),'expected economy QR permutation matrix');
+  % The public qr(A,0) API can return a permutation VECTOR on this
+  % original release; expand it to the genuine binary permutation matrix.
+  if isvector(E)
+    assert(numel(E)==p+1);
+    positions=E(:);
+    P=zeros(p+1,p+1);
+    for j=1:p+1,P(positions(j),j)=1;end
+    E=P;
+  end
+  assert(isequal(size(E),[p+1,p+1]),'invalid original QR permutation');
   assert(isequal(size(stats.R),[p+1,p+1]));
   row=struct();
   row.id=c.id;row.n=n;row.p=p;row.rep=rep;
