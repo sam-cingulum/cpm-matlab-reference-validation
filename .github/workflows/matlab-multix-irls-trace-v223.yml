@@ -16,13 +16,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          p=Cingulum_Yale_MATLAB_Online/multix_inference_stages_v223
+          p=Cingulum_Yale_MATLAB_Online/multix_irls_trace_v223
           echo "5836d8f460b64c889feda69ee69dc4792a5ff85bf120600f346171150eb2a559  $p/input.json" | sha256sum -c -
           echo "V223 source-DISCLOSED retrospective reference; no first-blind claim"
           python3 - <<'PY'
           import json
           from collections import Counter
-          p='Cingulum_Yale_MATLAB_Online/multix_inference_stages_v223/input.json'
+          p='Cingulum_Yale_MATLAB_Online/multix_irls_trace_v223/input.json'
           d=json.load(open(p))
           assert d['schema']=='CINGULUM_V211_R2026B_RAW_MULTIPREDICTOR_ROBUSTFIT_FIRST_BLIND'
           assert d['seed']==202611220211 and len(d['cases'])==48
@@ -35,7 +35,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          p=Cingulum_Yale_MATLAB_Online/multix_inference_stages_v223
+          p=Cingulum_Yale_MATLAB_Online/multix_irls_trace_v223
           { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
           model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
           echo "Runner real CPU: $model"
@@ -54,16 +54,16 @@ jobs:
           file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
           test -n "$file"
           echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
-          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_inference_stages_v223/original_cpu.txt
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_irls_trace_v223/original_cpu.txt
       - name: Capture genuine MATLAB default vs authored-weight callback, exact per-iteration weighted QR stages
         uses: matlab-actions/run-command@v3
         with:
-          command: cd('Cingulum_Yale_MATLAB_Online/multix_inference_stages_v223'); run_original_v223
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_irls_trace_v223'); run_original_v223
       - name: Preserve immutable original source-output integrity hashes
         shell: bash
         run: |
           set -euo pipefail
-          p=Cingulum_Yale_MATLAB_Online/multix_inference_stages_v223
+          p=Cingulum_Yale_MATLAB_Online/multix_irls_trace_v223
           test -s "$p/original.json"
           sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
       - name: Retain original numerical evidence and rejected-CPU preflight
@@ -72,8 +72,8 @@ jobs:
         with:
           name: mathworks-original-v223-multix-weighted-irls-trace
           path: |
-            Cingulum_Yale_MATLAB_Online/multix_inference_stages_v223/original.json
-            Cingulum_Yale_MATLAB_Online/multix_inference_stages_v223/original_cpu.txt
-            Cingulum_Yale_MATLAB_Online/multix_inference_stages_v223/original_sha256_manifest.txt
+            Cingulum_Yale_MATLAB_Online/multix_irls_trace_v223/original.json
+            Cingulum_Yale_MATLAB_Online/multix_irls_trace_v223/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_irls_trace_v223/original_sha256_manifest.txt
           if-no-files-found: warn
           retention-days: 90
