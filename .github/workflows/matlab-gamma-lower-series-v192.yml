@@ -1,0 +1,46 @@
+name: R2026b original-only numerical gamma arithmetic checkpoint states V192
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  numeric-probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: Cingulum_Yale_MATLAB_Online/gamma_lower_series_v192
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sha256sum -c input.sha256
+          lscpu > cpu.txt
+          head -n 20 cpu.txt
+          grep -E '^Model name: *AMD EPYC .*(7763|9V45)' cpu.txt
+      - name: Install the public system debugger
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gdb
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - run: |
+          lib=$(find /opt/hostedtoolcache/MATLAB -path '*/bin/glnxa64/libmwmathspec.so' -type f -print -quit)
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $lib" | sha256sum -c -
+      - name: Observe public system math entries and verify untraced controls
+        run: |
+          g++ -std=c++20 -O0 -g -Wall -Werror probe.cpp -ldl -o /tmp/cpm-gamma-v192
+          lib=$(find /opt/hostedtoolcache/MATLAB -type f -path '*/bin/glnxa64/libmwmathspec.so' -print -quit)
+          export LD_LIBRARY_PATH="$(dirname "$lib"):${LD_LIBRARY_PATH:-}"
+          python3 run.py "$lib"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gamma-lower-series-v192
+          path: |
+            Cingulum_Yale_MATLAB_Online/gamma_lower_series_v192/observations.json
+            Cingulum_Yale_MATLAB_Online/gamma_lower_series_v192/cpu.txt
+          if-no-files-found: error
