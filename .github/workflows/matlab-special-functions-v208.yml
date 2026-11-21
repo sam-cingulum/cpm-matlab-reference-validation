@@ -1,0 +1,79 @@
+name: Original MathWorks R2026b V208 exp erfc gamma beta tcdf source-unseen functions
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-unchanged-original:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify preregistered input and frozen Rust preoracle reference
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/special_v208
+          echo "9f79996833bdef6fead22f1a2880ee0430966ba8aa0a419d31ea1e7ab0e3928d  $p/input.json" | sha256sum -c -
+          echo "V208 independent Rust baseline forecast SHA256: 942ca4b36bb1681b081d6a1fd2da906bf586b9a1a3121d6b9172c2336fad2748"
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          p='Cingulum_Yale_MATLAB_Online/special_v208/input.json'
+          d=json.load(open(p))
+          assert d['classification']=='V208_ORIGINAL_MATLAB_R2026B_GENERAL_SPECIAL_FIRST_BLIND_INPUT'
+          assert d['seed']==202611220208 and len(d['exp_x_hex'])==365
+          assert len(d['erfc_x_hex'])==231 and len(d['gamma_cases'])==60
+          assert len(d['beta_cases'])==55 and len(d['tcdf_cases'])==91
+          assert all(len(v)==16 for v in d['exp_x_hex']+d['erfc_x_hex'])
+          print('V208 preregistered input only, no MATLAB numerics accessed')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/special_v208
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Runner real CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "UNAPPROVED SOURCE CPU: original MATLAB not executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Exact genuine MathWorks R2026b mathspec runtime fingerprint
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/special_v208/original_cpu.txt
+      - name: Run genuine unchanged MATLAB exp erfc erfcx gamma beta tcdf twice
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/special_v208'); run_original_v208
+      - name: Preserve immutable original source-output integrity hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/special_v208
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Retain original numerical evidence and rejected-CPU preflight
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v208-special-functions
+          path: |
+            Cingulum_Yale_MATLAB_Online/special_v208/original.json
+            Cingulum_Yale_MATLAB_Online/special_v208/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/special_v208/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
