@@ -1,0 +1,86 @@
+name: Genuine MATLAB V282 FIRST SOURCE-UNSEEN FULL-LENGTH NEW terminal-zero mldivide FIRST-BLIND binary64
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify immutable new V282 original-only synthetic raw matrix input
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v282_full_length_source_unseen
+          echo "c7c3bbc0fbaff60378103dcdc8c9424fb9d05d82c92470f338632111da44945a  $p/input.json" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          p='Cingulum_Yale_MATLAB_Online/multix_v282_full_length_source_unseen/input.json'
+          d=json.load(open(p))
+          assert d['classification']=='CINGULUM_V282_NEW_SOURCE_UNSEEN_FULL_LENGTH_ZERO_PADDED_MLDIVIDE'
+          assert d['seed']==202611220282 and len(d['cases'])==64
+          assert d['source_original_MATLAB_numeric_results_consulted'] is False
+          assert d['first_original_blind_V252_verdict_unchanged']=='FAIL'
+          assert d['predicted_full_length_original_coefficients_disclosed_to_MATLAB_runner'] is False
+          assert d['historical_reduced_V263_first_original_blind']=='PASS_216_OF_216'
+          assert d['comprehensive_V12']=='SEALED'
+          assert d['padding_counts']==[0,1,6,7,16]
+          assert len(set(x['id'] for x in d['cases']))==64
+          assert set(x['p'] for x in d['cases'])==set(range(3,9))
+          assert Counter(x['family'] for x in d['cases'])=={'dense':16,'correlated':16,'cancellation':16,'row_scaled':16}
+          assert all(23<=x['n']<=129 and 3<=x['p']<=8 for x in d['cases'])
+          assert all(len(x['a_colmajor_hex'])==x['n']*x['p'] and len(x['b_hex'])==x['n'] for x in d['cases'])
+          print('V282 NEW SOURCE UNSEEN FULL-LENGTH TERMINAL-ZERO MATRIX CHALLENGE ADMITTED')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v282_full_length_source_unseen
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original runner CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Unapproved CPU; original MATLAB is NOT executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original genuine MATLAB R2026b mathspec SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_v282_full_length_source_unseen/original_cpu.txt
+      - name: Execute genuine original-only MATLAB V282 exactly twice AFTER frozen Rust prediction
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v282_full_length_source_unseen'); run_original_v282
+      - name: Preserve original-only SHA custody and CPU provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v282_full_length_source_unseen
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Publish original-only source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v282-firstblind-full-length-64
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v282_full_length_source_unseen/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v282_full_length_source_unseen/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v282_full_length_source_unseen/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
