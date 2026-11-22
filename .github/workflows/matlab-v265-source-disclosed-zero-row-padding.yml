@@ -23,7 +23,7 @@ jobs:
           from collections import Counter
           p='Cingulum_Yale_MATLAB_Online/multix_v265_row_count_zero_padding_source_disclosed/input.json'
           d=json.load(open(p))
-          assert d['classification']=='CINGULUM_V265_PROSPECTIVE_TERMINAL_ZERO_REDUCED_ROW_MLDIVIDE'
+          assert d['classification']=='CINGULUM_V263_PROSPECTIVE_TERMINAL_ZERO_REDUCED_ROW_MLDIVIDE'
           assert d['seed']==202611220263 and len(d['cases'])==48
           assert d['source_original_MATLAB_numeric_results_consulted'] is False
           assert d['first_original_blind_V252_verdict_unchanged']=='FAIL'
