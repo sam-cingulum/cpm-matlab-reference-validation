@@ -1,0 +1,80 @@
+name: Genuine MATLAB V359 source-disclosed p9-12 12-column sparse impulse panel
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source-disclosed V359 sparse impulse panel input immutable
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v359_source_disclosed_twelve_column_panel_impulses
+          echo "1ff59ba46eda8aaf49c4e81964c8a9af70d1bf8a23aa6dbf7b111f5da75ce043  $p/input.json" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          d=json.load(open('Cingulum_Yale_MATLAB_Online/multix_v359_source_disclosed_twelve_column_panel_impulses/input.json'))
+          assert d['classification']=='V359_SOURCE_DISCLOSED_POST_V340_GENUINE_ORIGINAL_12_COLUMN_PANEL_SPARSE_IMPULSES'
+          assert d['source_disclosed_after_V340'] is True
+          assert d['MATLAB_original_numeric_values_seen_by_source'] is False
+          assert d['V340']=='IMMUTABLE_FAIL_63871_OF_182784'
+          assert d['V332']=='PASS_261120_OF_261120' and d['V336']=='PASS_261120_OF_261120'
+          assert d['V12']=='SEALED'
+          assert d['case_count']==16 and len(d['cases'])==16
+          assert d['widths']==[1,2,4,8,11,12,13,16] and d['padding']==[0,1,7,16]
+          assert all(c['p'] in (9,10,11,12) and c['n'] in (48,65) for c in d['cases'])
+          print('V359 original-only post-V340 sparse response panel diagnostic source valid')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v359_source_disclosed_twelve_column_panel_impulses
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original runner CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Unapproved CPU; original MATLAB is NOT executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original genuine MATLAB R2026b mathspec SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_v359_source_disclosed_twelve_column_panel_impulses/original_cpu.txt
+      - name: Execute genuine original MATLAB V359 full mldivide sparse response panels twice
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v359_source_disclosed_twelve_column_panel_impulses'); run_original_v359
+      - name: Preserve original-only SHA custody and CPU provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v359_source_disclosed_twelve_column_panel_impulses
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Publish original-only source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v359-source-disclosed-twelve-panel-impulses-16
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v359_source_disclosed_twelve_column_panel_impulses/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v359_source_disclosed_twelve_column_panel_impulses/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v359_source_disclosed_twelve_column_panel_impulses/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
