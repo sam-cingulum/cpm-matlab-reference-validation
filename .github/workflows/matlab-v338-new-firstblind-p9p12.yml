@@ -1,0 +1,92 @@
+name: Genuine MATLAB V338 new first ORIGINAL blind wide p7 p8 two-lane 261120 exact binary64
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify immutable new V338 original-only synthetic raw matrix input
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v338_new_firstblind_p9p12
+          echo "6ac321c1de1c034db55edebf2aa4073174fa3436b810855e6a2297ee372cfb41  $p/input.json" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          p='Cingulum_Yale_MATLAB_Online/multix_v338_new_firstblind_p9p12/input.json'
+          d=json.load(open(p))
+          assert d['classification']=='V338_NEW_GENUINE_ORIGINAL_FIRST_BLIND_P9P12_FULL_MLDIVIDE'
+          assert d['seed']==202611220338 and d['cohorts']==32 and len(d['cases'])==32
+          assert d['max_RHS_columns']==16
+          assert d['original_numerical_results_seen_at_freeze'] is False
+          assert d['original_MATLAB_can_access_Rust_prediction'] is False
+          assert d['first_original_blind_certificate_candidate'] is True
+          assert d['historical_V308']=='IMMUTABLE_FAIL_54741_OF_57816'
+          assert d['historical_V284']=='PASS_1770_OF_1770'
+          assert d['historical_V332']=='PASS_261120_OF_261120'
+          assert d['historical_V336']=='PASS_261120_OF_261120'
+          assert d['universal_V12']=='SEALED'
+          assert d['padding_counts']==[0,1,7,16]
+          assert d['RHS_matrix_widths']==list(range(1,17))
+          assert len(set(c['id'] for c in d['cases']))==32
+          assert Counter(c['p'] for c in d['cases'])=={9:8,10:8,11:8,12:8}
+          assert Counter(c['family'] for c in d['cases'])==dict.fromkeys(('dense','correlated','cancellation','row_scaled'),8)
+          assert all(15<=c['n']<=193 and c['n']>c['p'] for c in d['cases'])
+          assert all(len(c['a_colmajor_hex'])==c['p']*c['n'] and len(c['rhs16_colmajor_hex'])==16*c['n'] for c in d['cases'])
+          assert sum(c['p'] for c in d['cases'])*len(d['padding_counts'])*sum(d['RHS_matrix_widths'])==182784
+          print('V338 NEW SOURCE-UNSEEN WIDE TWO-LANE FIRST ORIGINAL BLIND ORIGINAL-ONLY INPUT ADMITTED')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v338_new_firstblind_p9p12
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original runner CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Unapproved CPU; original MATLAB is NOT executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original genuine MATLAB R2026b mathspec SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_v338_new_firstblind_p9p12/original_cpu.txt
+      - name: Execute genuinely original-only MATLAB V338 twice AFTER PRIVATE forecast and scorer pushed
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v338_new_firstblind_p9p12'); run_original_v338
+      - name: Preserve original-only SHA custody and CPU provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v338_new_firstblind_p9p12
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Publish original-only source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v338-new-firstblind-p9p12-32
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v338_new_firstblind_p9p12/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v338_new_firstblind_p9p12/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v338_new_firstblind_p9p12/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
