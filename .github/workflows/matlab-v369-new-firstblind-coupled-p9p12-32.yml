@@ -1,0 +1,85 @@
+name: Genuine MATLAB V369 NEW first-original-blind coupled multi-reflector p9-p12 182784
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify new V369 coupled original source and immutable source-unseen input
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v369_new_coupled_multi_reflector_p9p12
+          echo "ed37acd5118b127caa4a46b3b7082c8a4d3007d6c208668902b91a6a1838f7ef  $p/input.json" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          d=json.load(open('Cingulum_Yale_MATLAB_Online/multix_v369_new_coupled_multi_reflector_p9p12/input.json'))
+          assert d['classification']=='V369_GENUINELY_NEW_SOURCE_ORIGINAL_UNSEEN_P9P12_COUPLED_MULTI_REFLECTOR_MLDIVIDE'
+          assert d['new_first_original_blind_candidate'] is True
+          assert d['original_MATLAB_numerical_results_seen_before_freeze'] is False
+          assert d['original_only_source_can_read_Rust_forecast'] is False
+          assert d['seed']==202611230369 and d['case_count']==32 and len(d['cases'])==32
+          assert d['new_source_original_unseen_coefficients']==182784
+          assert d['historical_V340_firstblind']=='IMMUTABLE_FAIL_63871_OF_182784'
+          assert d['V366_firstblind']=='PASS_365568_OF_365568' and d['V12']=='SEALED'
+          assert d['widths']==list(range(1,17)) and d['paddings']==[0,1,7,16]
+          assert Counter(c['p'] for c in d['cases'])=={9:8,10:8,11:8,12:8}
+          assert Counter(c['n'] for c in d['cases'])=={19:8,31:8,48:8,65:8}
+          assert Counter(c['family'] for c in d['cases'])=={'coupled_reflectors':16,'two_reflector':16}
+          assert all(len(c['a_colmajor_hex'])==c['p']*c['n'] and len(c['rhs16_colmajor_hex'])==16*c['n'] for c in d['cases'])
+          print('V369 new coupled source-original-unseen QR and full A/backslash/B raw input admitted')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v369_new_coupled_multi_reflector_p9p12
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original runner CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Unapproved CPU; original MATLAB is NOT executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original genuine MATLAB R2026b mathspec SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_v369_new_coupled_multi_reflector_p9p12/original_cpu.txt
+      - name: Execute genuinely original-only MATLAB V369 twice AFTER PRIVATE forecast and scorer pushed
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v369_new_coupled_multi_reflector_p9p12'); run_original_v369
+      - name: Preserve original-only SHA custody and CPU provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v369_new_coupled_multi_reflector_p9p12
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Publish original-only source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v369-coupled-p9p12-multireflector-32
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v369_new_coupled_multi_reflector_p9p12/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v369_new_coupled_multi_reflector_p9p12/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v369_new_coupled_multi_reflector_p9p12/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
