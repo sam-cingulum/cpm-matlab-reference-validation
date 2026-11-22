@@ -10,7 +10,7 @@ root=fileparts(mfilename('fullpath'));
 data=jsondecode(fileread(fullfile(root,'input.json')));
 assert(strcmp(data.classification,...
  'V292_ORIGINAL_ONLY_SOURCE_DISCLOSED_SINGLE_REFLECTOR_CANCELLATION'));
-assert(data.seed==202611220287 && numel(data.cases)==96);
+assert(data.seed==202611220292 && numel(data.cases)==96);
 assert(~data.original_MATLAB_numerical_values_consulted);
 assert(~data.native_Rust_forecast_used && ~data.new_first_original_blind_certificate);
 assert(strcmp(data.V252_first_original_blind_full17,'FAIL'));
