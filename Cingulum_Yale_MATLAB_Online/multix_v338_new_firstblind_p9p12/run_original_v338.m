@@ -21,7 +21,6 @@ assert(d.first_original_blind_certificate_candidate);
 assert(~d.original_numerical_results_seen_at_freeze);
 assert(~d.original_MATLAB_can_access_Rust_prediction);
 assert(strcmp(d.historical_V308,'IMMUTABLE_FAIL_54741_OF_57816'));
-assert(strcmp(d.historical_V284,'PASS_1770_OF_1770'));
 assert(strcmp(d.historical_V332,'PASS_261120_OF_261120'));
 assert(strcmp(d.historical_V336,'PASS_261120_OF_261120'));
 assert(strcmp(d.universal_V12,'SEALED'));

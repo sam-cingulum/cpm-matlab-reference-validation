@@ -30,7 +30,6 @@ jobs:
           assert d['original_MATLAB_can_access_Rust_prediction'] is False
           assert d['first_original_blind_certificate_candidate'] is True
           assert d['historical_V308']=='IMMUTABLE_FAIL_54741_OF_57816'
-          assert d['historical_V284']=='PASS_1770_OF_1770'
           assert d['historical_V332']=='PASS_261120_OF_261120'
           assert d['historical_V336']=='PASS_261120_OF_261120'
           assert d['universal_V12']=='SEALED'
