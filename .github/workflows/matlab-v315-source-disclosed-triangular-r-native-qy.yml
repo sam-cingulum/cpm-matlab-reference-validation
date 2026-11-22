@@ -1,0 +1,85 @@
+name: Genuine MATLAB V315 source-disclosed triangular R backslash independent Rust Qy diagnostic
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify immutable source-disclosed V315 independent Rust QR and Qy inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v315_source_disclosed_triangular_qy_original
+          echo "37c6039168cdbc407c517c04a16ec12edc100f7b6798faebfb7dcc3a647394a5  $p/input.json" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          p='Cingulum_Yale_MATLAB_Online/multix_v315_source_disclosed_triangular_qy_original/input.json'
+          d=json.load(open(p))
+          assert d['classification']=='V315_SOURCE_DISCLOSED_POST_V308_ORIGINAL_R2026B_TRIANGULAR_R_SOLVE_FROM_INDEPENDENT_RUST_QR_QY'
+          assert d['source_disclosed_after_V308'] is True
+          assert d['original_MATLAB_numerical_output_consulted_to_construct_inputs'] is False
+          assert d['source_independent_Rust_stage_archive_sha256']=='a27d1edecca6b8cd1019c361422e71bb304399f2d5939188e17626526d800944'
+          assert d['original_first_blind_V308']=='IMMUTABLE_FAIL_54741_OF_57816'
+          assert d['V284_single_original_first_blind']=='PASS_1770_OF_1770'
+          assert d['V12']=='SEALED'
+          assert d['case_count']==16 and len(d['cases'])==16
+          assert d['RHS_widths']==[2,3,4,5,6,7,8,9,12,16]
+          assert d['padding']==[0,1,7]
+          assert len(set(c['id'] for c in d['cases']))==16
+          assert all(c['p'] in (7,8) and len(c['pads'])==3 for c in d['cases'])
+          print('V315 source-DISCLOSED native-origin QR triangular stage experiment accepted; V308 remains FAIL')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v315_source_disclosed_triangular_qy_original
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original runner CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Unapproved CPU; original MATLAB is NOT executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original genuine MATLAB R2026b mathspec SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_v315_source_disclosed_triangular_qy_original/original_cpu.txt
+      - name: Execute genuine MATLAB V315 original triangular solve twice on source-independent QR factors
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v315_source_disclosed_triangular_qy_original'); run_original_v315
+      - name: Preserve original-only SHA custody and CPU provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v315_source_disclosed_triangular_qy_original
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Publish original-only source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v315-disclosed-triangular-qy-16
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v315_source_disclosed_triangular_qy_original/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v315_source_disclosed_triangular_qy_original/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v315_source_disclosed_triangular_qy_original/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
