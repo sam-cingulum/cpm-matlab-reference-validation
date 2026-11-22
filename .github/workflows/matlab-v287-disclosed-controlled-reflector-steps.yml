@@ -1,0 +1,90 @@
+name: Genuine MATLAB V287 SOURCE-DISCLOSED controlled one-two reflector RHS block arithmetic
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify new V287 source-original-only controlled reflector input SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v287_reflector_step_probe_disclosed
+          echo "2ca89f39b619d20d4f77710fffe0bc000bc9b070853be889259611e79b712f93  $p/input.json" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          p='Cingulum_Yale_MATLAB_Online/multix_v287_reflector_step_probe_disclosed/input.json'
+          d=json.load(open(p))
+          assert d['classification']=='V287_ORIGINAL_ONLY_SOURCE_DISCLOSED_CONTROLLED_HOUSEHOLDER_STEP_GEOMETRY'
+          assert d['seed']==202611220287 and len(d['cases'])==96
+          assert not d['original_MATLAB_numerical_values_consulted']
+          assert not d['native_Rust_forecast_used']
+          assert not d['new_first_original_blind_certificate']
+          assert d['V252_first_original_blind_full17']=='FAIL'
+          assert d['V263_first_original_blind_reduced']=='PASS_216_OF_216'
+          assert d['V284_first_original_blind_full_length_single']=='PASS_1770_OF_1770'
+          assert d['V12']=='SEALED'
+          assert d['matrix_lengths']==[7,8,9,15,16,17,31,32,33,63,64,65]
+          assert d['padding_counts']==[0,7]
+          assert d['rhs_widths']==[1,2,3,4,5,6,7,8,9,12,16]
+          assert len(set(c['id'] for c in d['cases']))==96
+          assert set(c['mode'] for c in d['cases'])=={
+              'single_one','single_two','single_three','double_two',
+              'cancel_two','cancel_three','dense_two','dense_three'}
+          assert all(len(x['a_colmajor_hex'])==x['n']*x['p'] and len(x['b_hex'])==x['n'] for x in d['cases'])
+          print('SOURCE-DISCLOSED 96 ORIGINAL CONTROLLED REFLECTOR CASES VERIFIED')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v287_reflector_step_probe_disclosed
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original runner CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Unapproved CPU; original MATLAB is NOT executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original genuine MATLAB R2026b mathspec SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_v287_reflector_step_probe_disclosed/original_cpu.txt
+      - name: Evaluate original-only controlled one-two reflector multi-RHS arithmetic twice
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v287_reflector_step_probe_disclosed'); run_original_v287
+      - name: Preserve original-only SHA custody and CPU provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v287_reflector_step_probe_disclosed
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Publish original-only source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v287-disclosed-controlled-reflectors-96
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v287_reflector_step_probe_disclosed/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v287_reflector_step_probe_disclosed/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v287_reflector_step_probe_disclosed/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
