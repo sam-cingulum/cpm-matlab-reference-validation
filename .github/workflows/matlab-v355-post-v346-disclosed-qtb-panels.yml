@@ -1,0 +1,79 @@
+name: Genuine MATLAB V355 source-disclosed p9-p12 public QtB width panels
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify original-controlled V346 synthetic X/B input for V355 post-V340 diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v346_post_v340_disclosed_p9p12_diagonal_r
+          echo "75560b79e18c770ee24c6676abfe0de3c2f1460d2a4c30940deac075508b4abc  $p/input.json" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          d=json.load(open('Cingulum_Yale_MATLAB_Online/multix_v346_post_v340_disclosed_p9p12_diagonal_r/input.json'))
+          assert d['classification']=='V346_POST_V340_DISCLOSED_P9P12_DIAGONAL_R_SINGLE_ACTIVE_REFLECTOR_ORIGINAL'
+          assert d['source_disclosed_after_V340'] is True
+          assert d['V340_original_first_blind']=='IMMUTABLE_FAIL_63871_OF_182784'
+          assert d['V332_original_first_blind']=='PASS_261120_OF_261120'
+          assert d['V336_original_first_blind']=='PASS_261120_OF_261120'
+          assert d['V12']=='SEALED'
+          assert d['case_count']==32 and len(d['cases'])==32
+          assert set(c['p'] for c in d['cases'])=={9,10,11,12}
+          print('V355 source-disclosed post-failure public QtB panel diagnostic admitted')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v355_post_v346_disclosed_qtb_panels
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original runner CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Unapproved CPU; original MATLAB is NOT executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original genuine MATLAB R2026b mathspec SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_v355_post_v346_disclosed_qtb_panels/original_cpu.txt
+      - name: Execute genuine original MATLAB V355 public QtB physical panel widths twice
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v355_post_v346_disclosed_qtb_panels'); run_original_v355
+      - name: Preserve original-only SHA custody and CPU provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v355_post_v346_disclosed_qtb_panels
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Publish original-only source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v355-post-v346-disclosed-qtb-panels-32
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v355_post_v346_disclosed_qtb_panels/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v355_post_v346_disclosed_qtb_panels/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v355_post_v346_disclosed_qtb_panels/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
