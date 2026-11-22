@@ -1,0 +1,116 @@
+function run_original_v253()
+% V253 SOURCE-DISCLOSED forensic follow-up AFTER the genuine V252 immutable
+% first-original-blind FAIL, preserved under private commit 07277b7.
+% Original b, all 17 fields unchanged; independent bisquare callback supplies
+% u/w and captures ONLY finite original coefficient-length numeric vectors.
+% Do not export proprietary MathWorks source, caller variable names, or other
+% unpublished internals. Also evaluate public original A(:,P)/R pivoted TRSM.
+assert(exist('OCTAVE_VERSION','builtin')==0);
+assert(contains(version,'(R2026b) Update 1'));
+assert(strcmp(getenv('MKL_CBWR'),'COMPATIBLE'));
+maxNumCompThreads(1);assert(maxNumCompThreads==1);
+root=fileparts(mfilename('fullpath'));
+raw=jsondecode(fileread(fullfile(root,'input.json')));
+assert(strcmp(raw.schema,'CINGULUM_V252_R2026B_FULL_17_MULTIX_FIRST_ORIGINAL_BLIND'));
+assert(raw.seed==202611220252 && numel(raw.cases)==48);
+global V253_RECORDS V253_NUM_COEFF V253_CALLBACK_INDEX;
+rows=struct('id',{},'rep',{},'n',{},'p',{},...
+ 'source_original_b_hex',{},'original_h_hex',{},'original_R_hex',{},...
+ 'original_QR_pivot_one_based',{},'original_pivoted_R_hex',{},...
+ 'original_Z_pivoted_A_div_R_hex',{},'original_Q_economy_hex',{},...
+ 'candidate_original_h_from_Z_hex',{},'candidate_original_h_from_Q_hex',{},...
+ 'original_full_17_fields_equal_instrumented',{},...
+ 'total_original_weight_callback_invocations',{},...
+ 'original_weight_callback_numeric_snapshots',{});
+for rep=1:2
+ for index=1:48
+  c=raw.cases(index);n=double(c.n);p=double(c.p);
+  assert(ismember(n,[35 61 87]) && ismember(p,[2 3 4 5]));
+  X=reshape(hex2num(char(c.x_colmajor_hex)),n,p);
+  y=hex2num(char(c.y_hex));y=y(:);
+  A=[ones(n,1),X];
+  [borig,so]=robustfit(X,y);
+  assert(numel(fieldnames(so))==17);
+  [Q,R,piv]=qr(A,'econ','vector');
+  assert(isequal(sort(piv),1:p+1));
+  Z=A(:,piv)/R;
+  hfromZ=min(sum(Z.^2,2),0.9999);
+  hfromQ=min(sum(Q.^2,2),0.9999);
+  V253_RECORDS={};V253_NUM_COEFF=p+1;V253_CALLBACK_INDEX=0;
+  [bins,si]=robustfit(X,y,@user_audited_bisquare,4.685);
+  assert(isequal(num2hex(borig),num2hex(bins)));
+  names=fieldnames(so);
+  match=true;
+  for j=1:numel(names)
+   fn=names{j};
+   match=match && isequal(num2hex(so.(fn)),num2hex(si.(fn)));
+  end
+  assert(match,'custom user callback must match unchanged original 17-field robustfit');
+  assert(V253_CALLBACK_INDEX>=4 && V253_CALLBACK_INDEX<=53);
+  rows(end+1)=struct('id',c.id,'rep',rep,'n',n,'p',p,...
+   'source_original_b_hex',{bits(borig)},...
+   'original_h_hex',{bits(so.h)},...
+   'original_R_hex',{bits(so.R)},...
+   'original_QR_pivot_one_based',piv,...
+   'original_pivoted_R_hex',{bits(R)},...
+   'original_Z_pivoted_A_div_R_hex',{bits(Z)},...
+   'original_Q_economy_hex',{bits(Q)},...
+   'candidate_original_h_from_Z_hex',{bits(hfromZ)},...
+   'candidate_original_h_from_Q_hex',{bits(hfromQ)},...
+   'original_full_17_fields_equal_instrumented',match,...
+   'total_original_weight_callback_invocations',V253_CALLBACK_INDEX,...
+   'original_weight_callback_numeric_snapshots',{V253_RECORDS}); %#ok<AGROW>
+ end
+end
+assert(numel(rows)==96);
+for j=1:48
+ a=rmfield(rows(j),'rep');b=rmfield(rows(j+48),'rep');
+ assert(isequal(a,b),'source-only original MATLAB numeric observations changed across repetition');
+end
+out=struct(...
+ 'classification','V253_POST_V252_FAILED_BLIND_SOURCE_DISCLOSED_ORIGINAL_NUMERIC_QR_AND_IRLS',...
+ 'source_disclosed',true,'first_original_source_unseen_certificate',false,...
+ 'prior_first_original_blind_V252_verdict','FAIL',...
+ 'original_unchanged_robustfit',true,...
+ 'original_all_fields_equal_user_bisquare_callback',true,...
+ 'original_proprietary_MathWorks_source_exported',false,...
+ 'original_internal_caller_variable_names_exported',false,...
+ 'original_only_coefficient_length_finite_numeric_caller_values',true,...
+ 'run',getenv('GITHUB_RUN_ID'),'release',version,'mkl_cbwr',getenv('MKL_CBWR'),...
+ 'source_input_sha256','48e7517b8cb6cc211193c9466707b98bd484b8af349f7276c4e9960ae86f6e79',...
+ 'cases',48,'repetitions',2,'rows',rows);
+f=fopen(fullfile(root,'original.json'),'w');assert(f>0);
+cleanup=onCleanup(@()fclose(f));
+fprintf(f,'%s\n',jsonencode(out));
+end
+function w=user_audited_bisquare(u)
+global V253_RECORDS V253_NUM_COEFF V253_CALLBACK_INDEX;
+V253_CALLBACK_INDEX=V253_CALLBACK_INDEX+1;
+w=double(abs(u)<1).*(1-u.^2).^2;
+vectors={};available=false;error_id='none';
+try
+ metadata=evalin('caller','whos');
+ available=true;
+ for j=1:numel(metadata)
+  m=metadata(j);
+  if ~strcmp(m.class,'double') || prod(m.size)~=V253_NUM_COEFF
+   continue;
+  end
+  value=evalin('caller',m.name);
+  if isa(value,'double') && isreal(value) && isvector(value) ...
+       && numel(value)==V253_NUM_COEFF && all(isfinite(value(:)))
+   vectors{end+1}=bits(value); %#ok<AGROW>
+  end
+ end
+catch ME
+ error_id=ME.identifier;
+end
+V253_RECORDS{end+1}=struct('callback_ordinal',V253_CALLBACK_INDEX,...
+ 'original_callback_u_hex',{bits(u)},'original_callback_w_hex',{bits(w)},...
+ 'numeric_caller_observation_available',available,...
+ 'original_coefficient_length_double_vectors',{vectors},...
+ 'numeric_caller_diagnostic_error_id',error_id);
+end
+function h=bits(v)
+h=cellstr(num2hex(double(v(:))));
+end
