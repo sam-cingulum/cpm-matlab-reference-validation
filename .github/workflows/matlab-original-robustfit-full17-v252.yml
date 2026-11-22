@@ -1,0 +1,79 @@
+name: Original MathWorks R2026b V252 complete raw multivariate robustfit 17-field source-unseen certification
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-unchanged-original:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify preregistered V252 FULL-17-FIELD raw inputs and frozen preoriginal contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_full17_firstblind_v252
+          echo "48e7517b8cb6cc211193c9466707b98bd484b8af349f7276c4e9960ae86f6e79  $p/input.json" | sha256sum -c -
+          echo "V252 independent Rust FULL-17 field first forecast and strict scorer must be private-committed before this dispatch"
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          p='Cingulum_Yale_MATLAB_Online/multix_full17_firstblind_v252/input.json'
+          d=json.load(open(p))
+          assert d['schema']=='CINGULUM_V252_R2026B_FULL_17_MULTIX_FIRST_ORIGINAL_BLIND'
+          assert d['seed']==202611220252 and len(d['cases'])==48
+          assert len({a['id'] for a in d['cases']})==48
+          assert Counter(a['n'] for a in d['cases'])=={35:16,61:16,87:16}
+          assert all(len(a['x_colmajor_hex'])==a['n']*a['p'] and len(a['y_hex'])==a['n'] for a in d['cases'])
+          print('V252 preregistered original 17-field raw input ONLY, no MATLAB values accessed')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_full17_firstblind_v252
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Runner real CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "UNAPPROVED SOURCE CPU: original MATLAB not executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Exact genuine MathWorks R2026b mathspec runtime fingerprint
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_full17_firstblind_v252/original_cpu.txt
+      - name: Capture unchanged original robustfit b and complete 17 fields twice on 48 fresh new source-unseen cases
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_full17_firstblind_v252'); run_original_v252
+      - name: Preserve immutable original source-output integrity hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_full17_firstblind_v252
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Retain original numerical evidence and rejected-CPU preflight
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v252-first-blind-full17-48-cases
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_full17_firstblind_v252/original.json
+            Cingulum_Yale_MATLAB_Online/multix_full17_firstblind_v252/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_full17_firstblind_v252/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
