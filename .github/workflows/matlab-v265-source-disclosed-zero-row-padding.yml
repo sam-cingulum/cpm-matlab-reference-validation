@@ -1,0 +1,81 @@
+name: Genuine MATLAB V265 SOURCE-DISCLOSED zero-row padding numerical geometry
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify previously disclosed source-original V263 raw matrix input SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v265_row_count_zero_padding_source_disclosed
+          echo "01f935d0b92f89f14589d4e6d35fb99d96bbea746a808b7eb4771a4461e66526  $p/input.json" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          p='Cingulum_Yale_MATLAB_Online/multix_v265_row_count_zero_padding_source_disclosed/input.json'
+          d=json.load(open(p))
+          assert d['classification']=='CINGULUM_V265_PROSPECTIVE_TERMINAL_ZERO_REDUCED_ROW_MLDIVIDE'
+          assert d['seed']==202611220263 and len(d['cases'])==48
+          assert d['source_original_MATLAB_numeric_results_consulted'] is False
+          assert d['first_original_blind_V252_verdict_unchanged']=='FAIL'
+          assert Counter(x['n'] for x in d['cases'])=={35:4,36:4,43:4,44:4,47:4,48:4,61:4,62:4,71:4,72:4,87:4,88:4}
+          assert Counter(x['p'] for x in d['cases'])=={3:12,4:12,5:12,6:12}
+          assert len(set(x['id'] for x in d['cases']))==48
+          assert all(len(x['a_colmajor_hex'])==x['n']*x['p'] and len(x['b_hex'])==x['n'] for x in d['cases'])
+          print('V265 POST-FIRST-BLIND SOURCE-DISCLOSED zero-row matrix admitted')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v265_row_count_zero_padding_source_disclosed
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original runner CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Unapproved CPU; original MATLAB is NOT executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original genuine MATLAB R2026b mathspec SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_v265_row_count_zero_padding_source_disclosed/original_cpu.txt
+      - name: Evaluate source-disclosed MATLAB zero-row padding and row placement twice
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v265_row_count_zero_padding_source_disclosed'); run_original_v265
+      - name: Preserve original-only SHA custody and CPU provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v265_row_count_zero_padding_source_disclosed
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Publish original-only source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v265-postfailed-zero-row-padding-48
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v265_row_count_zero_padding_source_disclosed/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v265_row_count_zero_padding_source_disclosed/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v265_row_count_zero_padding_source_disclosed/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
