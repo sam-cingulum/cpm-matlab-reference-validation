@@ -1,0 +1,87 @@
+name: Genuine MATLAB V364 NEW first-original-blind p9-p12 365568 exact binary64
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify new V364 source-original-unseen original-only X/B cohort
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v364_new_firstblind_p9p12_one_reflector
+          echo "736f4cb24717b918adb40002f7972b73827409d7e25e82cf2fd56445ebc45fb5  $p/input.json" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          d=json.load(open('Cingulum_Yale_MATLAB_Online/multix_v364_new_firstblind_p9p12_one_reflector/input.json'))
+          assert d['classification']=='V364_NEW_GENUINE_FIRST_ORIGINAL_BLIND_P9P12_ONE_REFLECTOR_NUMERICAL_CHALLENGE'
+          assert d['seed']==202611230364 and d['case_count']==64 and len(d['cases'])==64
+          assert d['source_original_MATLAB_numerical_data_consulted'] is False
+          assert d['source_original_reads_Rust_forecast'] is False
+          assert d['new_prospective_first_original_blind'] is True
+          assert d['V340_original_first_blind']=='IMMUTABLE_FAIL_63871_OF_182784'
+          assert d['V332_original_first_blind']==d['V336_original_first_blind']=='PASS_261120_OF_261120'
+          assert d['V363_source_disclosed']=='EXACT_182784_OF_182784'
+          assert d['V12']=='SEALED'
+          assert d['padding']==[0,1,7,16] and d['widths']==list(range(1,17))
+          assert Counter(c['p'] for c in d['cases'])=={9:16,10:16,11:16,12:16}
+          assert all(c['n'] in (19,31,48,65) and c['n']>c['p'] for c in d['cases'])
+          assert len(set(c['id'] for c in d['cases']))==64
+          assert all(len(c['a_colmajor_hex'])==c['p']*c['n'] and len(c['b16_colmajor_hex'])==16*c['n'] for c in d['cases'])
+          assert sum(c['p'] for c in d['cases'])*4*sum(d['widths'])==365568
+          print('V364 source-unseen original-only source admitted BEFORE MATLAB')
+          PY
+      - name: Fail closed unless original CPU is approved AMD EPYC 7763 or 9V45
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v364_new_firstblind_p9p12_one_reflector
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original runner CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Unapproved CPU; original MATLAB is NOT executed." >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original genuine MATLAB R2026b mathspec SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> Cingulum_Yale_MATLAB_Online/multix_v364_new_firstblind_p9p12_one_reflector/original_cpu.txt
+      - name: Execute genuinely original-only MATLAB V364 twice AFTER PRIVATE forecast and scorer pushed
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v364_new_firstblind_p9p12_one_reflector'); run_original_v364
+      - name: Preserve original-only SHA custody and CPU provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v364_new_firstblind_p9p12_one_reflector
+          test -s "$p/original.json"
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Publish original-only source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v364-new-firstblind-p9p12-diagonal-64
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v364_new_firstblind_p9p12_one_reflector/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v364_new_firstblind_p9p12_one_reflector/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v364_new_firstblind_p9p12_one_reflector/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
