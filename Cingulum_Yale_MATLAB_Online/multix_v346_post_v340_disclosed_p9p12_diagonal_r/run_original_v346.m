@@ -46,7 +46,7 @@ for rep=1:2
   for zi=1:4
    z=paddings(zi);
    X=[A;zeros(z,p)];
-   [~,QR,P]=qr(X,'econ','vector');
+   [Q,QR,P]=qr(X,'econ','vector');
    assert(isequal(sort(P),1:p));
    assert(all(diag(QR)~=0) && all(isfinite(QR(:))));
    assert(isequal(P,1:p),'public QR pivot identity violated');
