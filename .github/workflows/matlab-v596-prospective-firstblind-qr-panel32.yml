@@ -19,7 +19,7 @@ jobs:
           d=Cingulum_Yale_MATLAB_Online/multix_v596_firstblind_n48_composite_qr
           source=Cingulum_Yale_MATLAB_Online/multix_v596_firstblind_n48_composite_qr/input.json
           echo "f4aed5a1d4b06595c7bd4f4230d37632c9542740bfc0ff65c062bb8f1bbeff45  $source" | sha256sum -c -
-          echo "664ec81842c2ffb173b296e14d462bb28ed41ed0c87a0c2235908b1a8f7c9a60  $d/run_original_v596.m" | sha256sum -c -
+          echo "159a11add3eec90e3f359c3b0821d3f7555db1a47aecae71dde5c3afcb7e9521  $d/run_original_v596.m" | sha256sum -c -
           python3 - <<'PY'
           import json
           p="Cingulum_Yale_MATLAB_Online/multix_v596_firstblind_n48_composite_qr/input.json"
