@@ -1,0 +1,94 @@
+name: Genuine MATLAB V441 source-disclosed hidden-panel cancellation original only
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  genuine-original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source-disclosed original-only cancellation inputs and runner SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v441_original_only_hidden_panel_cancellation
+          echo "fd6422211331eb71c6609e251ffb50a69b9c3a2338c077fd388f972e3b492457  $p/input.json" | sha256sum -c -
+          echo "4cdef19919a6fc6d80762607214d81d5c6c66188e37382f0b0117923b6cbfe06  $p/run_original_v441.m" | sha256sum -c -
+          (cd "$p" && sha256sum -c input.sha256)
+          python3 - <<'PY'
+          import json
+          d=json.load(open("Cingulum_Yale_MATLAB_Online/multix_v441_original_only_hidden_panel_cancellation/input.json"))
+          assert d["classification"]=="V441_SOURCE_DISCLOSED_R2026B_TWO_REFLECTOR_CANCELLATION_ORIGINAL_ONLY"
+          assert d["V12"]=="SEALED" and d["source_disclosed_diagnostic"]
+          assert not d["new_original_firstblind_candidate"]
+          assert not d["original_MATLAB_numerical_outputs_read"]
+          assert not d["original_only_runner_reads_Rust_predictions"]
+          assert d["original_V377_input_sha256"]=="ef95b3a983d15454b6ca0e4625893039cc896b77fe792a2108166543301c1556"
+          assert d["seed"]==202611230441 and d["matrix_count"]==8
+          assert d["probe_count"]==len(d["cases"])==320
+          assert len(d["matrices"])==8
+          assert d["widths"]==[1,2,11,12,13,16] and d["padding"]==[0,1,7,16]
+          print("V441 frozen original-only source and experiment contract verified")
+          PY
+      - name: Reject unapproved original CPU before loading MATLAB
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v441_original_only_hidden_panel_cancellation
+          { echo "GitHub Actions Run=$GITHUB_RUN_ID"; echo "Public source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          echo "Original runner CPU: $model"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Unapproved host; ORIGINAL MATLAB was not executed" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify genuine original MATLAB mathspec library
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v441_original_only_hidden_panel_cancellation
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$p/original_cpu.txt"
+      - name: Run original MathWorks hidden panel solver twice with raw-bit reproducibility checks
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v441_original_only_hidden_panel_cancellation'); run_original_v441
+      - name: Freeze original output and CPU provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v441_original_only_hidden_panel_cancellation
+          test -s "$p/original.json"
+          python3 - <<'PY'
+          import json
+          p="Cingulum_Yale_MATLAB_Online/multix_v441_original_only_hidden_panel_cancellation/original.json"
+          d=json.load(open(p))
+          assert d["classification"]=="V441_GENUINE_R2026B_SOURCE_DISCLOSED_HIDDEN_PANEL_CANCELLATION"
+          assert d["V12"]=="SEALED" and d["NOT_new_original_firstblind"]
+          assert d["probe_count"]==320 and d["repetitions"]==2 and len(d["rows"])==640
+          assert d["solver_panels_per_repetition"]==7680
+          print("V441 original duplicated-result container has expected structure")
+          PY
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Preserve original-only artifacts, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v441-source-disclosed-hidden-panel-cancellation
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v441_original_only_hidden_panel_cancellation/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v441_original_only_hidden_panel_cancellation/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v441_original_only_hidden_panel_cancellation/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
