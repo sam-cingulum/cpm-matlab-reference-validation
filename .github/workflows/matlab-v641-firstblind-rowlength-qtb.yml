@@ -1,0 +1,108 @@
+name: MATLAB R2026b V641 row-length public QTB original-firstblind
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen new source and original-only runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v641_firstblind_rowlength_geometry
+          echo "0fdf41fc636dd99cdd00adda5b46b7764a1adcfef2ece2b2f42d5105cee75620  $dst/input.json" | sha256sum -c -
+          echo "197901be471e0ecc44394365560529a2a6a504224618830caae70eeab5bb7bfa  $dst/generate_v641.py" | sha256sum -c -
+          echo "524e9e93e5be00ba846003d6ceffb302b85426be9a78645009b30788845ad4a8  $dst/run_original_v641.m" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          path='Cingulum_Yale_MATLAB_Online/multix_v641_firstblind_rowlength_geometry/input.json'
+          s=json.load(open(path))
+          assert s['classification']=='V641_PROSPECTIVE_ORIGINAL_UNSEEN_PUBLIC_QTB_ROW_LENGTH'
+          assert s['source_only'] and s['V12']=='SEALED'
+          assert not s['original_MATLAB_numerical_outputs_read'] and not s['independent_Rust_outputs_read']
+          assert s['seed']==202611246411
+          assert s['geometries']==[[48,9,[2,3]],[64,10,[0,1]],[65,11,[1,2]],[80,9,[0,3]],[96,10,[0,7]]]
+          assert len(s['matrices'])==5 and len(s['cases'])==25
+          assert s['widths']==[1,2,3,5,7,9,11,12,13,14,15,16,17,19,20,21,23,24,25,26,27,28,29,31,32]
+          PY
+      - name: Reject unapproved host before any MATLAB calculation
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v641_firstblind_rowlength_geometry
+          { echo "Original GitHub Run=$GITHUB_RUN_ID"; echo "Public original source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$dst/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V641 original-firstblind CPU rejected: $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify MathWorks numerical library
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v641_firstblind_rowlength_geometry
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$dst/original_cpu.txt"
+      - name: Execute twice on original MATLAB R2026b Update 1
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v641_firstblind_rowlength_geometry'); run_original_v641
+      - name: Check genuine original repeated bytes and archive SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v641_firstblind_rowlength_geometry
+          test -s "$dst/original_v641.json"
+          python3 - <<'PY'
+          import json
+          path='Cingulum_Yale_MATLAB_Online/multix_v641_firstblind_rowlength_geometry/original_v641.json'
+          d=json.load(open(path))
+          assert d['classification']=='V641_ORIGINAL_R2026B_UPDATE1_PUBLIC_QTB_FIRSTBLIND'
+          assert d['V12']=='SEALED' and d['source_unseen_original_firstblind']
+          assert not d['original_source_reads_Rust_values']
+          assert 'R2026b) Update 1' in d['release']
+          assert d['mkl_cbwr']=='COMPATIBLE' and d['repetitions']==2
+          assert d['input_SHA256']=='0fdf41fc636dd99cdd00adda5b46b7764a1adcfef2ece2b2f42d5105cee75620'
+          rows=d['rows']
+          assert len(rows)==20 and [r['rep'] for r in rows]==[1]*10+[2]*10
+          for i in range(10):
+              a,b=rows[i].copy(),rows[i+10].copy()
+              a.pop('rep');b.pop('rep')
+              assert a==b, 'unrepeated original outputs'
+          assert {(r['n'],r['p'],r['z']) for r in rows[:10]}=={
+              (48,9,2),(48,9,3),(64,10,0),(64,10,1),(65,11,1),
+              (65,11,2),(80,9,0),(80,9,3),(96,10,0),(96,10,7)}
+          for row in rows:
+              assert len(row['probes'])==5
+              for probe in row['probes']:
+                  assert len(probe['layouts'])==2
+                  for layout in probe['layouts']:
+                      assert [p['w'] for p in layout['panels']]==d['widths']
+                      assert all(len(p['columns'])==p['w'] for p in layout['panels'])
+          print('V641 original-only double repetition validated')
+          PY
+          sha256sum "$dst/original_v641.json" "$dst/original_cpu.txt" > "$dst/original_sha256_manifest.txt"
+      - name: Preserve genuine original or CPU-rejection evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v641-rowlength-firstblind
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v641_firstblind_rowlength_geometry/original_v641.json
+            Cingulum_Yale_MATLAB_Online/multix_v641_firstblind_rowlength_geometry/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v641_firstblind_rowlength_geometry/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
