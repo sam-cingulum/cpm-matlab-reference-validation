@@ -1,0 +1,102 @@
+name: MATLAB R2026b V605 new X B prospective firstblind QR panel 32
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce V605 new firstblind X/B source and MATLAB-only runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout
+          source=Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout/input.json
+          echo "76ba3aafc7e0e88ef64883566c080f28f55e6299dbb73f698b8b26121e2d5ff6  $source" | sha256sum -c -
+          echo "eab90b336858ee7e05de48c3a9d5c463479ff00ea4df8df808eaf18ac488a5ab  $d/run_original_v605.m" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          p="Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout/input.json"
+          d=json.load(open(p))
+          assert d["classification"]=="V605_PROSPECTIVE_R2026B_ORIGINAL_ONLY_NEW_X_B"
+          assert d["source_only"] and not d["NOT_new_original_firstblind"] and d["new_source_firstblind_candidate"] and d["V12"]=="SEALED"
+          assert not d["original_MATLAB_numerical_outputs_read"]
+          assert not d["independent_Rust_outputs_read"]
+          assert d["case_count"]==len(d["cases"])==96
+          assert d["matrix_count"]==len(d["matrices"])==8
+          assert d["padding_n48"]==[0,2,3,7] and d["padding_n65"]==[0,1,2,7]
+          assert d["widths"]==[1,2,11,12,13,16,17,20,23,24,25,28,32]
+          assert set(x["layout"] for x in d["cases"])=={"repeated"}
+          print("V605 prospective original-only source SHA and structure PASS")
+          PY
+      - name: Reject non-approved original AMD CPU before MATLAB
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout
+          { echo "Original GitHub Run=$GITHUB_RUN_ID"; echo "Public original source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$d/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V605 original MATLAB blocked: unapproved CPU $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Enforce original MathWorks mathspec library
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$d/original_cpu.txt"
+      - name: Execute two independent genuine original MATLAB stage measurements
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout'); run_original_v605
+      - name: Verify original result structure and retain original SHA custody
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout
+          test -s "$d/original.json"
+          python3 - <<'PY'
+          import json
+          p="Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout/original.json"
+          d=json.load(open(p))
+          assert d["classification"]=="V605_R2026B_NEW_X_B_GENUINE_ORIGINAL_FIRSTBLIND_QR_PANEL_WIDTH32"
+          assert d["V12"]=="SEALED" and not d["NOT_new_firstblind"]
+          assert not d["source_original_only_reads_Rust_values"]
+          assert "R2026b) Update 1" in d["release"] and d["mkl_cbwr"]=="COMPATIBLE"
+          assert d["case_count"]==96 and d["repetitions"]==2
+          assert d["source_V605_input_SHA256"]=="76ba3aafc7e0e88ef64883566c080f28f55e6299dbb73f698b8b26121e2d5ff6"
+          assert d["panels_per_repetition"]==9984
+          assert len(d["rows"])==192
+          assert d["widths"]==[1,2,11,12,13,16,17,20,23,24,25,28,32]
+          assert d["single_onebased_columns"]==d["widths"]
+          assert d["layouts"]==["repeated","signed_power2"]
+          assert d["padding_n48"]==[0,2,3,7]
+          assert d["padding_n65"]==[0,1,2,7]
+          print("V605 original-only double-run prospective QR sweep output PASS")
+          PY
+          sha256sum "$d/original.json" "$d/original_cpu.txt" > "$d/original_sha256_manifest.txt"
+      - name: Preserve source-original and blocked CPU provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v605-new-firstblind-qr-panel32
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v605_firstblind_n48_geometry_holdout/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
