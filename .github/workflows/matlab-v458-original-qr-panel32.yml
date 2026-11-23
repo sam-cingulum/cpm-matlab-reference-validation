@@ -1,0 +1,101 @@
+name: MATLAB R2026b V458 causal panel-width 32 QR kernel
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce frozen V449 source-only X and B and V458 original runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v458_original_qr_response_panel_32
+          source=Cingulum_Yale_MATLAB_Online/multix_v449_original_only_zero_padding_stride_switch/input.json
+          echo "e2fc94a01754901a2ff9da73f6b4f479857c126e5ce71e962e66fe0b92d4c079  $source" | sha256sum -c -
+          echo "553a5fc27a4f77734fdf33015d075b7a077ae1cf4bbc1b29e687aa7790778164  $d/run_original_v458.m" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          p="Cingulum_Yale_MATLAB_Online/multix_v449_original_only_zero_padding_stride_switch/input.json"
+          d=json.load(open(p))
+          assert d["classification"]=="V449_SOURCE_DISCLOSED_R2026B_ORIGINAL_ONLY_PADDED_ROW_STRIDE_DISPATCH"
+          assert d["source_only"] and d["NOT_new_original_firstblind"] and d["V12"]=="SEALED"
+          assert not d["original_MATLAB_numerical_outputs_read"]
+          assert not d["independent_Rust_outputs_read"]
+          assert d["case_count"]==len(d["cases"])==96
+          assert d["matrix_count"]==len(d["matrices"])==8
+          assert d["padding"]==list(range(17))
+          assert d["widths"]==[1,2,11,12,13,16]
+          assert set(x["layout"] for x in d["cases"])=={"repeated"}
+          print("V458 original-only source SHA and structure PASS")
+          PY
+      - name: Reject non-approved original AMD CPU before MATLAB
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v458_original_qr_response_panel_32
+          { echo "Original GitHub Run=$GITHUB_RUN_ID"; echo "Public original source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$d/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V458 original MATLAB blocked: unapproved CPU $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Enforce original MathWorks mathspec library
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v458_original_qr_response_panel_32
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$d/original_cpu.txt"
+      - name: Execute two independent genuine original MATLAB stage measurements
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v458_original_qr_response_panel_32'); run_original_v458
+      - name: Verify original result structure and retain original SHA custody
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v458_original_qr_response_panel_32
+          test -s "$d/original.json"
+          python3 - <<'PY'
+          import json
+          p="Cingulum_Yale_MATLAB_Online/multix_v458_original_qr_response_panel_32/original.json"
+          d=json.load(open(p))
+          assert d["classification"]=="V458_R2026B_SOURCE_DISCLOSED_GENUINE_QR_RESPONSE_PANEL_WIDTH32_CAUSAL_PROBE"
+          assert d["V12"]=="SEALED" and d["NOT_new_firstblind"]
+          assert not d["source_original_only_reads_Rust_values"]
+          assert "R2026b) Update 1" in d["release"] and d["mkl_cbwr"]=="COMPATIBLE"
+          assert d["case_count"]==96 and d["repetitions"]==2
+          assert d["panels_per_repetition"]==9984
+          assert len(d["rows"])==192
+          assert d["widths"]==[1,2,11,12,13,16,17,20,23,24,25,28,32]
+          assert d["single_onebased_columns"]==d["widths"]
+          assert d["layouts"]==["repeated","signed_power2"]
+          assert d["padding_n48"]==[0,2,3,7]
+          assert d["padding_n65"]==[0,1,2,7]
+          print("V458 original-only double-run causal panel sweep output PASS")
+          PY
+          sha256sum "$d/original.json" "$d/original_cpu.txt" > "$d/original_sha256_manifest.txt"
+      - name: Preserve source-original and blocked CPU provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v458-panel32-kernel
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v458_original_qr_response_panel_32/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v458_original_qr_response_panel_32/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v458_original_qr_response_panel_32/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
