@@ -1,0 +1,94 @@
+name: MATLAB R2026b V508 prospective RHS padding holdout
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source-only input and frozen original-only script
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v508_original_rhs_holdout_padding_trace
+          source=Cingulum_Yale_MATLAB_Online/multix_v449_original_only_zero_padding_stride_switch/input.json
+          echo "e2fc94a01754901a2ff9da73f6b4f479857c126e5ce71e962e66fe0b92d4c079  $source" | sha256sum -c -
+          echo "9ce1fc0c75ad06e9047c7cb9ba35bbf869d81d7ce3817a4ae47b9d3a10566340  $d/run_original_v508.m" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          p="Cingulum_Yale_MATLAB_Online/multix_v449_original_only_zero_padding_stride_switch/input.json"
+          d=json.load(open(p))
+          assert d["classification"]=="V449_SOURCE_DISCLOSED_R2026B_ORIGINAL_ONLY_PADDED_ROW_STRIDE_DISPATCH"
+          assert d["case_count"]==len(d["cases"])==96
+          assert d["matrix_count"]==len(d["matrices"])==8
+          assert d["source_only"] and d["V12"]=="SEALED"
+          assert not d["original_MATLAB_numerical_outputs_read"]
+          print("V508 original-only source and script SHA PASS")
+          PY
+      - name: Require original approved AMD before installing MATLAB
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v508_original_rhs_holdout_padding_trace
+          { echo "Run=$GITHUB_RUN_ID"; echo "Source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$d/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V508 original-only blocked: unapproved CPU $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original MathWorks library SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v508_original_rhs_holdout_padding_trace
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$d/original_cpu.txt"
+      - name: Run twice in genuine original MATLAB
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v508_original_rhs_holdout_padding_trace'); run_original_v508
+      - name: Verify original shape, repeat evidence and archive manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v508_original_rhs_holdout_padding_trace
+          test -s "$d/original.json"
+          python3 - <<'PY'
+          import json
+          p="Cingulum_Yale_MATLAB_Online/multix_v508_original_rhs_holdout_padding_trace/original.json"
+          d=json.load(open(p))
+          assert d["classification"]=="V508_R2026B_PROSPECTIVE_RHS_WITH_SOURCE_DISCLOSED_X"
+          assert d["V12"]=="SEALED" and d["NOT_new_firstblind"]
+          assert d["new_original_rhs_outputs"] and not d["source_original_only_reads_Rust_values"]
+          assert "R2026b) Update 1" in d["release"] and d["mkl_cbwr"]=="COMPATIBLE"
+          assert d["case_count"]==96 and d["repetitions"]==2
+          assert d["variants"]==["interior_reverse","alternating_sign"]
+          assert d["layouts"]==["repeated","signed_power2"]
+          assert d["widths"]==[1,2,11,12,13,23,24]
+          assert len(d["rows"])==768
+          print("V508 original-only RHS holdout double-run structure PASS")
+          PY
+          sha256sum "$d/original.json" "$d/original_cpu.txt" > "$d/original_sha256_manifest.txt"
+      - name: Preserve original evidence and failed CPU provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-matlab-v508-rhs-padding-holdout
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v508_original_rhs_holdout_padding_trace/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v508_original_rhs_holdout_padding_trace/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v508_original_rhs_holdout_padding_trace/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
