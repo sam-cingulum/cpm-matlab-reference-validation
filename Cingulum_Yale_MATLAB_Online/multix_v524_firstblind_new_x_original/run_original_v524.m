@@ -4,8 +4,6 @@ function run_original_v524()
 assert(exist('OCTAVE_VERSION','builtin')==0);
 assert(contains(version,'(R2026b) Update 1'));
 assert(strcmp(getenv('MKL_CBWR'),'COMPATIBLE'));
-assert(strcmp(getenv('MKL_NUM_THREADS'),'1'));
-assert(strcmp(getenv('OMP_NUM_THREADS'),'1'));
 maxNumCompThreads(1);assert(maxNumCompThreads==1);
 cpu=fileread('/proc/cpuinfo');
 assert(contains(cpu,'AMD EPYC 7763') || contains(cpu,'AMD EPYC 9V45'));

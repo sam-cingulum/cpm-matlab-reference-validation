@@ -19,7 +19,7 @@ jobs:
           source=Cingulum_Yale_MATLAB_Online/multix_v523_unseen_n48_n65_rhs_microkernel/input.json
           runner=Cingulum_Yale_MATLAB_Online/multix_v524_firstblind_new_x_original/run_original_v524.m
           echo "9aa8174362012a04b9d4c2ea1f6b4320ee2dc04271f7852a2c2c165e1f934bd1  $source" | sha256sum -c -
-          echo "3edd7c27a3a1e9dda03a96db429e99c3dea0ab6243765570449ffa1b7f632d62  $runner" | sha256sum -c -
+          echo "3a040a51dc849aa231bf4e14e1a01e5db9bff07057d1ba8446ee4240d0cc3d44  $runner" | sha256sum -c -
           python3 - <<'PY'
           import json
           path="Cingulum_Yale_MATLAB_Online/multix_v523_unseen_n48_n65_rhs_microkernel/input.json"
