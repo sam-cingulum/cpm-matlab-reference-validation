@@ -64,7 +64,7 @@ jobs:
       - name: Execute MATLAB original twice and assert raw-bit repeatability
         uses: matlab-actions/run-command@v3
         with:
-          command: cd('Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity'); run_original_v449
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity'); run_original_v453
       - name: Validate output structure and preserve SHA manifests
         shell: bash
         run: |
