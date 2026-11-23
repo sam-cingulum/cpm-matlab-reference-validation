@@ -32,7 +32,7 @@ jobs:
           assert d["matrix_count"]==len(d["matrices"])==8
           assert d["padding"]==list(range(17))
           assert d["widths"]==[1,2,11,12,13,16]
-          assert set(x["layout"] for x in d["cases"])=={"repeated","alternating_sign"}
+          assert set(x["layout"] for x in d["cases"])=={"repeated"}
           print("V456 original-only source SHA and structure PASS")
           PY
       - name: Reject non-approved original AMD CPU before MATLAB

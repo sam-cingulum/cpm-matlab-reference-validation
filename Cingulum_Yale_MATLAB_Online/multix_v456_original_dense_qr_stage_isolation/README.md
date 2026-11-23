@@ -18,7 +18,7 @@ Compare on the same input under the original MATLAB R2026b Update 1 runtime:
 
 Keep raw hexadecimal binary64 bits for every p-dimensional coefficient and projected vector. Do not assume R times hidden beta uniquely identifies hidden intermediate values due to double rounding.
 
-Eight matrices n=48/65, p=9..12, 96 probes (repeated and alternating-sign responses), widths 1,12,16. At n=48, zero padding z=[0,2,3,7]; at n=65 z=[0,1,2,7]. This directly tests the only proven response switch points and two controls. 96 × 4 × 3 = **1,152 panels per original repetition**; original MATLAB reruns every case twice and asserts raw exact repeatability.
+Eight matrices n=48/65, p=9..12, 96 independently specified source probes (all `layout=repeated` as frozen in V449), widths 1,12,16. At n=48, zero padding z=[0,2,3,7]; at n=65 z=[0,1,2,7]. This directly tests the only proven response switch points and two controls. 96 × 4 × 3 = **1,152 panels per original repetition**; original MATLAB reruns every case twice and asserts raw exact repeatability.
 
 Original MATLAB workflow accepts only approved AMD EPYC 7763/9V45, pinned R2026b Update1 mathspec SHA, MKL_CBWR=COMPATIBLE, and one MATLAB thread, and captures all CPU provenance and SHA custody. Failed CPU gate stops **before MATLAB**.
 
