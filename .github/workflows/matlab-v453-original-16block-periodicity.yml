@@ -1,0 +1,97 @@
+name: MATLAB R2026b V453 source-disclosed 16-block periodicity
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin source-only input and genuine original runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity
+          echo "15da245a8ef367890a9edd2c95545ef1709bfe2af7a707166d3c7bfcb4d47803  $p/input.json" | sha256sum -c -
+          echo "9a69d13d4fb7785fc052b7cd10c5bceb689684a1cf213c9d7e6d28b5c8a8d996  $p/run_original_v453.m" | sha256sum -c -
+          echo "f826ef1ec7898869f42464fa6596192afed799e1a7e867956847816183b6572d  $p/generate_v453.py" | sha256sum -c -
+          (cd "$p" && sha256sum -c input.sha256)
+          python3 - <<'PY'
+          import json
+          p="Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity/input.json"
+          d=json.load(open(p))
+          assert d["classification"]=="V453_SOURCE_DISCLOSED_R2026B_ORIGINAL_ONLY_REFLECTOR_BLOCK16_PERIODICITY"
+          assert d["seed"]==202611230453 and d["V12"]=="SEALED"
+          assert d["source_only"] and d["NOT_new_original_firstblind"]
+          assert not d["original_MATLAB_numerical_outputs_read"]
+          assert not d["independent_Rust_outputs_read"]
+          assert d["matrix_count"]==len(d["matrices"])==8
+          assert d["case_count"]==len(d["cases"])==96
+          assert d["padding"]==list(range(36))
+          assert d["widths"]==[1,12,16]
+          assert d["V449_source_input_SHA256"]=="e2fc94a01754901a2ff9da73f6b4f479857c126e5ce71e962e66fe0b92d4c079"
+          print("V453 strict original-only input custody: PASS")
+          PY
+      - name: Reject non-approved original AMD processor
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity
+          { echo "Original GitHub Run=$GITHUB_RUN_ID"; echo "Public original source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$p/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V453 original MATLAB blocked: unapproved CPU $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Enforce original MathWorks mathspec identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$p/original_cpu.txt"
+      - name: Execute MATLAB original twice and assert raw-bit repeatability
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity'); run_original_v449
+      - name: Validate output structure and preserve SHA manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity
+          test -s "$p/original.json"
+          python3 - <<'PY'
+          import json
+          p="Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity/original.json"
+          x=json.load(open(p))
+          assert x["classification"]=="V453_GENUINE_R2026B_SOURCE_DISCLOSED_ORIGINAL_BLOCK16_PERIODICITY"
+          assert x["NOT_new_firstblind"] and x["V12"]=="SEALED"
+          assert "R2026b) Update 1" in x["release"] and x["mkl_cbwr"]=="COMPATIBLE"
+          assert x["case_count"]==96 and x["repetitions"]==2
+          assert len(x["rows"])==192 and len(x["original_matrix_qr"])==8
+          assert x["hidden_panel_solves_per_repetition"]==10368
+          print("V453 genuine MATLAB output structure: PASS")
+          PY
+          sha256sum "$p/original.json" "$p/original_cpu.txt" > "$p/original_sha256_manifest.txt"
+      - name: Preserve original evidence including CPU gate failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v453-block16-periodicity
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v453_original_only_16block_periodicity/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
