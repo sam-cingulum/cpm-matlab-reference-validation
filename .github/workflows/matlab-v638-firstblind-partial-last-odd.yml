@@ -1,0 +1,107 @@
+name: MATLAB R2026b V638 new-XB public QTB original-firstblind
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen original-free source and genuine original runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v638_firstblind_tail_slot_generalisation
+          echo "34d7d6a600ee634a0b17ef5b34df74980857a4fc463ebe1abc3cbe83ca265bc2  $dst/input.json" | sha256sum -c -
+          echo "6a41008acc8f1f564550a1b81e3038c23ece17e1df5fdf62aebc9131084d7b8e  $dst/run_original_v638.m" | sha256sum -c -
+          echo "531730c98fab9e96b9f2f03b4c38c25601b46a27c0942962c5e24ad76c261bd9  $dst/generate_v638.py" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          p='Cingulum_Yale_MATLAB_Online/multix_v638_firstblind_tail_slot_generalisation/input.json'
+          d=json.load(open(p))
+          assert d['classification']=='V638_PROSPECTIVE_ORIGINAL_UNSEEN_PUBLIC_QTB_12TILE'
+          assert d['V12']=='SEALED' and d['seed']==202611246381
+          assert d['source_only'] and not d['original_MATLAB_numerical_outputs_read']
+          assert not d['independent_Rust_outputs_read']
+          assert len(d['matrices'])==3 and len(d['cases'])==24
+          assert d['padding']==[2,7]
+          assert d['widths']==[1,2,3,5,7,9,11,12,13,14,15,16,17,19,20,21,23,24,25,26,27,28,29,31,32]
+          PY
+      - name: Reject unapproved host before original MATLAB invocation
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v638_firstblind_tail_slot_generalisation
+          { echo "Original GitHub Run=$GITHUB_RUN_ID"; echo "Public original source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$dst/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V638 original-firstblind host rejected: $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify exact genuine MathWorks numerical library
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v638_firstblind_tail_slot_generalisation
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$dst/original_cpu.txt"
+      - name: Run genuine independent original-firstblind public QR response experiment
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v638_firstblind_tail_slot_generalisation'); run_original_v638
+      - name: Validate original-only double repetition and archive fingerprints
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v638_firstblind_tail_slot_generalisation
+          test -s "$dst/original_v638.json"
+          python3 - <<'PY'
+          import json
+          p='Cingulum_Yale_MATLAB_Online/multix_v638_firstblind_tail_slot_generalisation/original_v638.json'
+          d=json.load(open(p))
+          assert d['classification']=='V638_ORIGINAL_R2026B_UPDATE1_PUBLIC_QTB_FIRSTBLIND'
+          assert d['V12']=='SEALED' and d['source_unseen_original_firstblind']
+          assert not d['original_source_reads_Rust_values']
+          assert 'R2026b) Update 1' in d['release']
+          assert d['mkl_cbwr']=='COMPATIBLE' and d['repetitions']==2
+          assert d['input_SHA256']=='34d7d6a600ee634a0b17ef5b34df74980857a4fc463ebe1abc3cbe83ca265bc2'
+          assert d['widths']==[1,2,3,5,7,9,11,12,13,14,15,16,17,19,20,21,23,24,25,26,27,28,29,31,32]
+          r=d['rows']
+          assert len(r)==12 and [x['rep'] for x in r]==[1]*6+[2]*6
+          for i in range(6):
+              a,b=r[i].copy(),r[i+6].copy()
+              assert a.pop('rep')==1 and b.pop('rep')==2 and a==b
+          assert {(x['p'],x['z']) for x in r}=={(p,z) for p in [9,10,11] for z in [2,7]}
+          for row in r:
+              assert len(row['probes'])==8
+              assert len(row['q_col0'])==65+row['z'] and len(row['q_col1'])==65+row['z']
+              for probe in row['probes']:
+                  assert len(probe['layouts'])==2
+                  for layout in probe['layouts']:
+                      assert [p['w'] for p in layout['panels']]==d['widths']
+                      assert all(len(p['columns'])==p['w'] for p in layout['panels'])
+          print('V638 source-unseen original-only double repetition PASS')
+          PY
+          sha256sum "$dst/original_v638.json" "$dst/original_cpu.txt" > "$dst/original_sha256_manifest.txt"
+      - name: Preserve original results or blocked-host evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v638-partial-last-odd-firstblind
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v638_firstblind_tail_slot_generalisation/original_v638.json
+            Cingulum_Yale_MATLAB_Online/multix_v638_firstblind_tail_slot_generalisation/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v638_firstblind_tail_slot_generalisation/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
