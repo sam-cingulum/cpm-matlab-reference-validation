@@ -21,12 +21,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          d=Cingulum_Yale_MATLAB_Online/multix_v1081_cross_cohort_coefficient_firstblind
+          d=Cingulum_Yale_MATLAB_Online/multix_v1081_n65_partial_firstblind
           echo "2e22b70241f79f243b152c6e3f8e963f43aa312771e87aeaef030385009bdbcf  $d/input.json" | sha256sum -c -
           echo "37fb14fe3c96e0c5de72a7a3a235f70152f52282a646a804b159fdadc1ca38d8  $d/run_original_v1081.m" | sha256sum -c -
           python3 - <<'PY'
           import json
-          p='Cingulum_Yale_MATLAB_Online/multix_v1081_cross_cohort_coefficient_firstblind/input.json'
+          p='Cingulum_Yale_MATLAB_Online/multix_v1081_n65_partial_firstblind/input.json'
           d=json.load(open(p))
           assert d['classification']=='V1079_GENUINELY_NEW_DERIVED_X_B_SOURCE_ONLY'
           assert d['V12']=='SEALED' and d['source_only'] and d['new_original_firstblind'] and d['new_original_response_unseen'] and d['new_X_derived_from_historical_templates']
@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          d=Cingulum_Yale_MATLAB_Online/multix_v1081_cross_cohort_coefficient_firstblind
+          d=Cingulum_Yale_MATLAB_Online/multix_v1081_n65_partial_firstblind
           { echo "Genuine original GitHub run=$GITHUB_RUN_ID"; echo "Public source commit=$GITHUB_SHA"; echo "Job OS=${{ matrix.os }}"; lscpu; uname -a; } > "$d/original_cpu.txt"
           model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
           if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
@@ -56,7 +56,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          d=Cingulum_Yale_MATLAB_Online/multix_v1081_cross_cohort_coefficient_firstblind
+          d=Cingulum_Yale_MATLAB_Online/multix_v1081_n65_partial_firstblind
           file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
           test -n "$file"
           echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
@@ -64,15 +64,15 @@ jobs:
       - name: Run two exact original MATLAB R2026b Update 1 repetitions
         uses: matlab-actions/run-command@v3
         with:
-          command: cd('Cingulum_Yale_MATLAB_Online/multix_v1081_cross_cohort_coefficient_firstblind'); run_original_v1081
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v1081_n65_partial_firstblind'); run_original_v1081
       - name: Verify original-only provenance and repeated output population
         shell: bash
         run: |
           set -euo pipefail
-          d=Cingulum_Yale_MATLAB_Online/multix_v1081_cross_cohort_coefficient_firstblind
+          d=Cingulum_Yale_MATLAB_Online/multix_v1081_n65_partial_firstblind
           python3 - <<'PY'
           import json
-          d=json.load(open('Cingulum_Yale_MATLAB_Online/multix_v1081_cross_cohort_coefficient_firstblind/original.json'))
+          d=json.load(open('Cingulum_Yale_MATLAB_Online/multix_v1081_n65_partial_firstblind/original.json'))
           assert d['classification']=='V1081_R2026B_FIRSTBLIND_FMA_WIDTH_DERIVED_X_B_QR'
           assert d['V12']=='SEALED' and d['new_original_firstblind'] and d['new_original_response_unseen'] and d['new_X_derived_from_historical_templates']
           assert d['source_original_only_reads_Rust_values'] is False
@@ -95,8 +95,8 @@ jobs:
         with:
           name: genuine-v1081-r2026b-${{ matrix.os }}
           path: |
-            Cingulum_Yale_MATLAB_Online/multix_v1081_cross_cohort_coefficient_firstblind/original.json
-            Cingulum_Yale_MATLAB_Online/multix_v1081_cross_cohort_coefficient_firstblind/original_cpu.txt
-            Cingulum_Yale_MATLAB_Online/multix_v1081_cross_cohort_coefficient_firstblind/original_sha256_manifest.txt
+            Cingulum_Yale_MATLAB_Online/multix_v1081_n65_partial_firstblind/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v1081_n65_partial_firstblind/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v1081_n65_partial_firstblind/original_sha256_manifest.txt
           if-no-files-found: warn
           retention-days: 90
