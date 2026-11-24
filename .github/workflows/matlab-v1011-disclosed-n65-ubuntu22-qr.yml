@@ -1,0 +1,109 @@
+name: MATLAB R2026b V1011 source-disclosed public QR on alternate approved AMD pool
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-only:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify immutable V719 input and V1009 original-only source
+        shell: bash
+        run: |
+          set -euo pipefail
+          source=Cingulum_Yale_MATLAB_Online/multix_v719_firstblind_n65_numeric/input.json
+          runner=Cingulum_Yale_MATLAB_Online/multix_v1009_disclosed_n65_factor/run_disclosed_v1009.m
+          echo "a243dfb6f6bd7193d157a7bab6af4f53a268c227373012a1f89a08fbe011a811  $source" | sha256sum -c -
+          echo "0362910689b0230d82e367cb1d2e71bb85dfbbe913745b127a77a49e6449efb6  $runner" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          p = 'Cingulum_Yale_MATLAB_Online/multix_v719_firstblind_n65_numeric/input.json'
+          d = json.load(open(p))
+          assert d['classification'] == 'V719_N65_CROSS_NUMERIC_SOURCE_ONLY_FIRSTBLIND'
+          assert d['source_only'] and d['V12'] == 'SEALED'
+          assert not d['original_MATLAB_numerical_outputs_read']
+          assert not d['independent_Rust_outputs_read']
+          assert d['seed'] == 2026112471901
+          assert len(d['matrices']) == 16 and len(d['cases']) == 80
+          assert all(m['n'] == 65 and m['p'] in [10,11] and m['padding'] == [0,1,2,7] for m in d['matrices'])
+          PY
+      - name: Reject unapproved original host before MATLAB
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v1009_disclosed_n65_factor
+          { echo "Original GitHub Run=$GITHUB_RUN_ID"; echo "Public original source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$dst/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V1009 original rejected: unapproved CPU $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify pinned original MathWorks mathspec binary
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v1009_disclosed_n65_factor
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$dst/original_cpu.txt"
+      - name: Record genuine MATLAB public QR across all V719 matrices and paddings
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v1009_disclosed_n65_factor'); run_disclosed_v1009
+      - name: Audit twice-repeated source-disclosed original QR trace
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v1009_disclosed_n65_factor
+          python3 - <<'PY'
+          import json
+          p = 'Cingulum_Yale_MATLAB_Online/multix_v1009_disclosed_n65_factor/original_v1009.json'
+          d = json.load(open(p))
+          assert d['classification'] == 'V1009_R2026B_SOURCE_DISCLOSED_V719_PUBLIC_QR_FACTORS'
+          assert d['V12'] == 'SEALED' and d['source_only_inputs']
+          assert not d['source_unseen_firstblind'] and not d['original_only_reads_Rust_values']
+          assert 'R2026b) Update 1' in d['release']
+          assert d['mkl_cbwr'] == 'COMPATIBLE' and d['repetitions'] == 2
+          assert d['source_V719_SHA256'] == 'a243dfb6f6bd7193d157a7bab6af4f53a268c227373012a1f89a08fbe011a811'
+          rows = d['rows']
+          assert len(rows) == 128
+          for index in range(64):
+              first, second = rows[index].copy(), rows[index+64].copy()
+              assert first.pop('rep') == 1 and second.pop('rep') == 2
+              assert first == second
+              p, n, z = first['p'], first['n'], first['z']
+              assert n == 65 and p in [10,11] and z in [0,1,2,7]
+              assert sorted(first['pivoted_permutation']) == list(range(1,p+1))
+              for stem in ('unpivoted', 'pivoted'):
+                  assert len(first[f'{stem}_r_row0']) == p
+                  assert len(first[f'{stem}_r_row1']) == p
+                  assert len(first[f'{stem}_q_col0']) == n+z
+                  assert len(first[f'{stem}_q_col1']) == n+z
+                  for field in ('r_row0','r_row1','q_col0','q_col1'):
+                      assert all(len(word) == 16 for word in first[f'{stem}_{field}'])
+          assert len({(r['matrix_id'],r['z']) for r in rows}) == 64
+          print('V1009 genuine original QR stage bit audit PASS')
+          PY
+          sha256sum "$dst/original_v1009.json" "$dst/original_cpu.txt" > "$dst/original_sha256_manifest.txt"
+      - name: Preserve original output or rejected-host record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-v1009-r2026b-qr-factors
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v1009_disclosed_n65_factor/original_v1009.json
+            Cingulum_Yale_MATLAB_Online/multix_v1009_disclosed_n65_factor/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v1009_disclosed_n65_factor/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
