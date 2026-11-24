@@ -1,0 +1,124 @@
+name: MATLAB R2026b V918 n65 cancellation source-firstblind
+on: workflow_dispatch
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen original-only source
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v918_cancellation_n65_source_firstblind
+          echo "3e3462e23ed1172b32c06067ae74d1ca0f807b1d0fd7edcff15326c9c0f11a34  $dst/input.json" | sha256sum -c -
+          echo "41a930c2525315b118765ae86a00e5cc3ecc69d4d077eb4b2e34b3ce789c954c  $dst/run_original_v918.m" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          p = 'Cingulum_Yale_MATLAB_Online/multix_v918_cancellation_n65_source_firstblind/input.json'
+          source = json.load(open(p))
+          assert source['classification'] == 'V918_N65_CANCELLATION_RHS_SOURCE_ONLY'
+          assert source['source_only'] and source['V12'] == 'SEALED'
+          assert not source['original_MATLAB_numerical_outputs_read']
+          assert not source['independent_Rust_outputs_read']
+          assert source['widths'] == [1,2,11,12,13,23,24,25]
+          assert len(source['matrices']) == 16 and len(source['cases']) == 448
+          assert len(set(c['id'] for c in source['cases'])) == 448
+          counts = Counter(c['matrix_id'] for c in source['cases'])
+          assert len(counts) == 16 and set(counts.values()) == {28}
+          assert all(m['n'] == 65 and m['p'] in (10,11) and m['padding'] == [0,1,2,7] for m in source['matrices'])
+          PY
+      - name: Reject unapproved CPU before original MATLAB calculation
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v918_cancellation_n65_source_firstblind
+          { echo "Original GitHub Run=$GITHUB_RUN_ID"; echo "Public original source SHA=$GITHUB_SHA"; lscpu; uname -a; } > "$dst/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V918 original-firstblind CPU rejected: $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify exact MathWorks binary provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v918_cancellation_n65_source_firstblind
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$dst/original_cpu.txt"
+      - name: Execute genuine MATLAB original solver twice
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v918_cancellation_n65_source_firstblind'); run_original_v918
+      - name: Independently validate original repetition and structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          dst=Cingulum_Yale_MATLAB_Online/multix_v918_cancellation_n65_source_firstblind
+          python3 - <<'PY'
+          import json
+          path = 'Cingulum_Yale_MATLAB_Online/multix_v918_cancellation_n65_source_firstblind/original_v918.json'
+          original = json.load(open(path))
+          assert original['classification'] == 'V918_ORIGINAL_MATLAB_R2026B_N65_CANCELLATION_FIRSTBLIND'
+          assert original['V12'] == 'SEALED' and original['source_unseen_original_firstblind']
+          assert not original['original_source_reads_Rust_values']
+          assert '(R2026b) Update 1' in original['release']
+          assert original['mkl_cbwr'] == 'COMPATIBLE' and original['repetitions'] == 2
+          assert original['input_SHA256'] == '3e3462e23ed1172b32c06067ae74d1ca0f807b1d0fd7edcff15326c9c0f11a34'
+          widths = [1,2,11,12,13,23,24,25]
+          rows = original['rows']
+          assert len(rows) == 128
+          for a,b in zip(rows[:64],rows[64:],strict=True):
+              assert a['rep'] == 1 and b['rep'] == 2
+              assert {k:v for k,v in a.items() if k != 'rep'} == {k:v for k,v in b.items() if k != 'rep'}
+          seen = set()
+          columns_checked = 0
+          for row in rows[:64]:
+              assert row['n'] == 65 and row['p'] in (10,11) and row['z'] in (0,1,2,7)
+              assert len(row['probes']) == 28
+              for probe in row['probes']:
+                  key = (probe['case_id'],row['z'])
+                  assert key not in seen
+                  seen.add(key)
+                  assert len(probe['layouts']) == 2
+                  for layout in probe['layouts']:
+                      assert layout['layout'] in ('repeated','signed_power2')
+                      assert [panel['w'] for panel in layout['panels']] == widths
+                      for panel in layout['panels']:
+                          assert len(panel['columns']) == panel['w']
+                          for j,col in enumerate(panel['columns'],1):
+                              assert col['column'] == j
+                              hidden,cached = col['hidden_first2_hex'],col['cached_first2_hex']
+                              assert len(hidden) == len(cached) == 2 and hidden == cached
+                              assert all(len(word) == 16 for word in hidden)
+                              columns_checked += 1
+                      assert layout['panels'][1]['columns'][0]['hidden_first2_hex'] == layout['panels'][2]['columns'][0]['hidden_first2_hex']
+          assert len(seen) == 1792
+          assert columns_checked == 448 * 4 * 2 * sum(widths)
+          print('V918 genuine original repetitions/hidden-cached/partial tile checks',columns_checked)
+          PY
+          sha256sum "$dst/original_v918.json" "$dst/original_cpu.txt" > "$dst/original_sha256_manifest.txt"
+      - name: Preserve genuine original artifact and CPU provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathworks-original-v918-n65-cancellation-firstblind
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v918_cancellation_n65_source_firstblind/original_v918.json
+            Cingulum_Yale_MATLAB_Online/multix_v918_cancellation_n65_source_firstblind/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v918_cancellation_n65_source_firstblind/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
