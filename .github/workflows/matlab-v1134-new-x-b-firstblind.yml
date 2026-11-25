@@ -32,7 +32,7 @@ jobs:
           assert d['V12']=='SEALED' and d['source_only'] and d['new_original_firstblind'] and d['new_original_response_unseen'] and d['new_X_derived_from_historical_templates']
           assert not d['original_MATLAB_numerical_outputs_read'] and not d['independent_Rust_outputs_read']
           assert d['source_V1073_input_SHA256']=='50da1fe6339c370919bdc011379909480fc6dc4d7c3bc91482bbe48e22c1bf0e'
-          assert d['seed']==202611251127 and len(d['cases'])==96 and len(d['matrices'])==8
+          assert d['seed']==202611251132 and len(d['cases'])==96 and len(d['matrices'])==8
           assert d['widths']==[1,11,12,13,23,24,25]
           assert all(c['layout']=='repeated' for c in d['cases'])
           print('V1134 preregistered new-response source SHA valid')
