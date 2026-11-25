@@ -1,0 +1,102 @@
+name: MATLAB R2026b V1129 joint-reduction new X+B original-firstblind QR
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_CBWR: COMPATIBLE
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-only:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce preregistered derived X+B source and original-only runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v1129_new_x_b_firstblind
+          echo "67a0fe5e4bcb8c3db4a796063031aed2c39be39a539fad3ebfcd3cbe8d04fd49  $d/input.json" | sha256sum -c -
+          echo "a5129ddd59a162b9446e74780899be177a8eb9a5cfe3beee01cf09ba1fdff7f8  $d/run_original_v1129.m" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          p='Cingulum_Yale_MATLAB_Online/multix_v1129_new_x_b_firstblind/input.json'
+          d=json.load(open(p))
+          assert d['classification']=='V1127_GENUINELY_NEW_X_B_SOURCE_ONLY'
+          assert d['V12']=='SEALED' and d['source_only'] and d['new_original_firstblind'] and d['new_original_response_unseen'] and d['new_X_derived_from_historical_templates']
+          assert not d['original_MATLAB_numerical_outputs_read'] and not d['independent_Rust_outputs_read']
+          assert d['source_V1073_input_SHA256']=='50da1fe6339c370919bdc011379909480fc6dc4d7c3bc91482bbe48e22c1bf0e'
+          assert d['seed']==202611251127 and len(d['cases'])==96 and len(d['matrices'])==8
+          assert d['widths']==[1,11,12,13,23,24,25]
+          assert all(c['layout']=='repeated' for c in d['cases'])
+          print('V1129 preregistered new-response source SHA valid')
+          PY
+      - name: Reject any CPU outside the approved AMD 7763 or 9V45 pool
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v1129_new_x_b_firstblind
+          { echo "Genuine original GitHub run=$GITHUB_RUN_ID"; echo "Public source commit=$GITHUB_SHA"; echo "Job OS=${{ matrix.os }}"; lscpu; uname -a; } > "$d/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V1129 original-only rejected unapproved CPU $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Enforce genuine original MathWorks mathspec binary SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v1129_new_x_b_firstblind
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$d/original_cpu.txt"
+      - name: Run two exact original MATLAB R2026b Update 1 repetitions
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/multix_v1129_new_x_b_firstblind'); run_original_v1129
+      - name: Verify original-only provenance and repeated output population
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/multix_v1129_new_x_b_firstblind
+          python3 - <<'PY'
+          import json
+          d=json.load(open('Cingulum_Yale_MATLAB_Online/multix_v1129_new_x_b_firstblind/original.json'))
+          assert d['classification']=='V1129_R2026B_FIRSTBLIND_JOINT_REDUCTION_NEW_X_B_QR'
+          assert d['V12']=='SEALED' and d['new_original_firstblind'] and d['new_original_response_unseen'] and d['new_X_derived_from_historical_templates']
+          assert d['source_original_only_reads_Rust_values'] is False
+          assert d['source_V1127_input_SHA256']=='67a0fe5e4bcb8c3db4a796063031aed2c39be39a539fad3ebfcd3cbe8d04fd49'
+          assert 'R2026b) Update 1' in d['release'] and d['mkl_cbwr']=='COMPATIBLE'
+          assert d['case_count']==96 and d['repetitions']==2 and d['panels_per_repetition']==5376
+          assert d['widths']==[1,11,12,13,23,24,25]
+          assert d['layouts']==['repeated','signed_power2']
+          assert len(d['rows'])==192
+          for a,b in zip(d['rows'][:96],d['rows'][96:],strict=True):
+              assert a['rep']==1 and b['rep']==2
+              a=a.copy();b=b.copy();a.pop('rep');b.pop('rep')
+              assert a==b
+          print('V1129 original R2026b exact duplicate raw-word audit PASS')
+          PY
+          sha256sum "$d/original.json" "$d/original_cpu.txt" > "$d/original_sha256_manifest.txt"
+      - name: Preserve original evidence and rejected CPU diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-v1129-r2026b-${{ matrix.os }}
+          path: |
+            Cingulum_Yale_MATLAB_Online/multix_v1129_new_x_b_firstblind/original.json
+            Cingulum_Yale_MATLAB_Online/multix_v1129_new_x_b_firstblind/original_cpu.txt
+            Cingulum_Yale_MATLAB_Online/multix_v1129_new_x_b_firstblind/original_sha256_manifest.txt
+          if-no-files-found: warn
+          retention-days: 90
