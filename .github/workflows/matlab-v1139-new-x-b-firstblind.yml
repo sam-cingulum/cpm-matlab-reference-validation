@@ -23,7 +23,7 @@ jobs:
           set -euo pipefail
           d=Cingulum_Yale_MATLAB_Online/multix_v1139_new_x_b_firstblind
           echo "68319fc9c982a5144291d0af8c48fdd1b9bd6d75d6b38198af8906b8912df0e7  $d/input.json" | sha256sum -c -
-          echo "19fc291b28de884c1ab2ffb485050c372e8c157ea514cb3bab89ca04a8ef4de0  $d/run_original_v1139.m" | sha256sum -c -
+          echo "20133d5ba6fc8540d4219fe6397baeac9fc6804f708000ec6ceff06520ac2162  $d/run_original_v1139.m" | sha256sum -c -
           python3 - <<'PY'
           import json
           p='Cingulum_Yale_MATLAB_Online/multix_v1139_new_x_b_firstblind/input.json'
