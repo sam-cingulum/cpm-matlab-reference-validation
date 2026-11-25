@@ -31,7 +31,7 @@ jobs:
           assert d['classification']=='V1184_GENUINELY_NEW_X_B_SOURCE_ONLY'
           assert d['V12']=='SEALED' and d['source_only'] and d['new_original_firstblind'] and d['new_original_response_unseen'] and d['new_X_derived_from_historical_templates']
           assert not d['original_MATLAB_numerical_outputs_read'] and not d['independent_Rust_outputs_read']
-          assert d['source_V1173_input_SHA256']=='1ca325f2bcb23f64f92111489f9b74abf00e73abb1752ad5a920fba809498741'
+          assert d['source_V1178_input_SHA256']=='1ca325f2bcb23f64f92111489f9b74abf00e73abb1752ad5a920fba809498741'
           assert d['seed']==202611251184 and len(d['cases'])==96 and len(d['matrices'])==8
           assert d['widths']==[1,11,12,13,23,24,25]
           assert all(c['layout']=='repeated' for c in d['cases'])
