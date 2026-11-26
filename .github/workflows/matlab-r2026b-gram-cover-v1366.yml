@@ -1,4 +1,4 @@
-name: MATLAB R2026b V1366 source-disclosed diagnostic (Gram coverage: widths 2 to 1,199, rows 257 to 3,000, lasso at new widths)
+name: "MATLAB R2026b V1366 source-disclosed diagnostic (Gram coverage: widths 2 to 1,199, rows 257 to 3,000, lasso at new widths)"
 on:
   workflow_dispatch:
 permissions:
