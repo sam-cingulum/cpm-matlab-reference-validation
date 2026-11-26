@@ -198,8 +198,10 @@ function [A,B,E]=cohort(seed,nr,nc,n,nt,kind,nb,ties)
 % One statement per operation, so no two operations can be fused (V1386's generator).
 rng(seed,'twister');
 if kind==1;ne=nr*nc;else;ne=nr*(nr-1)/2;end
-E=rand(ne*nt,n)-0.5;U=rand(n,nb)-0.5;
+% Fewer than three features (V1389 only, one task): draw three rows for the signal, keep ne.
+E=rand(max(ne,3)*nt,n)-0.5;U=rand(n,nb)-0.5;
 s=E(1,:).';t=0.5*E(2,:).';s=s-t;t=0.25*E(3,:).';s=s+t;
+if ne<3;assert(nt==1);E=E(1:ne,:);end
 B=zeros(n,nb);
 for m=1:nb;t=(0.2*m)*U(:,m);B(:,m)=s+t;end
 if ties;B=round(B*4)/4;end
