@@ -1,0 +1,92 @@
+name: "MATLAB R2026b V1374 original-only firstblind (Yale Hotelling T2Hot2ihe, groups of 8 or 9 and above 256 rows)"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  YALE_COMMIT: b903f83b476b745417b1f062f6777f5ffe118f1a
+jobs:
+  original-only:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            cbwr: COMPATIBLE
+          - os: ubuntu-24.04
+            cbwr: COMPATIBLE
+          - os: ubuntu-22.04
+            cbwr: DEFAULT
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash
+        working-directory: Cingulum_Yale_MATLAB_Online/hotelling_firstblind_v1374
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set the CBWR mode under test
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.cbwr }}" != "DEFAULT" ]; then echo "MKL_CBWR=${{ matrix.cbwr }}" >> "$GITHUB_ENV"; fi
+      - name: Enforce the preregistered input, script and frozen forecast commitment
+        run: |
+          set -euo pipefail
+          sha256sum -c input.sha256
+          echo "6bd8810be5eefd314071ef6f85c0cb61d06f0c92076e499d90b85a5b75e7ddeb  input.json" | sha256sum -c -
+          echo "0960c332b468892db345a8ee5e3cdf6ca4a25572f10c13082bf7c73309ec3457  run_hotelling.m" | sha256sum -c -
+          echo "f31a3c5690fc3fe3c67859234b808c412862906c536ccd8c80e3c2d1941a789f  inverse_probe.c" | sha256sum -c -
+          c=frozen_forecast_commitment.txt
+          for f in input forecast scorer public_script; do grep -Eq "^${f}_sha256 [0-9a-f]{64}$" "$c"; done
+          grep -Eq '^private_freeze_commit [0-9a-f]{40}$' "$c"
+          # original-only: no forecast values or Rust output may be present
+          test "$(ls | sort | tr '\n' ' ')" = "frozen_forecast_commitment.txt generate_input.py input.json input.sha256 inverse_probe.c run_hotelling.m "
+      - name: Reject any CPU outside the approved AMD 7763 or 9V45 pool
+        run: |
+          set -euo pipefail
+          { echo "Genuine original GitHub run=$GITHUB_RUN_ID"; echo "Public source commit=$GITHUB_SHA"; echo "Job OS=${{ matrix.os }}"; echo "CBWR=${{ matrix.cbwr }}"; lscpu; uname -a; } > cpu.txt
+          sha256sum run_hotelling.m input.json inverse_probe.c frozen_forecast_commitment.txt >> cpu.txt
+          cat frozen_forecast_commitment.txt >> cpu.txt
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V1374 rejected unapproved CPU $model" >&2
+            exit 86
+          fi
+      - name: Check out the pinned original Yale source (unchanged)
+        run: |
+          set -euo pipefail
+          git clone --quiet https://github.com/YaleMRRC/CPM.git upstream
+          git -C upstream checkout --quiet --detach "$YALE_COMMIT"
+          test "$(git -C upstream rev-parse HEAD)" = "$YALE_COMMIT"
+          test -z "$(git -C upstream status --porcelain)"
+          sha256sum upstream/matlab/oop/HotellingT2/*.m >> cpu.txt
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox Bioinformatics_Toolbox
+      - name: Enforce genuine original MathWorks mathspec binary SHA
+        run: |
+          set -euo pipefail
+          lib=$(find /opt/hostedtoolcache/MATLAB -path '*/bin/glnxa64/libmwmathspec.so' -type f -print -quit)
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $lib" | sha256sum -c -
+      - name: Run original MATLAB R2026b Update 1 with unchanged Yale code, two repetitions
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/hotelling_firstblind_v1374'); run_hotelling
+      - name: Manifest
+        if: always()
+        run: |
+          ls -la
+          sha256sum original.json cpu.txt || true
+      - name: Preserve original evidence and rejected CPU diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-v1374-r2026b-${{ matrix.os }}-${{ matrix.cbwr }}
+          path: |
+            Cingulum_Yale_MATLAB_Online/hotelling_firstblind_v1374/original.json
+            Cingulum_Yale_MATLAB_Online/hotelling_firstblind_v1374/cpu.txt
+          if-no-files-found: warn
+          retention-days: 90
