@@ -1,0 +1,76 @@
+name: MATLAB R2026b V1351 original-only large-row dgemm summation-order probe (source-disclosed diagnostic)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  probe:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            cbwr: COMPATIBLE
+          - os: ubuntu-22.04
+            cbwr: DEFAULT
+          - os: ubuntu-24.04
+            cbwr: COMPATIBLE
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set the CBWR mode under test
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.cbwr }}" != "DEFAULT" ]; then echo "MKL_CBWR=${{ matrix.cbwr }}" >> "$GITHUB_ENV"; fi
+      - name: Reject any CPU outside the approved AMD 7763 or 9V45 pool
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/kernel_path_v1351
+          mkdir -p "$d/out"
+          { echo "Genuine original GitHub run=$GITHUB_RUN_ID"; echo "Public source commit=$GITHUB_SHA"; echo "Job OS=${{ matrix.os }}"; echo "CBWR=${{ matrix.cbwr }}"; lscpu; uname -a; gcc --version | head -1; } > "$d/out/original_cpu.txt"
+          sha256sum "$d/run_v1351.m" "$d/kp1351.c" >> "$d/out/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V1351 probe rejected unapproved CPU $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Record genuine MathWorks mathspec binary SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/kernel_path_v1351
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$d/out/original_cpu.txt"
+      - name: Run the original-only kernel path probe
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/kernel_path_v1351'); run_v1351
+      - name: Manifest
+        if: always()
+        shell: bash
+        run: |
+          cd Cingulum_Yale_MATLAB_Online/kernel_path_v1351/out
+          rm -f kp1351.mexa64
+          cat log.txt || true
+          sha256sum * > ../out_sha256_manifest.txt || true
+          mv ../out_sha256_manifest.txt .
+      - name: Preserve probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v1351-large-row-dgemm-order-${{ matrix.os }}-${{ matrix.cbwr }}
+          path: Cingulum_Yale_MATLAB_Online/kernel_path_v1351/out
+          if-no-files-found: warn
+          retention-days: 90
