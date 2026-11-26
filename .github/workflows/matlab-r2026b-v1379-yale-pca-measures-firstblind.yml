@@ -1,0 +1,112 @@
+name: MATLAB R2026b V1379 original-only firstblind (Yale ridgeCPM_PCA with 3 to 6 measures, second run)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  YALE_COMMIT: b903f83b476b745417b1f062f6777f5ffe118f1a
+jobs:
+  original-only:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            cbwr: COMPATIBLE
+          - os: ubuntu-24.04
+            cbwr: COMPATIBLE
+          - os: ubuntu-22.04
+            cbwr: DEFAULT
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set the CBWR mode under test
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.cbwr }}" != "DEFAULT" ]; then echo "MKL_CBWR=${{ matrix.cbwr }}" >> "$GITHUB_ENV"; fi
+      - name: Enforce the preregistered inputs, script and frozen forecast commitment
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/v1379_yale_pca_measures_firstblind
+          echo "06d26e5302766f49d9a9a32866f164ad617e617eac072f4736763a29f5bb67d9  $d/cases.csv" | sha256sum -c -
+          echo "d4f1af73e19318efcc8897e72ff072d8bb2a29736e8c3c8a067424583c1be57a  $d/run_v1379.m" | sha256sum -c -
+          c="$d/frozen_forecast_commitment.txt"
+          test -s "$c"
+          for f in case_list forecast_case_sha256_csv forecast_fields forecast_status; do
+            grep -Eq "^${f}_sha256 [0-9a-f]{64}$" "$c"
+          done
+          grep -Eq '^private_freeze_commit [0-9a-f]{40}$' "$c"
+          # original-only: no forecast values, MEX source or Rust output may be present
+          test "$(ls "$d" | sort | tr '\n' ' ')" = "cases.csv frozen_forecast_commitment.txt run_v1379.m "
+      - name: Reject any CPU outside the approved AMD 7763 or 9V45 pool
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/v1379_yale_pca_measures_firstblind
+          mkdir -p "$d/out"
+          { echo "Genuine original GitHub run=$GITHUB_RUN_ID"; echo "Public source commit=$GITHUB_SHA"; echo "Job OS=${{ matrix.os }}"; echo "CBWR=${{ matrix.cbwr }}"; lscpu; uname -a; } > "$d/out/original_cpu.txt"
+          sha256sum "$d/run_v1379.m" "$d/cases.csv" "$d/frozen_forecast_commitment.txt" >> "$d/out/original_cpu.txt"
+          cat "$d/frozen_forecast_commitment.txt" >> "$d/out/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "V1379 firstblind rejected unapproved CPU $model" >&2
+            exit 86
+          fi
+      - name: Check out the pinned original Yale source (unchanged)
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/v1379_yale_pca_measures_firstblind
+          git clone --quiet https://github.com/YaleMRRC/CPM.git "$d/upstream"
+          git -C "$d/upstream" checkout --quiet --detach "$YALE_COMMIT"
+          test "$(git -C "$d/upstream" rev-parse HEAD)" = "$YALE_COMMIT"
+          test -z "$(git -C "$d/upstream" status --porcelain)"
+          sha256sum "$d"/upstream/matlab/misc/*.m >> "$d/out/original_cpu.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox Bioinformatics_Toolbox
+      - name: Enforce genuine original MathWorks mathspec binary SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/v1379_yale_pca_measures_firstblind
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$d/out/original_cpu.txt"
+      - name: Run original MATLAB R2026b Update 1 with unchanged Yale code, two repetitions of every case
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/v1379_yale_pca_measures_firstblind'); run_v1379
+      - name: Record input custody in the provenance and write the manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/v1379_yale_pca_measures_firstblind
+          python3 - "$d" <<'PY'
+          import hashlib, json, sys
+          d = sys.argv[1]
+          p = json.load(open(f"{d}/out/provenance.json"))
+          assert p["classification"] == "V1379_ORIGINAL_ONLY_YALE_PCA_MEASURES_FIRSTBLIND" and p["forecast_read"] is False
+          p["case_list_sha256"] = hashlib.sha256(open(f"{d}/cases.csv", "rb").read()).hexdigest()
+          p["script_sha256"] = hashlib.sha256(open(f"{d}/run_v1379.m", "rb").read()).hexdigest()
+          json.dump(p, open(f"{d}/out/provenance.json", "w"))
+          PY
+          cd "$d/out"
+          sha256sum hidden*.bin hidden*.csv hidden*.tsv provenance.json original_cpu.txt > original_sha256_manifest.txt
+          cat original_sha256_manifest.txt
+          cmp hidden.bin hidden_repeat.bin && echo "the two repetitions are byte-identical"
+      - name: Preserve original evidence and rejected CPU diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genuine-v1379-r2026b-${{ matrix.os }}-${{ matrix.cbwr }}
+          path: Cingulum_Yale_MATLAB_Online/v1379_yale_pca_measures_firstblind/out
+          if-no-files-found: warn
+          retention-days: 90
