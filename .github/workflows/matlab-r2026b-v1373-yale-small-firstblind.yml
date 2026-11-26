@@ -93,7 +93,7 @@ jobs:
           import hashlib, json, sys
           d = sys.argv[1]
           p = json.load(open(f"{d}/out/provenance.json"))
-          assert p["classification"] == "V1373_ORIGINAL_ONLY_YALE_RIDGE_FIRSTBLIND" and p["forecast_read"] is False
+          assert p["classification"] == "V1373_ORIGINAL_ONLY_YALE_SMALL_FIRSTBLIND" and p["forecast_read"] is False
           p["case_list_sha256"] = hashlib.sha256(open(f"{d}/cases.csv", "rb").read()).hexdigest()
           p["script_sha256"] = hashlib.sha256(open(f"{d}/run_v1373.m", "rb").read()).hexdigest()
           json.dump(p, open(f"{d}/out/provenance.json", "w"))
