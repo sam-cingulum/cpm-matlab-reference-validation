@@ -143,6 +143,7 @@ for k=1:36
  S=op(S,'regress_double_X_single_y',@() regress(a,double(b)));
  S=op(S,'regress_single_X_single_y',@() regress(a,b));
 end
+end
 fclose('all');
 prov=struct('classification','V1400_SOURCE_DISCLOSED_SINGLE_KERNELS_PROBE','V12','SEALED', ...
  'release',version,'blas',version('-blas'),'lapack',version('-lapack'), ...
