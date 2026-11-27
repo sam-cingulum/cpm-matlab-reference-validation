@@ -169,7 +169,7 @@ if isa(v,'single')
 else
  words=typecast(double(v(:)),'uint64');fwrite(S.fo,words,'uint64');unit=8;
 end
-fprintf(S.ff,'%d,%s,%s,%d,%d,%s,%d\n',S.serial,clean(S.context),clean(name),size(v,1),size(v,2),class(v),unit);
+fprintf(S.ff,'%d,%s,%s,%d,%d,%s,%d,%d\n',S.serial,clean(S.context),clean(name),size(v,1),size(v,2),class(v),unit,numel(v));
 end
 
 function [x,y]=cohort125()
