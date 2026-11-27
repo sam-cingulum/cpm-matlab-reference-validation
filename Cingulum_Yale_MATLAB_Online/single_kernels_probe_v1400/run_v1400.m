@@ -77,7 +77,7 @@ for cc=[37 124 140 125]
  NN=size(xx,1);nsub=size(xx,3);mm=reshape(xx,NN*NN,nsub);
  uu=find(triu(ones(NN,NN),1)>0);rng(str2double(sprintf('139200%d',cc)),'twister');
  oo=randperm(nsub);hold=oo(1:8);tt=mm(uu,:);tt(:,hold)=[];ss=yy;ss(hold)=[];
- S=dump(S,'matrix',xx);S=dump(S,'score',yy);S=dump(S,'covariate',cv);
+ S=dump(S,'matrix_class_double',double(isa(xx,'double')));S=dump(S,'score',yy);S=dump(S,'covariate',cv);
  S=dump(S,'training_edges',tt.');S=dump(S,'training_score',ss);
  try
   if partial
