@@ -23,11 +23,11 @@ rng(139200125,'twister');ord=randperm(ns);pf=round(ns/5);
 S=dump(S,'permutation_zero_based',double(ord-1));
 S=dump(S,'rand_after_permutation',rand);
 allpred=zeros(ns,1);
-for fo=1:5
- cf=ord((fo-1)*pf+1:min(fo*pf,ns));
+for fold=1:5
+ cf=ord((fold-1)*pf+1:min(fold*pf,ns));
  tr=m(up,:);tr(:,cf)=[];ts=ys;ts(cf)=[];
  test=m(up,cf);
- S.context=sprintf('A fold %d',fo);
+ S.context=sprintf('A fold %d',fold);
  S=dump(S,'held_out_zero_based',double(cf(:)-1));
  S=dump(S,'train_edges_double',tr.');
  S=dump(S,'train_score_single',ts);
