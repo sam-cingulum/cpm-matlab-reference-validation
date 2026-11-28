@@ -1,18 +1,51 @@
-function run_yale36_original_only()
+function run_yale36_original_only(cbwr)
 % Capture genuine original Yale results as binary64 words for six public
 % synthetic scenarios and six unchanged original model entry points.
+% Capture the actual launcher and MATLAB entry environments before any Yale calls.
+assert(any(strcmp(cbwr,{'COMPATIBLE','DEFAULT'})), 'Unknown MKL compatibility mode');
+expected_cbwr = cbwr;
+if strcmp(cbwr,'DEFAULT'); expected_cbwr = ''; end
+root = fileparts(mfilename('fullpath'));
+keys = {'MKL_NUM_THREADS','OMP_NUM_THREADS','MKL_CBWR'};
+expected = {'1','1',expected_cbwr};
+% Linux procfs exposes the initial process environment, while getenv reads
+% the current environment. Preserve only the three numerical controls.
+fid = fopen('/proc/self/environ','rb');
+assert(fid >= 0, 'Initial process environment unavailable');
+initial = char(fread(fid,Inf,'*uint8').');
+fclose(fid);
+entries = strsplit(initial,char(0));
+launch = cell(1,numel(keys));
+current = cell(1,numel(keys));
+for j = 1:numel(keys)
+    prefix = [keys{j},'='];
+    matches = entries(startsWith(entries,prefix));
+    assert(numel(matches) <= 1, 'Duplicate initial environment variable');
+    launch{j} = '';
+    if ~isempty(matches); launch{j} = matches{1}(numel(prefix)+1:end); end
+    current{j} = getenv(keys{j});
+end
+threads = maxNumCompThreads;
+fid = fopen(fullfile(root,'out','original_cpu.txt'),'a');
+assert(fid >= 0, 'Cannot record MATLAB entry environment');
+for j = 1:numel(keys)
+    fprintf(fid,'MATLAB initial %s=%s\n',keys{j},launch{j});
+    fprintf(fid,'MATLAB current %s=%s\n',keys{j},current{j});
+end
+fprintf(fid,'MATLAB entry maxNumCompThreads=%d\n',threads);
+fclose(fid);
+assert(isequal(launch,expected), 'Initial MATLAB process environment mismatch');
+assert(isequal(current,expected), 'Current MATLAB process environment mismatch');
+assert(threads == 1, 'A single computational thread is required at entry');
 assert(exist('OCTAVE_VERSION','builtin') == 0, 'MathWorks MATLAB required');
 assert(strcmp(version('-release'),'2026b'), 'MATLAB R2026b required');
 assert(contains(version,'(R2026b) Update 1'), 'R2026b Update 1 required');
-maxNumCompThreads(1);
-assert(maxNumCompThreads == 1, 'A single computational thread is required');
 warning('on','all');
 warning('off','backtrace');
 warning('on','verbose');
 stats = ver('stats');
 assert(~isempty(stats), 'Statistics and Machine Learning Toolbox required');
 
-root = fileparts(mfilename('fullpath'));
 fixtures = fullfile(root,'..','fixtures');
 upstream = fullfile(root,'upstream');
 addpath(fullfile(upstream,'yale-cpm','matlab','func'));
@@ -48,7 +81,10 @@ provenance.runtime_version = version;
 provenance.toolbox_version = stats.Version;
 provenance.blas = version('-blas');
 provenance.lapack = version('-lapack');
-provenance.max_computation_threads = maxNumCompThreads;
+provenance.max_computation_threads = threads;
+provenance.initial_mkl_num_threads = launch{1};
+provenance.initial_omp_num_threads = launch{2};
+provenance.initial_mkl_cbwr = launch{3};
 provenance.mkl_cbwr = getenv('MKL_CBWR');
 provenance.run_id = getenv('GITHUB_RUN_ID');
 provenance.public_commit = getenv('GITHUB_SHA');
