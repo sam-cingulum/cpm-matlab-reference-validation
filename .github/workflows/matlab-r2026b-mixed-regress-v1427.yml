@@ -59,9 +59,19 @@ jobs:
           test -n "$file"
           echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
           sha256sum "$file" >> "$d/out/original_cpu.txt"
+      - name: Verify launch environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$MKL_NUM_THREADS" = 1
+          test "$OMP_NUM_THREADS" = 1
+          test "$MKL_CBWR" = COMPATIBLE
+          d=Cingulum_Yale_MATLAB_Online/mixed_regress_v1427
+          printf 'MKL_NUM_THREADS=%s\nOMP_NUM_THREADS=%s\nMKL_CBWR=%s\nMATLAB_STARTUP_OPTIONS=-singleCompThread\n' "$MKL_NUM_THREADS" "$OMP_NUM_THREADS" "$MKL_CBWR" >> "$d/out/original_cpu.txt"
       - name: Execute two original MATLAB repetitions
         uses: matlab-actions/run-command@v3
         with:
+          startup-options: -singleCompThread
           command: cd('Cingulum_Yale_MATLAB_Online/mixed_regress_v1427'); run_v1427
       - name: Compare repetitions and write manifest
         shell: bash
