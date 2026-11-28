@@ -8,6 +8,7 @@ initial_mkl=getenv('MKL_NUM_THREADS'); initial_omp=getenv('OMP_NUM_THREADS');
 initial_cbwr=getenv('MKL_CBWR');
 assert(initial_threads==1 && strcmp(initial_mkl,'1') && strcmp(initial_omp,'1') && strcmp(initial_cbwr,'COMPATIBLE'));
 root=fileparts(mfilename('fullpath'));
+entry=capture_entry(root);
 out=fullfile(root,'out'); if ~exist(out,'dir'); mkdir(out); end
 input=fullfile(root,'input');
 raw=fopen(fullfile(input,'inputs.bin'),'r','ieee-le'); assert(raw>0);
@@ -49,6 +50,8 @@ prov=struct('classification','V1428_POSITIVE_REAL_GAMMALN_ORIGINAL','V12','SEALE
     'initial_mkl_num_threads',initial_mkl,'final_mkl_num_threads',final_mkl, ...
     'initial_omp_num_threads',initial_omp,'final_omp_num_threads',final_omp, ...
     'run_id',getenv('GITHUB_RUN_ID'),'public_commit',getenv('GITHUB_SHA'),'cases',numel(x));
+names=fieldnames(entry);
+for j=1:numel(names); prov.(names{j})=entry.(names{j}); end
 [code,cpu]=system('lscpu'); assert(code==0); prov.lscpu=cpu;
 f=fopen(fullfile(out,'provenance.json'),'w'); assert(f>0); fprintf(f,'%s\n',jsonencode(prov)); fclose(f);
 end
