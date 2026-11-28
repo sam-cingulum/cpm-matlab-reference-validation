@@ -108,9 +108,21 @@ jobs:
           mv ../sha256_manifest.txt .
       - name: Preserve original evidence and rejected CPU diagnostic
         if: always()
+        id: original_artifact
         uses: actions/upload-artifact@v4
         with:
           name: v1427-mixed-regress-${{ matrix.os }}-${{ matrix.cbwr }}-attempt-${{ github.run_attempt }}
           path: Cingulum_Yale_MATLAB_Online/mixed_regress_v1427/out
           if-no-files-found: warn
           retention-days: 90
+      - name: Bind uploaded artifact identity to the successful matrix job
+        if: success()
+        shell: bash
+        env:
+          CPM_ARTIFACT_ID: ${{ steps.original_artifact.outputs.artifact-id }}
+          CPM_ARTIFACT_DIGEST: ${{ steps.original_artifact.outputs.artifact-digest }}
+        run: |
+          set -euo pipefail
+          [[ "$CPM_ARTIFACT_ID" =~ ^[1-9][0-9]*$ ]]
+          [[ "$CPM_ARTIFACT_DIGEST" =~ ^[0-9a-f]{64}$ ]]
+          printf 'CPM custody artifact_id=%s digest=%s\n' "$CPM_ARTIFACT_ID" "$CPM_ARTIFACT_DIGEST"
