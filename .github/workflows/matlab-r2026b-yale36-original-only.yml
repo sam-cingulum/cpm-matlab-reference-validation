@@ -29,7 +29,7 @@ jobs:
         run: |
           set -euo pipefail
           d=Cingulum_Yale_MATLAB_Online/yale36_original_only
-          echo 'a1dcb91d3364aeeab2f7b2beeed1770bc52cf153e43b9a215543fc27a7e6014b' " $d/run_yale36_original_only.m" | sha256sum -c -
+          echo 'dabdbb4fe11a6372ec40325211005569fd6dd13215a13e88c0602429c07617c1' " $d/run_yale36_original_only.m" | sha256sum -c -
           echo '1eacd443514200faa18629cf1974c9c9ff909b13e9d9b5b5f87245cea39ab169' " $d/public_fixtures.sha256" | sha256sum -c -
           test "$(wc -l < "$d/public_fixtures.sha256")" -eq 18
           sha256sum -c "$d/public_fixtures.sha256"
@@ -86,7 +86,7 @@ jobs:
             >> "$d/out/original_cpu.txt"
           echo "Original Yale CPM=$YALE_CPM_COMMIT" >> "$d/out/original_cpu.txt"
           echo "Original Yale OHBM=$YALE_OHBM_COMMIT" >> "$d/out/original_cpu.txt"
-      - uses: matlab-actions/setup-matlab@v3
+      - uses: matlab-actions/setup-matlab@f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d
         with:
           release: R2026b
           products: Statistics_and_Machine_Learning_Toolbox
@@ -99,9 +99,41 @@ jobs:
           test -n "$file"
           echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
           sha256sum "$file" >> "$d/out/original_cpu.txt"
+      - name: Prepare an assert-only MATLAB launch boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/yale36_original_only
+          real_matlab="$(command -v matlab)"
+          test -x "$real_matlab"
+          shim="$RUNNER_TEMP/yale36-matlab-launch"
+          mkdir -p "$shim"
+          cat > "$shim/matlab" <<'SH'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          {
+            printf 'Launcher MKL_NUM_THREADS=%s\n' "${MKL_NUM_THREADS-}"
+            printf 'Launcher OMP_NUM_THREADS=%s\n' "${OMP_NUM_THREADS-}"
+            printf 'Launcher MKL_CBWR=%s\n' "${MKL_CBWR-}"
+          } >> "$YALE36_CPU_LOG"
+          test "${MKL_NUM_THREADS-}" = 1
+          test "${OMP_NUM_THREADS-}" = 1
+          test "${MKL_CBWR-}" = "$YALE36_EXPECTED_CBWR"
+          exec "$YALE36_REAL_MATLAB" "$@"
+          SH
+          chmod +x "$shim/matlab"
+          printf '%s\n' "$shim" >> "$GITHUB_PATH"
+          expected_cbwr='${{ matrix.cbwr }}'
+          if [ "$expected_cbwr" = DEFAULT ]; then expected_cbwr=''; fi
+          {
+            printf 'YALE36_REAL_MATLAB=%s\n' "$real_matlab"
+            printf 'YALE36_CPU_LOG=%s\n' "$GITHUB_WORKSPACE/$d/out/original_cpu.txt"
+            printf 'YALE36_EXPECTED_CBWR=%s\n' "$expected_cbwr"
+          } >> "$GITHUB_ENV"
       - name: Capture two byte-identical original executions of each of the 36 cases
-        uses: matlab-actions/run-command@v3
+        uses: matlab-actions/run-command@bfa857648f4895aa98a446fe41c85e0788421ed5
         with:
+          startup-options: -singleCompThread
           command: cd('Cingulum_Yale_MATLAB_Online/yale36_original_only'); run_yale36_original_only('${{ matrix.cbwr }}')
       - name: Verify source-only binary64 evidence and produce its SHA256 custody manifest
         shell: bash
@@ -120,7 +152,16 @@ jobs:
           assert provenance['mkl_num_threads'] == '1'
           assert provenance['omp_num_threads'] == '1'
           assert provenance['max_computation_threads'] == 1
-          assert provenance['mkl_cbwr'] == ('' if '${{ matrix.cbwr }}' == 'DEFAULT' else '${{ matrix.cbwr }}')
+          expected_cbwr = '' if '${{ matrix.cbwr }}' == 'DEFAULT' else '${{ matrix.cbwr }}'
+          assert provenance['mkl_cbwr'] == expected_cbwr
+          assert provenance['initial_mkl_num_threads'] == '1'
+          assert provenance['initial_omp_num_threads'] == '1'
+          assert provenance['initial_mkl_cbwr'] == expected_cbwr
+          cpu = (output / 'original_cpu.txt').read_text().splitlines()
+          for boundary in ('Launcher', 'MATLAB initial', 'MATLAB current'):
+              for key, value in (('MKL_NUM_THREADS', '1'), ('OMP_NUM_THREADS', '1'), ('MKL_CBWR', expected_cbwr)):
+                  assert [line for line in cpu if line.startswith(f'{boundary} {key}=')] == [f'{boundary} {key}={value}']
+          assert [line for line in cpu if line.startswith('MATLAB entry maxNumCompThreads=')] == ['MATLAB entry maxNumCompThreads=1']
           assert provenance['source_yale_cpm'] == 'b903f83b476b745417b1f062f6777f5ffe118f1a'
           assert provenance['source_yale_ohbm'] == '708999b8bb27ae69722775c323da9f14ef6732c7'
           scenarios = ['baseline','clean','severe_outlier','rescaled','reversed','47_subjects']
