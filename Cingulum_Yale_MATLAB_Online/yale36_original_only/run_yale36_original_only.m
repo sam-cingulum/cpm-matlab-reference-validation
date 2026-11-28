@@ -1,6 +1,17 @@
-function run_yale36_original_only()
+function run_yale36_original_only(cbwr)
 % Capture genuine original Yale results as binary64 words for six public
 % synthetic scenarios and six unchanged original model entry points.
+% The MATLAB launcher may clear MKL_NUM_THREADS. Reestablish the
+% requested process environment at entry, before calling original code.
+assert(any(strcmp(cbwr,{'COMPATIBLE','DEFAULT'})), 'Unknown MKL compatibility mode');
+expected_cbwr = cbwr;
+if strcmp(cbwr,'DEFAULT'); expected_cbwr = ''; end
+setenv('MKL_NUM_THREADS','1');
+setenv('OMP_NUM_THREADS','1');
+setenv('MKL_CBWR',expected_cbwr);
+assert(strcmp(getenv('MKL_NUM_THREADS'),'1'), 'MKL_NUM_THREADS must be 1');
+assert(strcmp(getenv('OMP_NUM_THREADS'),'1'), 'OMP_NUM_THREADS must be 1');
+assert(strcmp(getenv('MKL_CBWR'),expected_cbwr), 'Unexpected MKL_CBWR');
 assert(exist('OCTAVE_VERSION','builtin') == 0, 'MathWorks MATLAB required');
 assert(strcmp(version('-release'),'2026b'), 'MATLAB R2026b required');
 assert(contains(version,'(R2026b) Update 1'), 'R2026b Update 1 required');
