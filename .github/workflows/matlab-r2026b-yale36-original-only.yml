@@ -1,0 +1,171 @@
+name: MATLAB R2026b original Yale 36-case binary64 evidence
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  YALE_CPM_COMMIT: b903f83b476b745417b1f062f6777f5ffe118f1a
+  YALE_OHBM_COMMIT: 708999b8bb27ae69722775c323da9f14ef6732c7
+jobs:
+  original-only:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            cbwr: COMPATIBLE
+          - os: ubuntu-24.04
+            cbwr: COMPATIBLE
+          - os: ubuntu-22.04
+            cbwr: DEFAULT
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin the original-only runner and all 18 prepublished synthetic inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/yale36_original_only
+          echo '0d9baa25c4d3ca859b40484e491542253273795f4c95d6f83b32c71b899fa999' " $d/run_yale36_original_only.m" | sha256sum -c -
+          echo '1eacd443514200faa18629cf1974c9c9ff909b13e9d9b5b5f87245cea39ab169' " $d/public_fixtures.sha256" | sha256sum -c -
+          test "$(wc -l < "$d/public_fixtures.sha256")" -eq 18
+          sha256sum -c "$d/public_fixtures.sha256"
+      - name: Set the tested MKL compatibility mode
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.cbwr }}" != DEFAULT ]; then
+            echo "MKL_CBWR=${{ matrix.cbwr }}" >> "$GITHUB_ENV"
+          fi
+      - name: Record machine provenance and enforce the approved AMD EPYC pool
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/yale36_original_only
+          mkdir -p "$d/out"
+          cp "$d/public_fixtures.sha256" "$d/out/public_fixtures.sha256"
+          {
+            echo "GitHub run=$GITHUB_RUN_ID"
+            echo "Public source commit=$GITHUB_SHA"
+            echo "Public ref=$GITHUB_REF"
+            echo "Run attempt=$GITHUB_RUN_ATTEMPT"
+            echo 'Job OS=${{ matrix.os }}'
+            echo 'Job CBWR=${{ matrix.cbwr }}'
+            uname -a
+            lscpu
+            sha256sum "$d/run_yale36_original_only.m" "$d/public_fixtures.sha256"
+            sha256sum -c "$d/public_fixtures.sha256"
+          } > "$d/out/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC .*(7763|9V45)'; then
+            echo "Rejected unapproved CPU $model" >&2
+            exit 86
+          fi
+      - name: Fetch and pin original unmodified Yale CPM and OHBM sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/yale36_original_only
+          git clone --quiet https://github.com/YaleMRRC/CPM.git "$d/upstream/yale-cpm"
+          git clone --quiet https://github.com/YaleMRRC/CPM_OHBM.git "$d/upstream/yale-ohbm"
+          git -C "$d/upstream/yale-cpm" checkout --quiet --detach "$YALE_CPM_COMMIT"
+          git -C "$d/upstream/yale-ohbm" checkout --quiet --detach "$YALE_OHBM_COMMIT"
+          test "$(git -C "$d/upstream/yale-cpm" rev-parse HEAD)" = "$YALE_CPM_COMMIT"
+          test "$(git -C "$d/upstream/yale-ohbm" rev-parse HEAD)" = "$YALE_OHBM_COMMIT"
+          test -z "$(git -C "$d/upstream/yale-cpm" status --porcelain)"
+          test -z "$(git -C "$d/upstream/yale-ohbm" status --porcelain)"
+          sha256sum "$d/upstream/yale-cpm/matlab/func/cpm_main.m" \
+            "$d/upstream/yale-cpm/matlab/func/cpm_cv.m" \
+            "$d/upstream/yale-cpm/matlab/misc/ridgeCPM.m" \
+            "$d/upstream/yale-cpm/matlab/misc/ridgeCPM_PCA.m" \
+            "$d/upstream/yale-ohbm/kfold_cpm_withmatrix.m" \
+            "$d/upstream/yale-ohbm/kfold_cpm_partial_withmatrix.m" \
+            >> "$d/out/original_cpu.txt"
+          echo "Original Yale CPM=$YALE_CPM_COMMIT" >> "$d/out/original_cpu.txt"
+          echo "Original Yale OHBM=$YALE_OHBM_COMMIT" >> "$d/out/original_cpu.txt"
+      - uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Require the previously approved genuine MathWorks mathspec binary
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/yale36_original_only
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$d/out/original_cpu.txt"
+      - name: Capture two byte-identical original executions of each of the 36 cases
+        uses: matlab-actions/run-command@v3
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/yale36_original_only'); run_yale36_original_only
+      - name: Verify source-only binary64 evidence and produce its SHA256 custody manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/yale36_original_only
+          python3 - "$d" <<'PY'
+          import json, pathlib, re, sys
+
+          root = pathlib.Path(sys.argv[1])
+          output = root / 'out'
+          provenance = json.loads((output / 'provenance.json').read_text())
+          assert provenance['classification'] == 'YALE36_ORIGINAL_ONLY_MATHWORKS_R2026B_BINARY64'
+          assert provenance['release'] == '2026b' and 'Update 1' in provenance['runtime_version']
+          assert provenance['completed_case_count'] == 36
+          assert provenance['source_yale_cpm'] == 'b903f83b476b745417b1f062f6777f5ffe118f1a'
+          assert provenance['source_yale_ohbm'] == '708999b8bb27ae69722775c323da9f14ef6732c7'
+          scenarios = ['baseline','clean','severe_outlier','rescaled','reversed','47_subjects']
+          profiles = ['main','ohbm','partial-pearson','partial-spearman','ridge-compat','pca']
+          expected = {'predictions','pearson_r'}
+          words = 0
+          for scenario in scenarios:
+              for profile in profiles:
+                  record = json.loads((output / f'original-{scenario}-{profile}.json').read_text())
+                  assert (record['scenario'],record['profile']) == (scenario,profile)
+                  primary = output / f'original-{scenario}-{profile}.json'
+                  repeat = output / f'repeat-{scenario}-{profile}.json'
+                  assert primary.read_bytes() == repeat.read_bytes()
+                  rng = record['rng']
+                  assert rng['expected_after'] == rng['actual_after']
+                  assert sorted(rng['fold_visit_order']) == list(range(1,record['subjects']+1))
+                  assert 'Elapsed time is ' not in record['warnings']['transcript']
+                  assert record['subjects'] == (47 if scenario == '47_subjects' else 48)
+                  fields = record['fields']
+                  required = expected | ({'alpha','lambda'} if profile in {'ridge-compat','pca'} else set())
+                  if profile == 'pca':
+                      required |= {'observed_fold_components','pca_loadings'}
+                  assert set(fields) == required == set(record['shapes'])
+                  count = 0
+                  for name, value in fields.items():
+                      if isinstance(value,str): value = [value]
+                      assert isinstance(value,list) and value
+                      assert all(isinstance(w,str) and re.fullmatch('[0-9a-f]{16}',w) for w in value)
+                      shape = record['shapes'][name]
+                      n = record['subjects']
+                      expected_shape = [n,2] if name=='pca_loadings' else ([1,n] if name in {'predictions','observed_fold_components'} else [1,1])
+                      assert shape == expected_shape
+                      assert len(value)==shape[0]*shape[1]
+                      count += len(value)
+                  assert count==record['word_count']
+                  words += count
+          assert len(list(output.glob('original-*.json')))==36
+          assert len(list(output.glob('repeat-*.json')))==36
+          assert words==2643, f'Unexpected total words {words}'
+          print(f'36 genuine original-only profiles, {words} raw binary64 words, two matching executions each')
+          PY
+          cd "$d/out"
+          sha256sum original-*.json repeat-*.json provenance.json original_cpu.txt public_fixtures.sha256 > original_sha256_manifest.txt
+          sha256sum -c original_sha256_manifest.txt
+      - name: Preserve genuine originals and diagnostics from rejected environments
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-yale36-r2026b-${{ matrix.os }}-${{ matrix.cbwr }}
+          path: Cingulum_Yale_MATLAB_Online/yale36_original_only/out
+          if-no-files-found: warn
+          retention-days: 90
