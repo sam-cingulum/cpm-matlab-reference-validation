@@ -1,0 +1,128 @@
+name: "MATLAB R2026b V1427 fresh mixed regress holdout"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+jobs:
+  original-only:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            cbwr: COMPATIBLE
+          - os: ubuntu-24.04
+            cbwr: COMPATIBLE
+    runs-on: ${{ matrix.os }}
+    env:
+      CPM_MATRIX_OS: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set CBWR mode
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "MKL_CBWR=${{ matrix.cbwr }}" >> "$GITHUB_ENV"
+      - name: Reject CPUs outside the approved AMD 7763 or 9V45 pool
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/mixed_regress_v1427
+          mkdir -p "$d/out"
+          { echo "Genuine original GitHub run=$GITHUB_RUN_ID"; echo "Public source commit=$GITHUB_SHA"; echo "Public ref=$GITHUB_REF"; echo "Run attempt=$GITHUB_RUN_ATTEMPT"; echo "Job key=$GITHUB_JOB"; echo "Job OS=${{ matrix.os }}"; echo "CBWR=${{ matrix.cbwr }}"; lscpu; uname -a; } > "$d/out/original_cpu.txt"
+          sha256sum "$d/run_v1427.m" "$d/capture_entry.m" "$d/matlab_launch.sh" >> "$d/out/original_cpu.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC (7763|9V45)( [A-Za-z0-9-]+)*$'; then
+            echo "V1427 rejected unapproved CPU $model" >&2
+            exit 86
+          fi
+      - name: Regenerate and verify immutable inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/mixed_regress_v1427
+          python3 "$d/make_inputs.py" "$d/input"
+          (cd "$d/input" && sha256sum -c ../input_sha256.txt)
+          cp "$d/input_sha256.txt" "$d/out/input_sha256.txt"
+      - uses: matlab-actions/setup-matlab@f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Enforce genuine original MathWorks mathspec binary SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/mixed_regress_v1427
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          sha256sum "$file" >> "$d/out/original_cpu.txt"
+      - name: Verify launch environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$MKL_NUM_THREADS" = 1
+          test "$OMP_NUM_THREADS" = 1
+          test "$MKL_CBWR" = COMPATIBLE
+          d=Cingulum_Yale_MATLAB_Online/mixed_regress_v1427
+          printf 'MKL_NUM_THREADS=%s\nOMP_NUM_THREADS=%s\nMKL_CBWR=%s\nMATLAB_STARTUP_OPTIONS=-singleCompThread\n' "$MKL_NUM_THREADS" "$OMP_NUM_THREADS" "$MKL_CBWR" >> "$d/out/original_cpu.txt"
+      - name: Verify pinned action bundles and prepare assert-only launch boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/mixed_regress_v1427
+          actions_dir="$(dirname "$RUNNER_WORKSPACE")/_actions/matlab-actions"
+          setup_bundle="$actions_dir/setup-matlab/f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d/dist/setup/index.js"
+          run_bundle="$actions_dir/run-command/bfa857648f4895aa98a446fe41c85e0788421ed5/dist/index.js"
+          helper="$actions_dir/run-command/bfa857648f4895aa98a446fe41c85e0788421ed5/dist/bin/glnxa64/run-matlab-command"
+          printf '%s  %s\n' '353b7e6f100697279efc400afb2e8c1ea8339b414e48343826af7a3aca374c90' "$setup_bundle" '6d250ed80a4d93a1e8c23057f9b8285be8d4171ad33aecd28d85db218388a491' "$run_bundle" '9450d17e364086ae75dce1fb2e324c969667d862109dfcdfe7fe4b9333f90afd' "$helper" | sha256sum -c -
+          printf 'Setup action bundle SHA=353b7e6f100697279efc400afb2e8c1ea8339b414e48343826af7a3aca374c90\nRun action bundle SHA=6d250ed80a4d93a1e8c23057f9b8285be8d4171ad33aecd28d85db218388a491\nRun action helper SHA=9450d17e364086ae75dce1fb2e324c969667d862109dfcdfe7fe4b9333f90afd\n' >> "$d/out/original_cpu.txt"
+          real_matlab="$(command -v matlab)"
+          test -x "$real_matlab"
+          shim="$RUNNER_TEMP/cpm-v1427-matlab-launch"
+          mkdir -p "$shim"
+          install -m 0755 "$d/matlab_launch.sh" "$shim/matlab"
+          printf '%s\n' "$shim" >> "$GITHUB_PATH"
+          printf 'CPM_REAL_MATLAB=%s\nCPM_CPU_LOG=%s\n' "$real_matlab" "$GITHUB_WORKSPACE/$d/out/original_cpu.txt" >> "$GITHUB_ENV"
+      - name: Execute two original MATLAB repetitions
+        uses: matlab-actions/run-command@bfa857648f4895aa98a446fe41c85e0788421ed5
+        with:
+          startup-options: -singleCompThread
+          generate-summary: false
+          command: cd('Cingulum_Yale_MATLAB_Online/mixed_regress_v1427'); run_v1427
+      - name: Compare repetitions and write manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd Cingulum_Yale_MATLAB_Online/mixed_regress_v1427/out
+          for suffix in words:bin fields:csv status:tsv; do
+            stem="${suffix%:*}"
+            ext="${suffix#*:}"
+            cmp "${stem}_1.${ext}" "${stem}_2.${ext}"
+          done
+          sha256sum * > ../sha256_manifest.txt
+          mv ../sha256_manifest.txt .
+      - name: Preserve original evidence and rejected CPU diagnostic
+        if: always()
+        id: original_artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: v1427-mixed-regress-${{ matrix.os }}-${{ matrix.cbwr }}-attempt-${{ github.run_attempt }}
+          path: Cingulum_Yale_MATLAB_Online/mixed_regress_v1427/out
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Bind uploaded artifact identity to the successful matrix job
+        if: success()
+        shell: bash
+        env:
+          CPM_ARTIFACT_ID: ${{ steps.original_artifact.outputs.artifact-id }}
+          CPM_ARTIFACT_DIGEST: ${{ steps.original_artifact.outputs.artifact-digest }}
+        run: |
+          set -euo pipefail
+          [[ "$CPM_ARTIFACT_ID" =~ ^[1-9][0-9]*$ ]]
+          [[ "$CPM_ARTIFACT_DIGEST" =~ ^[0-9a-f]{64}$ ]]
+          printf 'CPM custody artifact_id=%s digest=%s\n' "$CPM_ARTIFACT_ID" "$CPM_ARTIFACT_DIGEST"
