@@ -6,6 +6,9 @@ assert(strcmp(version('-release'),'2026b'), 'MATLAB R2026b required');
 assert(contains(version,'(R2026b) Update 1'), 'R2026b Update 1 required');
 maxNumCompThreads(1);
 assert(maxNumCompThreads == 1, 'A single computational thread is required');
+warning('on','all');
+warning('off','backtrace');
+warning('on','verbose');
 stats = ver('stats');
 assert(~isempty(stats), 'Statistics and Machine Learning Toolbox required');
 
@@ -18,6 +21,7 @@ addpath(fullfile(upstream,'yale-ohbm'));
 
 required = {
     'cpm_main', fullfile(upstream,'yale-cpm','matlab','func','cpm_main.m');
+    'cpm_cv', fullfile(upstream,'yale-cpm','matlab','func','cpm_cv.m');
     'ridgeCPM', fullfile(upstream,'yale-cpm','matlab','misc','ridgeCPM.m');
     'ridgeCPM_PCA', fullfile(upstream,'yale-cpm','matlab','misc','ridgeCPM_PCA.m');
     'kfold_cpm_withmatrix', fullfile(upstream,'yale-ohbm','kfold_cpm_withmatrix.m');
@@ -53,6 +57,8 @@ provenance.run_attempt = getenv('GITHUB_RUN_ATTEMPT');
 provenance.mkl_num_threads = getenv('MKL_NUM_THREADS');
 provenance.omp_num_threads = getenv('OMP_NUM_THREADS');
 provenance.rng_algorithm = 'twister';
+provenance.fold_policy = 'loo_sorted_training_subject_order_output';
+provenance.warning_policy = 'all_on_verbose_no_backtrace_toc_filtered';
 provenance.source_yale_cpm = getenv('YALE_CPM_COMMIT');
 provenance.source_yale_ohbm = getenv('YALE_OHBM_COMMIT');
 provenance.seed_per_profile = 665;
@@ -77,25 +83,20 @@ for si = 1:numel(scenarios)
 
     for pi = 1:numel(profiles)
         profile = profiles{pi};
-        rng(665,'twister');
-        primary = original_profile(profile,all_mats,all_behav,all_covar,multi_behav,N);
-        rng(665,'twister');
-        repeated = original_profile(profile,all_mats,all_behav,all_covar,multi_behav,N);
-        assert(isequal(primary.shapes,repeated.shapes) && ...
-            isequal(primary.fields,repeated.fields), ...
-            'Original source repeated binary64 words differ for %s/%s',scenario,profile);
+        primary = capture_profile(profile,all_mats,all_behav,all_covar,multi_behav,N);
+        repeated = capture_profile(profile,all_mats,all_behav,all_covar,multi_behav,N);
+        assert(isequal(primary,repeated), ...
+            'Original repeated evidence differs for %s/%s',scenario,profile);
 
-        evidence = struct();
-        evidence.scenario = scenario;
-        evidence.profile = profile;
-        evidence.subjects = N;
-        evidence.shapes = primary.shapes;
-        evidence.fields = primary.fields;
-        evidence.word_count = primary.word_count;
+        evidence = struct('scenario',scenario,'profile',profile,'subjects',N, ...
+            'shapes',primary.shapes,'fields',primary.fields,'word_count',primary.word_count, ...
+            'rng',primary.rng,'warnings',primary.warnings);
         write_json(fullfile(outdir,sprintf('original-%s-%s.json',scenario,profile)),evidence);
         evidence.shapes = repeated.shapes;
         evidence.fields = repeated.fields;
         evidence.word_count = repeated.word_count;
+        evidence.rng = repeated.rng;
+        evidence.warnings = repeated.warnings;
         write_json(fullfile(outdir,sprintf('repeat-%s-%s.json',scenario,profile)),evidence);
         total = total + 1;
         fprintf('%d/%d original Yale %s %s: %d binary64 words, repetitions identical\n', ...
@@ -105,6 +106,39 @@ end
 assert(total == 36, 'Original 36-case run is incomplete');
 provenance.completed_case_count = total;
 write_json(fullfile(outdir,'provenance.json'),provenance);
+end
+
+function evidence = capture_profile(profile,all_mats,all_behav,all_covar,multi_behav,N)
+% The pinned LOO sources use one randperm at entry for main/OHBM/partial.
+% Replay it from the actual initial state, then restore the state before
+% invoking the unchanged original. The actual final state must equal the
+% replayed state, confirming no additional net RNG consumption.
+% Ridge/PCA reset to this seed internally and visit explicit indices 1:N.
+rng(665,'twister');
+initial = rng;
+if ismember(profile,{'main','ohbm','partial-pearson','partial-spearman'})
+    visit = randperm(N);
+    fold_source = 'replay_pinned_randperm';
+else
+    visit = 1:N;
+    fold_source = 'explicit_indices';
+end
+expected_after = rng;
+rng(initial);
+lastwarn('','');
+transcript = evalc('evidence = original_profile(profile,all_mats,all_behav,all_covar,multi_behav,N);');
+actual_after = rng;
+[warning_text,warning_id] = lastwarn;
+assert(isequal(expected_after,actual_after), 'Unexpected RNG consumption in %s',profile);
+% Retain deterministic diagnostic text, including all displayed warnings.
+% Original ridge/PCA call toc once per fold; remove only its timing lines.
+transcript = strrep(transcript,sprintf('\r\n'),sprintf('\n'));
+transcript = regexprep(transcript,'(?m)^Elapsed time is [0-9.eE+-]+ seconds\. *\n','');
+evidence.rng = struct('initial',initial,'expected_after',expected_after, ...
+    'actual_after',actual_after,'fold_visit_order',visit,'fold_source',fold_source);
+evidence.warnings = struct('last_id',warning_id,'last_text',warning_text, ...
+    'present',~isempty(warning_text) || contains(transcript,'Warning:'), ...
+    'transcript',transcript);
 end
 
 function out = original_profile(profile,all_mats,all_behav,all_covar,multi_behav,N)
@@ -146,8 +180,8 @@ names = fieldnames(values);
 for fi = 1:numel(names)
     name = names{fi};
     value = values.(name);
-    assert(isnumeric(value) && isreal(value), 'Unexpected output type for %s',name);
-    words = cellstr(num2hex(double(value(:))));
+    assert(isa(value,'double') && isreal(value), 'Expected real double for %s',name);
+    words = cellstr(num2hex(value(:)));
     out.shapes.(name) = size(value);
     out.fields.(name) = words(:)';
     out.word_count = out.word_count + numel(words);

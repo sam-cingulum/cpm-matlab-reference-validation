@@ -29,7 +29,7 @@ jobs:
         run: |
           set -euo pipefail
           d=Cingulum_Yale_MATLAB_Online/yale36_original_only
-          echo 'a2a31875f06abe1225b992c26f930fb8d1c43996af61b3d5e9b46435b23121e4' " $d/run_yale36_original_only.m" | sha256sum -c -
+          echo '0d9baa25c4d3ca859b40484e491542253273795f4c95d6f83b32c71b899fa999' " $d/run_yale36_original_only.m" | sha256sum -c -
           echo '1eacd443514200faa18629cf1974c9c9ff909b13e9d9b5b5f87245cea39ab169' " $d/public_fixtures.sha256" | sha256sum -c -
           test "$(wc -l < "$d/public_fixtures.sha256")" -eq 18
           sha256sum -c "$d/public_fixtures.sha256"
@@ -78,6 +78,7 @@ jobs:
           test -z "$(git -C "$d/upstream/yale-cpm" status --porcelain)"
           test -z "$(git -C "$d/upstream/yale-ohbm" status --porcelain)"
           sha256sum "$d/upstream/yale-cpm/matlab/func/cpm_main.m" \
+            "$d/upstream/yale-cpm/matlab/func/cpm_cv.m" \
             "$d/upstream/yale-cpm/matlab/misc/ridgeCPM.m" \
             "$d/upstream/yale-cpm/matlab/misc/ridgeCPM_PCA.m" \
             "$d/upstream/yale-ohbm/kfold_cpm_withmatrix.m" \
@@ -129,6 +130,10 @@ jobs:
                   primary = output / f'original-{scenario}-{profile}.json'
                   repeat = output / f'repeat-{scenario}-{profile}.json'
                   assert primary.read_bytes() == repeat.read_bytes()
+                  rng = record['rng']
+                  assert rng['expected_after'] == rng['actual_after']
+                  assert sorted(rng['fold_visit_order']) == list(range(1,record['subjects']+1))
+                  assert 'Elapsed time is ' not in record['warnings']['transcript']
                   assert record['subjects'] == (47 if scenario == '47_subjects' else 48)
                   fields = record['fields']
                   required = expected | ({'alpha','lambda'} if profile in {'ridge-compat','pca'} else set())
