@@ -1,0 +1,106 @@
+name: "MATLAB R2026b V1427 V1428 launch matrix (diagnostic only)"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MKL_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  MKL_CBWR: COMPATIBLE
+jobs:
+  startup-only:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+        arm: [action-baseline, direct-baseline, action-single, direct-single]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bind job identity and enforce approved CPU
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/startup_matrix_v1427_v1428
+          mkdir -p "$d/out"
+          { printf 'run=%s\nattempt=%s\nref=%s\nhead=%s\njob=%s\nos=%s\narm=%s\n' "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" "$GITHUB_REF" "$GITHUB_SHA" "$GITHUB_JOB" '${{ matrix.os }}' '${{ matrix.arm }}'; lscpu; uname -a; sha256sum "$d/run_startup_matrix.m" .github/workflows/matlab-r2026b-v1427-v1428-launch-matrix.yml; } > "$d/out/identity.txt"
+          model="$(lscpu | sed -n 's/^Model name:[[:space:]]*//p' | head -1)"
+          if ! printf '%s' "$model" | grep -Eq '^AMD EPYC (7763|9V45)( [A-Za-z0-9-]+)*$'; then
+            echo "Rejected unapproved CPU $model" >&2
+            exit 86
+          fi
+      - uses: matlab-actions/setup-matlab@f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d
+        with:
+          release: R2026b
+          products: Statistics_and_Machine_Learning_Toolbox
+      - name: Verify original binary and action pins, without a PATH shim
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/startup_matrix_v1427_v1428
+          file="$(find /opt/hostedtoolcache/MATLAB -name libmwmathspec.so -type f -print -quit)"
+          test -n "$file"
+          echo "625bc659a790963d52dca039c66bcbde68c319caba37f89b85dd977c6a3be848  $file" | sha256sum -c -
+          actions_dir="$(dirname "$RUNNER_WORKSPACE")/_actions/matlab-actions"
+          setup_bundle="$actions_dir/setup-matlab/f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d/dist/setup/index.js"
+          run_bundle="$actions_dir/run-command/bfa857648f4895aa98a446fe41c85e0788421ed5/dist/index.js"
+          helper="$actions_dir/run-command/bfa857648f4895aa98a446fe41c85e0788421ed5/dist/bin/glnxa64/run-matlab-command"
+          printf '%s  %s\n' '353b7e6f100697279efc400afb2e8c1ea8339b414e48343826af7a3aca374c90' "$setup_bundle" '6d250ed80a4d93a1e8c23057f9b8285be8d4171ad33aecd28d85db218388a491' "$run_bundle" '9450d17e364086ae75dce1fb2e324c969667d862109dfcdfe7fe4b9333f90afd' "$helper" | sha256sum -c -
+          test "$MKL_NUM_THREADS" = 1 && test "$OMP_NUM_THREADS" = 1 && test "$MKL_CBWR" = COMPATIBLE
+          real_matlab="$(readlink -f "$(command -v matlab)")"
+          test -x "$real_matlab"
+          case "$real_matlab" in /opt/hostedtoolcache/MATLAB/*) ;; *) echo 'Unexpected MATLAB executable location' >&2; exit 87 ;; esac
+          { sha256sum "$file" "$setup_bundle" "$run_bundle" "$helper" "$real_matlab"; printf 'executable=%s\nMKL_NUM_THREADS=%s\nOMP_NUM_THREADS=%s\nMKL_CBWR=%s\n' "$real_matlab" "$MKL_NUM_THREADS" "$OMP_NUM_THREADS" "$MKL_CBWR"; } >> "$d/out/identity.txt"
+          printf 'CPM_REAL_MATLAB=%s\n' "$real_matlab" >> "$GITHUB_ENV"
+      - name: Prior successful action baseline (unshimmed, no startup options)
+        id: action_baseline
+        if: matrix.arm == 'action-baseline'
+        timeout-minutes: 4
+        uses: matlab-actions/run-command@bfa857648f4895aa98a446fe41c85e0788421ed5
+        with:
+          command: cd('Cingulum_Yale_MATLAB_Online/startup_matrix_v1427_v1428'); run_startup_matrix
+      - name: Unshimmed action with one startup flag
+        id: action_single
+        if: matrix.arm == 'action-single'
+        timeout-minutes: 4
+        uses: matlab-actions/run-command@bfa857648f4895aa98a446fe41c85e0788421ed5
+        with:
+          startup-options: -singleCompThread
+          command: cd('Cingulum_Yale_MATLAB_Online/startup_matrix_v1427_v1428'); run_startup_matrix
+      - name: Supported direct MATLAB batch startup without a shim
+        id: direct
+        if: matrix.arm == 'direct-baseline' || matrix.arm == 'direct-single'
+        timeout-minutes: 4
+        shell: bash
+        env:
+          MW_BATCH_LICENSING_ONLINE: "true"
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/startup_matrix_v1427_v1428
+          args=()
+          if [[ '${{ matrix.arm }}' == direct-single ]]; then args+=(-singleCompThread); fi
+          args+=(-batch "cd('$d'); run_startup_matrix")
+          printf '%s\n' "$CPM_REAL_MATLAB" "${args[@]}" > "$d/out/direct_argv.txt"
+          set +e
+          timeout --signal=TERM --kill-after=10s 180s "$CPM_REAL_MATLAB" "${args[@]}" > "$d/out/direct_console.log" 2>&1
+          status=$?
+          set -e
+          printf 'exit=%d\n' "$status" > "$d/out/direct_exit.txt"
+          exit "$status"
+      - name: Preserve diagnostic evidence even if entry failed
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          d=Cingulum_Yale_MATLAB_Online/startup_matrix_v1427_v1428
+          printf 'action_baseline=%s\naction_single=%s\ndirect=%s\n' '${{ steps.action_baseline.outcome }}' '${{ steps.action_single.outcome }}' '${{ steps.direct.outcome }}' > "$d/out/step_outcomes.txt"
+          (cd "$d/out" && sha256sum -- * > ../manifest.txt && mv ../manifest.txt .)
+      - name: Upload arm-specific diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v1427-v1428-launch-matrix-${{ matrix.os }}-${{ matrix.arm }}-attempt-${{ github.run_attempt }}
+          path: Cingulum_Yale_MATLAB_Online/startup_matrix_v1427_v1428/out
+          if-no-files-found: error
+          retention-days: 90
