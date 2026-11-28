@@ -1,7 +1,7 @@
 function run_v1427()
 % Fresh input holdout: only original MATLAB is executed here.
 assert(exist('OCTAVE_VERSION','builtin')==0);
-assert(contains(version,'(R2026b) Update 1'));
+assert(strcmp(version,'26.2.0.3433840 (R2026b) Update 1'));
 % Capture the initial MATLAB thread limit before making any changes.
 initial_threads=maxNumCompThreads;
 initial_mkl=getenv('MKL_NUM_THREADS'); initial_omp=getenv('OMP_NUM_THREADS');
@@ -15,6 +15,7 @@ warning('on','MATLAB:nearlySingularMatrix');
 warning('on','MATLAB:singularMatrix');
 warning('on','stats:regress:RankDefDesignMat');
 root=fileparts(mfilename('fullpath'));
+entry=capture_entry(root);
 out=fullfile(root,'out'); if ~exist(out,'dir'); mkdir(out); end
 input=fullfile(root,'input');
 cases=readtable(fullfile(input,'cases.csv'),'TextType','string');
@@ -62,6 +63,8 @@ prov=struct('classification','V1427_FRESH_MIXED_REGRESS_ORIGINAL','V12','SEALED'
     'initial_omp_num_threads',initial_omp,'final_omp_num_threads',final_omp, ...
     'run_id',getenv('GITHUB_RUN_ID'),'public_commit',getenv('GITHUB_SHA'), ...
     'cases',height(cases));
+names=fieldnames(entry);
+for j=1:numel(names); prov.(names{j})=entry.(names{j}); end
 [~,cpu]=system('lscpu'); prov.lscpu=cpu;
 f=fopen(fullfile(out,'provenance.json'),'w'); assert(f>0); fprintf(f,'%s\n',jsonencode(prov)); fclose(f);
 end
