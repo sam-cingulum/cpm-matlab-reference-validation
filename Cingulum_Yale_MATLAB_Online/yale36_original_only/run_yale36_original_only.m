@@ -48,6 +48,11 @@ provenance.max_computation_threads = maxNumCompThreads;
 provenance.mkl_cbwr = getenv('MKL_CBWR');
 provenance.run_id = getenv('GITHUB_RUN_ID');
 provenance.public_commit = getenv('GITHUB_SHA');
+provenance.public_ref = getenv('GITHUB_REF');
+provenance.run_attempt = getenv('GITHUB_RUN_ATTEMPT');
+provenance.mkl_num_threads = getenv('MKL_NUM_THREADS');
+provenance.omp_num_threads = getenv('OMP_NUM_THREADS');
+provenance.rng_algorithm = 'twister';
 provenance.source_yale_cpm = getenv('YALE_CPM_COMMIT');
 provenance.source_yale_ohbm = getenv('YALE_OHBM_COMMIT');
 provenance.seed_per_profile = 665;
@@ -87,8 +92,11 @@ for si = 1:numel(scenarios)
         evidence.shapes = primary.shapes;
         evidence.fields = primary.fields;
         evidence.word_count = primary.word_count;
-        evidence.repetitions_identical = 2;
         write_json(fullfile(outdir,sprintf('original-%s-%s.json',scenario,profile)),evidence);
+        evidence.shapes = repeated.shapes;
+        evidence.fields = repeated.fields;
+        evidence.word_count = repeated.word_count;
+        write_json(fullfile(outdir,sprintf('repeat-%s-%s.json',scenario,profile)),evidence);
         total = total + 1;
         fprintf('%d/%d original Yale %s %s: %d binary64 words, repetitions identical\n', ...
             total,provenance.expected_case_count,scenario,profile,evidence.word_count);
